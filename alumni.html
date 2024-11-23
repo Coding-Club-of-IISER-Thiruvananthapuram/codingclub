@@ -1,1 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeX Society Alumni - IISER TVM</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
+        body {
+            background: #0a0a0a;
+            color: #fff;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Dynamic Background */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, #2563eb15 0%, transparent 40%),
+                radial-gradient(circle at 80% 80%, #7c3aed15 0%, transparent 40%);
+            z-index: -1;
+            animation: backgroundPulse 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes backgroundPulse {
+            0% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .header {
+            background: rgba(17, 17, 17, 0.95);
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #2563eb, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header p {
+            color: #999;
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .alumni-grid {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .alumni-card {
+            background: rgba(23, 23, 23, 0.95);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .alumni-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2);
+        }
+
+        .alumni-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .alumni-info {
+            padding: 2rem;
+        }
+
+        .alumni-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .alumni-batch {
+            color: #2563eb;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .alumni-position {
+            color: #ddd;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .alumni-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: white;
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .social-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+        }
+
+        .email-link {
+            background: linear-gradient(135deg, #7c3aed, #9333ea);
+        }
+
+        footer {
+            background: rgba(17, 17, 17, 0.95);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer p {
+            color: #999;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .header p {
+                font-size: 1rem;
+            }
+
+            .alumni-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                padding: 0 1rem;
+                margin: 2rem auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+
+    <header class="header">
+        <h1>CodeX Society Alumni</h1>
+        <p>Meet our distinguished alumni from IISER Thiruvananthapuram's premier coding club</p>
+    </header>
+
+    <main class="alumni-grid" id="alumni-container"></main>
+
+    <footer>
+        <p>© 2024 CodeX Society - IISER Thiruvananthapuram</p>
+    </footer>
+
+    <script>
+        const alumni = [
+            {
+                name: "Ashutosh Kumar",
+                batch: "Batch 2019",
+                position: "PHD @ Google",
+                image: "/api/placeholder/400/300",
+                linkedin: "https://www.linkedin.com/in/ashutosh-kumar-a7134b202/",
+                email: "kumarashutoshppt@gmail.com"
+            },
+            {
+                name: "Krishna Kumar Singh",
+                batch: "Batch 2019",
+                position: "Ph.D. @ University of Leeds",
+                image: "/api/placeholder/400/300",
+                linkedin: "https://www.linkedin.com/in/kks0/",
+                email: ""
+            }
+        ];
+
+        function displayAlumni() {
+            const container = document.getElementById('alumni-container');
+            container.innerHTML = alumni.map(person => `
+                <div class="alumni-card">
+                    <img src="${person.image}" alt="${person.name}" class="alumni-image">
+                    <div class="alumni-info">
+                        <h2 class="alumni-name">${person.name}</h2>
+                        <p class="alumni-batch">${person.batch}</p>
+                        <p class="alumni-position">${person.position}</p>
+                        <div class="alumni-links">
+                            <a href="${person.linkedin}" target="_blank" class="social-link">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                                </svg>
+                                LinkedIn
+                            </a>
+                            ${person.email ? `
+                                <a href="mailto:${person.email}" class="social-link email-link">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                                    </svg>
+                                    Email
+                                </a>
+                            ` : ''}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        displayAlumni();
+    </script>
+</body>
+</html>
