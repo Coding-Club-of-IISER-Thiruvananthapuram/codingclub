@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CodeX Society Blog</title>
   <style>
-    /* Add your CSS styles here */
     body {
       font-family: 'Roboto Mono', monospace;
       margin: 0;
@@ -75,6 +74,7 @@
       cursor: pointer;
       position: relative;
       z-index: 1;
+      transition: background-color 0.3s ease;
     }
 
     .blog-post button:hover {
@@ -113,6 +113,58 @@
       filter: brightness(0.5) contrast(1.2);
     }
 
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+      overflow-y: auto;
+    }
+
+    .modal-content {
+      background-color: #1C1C1C;
+      margin: 2rem auto;
+      padding: 2rem;
+      width: 90%;
+      max-width: 800px;
+      border-radius: 8px;
+      position: relative;
+      animation: modalFadeIn 0.3s ease;
+    }
+
+    .close-button {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      color: #FFFFFF;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      line-height: 1;
+    }
+
+    .close-button:hover {
+      color: #1E88E5;
+    }
+
+    @keyframes modalFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     @keyframes backgroundAnimation {
       0% {
         background-image: url('/api/placeholder/1920/1080?1');
@@ -141,16 +193,67 @@
       <h2>Exploring the Future of Coding with CodeX</h2>
       <div class="meta">Posted by XYZ on November 4, 2024</div>
       <p>
+        In this blog post, we'll dive into the latest trends and technologies shaping the future of coding...
+      </p>
+      <button onclick="openModal()">View Full Post</button>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="blogModal" class="modal">
+    <div class="modal-content">
+      <button class="close-button" onclick="closeModal()">&times;</button>
+      <h2>Exploring the Future of Coding with CodeX</h2>
+      <div class="meta">Posted by Saurab on November 4, 2024</div>
+      <p>
         In this blog post, we'll dive into the latest trends and technologies shaping the future of coding. From the rise of low-code/no-code platforms to the increased importance of data science and machine learning, the coding landscape is rapidly evolving. We'll explore how CodeX Society is staying ahead of the curve and preparing our members for the challenges and opportunities that lie ahead.
       </p>
-     
-   
+      <p>
+        The democratization of coding has been one of the most significant trends in recent years. Low-code and no-code platforms have made it possible for individuals with minimal programming experience to create sophisticated applications. However, this doesn't diminish the importance of traditional coding skills. Instead, it creates new opportunities for developers to focus on more complex problems and innovative solutions.
+      </p>
+      <p>
+        Data science and machine learning continue to be at the forefront of technological advancement. The ability to process and analyze large datasets, combined with sophisticated AI algorithms, is transforming industries across the board. CodeX Society members are actively engaging with these technologies, participating in workshops and collaborative projects that push the boundaries of what's possible.
+      </p>
+      <p>
+        Looking ahead, we see several emerging trends that will shape the future of coding:
+      </p>
+      <ul style="margin-left: 2rem;">
+        <li>Increased focus on AI-assisted coding and development tools</li>
+        <li>Growth in quantum computing applications and algorithms</li>
+        <li>Enhanced emphasis on cybersecurity and privacy-preserving technologies</li>
+        <li>Greater integration of AR/VR in development workflows</li>
+      </ul>
+      <p>
+        At CodeX Society, we're committed to staying at the forefront of these developments. Through our mentorship programs, technical workshops, and community projects, we're building a foundation for the next generation of developers to thrive in this evolving landscape.
+      </p>
+    </div>
   </div>
 
   <script>
-    function readMore() {
-      alert('You clicked the "Read More" button!');
+    function openModal() {
+      document.getElementById('blogModal').style.display = 'block';
+      document.body.style.overflow = 'hidden';
     }
+
+    function closeModal() {
+      document.getElementById('blogModal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+   
+    window.onclick = function(event) {
+      const modal = document.getElementById('blogModal');
+      if (event.target === modal) {
+        closeModal();
+      }
+    }
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        closeModal();
+      }
+    });
   </script>
 </body>
 </html>
