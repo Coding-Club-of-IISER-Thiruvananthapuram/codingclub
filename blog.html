@@ -1,1 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodeX Society Blog</title>
+  <style>
+    /* Add your CSS styles here */
+    body {
+      font-family: 'Roboto Mono', monospace;
+      margin: 0;
+      padding: 0;
+      background-color: #0F0F0F;
+      color: #BDBDBD;
+    }
 
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .blog-post {
+      background-color: rgba(28, 28, 28, 0.8);
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .blog-post:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(45deg, #1E88E5, #673AB7, #212121);
+      opacity: 0.3;
+      z-index: 0;
+    }
+
+    .blog-post h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #FFFFFF;
+      position: relative;
+      z-index: 1;
+    }
+
+    .blog-post p {
+      line-height: 1.6;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .blog-post .meta {
+      font-size: 0.875rem;
+      color: #9E9E9E;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .blog-post button {
+      background-color: #1E88E5;
+      color: #FFFFFF;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      font-size: 0.875rem;
+      cursor: pointer;
+      position: relative;
+      z-index: 1;
+    }
+
+    .blog-post button:hover {
+      background-color: #1565C0;
+    }
+
+    .home-button {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      background-color: #1E88E5;
+      color: #FFFFFF;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      font-size: 0.875rem;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    .home-button:hover {
+      background-color: #1565C0;
+    }
+
+    .background-image {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background-size: cover;
+      background-position: center;
+      animation: backgroundAnimation 30s ease infinite;
+      background-image: url('/api/placeholder/1920/1080?1');
+      filter: brightness(0.5) contrast(1.2);
+    }
+
+    @keyframes backgroundAnimation {
+      0% {
+        background-image: url('/api/placeholder/1920/1080?1');
+      }
+      25% {
+        background-image: url('/api/placeholder/1920/1080?2');
+      }
+      50% {
+        background-image: url('/api/placeholder/1920/1080?3');
+      }
+      75% {
+        background-image: url('/api/placeholder/1920/1080?4');
+      }
+      100% {
+        background-image: url('/api/placeholder/1920/1080?1');
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="home-button" onclick="window.location.href='index.html'">Home</button>
+  <div class="background-image"></div>
+  <div class="container">
+    <h1 style="color: #FFFFFF; font-size: 3rem; margin-bottom: 2rem;">CodeX Society Blog</h1>
+    <div class="blog-post">
+      <h2>Exploring the Future of Coding with CodeX</h2>
+      <div class="meta">Posted by XYZ on November 4, 2024</div>
+      <p>
+        In this blog post, we'll dive into the latest trends and technologies shaping the future of coding. From the rise of low-code/no-code platforms to the increased importance of data science and machine learning, the coding landscape is rapidly evolving. We'll explore how CodeX Society is staying ahead of the curve and preparing our members for the challenges and opportunities that lie ahead.
+      </p>
+     
+   
+  </div>
+
+  <script>
+    function readMore() {
+      alert('You clicked the "Read More" button!');
+    }
+  </script>
+</body>
+</html>
