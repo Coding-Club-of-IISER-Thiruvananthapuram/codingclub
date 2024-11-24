@@ -285,18 +285,29 @@
 
     <main class="alumni-grid" id="alumni-container"></main>
 
-    <footer>
+   <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <h3>About CodeX Society</h3>
+                <div class="footer-logo">
+                    <img src="iiserlogo.png" alt="IISER TVM Logo">
+                    <h3>CodeX Society</h3>
+                </div>
                 <p>CodeX Society is IISER TVM's premier coding club, fostering technical excellence and innovation among students.</p>
+                <a href="https://www.iisertvm.ac.in" target="_blank" class="iiser-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <path d="M15 3h6v6"></path>
+                        <path d="M10 14L21 3"></path>
+                    </svg>
+                    Visit IISER Thiruvananthapuram Official Website
+                </a>
             </div>
 
             <div class="footer-section">
                 <h3>Connect With Us</h3>
                 <p>Follow us on social media for updates:</p>
-                <p><a href="#">LinkedIn: CodeX Society IISER TVM</a></p>
-                <p><a href="#">Instagram: CodeX Society IISER TVM</a></p>
+                <p><a href="#" class="iiser-link">LinkedIn: CodeX Society IISER TVM</a></p>
+                <p><a href="#" class="iiser-link">Instagram: CodeX Society IISER TVM</a></p>
             </div>
 
             <div class="footer-section">
@@ -306,6 +317,8 @@
                 <p>Kerala, India - 695551</p>
             </div>
         </div>
+
+
     </footer>
 
     <script>
@@ -320,8 +333,8 @@
             },
             {
                 name: "Krishna Kumar Singh",
-                intro: "An Astrophysicist Passionate to Study Extreme Universe in Computer Simulation Lab",
                 batch: "Batch 2019",
+                intro: "An Astrophysicist Passionate to Study Extreme Universe in Computer Simulation Lab",
                 position: "Ph.D. at University of Leeds",
                 image: "alumni_krishna.jpg",
                 linkedin: "https://www.linkedin.com/in/kks0/",
@@ -335,9 +348,11 @@
                 <div class="alumni-card">
                     <img src="${person.image}" alt="${person.name}" class="alumni-image">
                     <div class="alumni-info">
+
                         <h2 class="alumni-name">${person.name}</h2>
                         <p class="alumni-batch">${person.batch}</p>
-                        <p class="alumni-position">${person.position}</p>
+                        <p class="alumni-intro">${person.intro}</p>
+                        <h5 class="alumni-position">${person.position}</h5>
                         <div class="alumni-links">
                             <a href="${person.linkedin}" target="_blank" class="social-link">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
