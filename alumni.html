@@ -103,88 +103,123 @@
         }
 
         /* Rest of your existing styles */
-        .alumni-grid {
-            max-width: 1200px;
-            margin: 4rem auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
+       .alumni-grid {
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+}
 
-        .alumni-card {
-            background: rgba(23, 23, 23, 0.95);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
+.alumni-card {
+    background: rgba(23, 23, 23, 0.95);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 480px;
+}
 
-        .alumni-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2);
-        }
+.alumni-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(37, 99, 235, 0.25);
+}
 
-        .alumni-image {
+.alumni-image {
     width: 100%;
-    height: auto; /* Adjust the height to maintain aspect ratio */
+    height: 240px; /* Fixed height for consistency */
+    object-fit: cover;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-        }
+.alumni-info {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
 
-        .alumni-info {
-            padding: 2rem;
-        }
+.alumni-name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: #fff;
+    line-height: 1.2;
+}
 
-        .alumni-name {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: #fff;
-        }
+.alumni-batch {
+    color: #2563eb;
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+}
 
-        .alumni-batch {
-            color: #2563eb;
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-        }
+.alumni-position {
+    color: #ddd;
+    font-size: 1.125rem;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+}
 
-        .alumni-position {
-            color: #ddd;
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-        }
+.alumni-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: auto;
+    flex-wrap: wrap;
+}
 
-        .alumni-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
+.social-link {
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    color: white;
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+}
 
-        .social-link {
-            background: linear-gradient(135deg, #2563eb, #7c3aed);
-            color: white;
-            padding: 0.8rem 1.2rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
+.social-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+    opacity: 0.95;
+}
 
-        .social-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
-        }
+.email-link {
+    background: linear-gradient(135deg, #7c3aed, #9333ea);
+}
 
-        .email-link {
-            background: linear-gradient(135deg, #7c3aed, #9333ea);
-        }
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .alumni-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        padding: 0 1rem;
+    }
+
+    .alumni-card {
+        min-height: 420px;
+    }
+
+    .alumni-image {
+        height: 200px;
+    }
+
+    .alumni-info {
+        padding: 1.25rem;
+    }
+}
 
         /* Enhanced Footer */
         footer {
