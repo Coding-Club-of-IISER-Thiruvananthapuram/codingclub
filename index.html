@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +7,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-      
+
         :root {
             --cyber-gradient: linear-gradient(45deg, #00f260, #0575e6, #00f260);
             --neon-glow: 0 0 10px rgba(0, 242, 96, 0.5), 0 0 20px rgba(5, 117, 230, 0.3);
@@ -49,7 +49,7 @@
             100% { transform: perspective(500px) rotateX(45deg) translateY(-50px); }
         }
 
-        
+
         .particles {
             position: fixed;
             top: 0;
@@ -74,7 +74,7 @@
             50% { transform: translate(10px, -10px); }
         }
 
-       
+
         .cyber-card {
             background: rgba(15, 18, 33, 0.8);
             backdrop-filter: blur(10px);
@@ -110,7 +110,7 @@
             box-shadow: var(--neon-glow);
         }
 
-       
+
         .gradient-text {
             background: var(--cyber-gradient);
             -webkit-background-clip: text;
@@ -126,7 +126,7 @@
             100% { background-position: 0% 50%; }
         }
 
-      
+
         .cyber-button {
             background: linear-gradient(45deg, #0575e6, #00f260);
             border: none;
@@ -145,7 +145,7 @@
             box-shadow: 0 0 20px rgba(5, 117, 230, 0.6);
         }
 
-        
+
         .cyber-terminal {
             background: rgba(15, 18, 33, 0.95);
             border: 1px solid rgba(5, 117, 230, 0.3);
@@ -169,7 +169,7 @@
             color: #0575e6;
         }
 
-       
+
         .cyber-nav {
             background: rgba(15, 18, 33, 0.9);
             backdrop-filter: blur(10px);
@@ -201,13 +201,13 @@
     </style>
 </head>
 <body>
-    
+
     <div class="cyber-background">
         <div class="cyber-grid"></div>
     </div>
     <div class="particles" id="particles"></div>
 
-    
+
   <nav class="cyber-nav fixed w-full z-50 top-0">
     <div class="container mx-auto px-6 py-4">
         <div class="flex justify-between items-center">
@@ -224,7 +224,7 @@
                     </svg>
                 </button>
                 <div class="hidden md:flex items-center space-x-8">
-    
+
                     <a href="alumni.html" class="nav-link"><i class="fas fa-calendar-alt mr-2"></i>Alumni</a>
                     <a href="#projects" class="nav-link"><i class="fas fa-project-diagram mr-2"></i>Projects</a>
                     <a href="#team-members" class="nav-link"><i class="fas fa-users mr-2"></i>Team</a>
@@ -353,7 +353,7 @@
         <div class="text-center mb-16">
             <h2 class="text-4xl md:text-5xl font-bold mb-4">
                 <span class="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-gradient">
-                   Innovation Station: Featured Projects 
+                   Innovation Station: Featured Projects
                 </span>
             </h2>
             <p class="text-gray-400 max-w-2xl mx-auto">
@@ -361,28 +361,28 @@
             </p>
         </div>
 
-        
+
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- Step Mentor Project Card -->
             <div class="cyber-card group bg-gray-900 rounded-xl overflow-hidden shadow-lg transform transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(59,130,246,0.3)] border border-gray-800">
                 <!-- Image  -->
                 <div class="relative h-64 overflow-hidden">
-                    <img src="step_mentor.png" alt="Step Mentor Project" 
+                    <img src="step_mentor.png" alt="Step Mentor Project"
                          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                    
-                    
+
+
                     <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent"></div>
-                    
-                   
+
+
                     <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center gap-4 transition-all duration-300 backdrop-blur-sm">
-                        <a href="https://www.youtube.com/watch?v=RVKZBXkMGrI" 
+                        <a href="https://www.youtube.com/watch?v=RVKZBXkMGrI"
                            class="flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-blue-600 to-blue-800 text-white rounded-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                             </svg>
                             View Project
                         </a>
-                        <a href="#" 
+                        <a href="#"
                            class="flex items-center gap-2 px-5 py-3 bg-gray-700 text-white rounded-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
@@ -440,7 +440,7 @@
                     <div class="pt-4 border-t border-gray-800">
                         <div class="flex items-center gap-3">
                             <div class="relative">
-                                <img src="saurabprofile.jpg" alt="Saurab Mishra" 
+                                <img src="saurabprofile.jpg" alt="Saurab Mishra"
                                      class="w-10 h-10 rounded-full object-cover border-2 border-blue-500">
                                 <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-gray-900"></div>
                             </div>
@@ -481,7 +481,7 @@
                 <div class="relative">
                     <!-- Profile Image -->
                    <div class="relative w-full overflow-hidden">
-    <img src="saurabprofile.jpg" alt="Saurab Mishra" 
+    <img src="saurabprofile.jpg" alt="Saurab Mishra"
          class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110">
     <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent"></div>
 </div>
@@ -491,7 +491,7 @@
                         <!-- Contact & Social Links -->
                         <div class="space-y-4 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-300">
                             <!-- Email -->
-                            <a href="mailto:saurab23@iisertvm.ac.in" 
+                            <a href="mailto:saurab23@iisertvm.ac.in"
                                class="flex items-center gap-2 text-gray-300 hover:text-blue-400 transition-colors duration-300">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
@@ -500,7 +500,7 @@
                             </a>
                             <!-- Social Links -->
                             <div class="flex justify-center space-x-4">
-                                <a href="https://www.linkedin.com/in/saurab-mishra-493a73178/" 
+                                <a href="https://www.linkedin.com/in/saurab-mishra-493a73178/"
                                    class="bg-gray-800 p-3 rounded-full text-blue-400 hover:bg-blue-600 hover:text-white transition-all duration-300"
                                    target="_blank" rel="noopener noreferrer">
                                     <i class="fab fa-linkedin text-xl"></i>
@@ -533,14 +533,14 @@
             <div class="cyber-card group bg-gray-900/80 backdrop-blur-sm rounded-xl overflow-hidden shadow-lg transform transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(59,130,246,0.3)] border border-gray-800">
                 <div class="relative">
                      <div class="relative w-full overflow-hidden">
-    <img src="Aryan.jpg" alt="SAryan" 
+    <img src="Aryan.jpg" alt="SAryan"
          class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110">
     <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent"></div>
 </div>
 
                     <div class="absolute inset-0 bg-gradient-to-t from-gray-900/95 to-gray-900/50 opacity-0 group-hover:opacity-100 flex flex-col items-center justify-center transition-all duration-300 backdrop-blur-sm">
                         <div class="space-y-4 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-300">
-                            <a href="mailto:aryanbhatia21@iisertvm.ac.in" 
+                            <a href="mailto:aryanbhatia21@iisertvm.ac.in"
                                class="flex items-center gap-2 text-gray-300 hover:text-blue-400 transition-colors duration-300">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
@@ -548,12 +548,12 @@
                                 <span>aryanbhatia21@iisertvm.ac.in</span>
                             </a>
                             <div class="flex justify-center space-x-4">
-                                <a href="https://www.linkedin.com/in/aryan-bhatia-5a4942134/?originalSubdomain=in" 
+                                <a href="https://www.linkedin.com/in/aryan-bhatia-5a4942134/?originalSubdomain=in"
                                    class="bg-gray-800 p-3 rounded-full text-blue-400 hover:bg-blue-600 hover:text-white transition-all duration-300"
                                    target="_blank" rel="noopener noreferrer">
                                     <i class="fab fa-linkedin text-xl"></i>
                                 </a>
-                                <a href="https://github.com/idontknow700" 
+                                <a href="https://github.com/idontknow700"
                                    class="bg-gray-800 p-3 rounded-full text-gray-300 hover:bg-gray-700 hover:text-white transition-all duration-300"
                                    target="_blank" rel="noopener noreferrer">
                                     <i class="fab fa-github text-xl"></i>
@@ -585,7 +585,7 @@
                 <div class="relative">
                     <!-- Profile Image -->
                    <div class="relative w-full overflow-hidden">
-    <img src="abhinav.png" alt="Abhinav" 
+    <img src="abhinav.png" alt="Abhinav"
          class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110">
     <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent"></div>
 </div>
@@ -595,7 +595,7 @@
                         <!-- Contact & Social Links -->
                         <div class="space-y-4 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-300">
                             <!-- Email -->
-                            <a href="mailto:abhinavggp@gmail.com" 
+                            <a href="mailto:abhinavggp@gmail.com"
                                class="flex items-center gap-2 text-gray-300 hover:text-blue-400 transition-colors duration-300">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
@@ -604,7 +604,7 @@
                             </a>
                             <!-- Social Links -->
                             <div class="flex justify-center space-x-4">
-                                <a href="#" 
+                                <a href="#"
                                    class="bg-gray-800 p-3 rounded-full text-blue-400 hover:bg-blue-600 hover:text-white transition-all duration-300"
                                    target="_blank" rel="noopener noreferrer">
                                     <i class="fab fa-linkedin text-xl"></i>
@@ -640,7 +640,7 @@
                 <div class="relative">
                     <!-- Profile Image -->
                    <div class="relative w-full overflow-hidden">
-    <img src="Ronakprofilepic.jpg" alt="Ronak" 
+    <img src="Ronakprofilepic.jpg" alt="Ronak"
          class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110">
     <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent"></div>
 </div>
@@ -650,7 +650,7 @@
                         <!-- Contact & Social Links -->
                         <div class="space-y-4 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-300">
                             <!-- Email -->
-                            <a href="mailto:ronak23@iisertvm.ac.in" 
+                            <a href="mailto:ronak23@iisertvm.ac.in"
                                class="flex items-center gap-2 text-gray-300 hover:text-blue-400 transition-colors duration-300">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
@@ -659,7 +659,7 @@
                             </a>
                             <!-- Social Links -->
                             <div class="flex justify-center space-x-4">
-                                <a href="https://www.linkedin.com/in/ronak-singh-raina-91241232b/" 
+                                <a href="https://www.linkedin.com/in/ronak-singh-raina-91241232b/"
                                    class="bg-gray-800 p-3 rounded-full text-blue-400 hover:bg-blue-600 hover:text-white transition-all duration-300"
                                    target="_blank" rel="noopener noreferrer">
                                     <i class="fab fa-linkedin text-xl"></i>
@@ -691,7 +691,7 @@
 
 
 
-            
+
         </div>
     </div>
 
@@ -722,8 +722,8 @@
         border-radius: inherit;
         padding: 2px;
         background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899);
-        -webkit-mask: 
-            linear-gradient(#fff 0 0) content-box, 
+        -webkit-mask:
+            linear-gradient(#fff 0 0) content-box,
             linear-gradient(#fff 0 0);
         -webkit-mask-composite: xor;
         mask-composite: exclude;
@@ -774,7 +774,7 @@
                                     <a href="#" class="text-blue-300 hover:text-blue-400 transition">@codingclub</a>
                                 </div>
                             </div>
-                            
+
                             <div class="flex items-center space-x-4">
                                 <div class="text-2xl text-blue-300">
                                     <i class="fab fa-instagram"></i>
@@ -784,7 +784,7 @@
                                     <a href="#" class="text-blue-300 hover:text-blue-400 transition">@codingclub.official</a>
                                 </div>
                             </div>
-                            
+
                             <div class="flex items-center space-x-4">
                                 <div class="text-2xl text-blue-300">
                                     <i class="fab fa-linkedin"></i>
@@ -805,24 +805,24 @@
                                 <i class="fas fa-calendar-alt text-blue-300"></i>
                                 <span class="text-gray-300">November 25, 2024</span>
                             </div>
-                            
+
                             <div class="flex items-center space-x-3">
                                 <i class="fas fa-clock text-blue-300"></i>
                                 <span class="text-gray-300">8:30 PM - 9:00 PM</span>
                             </div>
-                            
+
                             <div class="flex items-center space-x-3">
                                 <i class="fas fa-map-marker-alt text-blue-300"></i>
                                 <span class="text-gray-300">CDH2, Meeting Room</span>
                             </div>
-                            
+
                             <div class="flex items-center space-x-3">
                                 <i class="fas fa-laptop-code text-blue-300"></i>
                                 <span class="text-gray-300">Coding Club Meet</span>
                             </div>
 
                             <div class="mt-6">
-                                
+
                             </div>
                         </div>
                     </div>
@@ -830,21 +830,75 @@
             </div>
         </div>
     </div>
+
+
+
 </section>
 
-    
+
+<section>
+
+
+     <!-- Footer Section --><div class="ml-4"> <!-- Add margin-left -->
+    <footer class="border-t border-gray-800 pt-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Logo and About Section -->
+            <div class="space-y-4">
+                <div class="flex items-center space-x-4">
+                    <img src="iiser_logo.png" alt="IISER TVM Logo" class="w-24 h-auto">
+                    <h3 class="text-2xl font-bold text-white">CodeX Society</h3>
+                </div>
+                <p class="text-gray-400">CodeX Society is IISER TVM's premier coding club, fostering technical excellence and innovation among students.</p>
+                <a href="https://www.iisertvm.ac.in" target="_blank"
+                   class="inline-flex items-center space-x-2 text-blue-300 hover:text-blue-400 transition">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="w-4 h-4">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <path d="M15 3h6v6"></path>
+                        <path d="M10 14L21 3"></path>
+                    </svg>
+                    <span>Visit IISER Thiruvananthapuram</span>
+                </a>
+            </div>
+
+            <!-- Connect Section -->
+            <div class="space-y-4">
+                <h3 class="text-xl font-bold text-white">Connect With Us</h3>
+                <p class="text-gray-400">Follow us on social media for updates:</p>
+                <div class="space-y-2">
+                    <a href="#" class="block text-blue-300 hover:text-blue-400 transition">LinkedIn: CodeX Society IISER TVM</a>
+                    <a href="#" class="block text-blue-300 hover:text-blue-400 transition">Instagram: CodeX Society IISER TVM</a>
+                </div>
+            </div>
+<div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>IISER Thiruvananthapuram</p>
+                <p>Maruthamala PO, Vithura</p>
+                <p>Kerala, India - 695551</p>
+            </div>
+
+        </div>
+    </footer>
+</div>
+
+
+
+
+</section>
 
 
 
 
 
 
-    
+
+
+
+
 
 
 
     <script>
-        
+
         function createParticles() {
             const particles = document.getElementById('particles');
             for (let i = 0; i < 50; i++) {
@@ -857,7 +911,7 @@
             }
         }
 
-        
+
         window.addEventListener('load', createParticles);
     </script>
 </body>
