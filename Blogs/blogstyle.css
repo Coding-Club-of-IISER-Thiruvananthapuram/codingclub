@@ -1,0 +1,289 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial;
+  background: #0f1221;
+  margin: 0px;
+}
+
+h1{
+  margin: 0px;
+  color: #007bff;
+  font-size: 60px;
+}
+
+h2{
+  color: #007bff;
+  padding-top: 45px;
+  margin: 0px;
+  padding-bottom: 20px;
+}
+
+h3{
+  color: #ffffff;
+  margin: 0px;
+  font-size: 20px;
+  padding-bottom: 10px;
+}
+
+p{
+  color: #ffffff;
+  line-height: 1.5;
+}
+
+img{
+  width: 100%;
+}
+
+a{
+  color: #007bff;
+  text-decoration: none;
+}
+
+ul li{
+  color: #ffffff;
+  padding: 10px;
+}
+
+.navbar {
+  background-color: transparent;
+  color: #fff;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.8s;
+}
+
+.navbar-logo {
+  padding-left: 50px;
+  font-size: 1.5em;
+  display: flex;
+  flex-wrap: wrap;
+  font-weight: bold;
+}
+
+.navbar-nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.navbar-nav li {
+  margin-right: 20px;
+}
+
+.navbar-nav a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.navbar-nav a:hover {
+  color: #ccc;
+}
+
+
+/* Header/Blog Title */
+.header {
+  padding: 0px;
+  background: #151826;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2)
+}
+
+.header-contents{
+  padding: 60px 60px;
+}
+
+
+.floating-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.scroll-down-btn {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.scroll-down-btn i {
+  font-size: 24px;
+  color: #007bff;
+}
+
+.scroll-down-btn:hover i {
+  color: #0056b3;
+}
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn {
+  float: left;
+  width: 75%;
+}
+
+/* Right column */
+.rightcolumn {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  position: sticky;
+  top: 0px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  float: left;
+  width: 25%;
+  overflow-y: auto;
+  height: 100vh;
+  padding-left: 20px;
+}
+
+.rightcolumn::-webkit-scrollbar {
+  display: none; /* Hide scrollbar in Chrome, Safari, and Opera */
+  }
+
+.rightcolumn.sticky.card{
+  pointer-events: none;
+}
+
+.rightcolumn.sticky::-webkit-scrollbar {
+  display: none; /* Hide scrollbar in Chrome, Safari, and Opera */
+  }
+
+/* Fake image */
+.fakeimg {
+  background-color: #aaa;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Add a card effect for articles */
+.card {
+  color: #ffffff;
+  background-color: #151826;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2)
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+.more-blogs {
+  background-color: #151826;
+  padding: 20px 20px 40px 20px;
+  margin-bottom: 20px;
+}
+
+.btn-cta {
+  background-color: #007bff;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-cta:hover {
+  background-color: #0056b3;
+}
+
+/* Footer */
+.footer {
+  background-color: #151826;
+  color: #ffffff;
+  padding: 40px 0;
+  text-align: center;
+}
+
+.footer-container {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-logo {
+  margin-bottom: 20px;
+}
+
+.footer-logo img {
+  width: 190px;
+  height: auto;
+  filter: brightness(0) invert(1);
+}
+
+.logo-link {
+  display: block;
+}
+
+.footer-social {
+  margin-bottom: 0px;
+}
+
+.footer-social ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-social li {
+  display: inline-block;
+  margin: 20px;
+}
+
+.footer-social a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 24px;
+}
+
+.footer-social a:hover {
+  color: #007bff;
+}
+
+.footer-copyright {
+  text-align: center;
+  color: #666666;
+  font-size: 14px;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+  .leftcolumn, .rightcolumn, .rightcolumn.sticky{
+    position: relative;
+    overflow: visible;
+    float: left;
+    width: 100%;
+    height: auto;
+    padding: 0px;
+  }
+}

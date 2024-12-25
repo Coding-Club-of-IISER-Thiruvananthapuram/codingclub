@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<head>
+    <title>Blogs</title>
+    <link rel="stylesheet" href="blogstyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body style="padding: 0px">
+    <div class="header" id="header" style="height: 100vh; width: 100vw -  10px;">
+        <canvas style="position: absolute; z-index: 0; left: 0px;" width="relative" id="artCanvas" ></canvas>
+        <div class="header-contents"></div>
+            <h1 style="position: relative; z-index:1; font-size: 100px; padding-left: 5vw; padding-top: 40vh;">Blogs</h1>
+            <p style="padding-left: 5vw; padding-bottom: 10vh;">Explore blogs posted by Science, technology, even art enthusiasts, where they show different aspects of coding</p>
+            <button class="scroll-down-btn">
+                <i class="fas fa-chevron-down"></i>
+            </button>
+        </div>
+
+    <nav class="navbar" id="navbar">
+        <div class="navbar-logo">
+            <img src="https://share1.cloudhq-mkt3.net/015128b8139485.png" style="width: 60px; height: 35px;">
+            </div>
+        <ul class="navbar-nav">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+     <div class="row">
+        <div class="leftcolumn"style="padding-left:10px; margin-top:20px">
+            <h3>Latest posts</h3>
+            <hr>
+            <a href="Manini's blog/Manini's blog.html">
+                <div class="recommendation-card">
+                    <h2>
+                        A New Dawn of AI: Creating a World that Never Was
+                    </h2><hr>
+                    <ul style="display: flex; flex-wrap: wrap; margin: 0px; padding-left: 20px;">
+                        <li style="margin-right: 20px; content: none;">Manini Sharma</li>
+                        <li style="margin-right: 20px;">December 21st, 2024</li>
+                        <li style="margin-right: 20px;">5 min read</li>
+                    </ul>
+                </div>
+                </a>
+            <a href="Saurab's blog/Saurab's blog.html">
+            <div class="recommendation-card">
+                <h2>
+                    Unsuccessful story of THERMODOCS
+                </h2><hr>
+                <ul style="display: flex; flex-wrap: wrap; margin: 0px; padding-left: 20px;">
+                    <li style="margin-right: 20px; content: none;">Saurabh Kumar Singh</li>
+                    <li style="margin-right: 20px;">December 20th, 2024</li>
+                    <li style="margin-right: 20px">5 min read</li>
+                </ul>
+            </div>
+            </a>
+            <a href="Joshi's blog/Joshy's blog.html">
+            <div class="recommendation-card">
+                <h2>
+                    Making a DAW with Python
+                </h2><hr>
+                <ul style="display: flex; flex-wrap: wrap; margin: 0px; padding-left: 20px;">
+                    <li style="margin-right: 20px; content: none;">Abhinav Joshi</li>
+                    <li style="margin-right: 20px;">December 20th, 2024</li>
+                    <li style="margin-right: 20px;">40 min read</li>
+                </ul>
+            </div>
+            </a>
+        </div>
+        <div class="rightcolumn">
+            <h3>Club updates</h3>
+            <hr>
+            <div class="card" style="margin-top: 0px;">
+              <h2>First posts!</h2>
+              <p>The coding club has deployed it's blogging site, checkout the first few posts!</p>
+          </div>
+        </div>
+     </div>
+      <footer class="footer">
+        <div class="footer-container">
+        <div class="footer-logo">
+        <a href="#" class="logo-link">
+        <img src="https://share1.cloudhq-mkt3.net/015128b8139485.png" alt="Blog Logo">
+        </a>
+        </div>
+        <div class="footer-social">
+        <ul>
+        <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+        <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+        <li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
+        </ul>
+        </div>
+        </div>
+        <div class="footer-copyright">
+        <p>&copy; 2024 The coding club. All rights reserved.</p>
+        </div>
+        </footer>
+        <script>
+            class GenerativeArt {
+                constructor(canvas) {
+                    this.canvas = canvas;
+                    this.ctx = canvas.getContext('2d');
+                    this.width = window.innerWidth-80;
+                    this.height = 160;
+                    this.particles = [];
+                    this.initParticles();
+                }
+    
+                initParticles() {
+                    this.particles = [];
+                    for (let i = 0; i < 50; i++) {
+                        this.particles.push({
+                            x: Math.random() * this.width,
+                            y: Math.random() * this.height,
+                            speed: {
+                                x: (Math.random() - 0.5),
+                                y: (Math.random() - 0.5)
+                            }
+                        });
+                    }
+                }
+    
+                update() {
+                    const canvas = document.getElementById('artCanvas');
+                    canvas.width = document.getElementById('header').clientWidth;
+                    canvas.height = document.getElementById('header').clientHeight;
+    
+                    this.ctx.clearRect(0, 0, document.getElementById('header').clientWidth, document.getElementById('header').clientHeight);
+    
+                    this.particles.forEach(particle => {
+                        // Move particles
+                        particle.x += particle.speed.x;
+                        particle.y += particle.speed.y;
+    
+                        // Bounce off walls
+                        if (particle.x < 0 || particle.x > document.getElementById('header').clientWidth) {
+                            particle.speed.x *= -1;
+                        }
+                        if (particle.y < 0 || particle.y > document.getElementById('header').clientHeight) {
+                            particle.speed.y *= -1;
+                        }
+    
+                        if(particle.x < -5 || particle.x > document.getElementById('header').clientWidth+5 || particle.y < -5 || particle.y > document.getElementById('header').clientHeight+5)
+                        {
+                            particle.x = Math.random() * document.getElementById('header').clientWidth;
+                            particle.y = Math.random() * document.getElementById('header').clientHeight;
+                        }
+    
+                        // Draw particle
+                        this.ctx.beginPath();
+                        this.ctx.fillStyle = particle.color;
+                        this.ctx.globalCompositeOperation = 'lighter';
+                        this.ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+                        this.ctx.fill();
+                    });
+    
+                    // Connect particles with lines
+                    this.particles.forEach((p1, index) => {
+                        for (let j = index + 1; j < this.particles.length; j++) {
+                            const p2 = this.particles[j];
+                            const distance = Math.hypot(p2.x - p1.x, p2.y - p1.y);
+                            
+                            if (distance < 100) {
+                                this.ctx.beginPath();
+                                this.ctx.strokeStyle = `rgba(255,255,255,${1 - distance/100})`;
+                                this.ctx.moveTo(p1.x, p1.y);
+                                this.ctx.lineTo(p2.x, p2.y);
+                                this.ctx.stroke();
+                            }
+                        }
+                    });
+    
+                    requestAnimationFrame(() => this.update());
+                }
+            }
+    
+            // Initialize the generative art
+            const canvas = document.getElementById('artCanvas');
+            canvas.width = document.getElementById('header').clientWidth;
+            canvas.height = document.getElementById('header').clientHeight;
+            const art = new GenerativeArt(canvas);
+            art.update();
+        </script>
+    <script>
+        const scrollDownBtn = document.querySelector('.scroll-down-btn');
+
+        scrollDownBtn.addEventListener('click', () => {
+        window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+        });
+    </script>
+    <script>
+        const navbar = document.getElementById('navbar');
+
+        window.addEventListener('scroll', () => {
+        if (window.scrollY > 10) {
+            navbar.style.backgroundColor = 'black';
+        } else {
+            navbar.style.backgroundColor = 'transparent';
+            row.style.paddingTop = 0;
+        }
+        });
+    </script>
+</body>
+</html>
