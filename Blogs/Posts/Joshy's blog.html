@@ -3,8 +3,8 @@
         <title>
             Making a DAW with Python
         </title>
-        <link rel="stylesheet" href="https://github.com/SNT-iiser-tvm/codingclub/Blogs/prism.css">
-        <link rel="stylesheet" href="https://github.com/SNT-iiser-tvm/codingclub/blob/main/Blogs/blogstyle.css">
+        <link rel="stylesheet" href="https://snt-iiser-tvm.github.io/codingclub/Blogs/prism.css">
+        <link rel="stylesheet" href="https://snt-iiser-tvm.github.io/codingclub/Blogs/blogstyle.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     </head>
     <body>
@@ -17,7 +17,7 @@
               </div>
             <ul class="navbar-nav">
               <li><a href="https://snt-iiser-tvm.github.io/codingclub/">Home</a></li>
-              <li><a href="https://github.com/SNT-iiser-tvm/codingclub/blob/main/Blogs/Blog%20main.html">CHeck out other blogs</a></li>
+              <li><a href=https://snt-iiser-tvm.github.io/codingclub/Blogs/Blog main.html">CHeck out other blogs</a></li>
             </ul>
           </nav>
 
@@ -42,7 +42,7 @@
                             The Blog aims in making a python programme to create a basic Digital Audio Workstation(DAW), which should in the end create a platform for you to build on. The blog doesn't follow any standard steps in creating a professional (DAW), which may use more complex graphical aids that we omit here. We'll first go through some basics of music theory, go on making codes to create waves where we decide their looks, of course trying to approximate nature. The result will then be made possible to be heard. Here's the output of a bonus code that you'l get at the end of the blog. 
                         </p>
                         <audio controls>
-                            <source src="https://github.com/SNT-iiser-tvm/codingclub/tree/main/Blogs/Media/Jingle_bells_piano_final.wav" type="audio/wav">
+                            <source src=https://snt-iiser-tvm.github.io/codingclub/Blogs/Media/Jingle_bells_piano_final.wav" type="audio/wav">
                         Your browser does not support the audio element.
                         </audio> 
                     </div>
@@ -57,7 +57,7 @@
                             Music is the feeling of mind to sway with the vibrating ear drum, or the advantage to sense periodic disturbances in air pressure. It is the periodic changes in pressure that is percieved as music. The word 'music' is derived from the greek word mousiké literally meaning "art of the Muses"(<a href="https://en.wikipedia.org/wiki/Music" >wikipedia</a> said that). In creating music with code, we are to ignore whatever comes after the eardrum. Left with just the variation in pressure that forms a wave, we say it's made up of many sine and cosine waves and go on trying to create it. And this is possible due to Fourier's theorem. If asked what is the use of making music with a computer programme, we recall that a person may not be able to play piano, violin, drums, and boast his abilities all at the same time. Atleast not so easily. We feel the tones to be pleasing when the wave associated is simple. As a rule of thumbs, it not possible to eradicate all complex and noisy sound when performing music. This is where we have the advantage.
                         </p>
                         <div>
-                            <img src="https://github.com/SNT-iiser-tvm/codingclub/tree/main/Blogs/Media/Keys.png">
+                            <img src="https://snt-iiser-tvm.github.io/codingclub/Blogs/Media/Keys.png">
                         </div>
                         <ul>
                             <li>There are 7 musical Alphabets which consists of A, B, C, D, E, F, G and produces the 12 notes A, A#/B♭, B, C, C#/D♭, D, D#/E♭, E, F, F#/G♭, G, G#/A♭ which is the building block of all music.</li>
@@ -124,9 +124,9 @@ plt.show()
                     <p>
                         looks like this:
                     </p>
-                    <img src="https://github.com/SNT-iiser-tvm/codingclub/tree/main/Blogs/Media/sine_wave.png">
+                    <img src="https://snt-iiser-tvm.github.io/codingclub/Blogs/Media/sine_wave.png">
                     <audio controls>
-                        <source src="https://github.com/SNT-iiser-tvm/codingclub/tree/main/Blogs/Media/sine_wave.wav" type="audio/wav">
+                        <source src="https://snt-iiser-tvm.github.io/codingclub/Blogs/Media/sine_wave.wav" type="audio/wav">
                     Your browser does not support the audio element.
                     </audio> 
                     <p>
@@ -142,9 +142,9 @@ plt.show()
                     <p>
                         Let's look at some natural sounds, Taken from <a href="https://samplefocus.com/">Sample Focus</a>
                     </p>
-                    <img src="aggressive_violin.png">
-                    <img src="eastern_sitar.png">
-                    <img src="aggressive_violin.png">
+                    <img src="https://snt-iiser-tvm.github.io/codingclub/Blogs/Media/aggressive_violin.png">
+                    <img src="https://snt-iiser-tvm.github.io/codingclub/Blogs/Media/eastern_sitar.png">
+                    <img src="https://snt-iiser-tvm.github.io/codingclub/Blogs/Media/aggressive_violin.png">
                     <p>
                         From these, it can be seen that each tone that is applied has a generic shape to the amplitude that differs with the instrument, which is called it's envelope. these envelopes have a defined shape for each instruments. <a href="https://en.wikipedia.org/wiki/Envelope_(music)">Wikipedia</a> tells us that the most common of these has four parameters: attack, decay, sustain and release (ADSR). 
                     </p>
@@ -159,7 +159,7 @@ plt.show()
                     <p>
                         Playing with some sigmoid and guassian functions leave us with a trusty function that can do this job and, of course under some limitations wchich i leave you to identify. <a href="https://www.desmos.com/calculator/a3khzilk2e">Here's</a> the Desmos link for the same. 
                     </p>
-                    <img src="https://github.com/SNT-iiser-tvm/codingclub/tree/main/Blogs/Media/Smooth_Key_Envelope.png">
+                    <img src="https://snt-iiser-tvm.github.io/codingclub/Blogs/Media/Smooth_Key_Envelope.png">
                     </div>
                     <div class="card">
                     <h2>Make the wave</h2>
@@ -231,12 +231,12 @@ def create_wave(t, sample_rate, f = lambda x : 10, A = lambda x : 1, prolix = Fa
                     </pre>
                     <p>
                         The above code creates the wave that we need. What the above code does is just place the poynomial side by side each having a given amplitude and frquency. Let's Try it out: <code class="lang-py">python plt.plot(create_wave(1.5, 1000, f = lambda x : 5*x+10, A = lambda x : x))</code>
-                    <img src="https://github.com/SNT-iiser-tvm/codingclub/tree/main/Blogs/Media/code_test.png">
+                    <img src="https://snt-iiser-tvm.github.io/codingclub/Blogs/Media/code_test.png">
                     <p>
                         and for comparison to the previosly created sine wave, here's the new approx sine wave
                     </p>
                     <audio controls>
-                        <source src="https://github.com/SNT-iiser-tvm/codingclub/tree/main/Blogs/Media/sine_like_polynomial_wave.wav" type="audio/wav">
+                        <source src="https://snt-iiser-tvm.github.io/codingclub/Blogs/Media/sine_like_polynomial_wave.wav" type="audio/wav">
                     Your browser does not support the audio element.
                     </audio> 
                     <p>
@@ -259,7 +259,7 @@ def create_wave(t, sample_rate, f = lambda x : 10, A = lambda x : 1, prolix = Fa
                     </p>
                     <img src="artificial_piano_key.png">
                     <audio controls>
-                        <source src="https://github.com/SNT-iiser-tvm/codingclub/tree/main/Blogs/Media/piano_key.wav" type="audio/wav">
+                        <source src="https://snt-iiser-tvm.github.io/codingclub/Blogs/Media/piano_key.wav" type="audio/wav">
                     </audio>
                     </div>
                     <div class="card">
@@ -332,9 +332,9 @@ res = return_timeline(44100, notes, 2048)
 plt.plot(res)
                         </code>
                     </pre>
-                    <img src="https://github.com/SNT-iiser-tvm/codingclub/tree/main/Blogs/Media/Twinkle_Twinkle.png">
+                    <img src="https://snt-iiser-tvm.github.io/codingclub/Blogs/Media/Twinkle_Twinkle.png">
                     <audio controls>
-                        <source src="https://github.com/SNT-iiser-tvm/codingclub/tree/main/Blogs/Media/Twinkle_Twinkle.wav" type="audio/wav">
+                        <source src="https://snt-iiser-tvm.github.io/codingclub/Blogs/Media/Twinkle_Twinkle.wav" type="audio/wav">
                     Your browser does not support the audio element.
                     <pre>
                         <code class="lang-py">
@@ -374,9 +374,9 @@ plt.grid()
                     <p>
                         using the above code the weightage of the sine waves of which frequency the sounds are created can be visualised. Taking the previous 'natural sounds', we get image1
                     </p>
-                    <img src="https://github.com/SNT-iiser-tvm/codingclub/tree/main/Blogs/Media/piano_chord_C_minor_freq.png">
-                    <img src="https://github.com/SNT-iiser-tvm/codingclub/tree/main/Blogs/Media/eastern_sitar_freq.png">
-                    <img src="https://github.com/SNT-iiser-tvm/codingclub/tree/main/Blogs/Media/aggressive_violin.png">
+                    <img src="https://snt-iiser-tvm.github.io/codingclub/Blogs/Media/piano_chord_C_minor_freq.png">
+                    <img src="https://snt-iiser-tvm.github.io/codingclub/Blogs/Media/eastern_sitar_freq.png">
+                    <img src="https://snt-iiser-tvm.github.io/codingclub/Blogs/Media/aggressive_violin.png">
                     <p>
                         we see that there are multiple places where there is a peak in frequency, Trying to add the effect.The effect is similar to giing weightage to adgacent notes that differ by an octave, which is similar to an Octave effect. The following code can also be exploited to give weightage to notes differing by any interval.
                     </p>
@@ -469,7 +469,7 @@ IPd.Audio(res, rate= 44100)
                         the change in sound can be easily noted. The final Twinkile Twinkle would sound like
                     </p>
                     <audio controls>
-                        <source src="https://github.com/SNT-iiser-tvm/codingclub/tree/main/Blogs/Media/Twinkle_Twinkle_updated.wav" type="audio/wav">
+                        <source src="https://snt-iiser-tvm.github.io/codingclub/Blogs/Media/Twinkle_Twinkle_updated.wav" type="audio/wav">
                     Your browser does not support the audio element.
                     </audio> 
                     </div>
@@ -737,12 +737,12 @@ IPd.Audio(res, rate= 44100)
                         </code>
                     </pre>
                     <p>The resulting plots are:</p>
-                    <img src="https://github.com/SNT-iiser-tvm/codingclub/tree/main/Blogs/Media/jingle_bells_output_1.png">
-                    <img src="https://github.com/SNT-iiser-tvm/codingclub/tree/main/Blogs/Media/jingle_bells_output_2.png">
-                    <img src="https://github.com/SNT-iiser-tvm/codingclub/tree/main/Blogs/Media/jingle_bells_output_3.png">
-                    <img src="https://github.com/SNT-iiser-tvm/codingclub/tree/main/Blogs/Media/jingle_bells_output_4.png">
-                    <img src="https://github.com/SNT-iiser-tvm/codingclub/tree/main/Blogs/Media/jingle_bells_output_5.png">
-                    <img src="https://github.com/SNT-iiser-tvm/codingclub/tree/main/Blogs/Media/jingle_bells_output_6.png">
+                    <img src="https://snt-iiser-tvm.github.io/codingclub/Blogs/Media/jingle_bells_output_1.png">
+                    <img src="https://snt-iiser-tvm.github.io/codingclub/Blogs/Media/jingle_bells_output_2.png">
+                    <img src="https://snt-iiser-tvm.github.io/codingclub/Blogs/Media/jingle_bells_output_3.png">
+                    <img src="https://snt-iiser-tvm.github.io/codingclub/Blogs/Media/jingle_bells_output_4.png">
+                    <img src="https://snt-iiser-tvm.github.io/codingclub/Blogs//Media/jingle_bells_output_5.png">
+                    <img src="https://snt-iiser-tvm.github.io/codingclub/Blogs/Media/jingle_bells_output_6.png">
                     </div>
                     <div class="card">
                         <h2>What next?</h2>
@@ -773,18 +773,18 @@ IPd.Audio(res, rate= 44100)
                               </code>
                           </pre>
                           <audio controls>
-                            <source src="https://github.com/SNT-iiser-tvm/codingclub/tree/main/Blogs/Media/violin.wav" type="audio/wav">
+                            <source src="https://snt-iiser-tvm.github.io/codingclub/Blogs/Media/violin.wav" type="audio/wav">
                         Your browser does not support the audio element.
                           <p>
                               and here are the resultant plots:  
                           </p>
-                          <img src="violin.png">
+                          <img src="https://snt-iiser-tvm.github.io/codingclub/Blogs/Media/violin.png">
                     </div>
                 </div>
                 <div class="rightcolumn" id="content">
                 <div class="card" style="margin-top: 0px;">
                     <h2>About the author</h2>
-                    <img src="https://github.com/SNT-iiser-tvm/codingclub/Blogs/Media/Abhinav Joshi's Photo.png">
+                    <img src="https://snt-iiser-tvm.github.io/codingclub/Blogs/Media/Abhinav Joshi's Photo.png">
                     <h4>Abhinav Joshi</h4>
                     <p>BSMS student at the Indian Institute of Science Education and Research, Thiruvananthapuram.<br><br> Expected to graduate by 2028</p>
                     <p>
