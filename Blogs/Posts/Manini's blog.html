@@ -165,8 +165,8 @@ moving world
         class GenerativeArt {
             constructor(canvas) {
                 this.canvas = canvas;
-                this.ctx = canvas.getContext('2d');
-                this.width = window.innerWidth-80;
+                this.width = document.getElementById('header').clientWidth;
+                this.height = document.getElementById('header').clientHeight;
                 this.height = 160;
                 this.particles = [];
                 this.initParticles();
@@ -177,7 +177,7 @@ moving world
                 for (let i = 0; i < 50; i++) {
                     this.particles.push({
                         x: Math.random() * this.width,
-                        y: Math.random() * 160,
+                        y: Math.random() * this.height,
                         speed: {
                             x: (Math.random() - 0.5),
                             y: (Math.random() - 0.5)
