@@ -46,6 +46,10 @@ ul li{
   color: #ffffff;
   padding: 10px;
 }
+ol li{
+  color: #ffffff;
+  padding: 10px;
+}
 
 .navbar {
   background-color: transparent;
