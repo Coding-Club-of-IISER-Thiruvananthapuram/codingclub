@@ -829,8 +829,8 @@ IPd.Audio(res, rate= 44100)
             constructor(canvas) {
                 this.canvas = canvas;
                 this.ctx = canvas.getContext('2d');
-                this.width = window.innerWidth;
-                this.height = 160;
+                this.width = document.getElementById('header').clientWidth;
+                this.height = document.getElementById('header').clientHeight;
                 this.particles = [];
                 this.initParticles();
             }
