@@ -290,4 +290,7 @@ ol li{
     height: auto;
     padding: 0px;
   }
+  h1{
+    font-size: 10vw;
+  }
 }
