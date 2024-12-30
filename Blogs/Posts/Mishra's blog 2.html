@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<head>
+    <title>Multi-Agent Systems: The Future of Collaborative AI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://snt-iiser-tvm.github.io/codingclub/Blogs/prism.css">
+    <link rel="stylesheet" href="https://snt-iiser-tvm.github.io/codingclub/Blogs/blogstyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <script src="https://snt-iiser-tvm.github.io/codingclub/Blogs/prism.js"></script>
+    <div class="header" id="header">
+        <canvas style="position: absolute; z-index: 0; left: 0px; padding:0px;" width="relative" id="artCanvas" ></canvas>
+        <div class="header-contents">
+            <h1 style="position: relative; z-index:1">Multi-Agent Systems: The Future of Collaborative AI</h1>
+            <ul style="display: flex; flex-wrap: wrap; margin: 0px; padding-left: 20px;">
+                <li style="margin-right: 20px; content: none;">Saurab Mishra</li>
+                <li style="margin-right: 20px;">December 10th, 2024</li>
+                <li style="margin-right: 20px">6 min read</li>
+            </ul>
+        </div>
+     </div>
+
+     <nav class="navbar" id="navbar">
+        <div class="navbar-logo">
+            <a href="https://snt-iiser-tvm.github.io/codingclub/">
+                <i class="fas fa-home"></i>
+                <img src="https://share1.cloudhq-mkt3.net/015128b8139485.png" style="width: 35px; height: 22px; margin-bottom: -2px;">
+            </a>
+          </div>
+        <ul class="navbar-nav">
+          <li><a href="https://snt-iiser-tvm.github.io/codingclub/Blogs/Blog main.html">New posts</a></li>
+        </ul>
+    </nav>
+
+     <div class="row">
+        <div class="leftcolumn">
+            <div class="card">
+                <figure style="margin: 0px;">
+                    <img src="https://snt-iiser-tvm.github.io/codingclub/Blogs/Media/img1.webp">
+                    <figcaption style="font-size: 12px; color: #999999; text-align: center;">Image Source: U.S. Army CCDC Army Research Laboratory Public Affairs</figcaption>
+            </figure>
+                <p>
+                    In this blog, I will present a modular multi-agent system for collaborative participation in artificial intelligence tasks. In this system, agents with differing task-specific capabilities work cooperatively toward achieving a research challenge. Each participating agent has been assigned a specific role, and they collaborate to create a final result through inter-agent communication. Attached are the code snippets illustrating this framework, making it accessible for exploration and application in various domains.
+                </p>
+                <p>
+                    Attached are the code snippets illustrating this framework, making it accessible for exploration and application in various domains.
+                </p>
+            </div>
+            <div class="card">
+                <h2>
+                    Introduction
+                </h2>
+                <hr>
+                <br>
+                <p>
+                    Multi-Agent Systems (MAS) represent a paradigm where multiple independent agents work together to solve complex problems in a more efficient way than single systems. Inspired by human team dynamics, MAS splits tasks among specialized agents that enable parallelism, adaptability, and modularity.<br>In this work, I explore how MAS can streamline research tasks. The system utilizes four agents:
+                </p>
+                <ol>
+                    <li><strong>SearchAgent:</strong> Gathers relevant publications based on a research topic.</li>
+                    <li><strong>TrendAgent:</strong> Identifies trends and patterns in the collected data.</li>
+                    <li><strong>SummarizationAgent:</strong> Extracts concise insights from the findings.</li>
+                    <li><strong>ManagerAgent:</strong> Oversees and coordinates the workflow.</li>
+                </ol>
+            </div>
+            <div class="card">
+                <h2>
+                    Framework Overview
+                </h2>
+                <hr>
+                <p>
+                    To implement this multi-agent system, we leverage the CrewAI framework, It’s designed to be developed in a modular architecture wherein the tasks are presented as independent, standalone units. In such architecture, every task is given to a particular agent with specific capabilities that can be carried out by a more focused and efficient agent. The modularity offers flexibility, scalability, and adaptability to the scientific field in many aspects.
+                </p>
+                <figure style="margin: 0px;">
+                    <img src="https://snt-iiser-tvm.github.io/codingclub/Blogs/Media/img2.webp">
+                    <figcaption style="font-size: 12px; color: #999999; text-align: center;">The figure provides an overview of the agents’ operations.</figcaption>
+            </figure>
+                <p>
+                    Here is the code snippet on environment configuration and startup of the framework:
+                </p>
+                    <code class="lang-py">!pip install --q crewai crewai_tools</code>
+                <p>
+                    Next, we import the necessary libraries:
+                </p>
+                <pre>
+                    <code class="lang-py">
+from crewai import Agent, Task, Crew
+from crewai import LLM
+                    </code>
+                </pre>
+            </div>
+            <div class="card">
+                <h2>
+                    Large Language Model Configuration
+                </h2>
+                <p>
+                    The system employs the NVIDIA NeMo framework as the foundation for LLM deployment and customization to achieve high performance and adaptability. Specifically, it uses LLaMA 3.3, which is a open source transformer model with 70 billion parameters optimized for domain-specific language tasks.
+                </p>
+                <figure style="margin: 0px;">
+                    <img src="https://snt-iiser-tvm.github.io/codingclub/Blogs/Media/img3.webp">
+                    <figcaption style="font-size: 12px; color: #999999; text-align: center;">Photo by <a href="https://unsplash.com/@boliviainteligente?utm_source=medium&utm_medium=referral">BoliviaInteligente</a> on <a href="https://unsplash.com/collections/WY49EEVlyjQ">unsplash</a></figcaption>
+            </figure>
+                <ul>
+                    <li><strong>Model Provider: </strong>NVIDIA NeMo</li>
+                    <li><strong>Model Version: </strong>LLaMA 3.3</li>
+                    <li><strong>Parameter Scale: </strong>70 billion parameters, enabling fine-grained contextual understanding and sophisticated semantic inference.</li>
+                    <li><strong>Temperature Settings: </strong>Adjusted according to task to balance exploration and determinism .</li>
+                </ul>
+                <p>
+                    The system is designed with a <strong>dual-LLM</strong> architecture, and we can use multiple <strong>LLMs</strong> from different providers, enabling seamless interoperability between distinct models. This will allow us to select the most suitable model for a given task, optimizing computational efficiency and output quality.
+                </p>
+                <pre>
+                    <code class="lang-py">
+llm1 = LLM(
+    model="nvidia_nim/meta/llama-3.3-70b-instruct",
+    api_key=secret_key,
+    temperature=0.7
+)
+
+llm2 = LLM(
+    model="nvidia_nim/meta/llama-3.3-70b-instruct",
+    api_key=secret_key,
+    temperature=0.7
+)
+                    </code>
+                </pre>
+            </div>
+            <div class="card">
+                <h2>Setting up the agents</h2>
+                <hr>
+                <br>
+                <h3>Literature search agent</h3>
+                <ul>
+                    <li>Queries databases such as PubMed and Google Scholar.</li>
+                    <li>Retrieves relevant papers on a given topic.</li>
+                </ul>
+                <pre>
+                    <code class="lang-py">
+SearchAgent = Agent(
+    role="Literature Search Agent",
+    goal="Query scientific databases to retrieve relevant research on {topic}.",
+    backstory="""You are a specialized agent adept at navigating databases 
+            like PubMed, arXiv, and Google Scholar to find the latest and 
+            most relevant studies on {topic}.""",
+    allow_delegation=True,
+    memory=True,
+    cache=True,
+    tools=[SearchTool()],
+
+    llm=llm1
+)
+                    </code>
+                </pre>
+                <br>
+                <h3>Summarization Agent</h3>
+                <ul>
+                    <li>Extracts methodologies, findings, and gaps from the retrieved literature.</li>
+                </ul>
+                <pre>
+                    <code class="lang-py">
+SummarizationAgent = Agent(
+    role= "Literature Summarization Agent",
+    goal= """Analyze retrieved research papers and extract detail
+            summaries on {topic}, highlighting methodologies, findings, and gaps.""",
+    backstory= """You are an expert in natural language processing 
+                and scientific comprehension, capable of summarizing complex 
+                research into actionable insights.""",
+    allow_delegation=True,
+    memory=True,
+    cache=True,
+    llm=llm2
+)                        
+                    </code>
+                </pre>
+                <br>
+                <h3>Trend Analysis Agent</h3>
+                <ul>
+                    <li>Identifies trends and knowledge gaps from summarized data.</li>
+                </ul>
+                <pre>
+                    <code class="lang-py">
+TrendAgent = Agent(
+    role="Trend Analysis Agent",
+    goal="""Analyze summarized literature to detect emerging trends, 
+            cross-disciplinary insights, and knowledge gaps in {topic} research.""",
+    backstory= """You specialize in synthesizing large volumes of information to identify 
+                patterns, trends, and opportunities for further exploration.""",
+    allow_delegation=True,
+    memory=True,
+    cache=True,
+    llm=llm1
+)
+                    </code>
+                </pre>
+                <br>
+                <h3>Project Manager Agent</h3>
+                <ul>
+                    <li>
+                        Orchestrates the workflow, ensuring quality and timely completion.
+                    </li>
+                </ul>
+                <pre>
+                    <code class="lang-py">
+manager = Agent(
+    role="Project Manager",
+    goal="Efficiently manage the crew and ensure high-quality task completion",
+    backstory="""You're an experienced project manager, skilled in overseeing
+                complex projects and guiding teams to success. Your role is to coordinate
+                the efforts of the crew members, ensuring that each task is completed 
+                on time and to the highest standard.""",
+    allow_delegation=True,
+)
+                    </code>
+                </pre>
+            </div>
+            <div class="card">
+                <h2>Defining Tasks</h2>
+                <hr>
+                <p>Tasks are defined as modular components, each assigned to a specific agent. The following tasks form the workflow:</p>
+                <h3>Search Task</h3>
+                <p>Searches for literature based on a given topic</p>
+                <pre>
+                    <code class="lang-py">
+SearchTask = Task(
+    description="""
+    Perform an automated search for scientific literature on {topic}.
+    - share your finding with other agents
+
+    INPUT: {topic} - A specific topic or keyword.
+
+    COMMUNICATION PROCESS:
+    1. The SearchAgent queries scientific databases to retrieve relevant articles.
+    2. The retrieved articles are organized into categories based on relevance and topic.
+    3. The results are passed to the SummarizationAgent for further processing.
+
+    OUTPUT FORMAT:
+    A structured list of retrieved articles with titles, abstracts, and links to full text.
+    """,
+    expected_output="A curated list of relevant literature with links and abstracts, ready for summarization.",
+    agent=SearchAgent
+)
+                    </code>
+                </pre>
+                <br>
+                <h3>Summarization Task</h3>
+                <p>Summarizes findings from the retrieved literature.</p>
+                <pre>
+                    <code class="lang-py">
+SummarizationTask = Task(
+    description="""
+    Summarize the findings, methodologies, and implications of retrieved articles 
+      on {topic} accumlated by Literature Search Agent.
+
+    articles - A list of articles with titles, abstracts, and links.
+
+    COMMUNICATION PROCESS:
+    1. The SummarizationAgent analyzes each article, extracting key findings, methodologies, and conclusions.
+    2. The summaries are organized into thematic categories.
+    3. The results are passed to the TrendAgent for trend analysis.
+
+    OUTPUT FORMAT:
+    A collection of detail summaries organized by theme, highlighting key findings and gaps.
+    """,
+    expected_output="A set of detail summaries of the retrieved literature, categorized by thematic relevance.",
+    agent=SummarizationAgent
+)
+                    </code>
+                </pre>
+                <br>
+                <h3>Trend Analysis Task</h3>
+                <p>Detects patterns and research gaps from the summarized data.</p>
+                <pre>
+                    <code class="lang-py">
+TrendAnalysisTask = Task(
+    description="""
+    Analyze summarized literature to identify trends, emerging areas of research, and interdisciplinary connections in {topic}.
+
+    INPUT: summaries - A collection of summaries categorized by theme. given by other agents
+
+    COMMUNICATION PROCESS:
+    1. The TrendAgent analyzes the summaries to detect patterns, recurring themes, and emerging trends.
+    2. Gaps in existing research are identified, and potential areas for further exploration are suggested.
+    3. Key insights and recommendations are compiled into a cohesive report.
+
+    OUTPUT FORMAT:
+    A structured report detailing:
+    - Identified trends and emerging areas of research
+    - Cross-disciplinary connections
+    - Research gaps and recommended areas for future exploration
+    """,
+    expected_output="A comprehensive report highlighting trends, gaps, and recommendations for future research on {topic}.",
+    agent=TrendAgent
+)
+                    </code>
+                </pre>
+            </div>
+            <div class="card">
+                <h2>Running the Crew</h2>
+                <hr>
+                <p>
+                    The agents are grouped into a Crew, orchestrated by the manager. The workflow kicks off with the following command:
+                </p>
+                <pre>
+                    <code class="lang-py">
+text= "Chain of thoughts"
+result = research_crew.kickoff(inputs={"topic": text})
+                    </code>
+                </pre>
+            </div>
+            <div class="card">
+                <h2>Conclusion</h2>
+                <hr>
+                <p>
+                    This multi-agent framework underscores the transformative potential of collaborative artificial intelligence in accelerating the process of scientific discovery. By automating labor-intensive and time-consuming tasks, the framework empowers researchers to focus on high-level analysis, strategic decision-making, and creative problem-solving. Integrating modular LLMs ensures adaptability, scalability, and efficiency, making it a powerful tool for diverse research workflows.
+                </p>
+                <p>
+                    Future iterations of this framework are envisioned to incorporate advanced capabilities such as automated code interpretation, retrieval-augmented generation (RAG), reinforcement learning with human feedback (RLHF) for multi-agent optimization, interactive visualization dashboards, and real-time collaborative features. These enhancements will further streamline research processes, fostering innovation and enabling seamless collaboration across disciplines. This framework represents a significant step towards AI-driven research ecosystems, paving the way for more efficient and impactful scientific advancements.
+                </p>
+            </div>
+        </div>
+        <div class="rightcolumn">
+            <div class="card" style="margin-top: 0px;">
+              <h2>About the author</h2>
+              <img src="https://snt-iiser-tvm.github.io/codingclub/Blogs/Media/saurabprofile.jpg">
+              <h4>Saurab Mishra</h4>
+              <p>BSMS student at the Indian Institute of Science Education and Research, Thiruvananthapuram.<br><br> Expected to graduate by 2028</p>
+              <p>
+                <strong>Posts: </strong>2<br>
+                <strong>Latest post: </strong>December 10th
+            </p>
+            <p>
+                Data Science and AI enthusiast with expertise in LLMs, AI, and MAS.
+            </p>
+            </div>
+            <div style="margin-bottom: 0px;" class="card">
+              <h3>Popular Posts</h3>
+              <a href="https://snt-iiser-tvm.github.io/codingclub/Blogs/Posts/Mishra's blog">
+                Exploring the Future of Coding with the coding club
+                <hr>
+              </a>
+            </div>
+          </div>
+     </div>
+     <div class="more-blogs">
+        <h2>Like what you read?<br>Check out more blogs!</h2>
+        <a href="https://snt-iiser-tvm.github.io/codingclub/Blogs/Blog main.html" class="btn-cta">Explore More Blogs</a>
+      </div>
+       <footer class="footer">
+        <div class="footer-container">
+        <div class="footer-logo">
+        <a href="https://snt-iiser-tvm.github.io/codingclub/" class="logo-link">
+        <img src="https://share1.cloudhq-mkt3.net/015128b8139485.png" alt="Blog Logo">
+        </a>
+        </div>
+        <div class="footer-social">
+        <ul>
+        <li><a href="https://chat.whatsapp.com/DkHaq5HxNk2C1d2LFtC1Sl" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
+        <li><a href="https://www.linkedin.com/in/codex-society-9898bb33a/" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+        <li><a href="https://www.instagram.com/codexiiser/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+        </ul>
+        </div>
+        </div>
+        <div class="footer-copyright">
+        <p>&copy; 2024 The coding club. All rights reserved.</p>
+        </div>
+        </footer>
+     <script>
+        class GenerativeArt {
+            constructor(canvas) {
+                this.canvas = canvas;
+                this.ctx = canvas.getContext('2d');
+                this.width = document.getElementById('header').clientWidth;
+                this.height = document.getElementById('header').clientHeight;
+                this.particles = [];
+                this.initParticles();
+            }
+
+            initParticles() {
+                this.particles = [];
+                for (let i = 0; i < 50; i++) {
+                    this.particles.push({
+                        x: Math.random() * this.width,
+                        y: Math.random() * this.height,
+                        speed: {
+                            x: (Math.random() - 0.5),
+                            y: (Math.random() - 0.5)
+                        }
+                    });
+                }
+            }
+
+            update() {
+                const canvas = document.getElementById('artCanvas');
+                canvas.width = document.getElementById('header').clientWidth;
+                canvas.height = document.getElementById('header').clientHeight;
+
+                this.ctx.clearRect(0, 0, document.getElementById('header').clientWidth, document.getElementById('header').clientHeight);
+
+                this.particles.forEach(particle => {
+                    // Move particles
+                    particle.x += particle.speed.x;
+                    particle.y += particle.speed.y;
+
+                    // Bounce off walls
+                    if (particle.x < 0 || particle.x > document.getElementById('header').clientWidth) {
+                        particle.speed.x *= -1;
+                    }
+                    if (particle.y < 0 || particle.y > document.getElementById('header').clientHeight) {
+                        particle.speed.y *= -1;
+                    }
+
+                    if(particle.x < -5 || particle.x > document.getElementById('header').clientWidth+5 || particle.y < -5 || particle.y > document.getElementById('header').clientHeight+5)
+                    {
+                        particle.x = Math.random() * document.getElementById('header').clientWidth;
+                        particle.y = Math.random() * document.getElementById('header').clientHeight;
+                    }
+
+                    // Draw particle
+                    this.ctx.beginPath();
+                    this.ctx.fillStyle = particle.color;
+                    this.ctx.globalCompositeOperation = 'lighter';
+                    this.ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+                    this.ctx.fill();
+                });
+
+                // Connect particles with lines
+                this.particles.forEach((p1, index) => {
+                    for (let j = index + 1; j < this.particles.length; j++) {
+                        const p2 = this.particles[j];
+                        const distance = Math.hypot(p2.x - p1.x, p2.y - p1.y);
+                        
+                        if (distance < 100) {
+                            this.ctx.beginPath();
+                            this.ctx.strokeStyle = `rgba(255,255,255,${1 - distance/100})`;
+                            this.ctx.moveTo(p1.x, p1.y);
+                            this.ctx.lineTo(p2.x, p2.y);
+                            this.ctx.stroke();
+                        }
+                    }
+                });
+
+                requestAnimationFrame(() => this.update());
+            }
+        }
+
+        // Initialize the generative art
+        const canvas = document.getElementById('artCanvas');
+        canvas.width = document.getElementById('header').clientWidth;
+        canvas.height = document.getElementById('header').clientHeight;
+        const art = new GenerativeArt(canvas);
+        art.update();
+    </script>
+    <script>
+        const navbar = document.getElementById('navbar');
+        const row = document.getElementById('content');
+
+        window.addEventListener('scroll', () => {
+        if (window.scrollY > 10) {
+            navbar.style.backgroundColor = '#0b0d16';
+        } else {
+            navbar.style.backgroundColor = 'transparent';
+        }
+        });
+    </script>
+</body>
+</html>

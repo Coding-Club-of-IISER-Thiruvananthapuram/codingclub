@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<head>
+    <title>Exploring the Future of Coding with the coding club</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://snt-iiser-tvm.github.io/codingclub/Blogs/blogstyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="header" id="header">
+        <canvas style="position: absolute; z-index: 0; left: 0px; padding:0px;" width="relative" id="artCanvas" ></canvas>
+        <div class="header-contents">
+            <h1 style="position: relative; z-index:1">Exploring the Future of Coding with the coding club</h1>
+            <ul style="display: flex; flex-wrap: wrap; margin: 0px; padding-left: 20px;">
+                <li style="margin-right: 20px; content: none;">Saurab Mishra</li>
+                <li style="margin-right: 20px;">November 4th, 2024</li>
+                <li style="margin-right: 20px">3 min read</li>
+            </ul>
+        </div>
+        </div>
+     </div>
+
+     <nav class="navbar" id="navbar">
+        <div class="navbar-logo">
+            <a href="https://snt-iiser-tvm.github.io/codingclub/">
+                <i class="fas fa-home"></i>
+                <img src="https://share1.cloudhq-mkt3.net/015128b8139485.png" style="width: 35px; height: 22px; margin-bottom: -2px;">
+            </a>
+          </div>
+        <ul class="navbar-nav">
+          <li><a href="https://snt-iiser-tvm.github.io/codingclub/Blogs/Blog main.html">New posts</a></li>
+        </ul>
+    </nav>
+
+     <div class="row">
+        <div class="leftcolumn">
+            <div class="card">
+                <p>
+                    In this blog post, we'll dive into the latest trends and technologies shaping the future of coding. From the rise of low-code/no-code platforms to the increased importance of data science and machine learning, the coding landscape is rapidly evolving. We'll explore how CodeX Society is staying ahead of the curve and preparing our members for the challenges and opportunities that lie ahead. 
+                </p>
+                <p>
+                    The democratization of coding has been one of the most significant trends in recent years. Low-code and no-code platforms have made it possible for individuals with minimal programming experience to create sophisticated applications. However, this doesn't diminish the importance of traditional coding skills. Instead, it creates new opportunities for developers to focus on more complex problems and innovative solutions.
+                </p>
+                <p>
+                    Data science and machine learning continue to be at the forefront of technological advancement. The ability to process and analyze large datasets, combined with sophisticated AI algorithms, is transforming industries across the board. CodeX Society members are actively engaging with these technologies, participating in workshops and collaborative projects that push the boundaries of what's possible.
+                </p>
+                <p>
+                    Looking ahead, we see several emerging trends that will shape the future of coding: 
+                </p>
+                <ul>
+                    <li>Increased focus on AI-assisted coding and development tools</li>
+                    <li>Growth in quantum computing applications and algorithms</li>
+                    <li>Enhanced emphasis on cybersecurity and privacy-preserving technologies</li>
+                    <li>Greater integration of AR/VR in development workflows</li>
+                <p>
+                    At the coding club, we're committed to staying at the forefront of these developments. Through our mentorship programs, technical workshops, and community projects, we're building a foundation for the next generation of developers to thrive in this evolving landscape.
+                </p>
+            </div>
+        </div>
+        <div class="rightcolumn">
+            <div class="card" style="margin-top: 0px;">
+              <h2>About the author</h2>
+              <img src="https://snt-iiser-tvm.github.io/codingclub/Blogs/Media/saurabprofile.jpg">
+              <h4>Saurab Mishra</h4>
+              <p>BSMS student at the Indian Institute of Science Education and Research, Thiruvananthapuram.<br><br> Expected to graduate by 2028</p>
+              <p>
+                <strong>Posts: </strong>2<br>
+                <strong>Latest post: </strong>December 21st
+            </p>
+            <p>
+                Data Science and AI enthusiast with expertise in LLMs, AI, and MAS.
+            </p>
+            </div>
+            <div style="margin-bottom: 0px;" class="card">
+              <h3>Popular Posts</h3>
+              <a href="https://snt-iiser-tvm.github.io/codingclub/Blogs/Posts/Mishra's blog 2">
+                Multi-Agent Systems: The Future of Collaborative AI
+                <hr>
+              </a>
+            </div>
+          </div>
+     </div>
+     <div class="more-blogs">
+        <h2>Like what you read?<br>Check out more blogs!</h2>
+        <a href="https://snt-iiser-tvm.github.io/codingclub/Blogs/Blog main.html" class="btn-cta">Explore More Blogs</a>
+      </div>
+       <footer class="footer">
+        <div class="footer-container">
+        <div class="footer-logo">
+        <a href="https://snt-iiser-tvm.github.io/codingclub/" class="logo-link">
+        <img src="https://share1.cloudhq-mkt3.net/015128b8139485.png" alt="Blog Logo">
+        </a>
+        </div>
+        <div class="footer-social">
+        <ul>
+        <li><a href="https://chat.whatsapp.com/DkHaq5HxNk2C1d2LFtC1Sl" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
+        <li><a href="https://www.linkedin.com/in/codex-society-9898bb33a/" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+        <li><a href="https://www.instagram.com/codexiiser/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+        </ul>
+        </div>
+        </div>
+        <div class="footer-copyright">
+        <p>&copy; 2024 The coding club. All rights reserved.</p>
+        </div>
+        </footer>
+     <script>
+        class GenerativeArt {
+            constructor(canvas) {
+                this.canvas = canvas;
+                this.ctx = canvas.getContext('2d');
+                this.width = document.getElementById('header').clientWidth;
+                this.height = document.getElementById('header').clientHeight;
+                this.particles = [];
+                this.initParticles();
+            }
+
+            initParticles() {
+                this.particles = [];
+                for (let i = 0; i < 50; i++) {
+                    this.particles.push({
+                        x: Math.random() * this.width,
+                        y: Math.random() * this.height,
+                        speed: {
+                            x: (Math.random() - 0.5),
+                            y: (Math.random() - 0.5)
+                        }
+                    });
+                }
+            }
+
+            update() {
+                const canvas = document.getElementById('artCanvas');
+                canvas.width = document.getElementById('header').clientWidth;
+                canvas.height = document.getElementById('header').clientHeight;
+
+                this.ctx.clearRect(0, 0, document.getElementById('header').clientWidth, document.getElementById('header').clientHeight);
+
+                this.particles.forEach(particle => {
+                    // Move particles
+                    particle.x += particle.speed.x;
+                    particle.y += particle.speed.y;
+
+                    // Bounce off walls
+                    if (particle.x < 0 || particle.x > document.getElementById('header').clientWidth) {
+                        particle.speed.x *= -1;
+                    }
+                    if (particle.y < 0 || particle.y > document.getElementById('header').clientHeight) {
+                        particle.speed.y *= -1;
+                    }
+
+                    if(particle.x < -5 || particle.x > document.getElementById('header').clientWidth+5 || particle.y < -5 || particle.y > document.getElementById('header').clientHeight+5)
+                    {
+                        particle.x = Math.random() * document.getElementById('header').clientWidth;
+                        particle.y = Math.random() * document.getElementById('header').clientHeight;
+                    }
+
+                    // Draw particle
+                    this.ctx.beginPath();
+                    this.ctx.fillStyle = particle.color;
+                    this.ctx.globalCompositeOperation = 'lighter';
+                    this.ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+                    this.ctx.fill();
+                });
+
+                // Connect particles with lines
+                this.particles.forEach((p1, index) => {
+                    for (let j = index + 1; j < this.particles.length; j++) {
+                        const p2 = this.particles[j];
+                        const distance = Math.hypot(p2.x - p1.x, p2.y - p1.y);
+                        
+                        if (distance < 100) {
+                            this.ctx.beginPath();
+                            this.ctx.strokeStyle = `rgba(255,255,255,${1 - distance/100})`;
+                            this.ctx.moveTo(p1.x, p1.y);
+                            this.ctx.lineTo(p2.x, p2.y);
+                            this.ctx.stroke();
+                        }
+                    }
+                });
+
+                requestAnimationFrame(() => this.update());
+            }
+        }
+
+        // Initialize the generative art
+        const canvas = document.getElementById('artCanvas');
+        canvas.width = document.getElementById('header').clientWidth;
+        canvas.height = document.getElementById('header').clientHeight;
+        const art = new GenerativeArt(canvas);
+        art.update();
+    </script>
+    <script>
+        const navbar = document.getElementById('navbar');
+        const row = document.getElementById('content');
+
+        window.addEventListener('scroll', () => {
+        if (window.scrollY > 10) {
+            navbar.style.backgroundColor = '#0b0d16';
+        } else {
+            navbar.style.backgroundColor = 'transparent';
+            row.style.paddingTop = 0;
+        }
+        });
+    </script>
+</body>
+</html>
