@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Club Blogs</title>
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0f172a;
+            color: #e2e8f0;
+            position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Animated Background */
+        #canvas-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        /* Header/Navigation */
+        header {
+            background: rgba(15, 23, 42, 0.9);
+            padding: 15px 30px;
+            border-bottom: 1px solid #1e293b;
+            backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: absolute;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.8s;
+            }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            color: #38bdf8;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: #e2e8f0;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: #38bdf8;
+        }
+
+        /* Layout */
+        .container {
+            z-index: 3;
+            display: flex;
+            flex: 1;
+            padding: 20px;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            color: #38bdf8;
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+            margin-bottom: 10px;
+            margin-top: 10px;
+            
+        }
+
+        .header p {
+            color: #94a3b8;
+            font-size: 1.1rem;
+        }
+
+        /* Blog Cards */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .blog-card {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid #1e293b;
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            backdrop-filter: blur(5px);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border-color: #38bdf8;
+        }
+
+       
+        .author-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+            border: 2px solid #38bdf8;
+        }
+
+        .author-details h3 {
+            font-size: 1.1rem;
+            margin-bottom: 3px;
+            color: #f8fafc;
+        }
+
+        .author-details p {
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+
+        .blog-content h2 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #38bdf8;
+        }
+
+        .blog-content p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #cbd5e1;
+            margin-bottom: 15px;
+        }
+
+        .read-more {
+            display: inline-block;
+            padding: 8px 15px;
+            background: #1e40af;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+        }
+
+        .read-more:hover {
+            background: #1e3a8a;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 300px;
+            padding: 20px;
+            background: rgba(15, 23, 42, 0.7);
+            border-left: 1px solid #1e293b;
+            backdrop-filter: blur(5px);
+        }
+
+        .sidebar h2 {
+            color: #38bdf8;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        .club-post {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #334155;
+        }
+
+        .club-post h3 {
+            font-size: 1rem;
+            margin-bottom: 5px;
+            color: #f8fafc;
+        }
+
+        .club-post p {
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+
+        .club-post .post-date {
+            font-size: 0.75rem;
+            color: #64748b;
+            margin-top: 5px;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(15, 23, 42, 0.9);
+            padding: 30px;
+            border-top: 1px solid #1e293b;
+            backdrop-filter: blur(5px);
+            box-sizing: border-box;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 20px;
+            justify-content: space-between;
+            width: 14vw;
+            margin-top: 12px;
+
+        }
+
+        .social-links a {
+            color: #e2e8f0;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #38bdf8;
+        }
+
+        .footer-text {
+            text-align: center;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+         .college-logo{
+            transition: transform 0.3s, box-shadow 0.3s;
+            backdrop-filter: blur(5px);
+            box-sizing: border-box;
+            height: 20vh;
+            justify-self: center;
+            margin-left: 14.7vw;
+            
+        }
+        .college-logo:hover{
+            transform: translateY(-5px) scale(1.2);
+            /* box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); */
+            border-color: #38bdf8;
+
+
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 15px;
+                gap: 15px;
+            }
+
+            .container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                border-left: none;
+                border-top: 1px solid #1e293b;
+                margin-top: 30px;
+            }
+            
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background Canvas -->
+    <canvas id="canvas-bg"></canvas>
+
+    <!-- Header with Logo and Navigation -->
+    <header>
+        <a href="../index.html" class="logo">
+            <img src="../codex_logo.png" alt="Coding Club Logo" class="logo-img">
+            <span class="logo-text">Coding Club</span>
+        </a>
+        <nav class="nav-links">
+            <a href="../index.html">Home</a>
+            <!-- <a href="blogs.html">Blogs</a> -->
+            <a href="../index.html#events">Events</a>
+            <a href="../index.html#team-members">Members</a>
+            <a href="../index.html#AbOuT">About</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main class="main-content">
+            <header class="header">
+                <h1>Blogs</h1>
+                <p>Thoughts, tutorials, and updates from our coding club members</p>
+            </header>
+
+            <div class="blog-grid">
+                <!-- Blog Card 1 -->
+                <article class="blog-card">
+                    <div class="author-info">
+                        <img src="../user.jpg" alt="Author Avatar" class="avatar">
+                        <div class="author-details">
+                            <h3>Ananya J R</h3>
+                            <p>December 22, 2024 · 5 min read</p>
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <h2>The Future of AI and ML: Transforming Industries Through Code</h2>
+                        <p>  
+                            What were once futuristic concepts have now turned into reality in various industries such as
+                            healthcare, finance, entertainment, and so on using AI. But what is really the role of coding in this revolution?</p>
+                        <a href="Posts/Ananya's blog.html" class="read-more">Read More</a>
+                    </div>
+                </article>
+
+                <!-- Blog Card 2 -->
+                <article class="blog-card">
+                    <div class="author-info">
+                        <img src="../user.jpg" alt="Author Avatar" class="avatar">
+                        <div class="author-details">
+                            <h3>Manini Sharma</h3>
+                            <p>December 21, 2024 · 8 min read</p>
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <h2>A New Dawn of AI: Creating a World that Never Was</h2>
+                        <p> AI is real, no more the fiction of future, and dwelling with us- in living, working and interconnecting people.
+
+                        </p>
+                        <a href="Posts/Manini's blog.html" class="read-more">Read More</a>
+                    </div>
+                </article>
+
+                <!-- Blog Card 3 -->
+                <article class="blog-card">
+                    <div class="author-info">
+                        <img src="../saurabprofile.jpg" alt="Author Avatar" class="avatar">
+                        <div class="author-details">
+                            <h3>Saurab Mishra</h3>
+                            <p>November 4, 2024 · 6 min read</p>
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <h2>Exploring the Future of Coding </h2>
+                        <p>In this blog post, we'll dive into the latest trends and technologies shaping the future of coding.
+                             From the rise of low-code/no-code platforms to the 
+                            increased importance of data science and machine learning, the coding landscape is rapidly evolving. </p>
+                        <a href="Posts/Mishra's blog.html" class="read-more">Read More</a>
+                    </div>
+                </article>
+
+                <!-- Blog Card 4 -->
+                <article class="blog-card">
+                    <div class="author-info">
+                        <img src="../user.jpg" alt="Author Avatar" class="avatar">
+                        <div class="author-details">
+                            <h3>Abhinav Joshi</h3>
+                            <p>December 20, 2024 · 20 min read</p>
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <h2>Making a DAW with Python</h2>
+                        <p>The Blog aims in making a python programme to create a basic Digital Audio Workstation(DAW),
+                             which should in the end create a platform for you to build on.</p>
+                        <a href="Posts/Joshy's blog.html" class="read-more">Read More</a>
+                    </div>
+                </article>
+
+                <!-- Blog Card 5 -->
+                <article class="blog-card">
+                    <div class="author-info">
+                        <img src="../saurabprofile.jpg" alt="Author Avatar" class="avatar">
+                        <div class="author-details">
+                            <h3>Saurab Mishra</h3>
+                            <p>December 10, 2024 · 7 min read</p>
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <h2>Multi-Agent Systems: The Future of Collaborative AI</h2>
+                        <p>In this blog, I will present a modular multi-agent system for collaborative participation in
+                             artificial intelligence tasks. In this system, agents with
+                             differing task-specific capabilities work cooperatively toward achieving a research challenge</p>
+                        <a href="Posts/Mishra's blog 2.html" class="read-more">Read More</a>
+                    </div>
+                </article>
+
+                <!-- Blog Card 6 -->
+                <article class="blog-card">
+                    <div class="author-info">
+                        <img src="../user.jpg" alt="Author Avatar" class="avatar">
+                        <div class="author-details">
+                            <h3>Saurav Kumar Singh</h3>
+                            <p>December  21, 2024 · 4 min read</p>
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <h2>My first research project</h2>
+                        <p>As a first-year at IISER TVM, I explored whether fever patterns—temperature
+                             vs time graphs—could help diagnose diseases. This blog traces my journey from
+                              hypothesis to hurdles, and a surprising AI-powered twist.
+
+</p>
+                        <a href="Posts/Saurab's blog.html" class="read-more">Read More</a>
+                    </div>
+                </article>
+            </div>
+        </main>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2>Club Posts</h2>
+            
+            <div class="club-post">
+                <h3>First posts!</h3>
+                <p>The coding club has deployed its blogging site, checkout the first few posts!</p>
+                <p class="post-date">Posted May 29, 2025</p>
+            </div>
+            
+            <!-- <div class="club-post">
+                <h3>New Member Orientation</h3>
+                <p>Welcome to all our new members! Join us this Friday for an orientation session.</p>
+                <p class="post-date">Posted May 24, 2023</p>
+            </div>
+            
+            <div class="club-post">
+                <h3>Guest Speaker: Jane Doe from TechCorp</h3>
+                <p>Don't miss our special session with Jane Doe talking about careers in tech.</p>
+                <p class="post-date">Posted May 20, 2023</p>
+            </div>
+            
+            <div class="club-post">
+                <h3>Workshop: Web Accessibility</h3>
+                <p>Learn how to make your websites accessible to everyone in our next workshop.</p>
+                <p class="post-date">Posted May 17, 2023</p>
+            </div>
+            
+            <div class="club-post">
+                <h3>Project Showcase Submissions Open</h3>
+                <p>Submit your projects for our end-of-semester showcase by June 1st.</p>
+                <p class="post-date">Posted May 14, 2023</p>
+            </div> -->
+        </aside>
+    </div>
+
+    <!-- Footer with Social Links -->
+    <footer>
+        <div class="footer-content">
+             <div >
+            <a href="https://www.iisertvm.ac.in/" ><img src="../iiser_logo.png" alt="iiser-logo" class="college-logo"></a>
+            
+            <P>Coding Club is IISER TVM's premier club, fostering technical
+                 excellence and innovation among students.</P>
+            </div>
+            <div class="social-links">
+                <a href="https://chat.whatsapp.com/DkHaq5HxNk2C1d2LFtC1Sl" aria-label="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="#" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://in.linkedin.com/company/cciisertvm" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="#" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+
+            </div>
+            <p class="footer-text">© 2025 Coding Club IISER TVM. All rights reserved.</p>
+        </div>
+
+       
+    </footer>
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Animated Background Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const canvas = document.getElementById('canvas-bg');
+            const ctx = canvas.getContext('2d');
+            
+            // Set canvas size
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            // Particles array
+            const particles = [];
+            const particleCount = Math.floor(window.innerWidth / 10);
+            
+            // Particle constructor
+            function Particle() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = Math.random() * 2 - 1;
+                this.speedY = Math.random() * 2 - 1;
+                this.color = `hsl(${Math.random() * 60 + 190}, 70%, 50%)`;
+                
+                this.update = function() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    
+                    // Bounce off edges
+                    if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                    if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+                };
+                
+                this.draw = function() {
+                    ctx.fillStyle = this.color;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                    
+                    // Create connections
+                    for (let i = 0; i < particles.length; i++) {
+                        const dx = this.x - particles[i].x;
+                        const dy = this.y - particles[i].y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (distance < 100) {
+                            ctx.strokeStyle = `rgba(56, 189, 248, ${1 - distance/100})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.beginPath();
+                            ctx.moveTo(this.x, this.y);
+                            ctx.lineTo(particles[i].x, particles[i].y);
+                            ctx.stroke();
+                        }
+                    }
+                };
+            }
+            
+            // Create particles
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+            
+            // Animation loop
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                for (let i = 0; i < particles.length; i++) {
+                    particles[i].update();
+                    particles[i].draw();
+                }
+                
+                requestAnimationFrame(animate);
+            }
+            
+            animate();
+            
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+        });
+    </script>
+</body>
+</html>
