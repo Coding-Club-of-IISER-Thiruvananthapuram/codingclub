@@ -334,6 +334,11 @@
                 justify-content: center;
             }
         }
+        @media (max-width: 1160px) {
+            #blog-header{
+                flex-direction: column;
+            }
+        }
     </style>
 </head>
 <body>
@@ -357,7 +362,7 @@
 
     <div class="container">
         <main class="main-content">
-            <header class="header">
+            <header class="header" id="blog-header">
                 <h1>Blogs</h1>
                 <p>Thoughts, tutorials, and updates from our coding club members</p>
             </header>
