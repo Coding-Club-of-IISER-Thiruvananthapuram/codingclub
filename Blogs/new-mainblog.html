@@ -87,63 +87,6 @@
         .nav-links a:hover {
             color: #38bdf8;
         }
-        /* Hamburger Menu */
-.hamburger {
-    display: none;
-    cursor: pointer;
-    z-index: 1001; /* High z-index to stay on top */
-}
-
-.hamburger div {
-    width: 25px;
-    height: 3px;
-    background-color: #e2e8f0;
-    margin: 5px;
-    transition: all 0.3s ease;
-}
-
-/* Mobile Navigation */
-@media (max-width: 768px) {
-    .hamburger {
-        display: block;
-    }
-
-    .nav-links {
-        position: fixed;
-        top: 0;
-        right: 0;
-        height: 100vh;
-        width: 70%;
-        background: rgba(15, 23, 42, 0.95);
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        transform: translateX(100%);
-        transition: transform 0.5s ease-in;
-        z-index: 1000; /* Below hamburger but above content */
-        border-left: 1px solid #1e293b;
-    }
-
-    .nav-links a {
-        font-size: 1.2rem;
-        padding: 15px 0;
-    }
-
-    .nav-active {
-        transform: translateX(0%);
-    }
-
-    /* Hamburger Animation */
-    .toggle .line1 {
-        transform: rotate(-45deg) translate(-5px, 6px);
-    }
-    .toggle .line2 {
-        opacity: 0;
-    }
-    .toggle .line3 {
-        transform: rotate(45deg) translate(-5px, -6px);
-    }
-}
 
         /* Layout */
         .container {
@@ -403,12 +346,6 @@
             <img src="../codex_logo.png" alt="Coding Club Logo" class="logo-img">
             <span class="logo-text">Coding Club</span>
         </a>
-        <!-- Add this right after the logo in your header -->
-    <div class="hamburger">
-        <div class="line1"></div>
-        <div class="line2"></div>
-        <div class="line3"></div>
-    </div>
         <nav class="nav-links">
             <a href="../index.html">Home</a>
             <!-- <a href="blogs.html">Blogs</a> -->
@@ -688,22 +625,5 @@
             });
         });
     </script>
-    // Hamburger Menu Toggle
-<script>const hamburger = document.querySelector('.hamburger');
-const navLinks = document.querySelector('.nav-links');
-
-hamburger.addEventListener('click', function() {
-    navLinks.classList.toggle('nav-active');
-    hamburger.classList.toggle('toggle');
-});
-
-// Close menu when clicking on a link
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        navLinks.classList.remove('nav-active');
-        hamburger.classList.remove('toggle');
-    });
-});
-</script>
 </body>
 </html>
