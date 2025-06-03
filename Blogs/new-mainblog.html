@@ -15,6 +15,7 @@
             --card-bg: rgba(15, 23, 42, 0.7);
             --text-light: #e2e8f0;
             --text-muted: #94a3b8;
+            --header-height: 70px;
         }
 
         * {
@@ -46,7 +47,7 @@
 
         /* Header/Navigation */
         header {
-            background: rgba(15, 23, 42, 0.9);
+            background: rgba(15, 23, 42, 0.85);
             padding: 10px 25px;
             border-bottom: 1px solid #1e293b;
             backdrop-filter: blur(5px);
@@ -56,7 +57,8 @@
             position: sticky;
             top: 0;
             z-index: 1002;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            min-height: var(--header-height);
         }
 
         .logo {
@@ -131,21 +133,30 @@
         .container {
             display: flex;
             flex: 1;
-            padding: 20px;
+            padding: 10px;
             max-width: 1400px;
-            margin: 80px auto 0; /* Increased margin-top to clear sticky header */
+            /* margin: calc(var(--header-height) + 20px) auto 0; */
+            margin-top: 1px;
         }
 
         /* Main Content */
         .main-content {
             flex: 1;
             padding: 20px;
+            padding-top: 5px;
+            margin-top: 5px;
+          
         }
 
         .header {
             text-align: center;
-            margin-bottom: 30px;
-            z-index: 1; /* Ensure header is below nav-links when menu is open */
+            margin-bottom: 10px;
+            
+            z-index: 1;
+            padding: 15px 0;
+            background: var(--card-bg);
+            border-radius: 10px;
+            min-height: 100px; /* Ensure consistent height */
         }
 
         .header h1 {
@@ -158,7 +169,7 @@
         .header p {
             color: var(--text-muted);
             font-size: 1.1rem;
-            margin-top: 1.5rem;
+            margin-top: 0.5rem;
         }
 
         /* Blog Cards */
@@ -350,7 +361,7 @@
                 position: fixed;
                 top: 0;
                 right: -100%;
-                width: 80%;
+                width: 100%;
                 max-width: 300px;
                 height: 100vh;
                 background: rgba(15, 23, 42, 0.98);
@@ -358,7 +369,8 @@
                 flex-direction: column;
                 padding: 70px 20px 20px;
                 transition: right 0.3s ease;
-                z-index: 1003; /* Increased to ensure it appears above .header */
+                z-index: 1003;
+                overflow-x: hidden;
             }
 
             .nav-links.active {
@@ -368,12 +380,31 @@
             .nav-links a {
                 padding: 12px 0;
                 font-size: 1.2rem;
+                width: 100%;
+                text-align: left;
             }
 
             .container {
                 flex-direction: column;
-                margin-top: 100px; /* Increased to clear sticky header */
+                margin-top: 8px; /* Reduced gap for mobile */
                 padding: 15px;
+            }
+
+            .header {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 10px 0;
+                min-height: 80px; /* Slightly smaller for mobile */
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .header p {
+                font-size: 1rem;
+                margin-top: 0.5rem;
             }
 
             .sidebar {
@@ -552,9 +583,9 @@
                 <p class="footer-text">© 2025 Coding Club IISER TVM. All rights reserved.</p>
             </div>
         </footer>
-
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer">
     </div>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
     <script>
         // Particle Animation
