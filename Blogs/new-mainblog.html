@@ -17,6 +17,7 @@
             background-color: #0f172a;
             color: #e2e8f0;
             position: relative;
+            width: 100%;
             overflow-x: hidden;
             min-height: 100vh;
             display: flex;
@@ -337,7 +338,7 @@
     .nav-links {
         position: fixed;
         top: 0;
-        right: -100%;
+        right: -100vw;
         width: 80%; /* Slightly less than full width */
         max-width: 300px; /* Maximum width for larger phones */
         height: 100vh;
@@ -367,6 +368,11 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+    }
+        /* Prevent any potential overflow */
+    .container, .main-content, .blog-grid, .blog-card {
+        max-width: 100vw;
+        overflow: hidden;
     }
     
     /* Close button positioning */
@@ -421,9 +427,16 @@
                 flex-direction: column;
             }
         }
+
+            .page-wrapper {
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+    }
     </style>
 </head>
 <body>
+    <div class="page-wrapper">
     <!-- Animated Background Canvas -->
     <canvas id="canvas-bg"></canvas>
 
@@ -769,6 +782,45 @@ document.addEventListener('keydown', function(event) {
         toggleMenu();
     }
 });
+
+// Lock body scroll completely when menu is open
+function toggleMenu() {
+    const isOpening = !navLinks.classList.contains('active');
+    
+    hamburger.classList.toggle('active');
+    navLinks.classList.toggle('active');
+    
+    if (isOpening) {
+        // Save current scroll position
+        const scrollY = window.scrollY;
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${scrollY}px`;
+        document.body.style.width = '100%';
+    } else {
+        // Restore scroll position
+        const scrollY = document.body.style.top;
+        document.body.style.position = '';
+        document.body.style.top = '';
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+    }
+}
+
+// Reset on resize
+function handleResize() {
+    if (window.innerWidth > 768) {
+        // Force-close menu on desktop
+        if (navLinks.classList.contains('active')) {
+            toggleMenu();
+        }
+        // Reset any scroll locks
+        document.body.style.position = '';
+        document.body.style.top = '';
+    }
+}
+
+// Add this new event listener
+window.addEventListener('resize', handleResize);
     </script>
+    </div>
 </body>
 </html>
