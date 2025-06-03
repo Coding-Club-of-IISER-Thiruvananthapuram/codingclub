@@ -302,6 +302,88 @@
 
 
         }
+        /* Hamburger Menu Styles */
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+}
+
+.hamburger .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: #e2e8f0;
+    transition: all 0.3s ease;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    /* Prevent horizontal scrolling */
+    html, body {
+        width: 100%;
+        overflow-x: hidden;
+        position: relative;
+    }
+    
+    .hamburger {
+        display: block;
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%; /* Slightly less than full width */
+        max-width: 300px; /* Maximum width for larger phones */
+        height: 100vh;
+        background: rgba(15, 23, 42, 0.98);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 70px;
+        gap: 1.5rem;
+        transition: transform 0.3s ease;
+        z-index: 1000;
+        border-left: 1px solid #1e293b;
+        box-sizing: border-box;
+        overflow-y: auto; /* Allow vertical scrolling if needed */
+    }
+    
+    .nav-links.active {
+        right: 0;
+        transform: translateX(0);
+    }
+    
+    /* Ensure links don't cause overflow */
+    .nav-links a {
+        padding: 12px 20px;
+        width: 100%;
+        box-sizing: border-box;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    /* Close button positioning */
+    .close-button {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+    }
+    
+    /* Adjust container spacing */
+    .container {
+        margin-top: 80px;
+        width: 100%;
+        overflow: hidden;
+    }
+}
+
 
         /* Responsive */
         @media (max-width: 768px) {
@@ -351,7 +433,15 @@
             <img src="../codex_logo.png" alt="Coding Club Logo" class="logo-img">
             <span class="logo-text">Coding Club</span>
         </a>
+                <!-- Hamburger Button -->
+        <button class="hamburger" aria-label="Menu" aria-expanded="false">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
         <nav class="nav-links">
+            
+
             <a href="../index.html">Home</a>
             <!-- <a href="blogs.html">Blogs</a> -->
             <a href="../index.html#events">Events</a>
@@ -629,6 +719,56 @@
                 canvas.height = window.innerHeight;
             });
         });
+    </script>
+    <script>
+    // Hamburger Menu Functionality
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
+const closeButton = document.querySelector('.close-button');
+const body = document.body;
+
+function toggleMenu() {
+    hamburger.classList.toggle('active');
+    navLinks.classList.toggle('active');
+    body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'auto';
+    
+    // Lock body position when menu is open
+    if (navLinks.classList.contains('active')) {
+        document.documentElement.style.position = 'fixed';
+        document.documentElement.style.width = '100%';
+    } else {
+        document.documentElement.style.position = '';
+        document.documentElement.style.width = '';
+    }
+}
+
+// Close menu when resizing to larger screens
+function handleResize() {
+    if (window.innerWidth > 768 && navLinks.classList.contains('active')) {
+        toggleMenu();
+    }
+}
+
+// Event listeners
+hamburger.addEventListener('click', toggleMenu);
+closeButton.addEventListener('click', toggleMenu);
+window.addEventListener('resize', handleResize);
+
+// Close menu when clicking outside or on links
+document.addEventListener('click', function(event) {
+    if (!navLinks.contains(event.target) && !hamburger.contains(event.target)) {
+        if (navLinks.classList.contains('active')) {
+            toggleMenu();
+        }
+    }
+});
+
+// Close with Escape key
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape' && navLinks.classList.contains('active')) {
+        toggleMenu();
+    }
+});
     </script>
 </body>
 </html>
