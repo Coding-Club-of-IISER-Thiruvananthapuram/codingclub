@@ -1,11 +1,14 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Codex Club - Resource Library</title>
+    <title>CCIT Club - Resource Library</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="preloader.css" rel="stylesheet">
+    <link href="responsive.css" rel="stylesheet">
     <style>
         :root {
             --bg-primary: #0f172a;
@@ -253,12 +256,70 @@
         }
 
         @media (max-width: 768px) {
+            /* Fix header overlap issue */
+            .navbar {
+                height: auto;
+                min-height: 60px;
+                padding: 0.75rem 1rem;
+            }
+            
+            /* Ensure content doesn't hide under fixed header */
+            .main-content {
+                padding-top: 80px !important; /* Account for fixed header */
+                margin-top: 0;
+            }
+            
+            .header {
+                padding-top: 2rem;
+            }
+            
+            /* Add proper spacing for all sections */
+            section {
+                scroll-margin-top: 80px; /* For smooth scrolling anchors */
+            }
+
             .header h1 {
                 font-size: 2rem;
             }
             
             .resource-grid {
                 grid-template-columns: 1fr;
+                gap: 1rem;
+                padding: 0 1rem;
+            }
+            
+            .nav-content {
+                padding: 0;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            
+            .nav-links a {
+                padding: 0.5rem 1rem;
+                font-size: 0.875rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            /* Additional mobile header fix for very small screens */
+            .main-content {
+                padding-top: 90px !important;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .resource-grid {
+                padding: 0 0.5rem;
+            }
+            
+            .nav-links a {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -289,7 +350,35 @@
         </div>
     </main>
 
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="home_button.js"></script>
     <script>
+        // ===== RESOURCES ARRAY - TEMPLATE FOR ADDING NEW DOWNLOADABLE RESOURCES =====
+        // 
+        // TO ADD A NEW RESOURCE:
+        // 1. Copy the template below and add it to the resources array
+        // 2. Update all the fields with your resource information
+        // 3. Ensure the downloadUrl points to the correct file path
+        // 4. Use a proper placeholder image or upload a custom image
+        //
+        // TEMPLATE FOR NEW RESOURCE:
+        // {
+        //     title: "Your Resource Title Here",
+        //     description: "Brief description of what this resource contains",
+        //     image: "Image URL or path",
+        //     downloadUrl: "File path/URL to downloadable resource"
+        // },
+        //
+        // FIELD DESCRIPTIONS:
+        // - title: Display name for the resource (keep it descriptive but concise)
+        // - description: Explanation of what users will get from this resource
+        // - image: Thumbnail image (placeholder images work well for consistency)
+        // - downloadUrl: Path to the actual file users can download
+        //
+        // NOTE: Add new resources to the end of the array, before the closing bracket ]
+        // ===== END TEMPLATE INSTRUCTIONS =====
+
         const resources = [
             {
                 title: "Let's Build AI, Run Simulations, and Talk About the Universe!",
@@ -298,7 +387,6 @@
                 downloadUrl: "Coding_Club_Talk.pdf"
             },
 
-
               {
         title: "Alumni Meet & Interaction",
         description: "Relive the highlights of our Alumni Meet & Interaction event! Explore the shared experiences, insights, and valuable discussions presented during the session through this detailed PPT.",
@@ -306,7 +394,18 @@
         downloadUrl: "Alumni_Meet_Presentation.pdf"
     }
 
-           
+            // ===== ADD NEW RESOURCES HERE =====
+            // Copy the template from above and paste it here
+            // Remember to add a comma after the previous resource entry
+            // Example:
+            // ,
+            // {
+            //     title: "New Resource Title",
+            //     description: "Resource description here",
+            //     image: "https://via.placeholder.com/400x300/1e293b/e2e8f0?text=YourTitle",
+            //     downloadUrl: "path/to/your/file.pdf"
+            // }
+            // ===== END NEW RESOURCES SECTION =====
             
         ];
 
