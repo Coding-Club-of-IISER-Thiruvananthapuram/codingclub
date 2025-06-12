@@ -605,13 +605,19 @@
                         </div>
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent"></div>
                         <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center gap-4 transition-all duration-300 backdrop-blur-sm course-overlay">
-                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeJuIlW4REb117B8I4Kd_AkGgveW4ohVDxWk-Ux5w5dumAYFQ/viewform?usp=sharing"
-                               class="flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-green-600 to-green-800 text-white rounded-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg"
-                               target="_blank" rel="noopener noreferrer">
+                            <a href="webdev-course.html"
+                               class="flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-blue-600 to-blue-800 text-white rounded-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                 </svg>
-                                <span>Enroll Now</span>
+                                <span>Course Details</span>
+                            </a>
+                            <a href="course-layout.html"
+                               class="flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-green-600 to-green-800 text-white rounded-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+                                </svg>
+                                <span>Course Layout</span>
                             </a>
                         </div>
                     </div>
@@ -682,16 +688,29 @@
                             </div>
                         </div>
 
-                        <!-- Enrollment CTA -->
-                        <div class="pt-4 border-t border-gray-800">
-                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeJuIlW4REb117B8I4Kd_AkGgveW4ohVDxWk-Ux5w5dumAYFQ/viewform?usp=sharing" 
-                               class="w-full bg-gradient-to-r from-green-600 to-green-800 text-white py-3 px-4 rounded-lg font-semibold transition-all duration-300 hover:from-green-700 hover:to-green-900 hover:shadow-lg flex items-center justify-center gap-2"
-                               target="_blank" rel="noopener noreferrer">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                                </svg>
-                                <span>Enroll Now</span>
-                            </a>
+                        <!-- Course Action Buttons -->
+                        <div class="pt-4 border-t border-gray-800 space-y-3">
+                            <div class="flex items-center justify-center mb-3">
+                                <span class="px-3 py-1 bg-red-500/20 text-red-400 border border-red-500/50 rounded-full text-sm font-medium">
+                                    <i class="fas fa-clock mr-1"></i>Enrollment Closed
+                                </span>
+                            </div>
+                            <div class="grid grid-cols-1 gap-3">
+                                <a href="webdev-course.html" 
+                                   class="w-full bg-gradient-to-r from-blue-600 to-blue-800 text-white py-3 px-4 rounded-lg font-semibold transition-all duration-300 hover:from-blue-700 hover:to-blue-900 hover:shadow-lg flex items-center justify-center gap-2">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    <span>Course Page</span>
+                                </a>
+                                <a href="course-layout.html" 
+                                   class="w-full bg-gradient-to-r from-green-600 to-green-800 text-white py-3 px-4 rounded-lg font-semibold transition-all duration-300 hover:from-green-700 hover:to-green-900 hover:shadow-lg flex items-center justify-center gap-2">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012 2v2M7 7h10"/>
+                                    </svg>
+                                    <span>Course Layout</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>

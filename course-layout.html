@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Layout - Web Development Course - Coding Club IISER TVM</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="preloader.css">
+    <style>
+        :root {
+            --primary-bg: #0f1221;
+            --secondary-bg: #1a1f2e;
+            --accent-color: #60a5fa;
+            --text-primary: #ffffff;
+            --text-secondary: #9ca3af;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .cyber-card {
+            background: rgba(26, 31, 46, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(96, 165, 250, 0.2);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .cyber-card:hover {
+            border-color: rgba(96, 165, 250, 0.5);
+            box-shadow: 0 0 30px rgba(96, 165, 250, 0.2);
+            transform: translateY(-4px);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #60a5fa, #34d399, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cyber-button {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .cyber-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+        }
+
+        .lesson-card {
+            background: rgba(26, 31, 46, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(96, 165, 250, 0.2);
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .lesson-card:hover {
+            border-color: rgba(96, 165, 250, 0.5);
+            box-shadow: 0 0 30px rgba(96, 165, 250, 0.2);
+            transform: translateY(-4px);
+        }
+
+        .lesson-number {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1.125rem;
+            margin-bottom: 16px;
+        }
+
+        .lesson-preview {
+            max-width: 200px;
+            max-height: 200px;
+            object-fit: contain;
+            border-radius: 8px;
+            border: 2px solid rgba(96, 165, 250, 0.3);
+        }
+
+        .nav-link {
+            transition: all 0.3s ease;
+        }
+
+        .nav-hover-effect:hover {
+            color: #60a5fa;
+            transform: translateY(-2px);
+        }
+
+        .week-section {
+            border-left: 3px solid #3b82f6;
+            padding-left: 24px;
+            margin-bottom: 32px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+        }        .modal-content {
+            background: var(--secondary-bg);
+            margin: 2% auto;
+            padding: 20px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            border: 1px solid rgba(96, 165, 250, 0.3);
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #60a5fa;
+        }
+
+        /* Slider Styles */
+        .slider-container {
+            position: relative;
+            max-width: 100%;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 12px;
+            background: rgba(26, 31, 46, 0.8);
+            border: 1px solid rgba(96, 165, 250, 0.2);
+        }
+
+        .slider-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            position: relative;
+        }
+
+        .slide-content {
+            text-align: center;
+            max-width: 600px;
+        }
+
+        .slide img {
+            max-width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .slide-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .slide-description {
+            color: #9ca3af;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(59, 130, 246, 0.8);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .slider-nav:hover {
+            background: rgba(59, 130, 246, 1);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .slider-nav.prev {
+            left: 20px;
+        }
+
+        .slider-nav.next {
+            right: 20px;
+        }
+
+        .slider-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 20px;
+            background: rgba(15, 18, 33, 0.5);
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(156, 163, 175, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator.active {
+            background: #3b82f6;
+            transform: scale(1.2);
+        }
+
+        .indicator:hover {
+            background: #60a5fa;
+        }
+
+        .slide-counter {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        /* Responsive adjustments for slider */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 20px;
+            }
+            
+            .slide img {
+                max-height: 300px;
+            }
+            
+            .slider-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            
+            .slider-nav.prev {
+                left: 10px;
+            }
+            
+            .slider-nav.next {
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader" class="preloader">
+        <div class="preloader__content">
+            <img src="connection_network_infinity_partial_logo.png" alt="Coding Club Logo" class="preloader__logo">
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-gray-900 bg-opacity-95 backdrop-blur-md fixed w-full z-50 border-b border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="flex items-center space-x-2" aria-label="Coding Club Home">
+                        <div class="h-12 w-auto cyber-card flex items-center justify-center nav-logo-container rounded-lg overflow-hidden px-2">
+                            <img src="connection_network_infinity_partial_logo.png" alt="Coding Club Logo" class="h-10 w-auto max-w-none transform hover:scale-110 transition-all duration-300">
+                        </div>
+                        <div>
+                            <span class="text-xl font-bold gradient-text">Coding Club</span>
+                            <p class="text-xs text-gray-400">IISER TVM</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link nav-hover-effect" aria-label="Go to home">
+                        <i class="fas fa-home mr-2" aria-hidden="true"></i>Home
+                    </a>
+                    <a href="projects.html" class="nav-link nav-hover-effect" aria-label="View projects and courses">
+                        <i class="fas fa-project-diagram mr-2" aria-hidden="true"></i>Projects & Courses
+                    </a>
+                    <a href="webdev-course.html" class="nav-link nav-hover-effect" aria-label="Course Details">
+                        <i class="fas fa-info-circle mr-2" aria-hidden="true"></i>Course Details
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center pt-20 overflow-hidden relative">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="mb-8" data-aos="fade-up">
+                    <div class="flex items-center justify-center space-x-2 mb-6">
+                        <div class="h-1 w-16 bg-gradient-to-r from-green-500 to-blue-400"></div>
+                        <p class="text-sm uppercase tracking-widest text-green-400 font-semibold">Course Materials</p>
+                        <div class="h-1 w-16 bg-gradient-to-r from-blue-400 to-green-500"></div>
+                    </div>
+                    
+                    <h1 class="text-4xl md:text-6xl font-bold mb-6 gradient-text">
+                        Course Layout & Materials
+                    </h1>
+                      <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                        Explore the comprehensive curriculum structure and learning progression of our Web Development Course
+                    </p>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center" data-aos="fade-up" data-aos-delay="400">                    <a href="#materials" class="cyber-button">
+                        <i class="fas fa-sitemap mr-2" aria-hidden="true"></i>Browse Course Layout
+                    </a>
+                    <a href="webdev-course.html" class="cyber-button bg-transparent border border-green-500 hover:bg-green-500/20">
+                        <i class="fas fa-info-circle mr-2" aria-hidden="true"></i>Course Details
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>    <!-- Course Materials Slider -->
+    <section id="materials" class="py-24">
+        <div class="container mx-auto px-6">            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text" data-aos="fade-up">
+                    Course Layout Structure
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    Explore the structured layout and organization of our Web Development Course curriculum
+                </p>
+            </div>
+
+            <!-- Slider Container -->
+            <div class="slider-container max-w-4xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+                <div class="slide-counter">
+                    <span id="currentSlide">1</span> / <span id="totalSlides">16</span>
+                </div>
+                
+                <div class="slider-wrapper" id="sliderWrapper">                    <!-- Slide 1 -->
+                    <div class="slide">
+                        <div class="slide-content">
+                            <img src="Absolute Beginner's Web Development Course/1.svg" alt="Club Name - Course Material 1">
+                            <div class="slide-title">Coding Club IISER Thiruvananthapuram</div>
+                            <div class="slide-description">Welcome to the Coding Club IISER Thiruvananthapuram! We are dedicated to fostering programming skills and building a community of passionate developers.</div>
+                        </div>
+                    </div>                    <!-- Slide 2 -->
+                    <div class="slide">
+                        <div class="slide-content">
+                            <img src="Absolute Beginner's Web Development Course/2.svg" alt="Club Logo - Course Material 2">
+                            <div class="slide-title">Coding Club Logo</div>
+                            <div class="slide-description">Our official club logo representing innovation, connectivity, and the infinite possibilities of coding and technology.</div>
+                        </div>
+                    </div>                    <!-- Slide 3 -->
+                    <div class="slide">
+                        <div class="slide-content">
+                            <img src="Absolute Beginner's Web Development Course/3.svg" alt="What Are We Looking For - Course Material 3">
+                            <div class="slide-title">What Are We Looking For?</div>
+                            <div class="slide-description">Discover the qualities and enthusiasm we seek in new members. Join a community of learners passionate about coding and technology.</div>
+                        </div>
+                    </div>                    <!-- Slide 4 -->
+                    <div class="slide">
+                        <div class="slide-content">
+                            <img src="Absolute Beginner's Web Development Course/4.svg" alt="Course Title - Course Material 4">
+                            <div class="slide-title">Absolute Beginner's Web Development Course</div>
+                            <div class="slide-description">Our comprehensive 6-week journey designed for complete beginners to learn web development from the ground up.</div>
+                        </div>
+                    </div>                    <!-- Slide 5 -->
+                    <div class="slide">
+                        <div class="slide-content">
+                            <img src="Absolute Beginner's Web Development Course/5.svg" alt="Week 1: Web Foundations HTML & CSS - Course Material 5">
+                            <div class="slide-title">Week 1: Web Foundations - HTML & CSS</div>
+                            <div class="slide-description">Introduction to HTML fundamentals and CSS styling. Learn about document structure, semantic markup, and the essential building blocks of web development.</div>
+                        </div>
+                    </div>                    <!-- Slide 6 -->
+                    <div class="slide">
+                        <div class="slide-content">
+                            <img src="Absolute Beginner's Web Development Course/6.svg" alt="Week 2: Python Essentials - Course Material 6">
+                            <div class="slide-title">Week 2: Python Essentials</div>
+                            <div class="slide-description">Learn Python programming fundamentals including syntax, data types, control structures, and functions essential for web development.</div>
+                        </div>
+                    </div>                    <!-- Slide 7 -->
+                    <div class="slide">
+                        <div class="slide-content">
+                            <img src="Absolute Beginner's Web Development Course/7.svg" alt="Week 3: Frontend Interactivity JavaScript - Course Material 7">
+                            <div class="slide-title">Week 3: Frontend Interactivity - JavaScript</div>
+                            <div class="slide-description">Introduction to JavaScript programming, variables, functions, and adding interactivity to your web pages for dynamic user experiences.</div>
+                        </div>
+                    </div>                    <!-- Slide 8 -->
+                    <div class="slide">
+                        <div class="slide-content">
+                            <img src="Absolute Beginner's Web Development Course/8.svg" alt="Week 4: Backend Fundamentals Django - Course Material 8">
+                            <div class="slide-title">Week 4: Backend Fundamentals - Django</div>
+                            <div class="slide-description">Introduction to Django web framework for building powerful backend systems and server-side applications with Python.</div>
+                        </div>
+                    </div>                    <!-- Slide 9 -->
+                    <div class="slide">
+                        <div class="slide-content">
+                            <img src="Absolute Beginner's Web Development Course/9.svg" alt="Week 5: Lightweight Backend Flask - Course Material 9">
+                            <div class="slide-title">Week 5: Lightweight Backend - Flask</div>
+                            <div class="slide-description">Learn Flask framework for building lightweight and flexible web applications with Python, perfect for smaller projects and APIs.</div>
+                        </div>
+                    </div>                    <!-- Slide 10 -->
+                    <div class="slide">
+                        <div class="slide-content">
+                            <img src="Absolute Beginner's Web Development Course/10.svg" alt="Workshops from the CCIT Club - Course Material 10">
+                            <div class="slide-title">Workshops from the CCIT Club</div>
+                            <div class="slide-description">Additional workshops and learning opportunities provided by the Computer Club of IISER TVM to enhance your technical skills.</div>
+                        </div>
+                    </div>                    <!-- Slide 11 -->
+                    <div class="slide">
+                        <div class="slide-content">
+                            <img src="Absolute Beginner's Web Development Course/11.svg" alt="Teamwork - Course Material 11">
+                            <div class="slide-title">Teamwork & Recognition</div>
+                            <div class="slide-description">Top projects and outstanding contributors will be featured on the Coding Club website. Collaborate and showcase your skills!</div>
+                        </div>
+                    </div>                    <!-- Slide 12 -->
+                    <div class="slide">
+                        <div class="slide-content">
+                            <img src="Absolute Beginner's Web Development Course/12.svg" alt="Challenges Faced - Course Material 12">
+                            <div class="slide-title">Challenges Faced</div>
+                            <div class="slide-description">Understanding and overcoming common challenges encountered during the web development learning journey and course implementation.</div>
+                        </div>
+                    </div>                    <!-- Slide 13 -->
+                    <div class="slide">
+                        <div class="slide-content">
+                            <img src="Absolute Beginner's Web Development Course/13.svg" alt="Question Mark - Course Material 13">
+                            <div class="slide-title">Questions & Discussion</div>
+                            <div class="slide-description">Interactive session for questions, clarifications, and discussions about the course content and web development concepts.</div>
+                        </div>
+                    </div>                    <!-- Slide 14 -->
+                    <div class="slide">
+                        <div class="slide-content">
+                            <img src="Absolute Beginner's Web Development Course/14.svg" alt="Why 5+1 - Course Material 14">
+                            <div class="slide-title">Why 5+1?</div>
+                            <div class="slide-description">Understanding the course structure: 5 weeks of intensive learning plus 1 additional week for project completion and review.</div>
+                        </div>
+                    </div>                    <!-- Slide 15 -->
+                    <div class="slide">
+                        <div class="slide-content">
+                            <img src="Absolute Beginner's Web Development Course/15.svg" alt="Coding Club Website QR Code - Course Material 15">
+                            <div class="slide-title">Visit Our Website</div>
+                            <div class="slide-description">Scan the QR code to visit the Coding Club IISER TVM website for more resources, updates, and information about our activities.</div>
+                        </div>
+                    </div>                    <!-- Slide 16 -->
+                    <div class="slide">
+                        <div class="slide-content">
+                            <img src="Absolute Beginner's Web Development Course/16.svg" alt="Join Club QR Code - Course Material 16">
+                            <div class="slide-title">Join Our Club</div>
+                            <div class="slide-description">Scan the QR code to join the Coding Club IISER TVM and become part of our vibrant community of developers and learners.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <button class="slider-nav prev" onclick="previousSlide()" aria-label="Previous slide">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="slider-nav next" onclick="nextSlide()" aria-label="Next slide">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+
+                <!-- Indicators -->
+                <div class="slider-indicators" id="indicators">
+                    <!-- Indicators will be generated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Course Information -->            <div class="max-w-4xl mx-auto mt-12 cyber-card p-8" data-aos="fade-up" data-aos-delay="300">
+                <div class="text-center">
+                    <h3 class="text-2xl font-bold text-white mb-4">About This Course Layout</h3>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        This layout represents the structured curriculum design of our 6-week Web Development Course. Each slide 
+                        showcases the systematic progression from basic HTML concepts to building complete web applications, 
+                        demonstrating how we organized the learning journey for maximum effectiveness.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4">
+                            <i class="fas fa-layer-group text-blue-400 text-2xl mb-2"></i>
+                            <h4 class="font-semibold text-blue-400 mb-1">16 Learning Modules</h4>
+                            <p class="text-gray-400 text-sm">Structured curriculum components</p>
+                        </div>
+                        <div class="bg-green-500/10 border border-green-500/30 rounded-lg p-4">
+                            <i class="fas fa-route text-green-400 text-2xl mb-2"></i>
+                            <h4 class="font-semibold text-green-400 mb-1">Progressive Learning</h4>
+                            <p class="text-gray-400 text-sm">Step-by-step skill building</p>
+                        </div>
+                        <div class="bg-purple-500/10 border border-purple-500/30 rounded-lg p-4">
+                            <i class="fas fa-graduation-cap text-purple-400 text-2xl mb-2"></i>
+                            <h4 class="font-semibold text-purple-400 mb-1">Complete Framework</h4>
+                            <p class="text-gray-400 text-sm">From basics to deployment</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="materialModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="modalContent">
+                <!-- Modal content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to Action -->
+    <section class="py-24 bg-gray-900/50">
+        <div class="container mx-auto px-6 text-center">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-4xl font-bold mb-6 gradient-text" data-aos="fade-up">
+                    Want to Learn More?
+                </h2>
+                <p class="text-xl text-gray-300 mb-8" data-aos="fade-up" data-aos-delay="100">
+                    Join our community and get notified about future courses and workshops.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeJuIlW4REb117B8I4Kd_AkGgveW4ohVDxWk-Ux5w5dumAYFQ/viewform?usp=sharing" 
+                       class="cyber-button" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-bell mr-2" aria-hidden="true"></i>Join Our Community
+                    </a>
+                    <a href="projects.html" class="cyber-button bg-transparent border border-blue-500 hover:bg-blue-500/20">
+                        <i class="fas fa-arrow-left mr-2" aria-hidden="true"></i>Back to Courses
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 pt-16 pb-8 border-t border-gray-800">
+        <div class="container mx-auto px-6 text-center">
+            <div class="flex items-center justify-center space-x-3 mb-6">
+                <img src="connection_network_infinity_partial_logo.png" alt="Coding Club Logo" class="h-8 w-auto">
+                <span class="text-xl font-bold gradient-text">Coding Club IISER TVM</span>
+            </div>
+            <p class="text-gray-400 max-w-md mx-auto">
+                Empowering minds through code. Building the next generation of developers and innovators.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="home_button.js"></script>    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Preloader
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            setTimeout(() => {
+                preloader.style.opacity = '0';
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 500);
+            }, 1500);
+        });
+
+        // Slider functionality
+        let currentSlideIndex = 0;
+        const totalSlides = 16;
+
+        // Initialize slider
+        function initSlider() {
+            // Generate indicators
+            const indicatorsContainer = document.getElementById('indicators');
+            for (let i = 0; i < totalSlides; i++) {
+                const indicator = document.createElement('div');
+                indicator.classList.add('indicator');
+                if (i === 0) indicator.classList.add('active');
+                indicator.onclick = () => goToSlide(i);
+                indicatorsContainer.appendChild(indicator);
+            }
+            
+            // Update slide counter
+            updateSlideCounter();
+        }
+
+        function updateSlider() {
+            const sliderWrapper = document.getElementById('sliderWrapper');
+            const translateX = -currentSlideIndex * 100;
+            sliderWrapper.style.transform = `translateX(${translateX}%)`;
+            
+            // Update indicators
+            const indicators = document.querySelectorAll('.indicator');
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentSlideIndex);
+            });
+            
+            // Update counter
+            updateSlideCounter();
+        }
+
+        function updateSlideCounter() {
+            document.getElementById('currentSlide').textContent = currentSlideIndex + 1;
+            document.getElementById('totalSlides').textContent = totalSlides;
+        }
+
+        function nextSlide() {
+            currentSlideIndex = (currentSlideIndex + 1) % totalSlides;
+            updateSlider();
+        }
+
+        function previousSlide() {
+            currentSlideIndex = (currentSlideIndex - 1 + totalSlides) % totalSlides;
+            updateSlider();
+        }
+
+        function goToSlide(index) {
+            currentSlideIndex = index;
+            updateSlider();
+        }
+
+        // Auto-play functionality (optional)
+        let autoPlayInterval;
+
+        function startAutoPlay() {
+            autoPlayInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+        }
+
+        function stopAutoPlay() {
+            clearInterval(autoPlayInterval);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') {
+                previousSlide();
+                stopAutoPlay();
+            } else if (e.key === 'ArrowRight') {
+                nextSlide();
+                stopAutoPlay();
+            } else if (e.key === 'Escape') {
+                stopAutoPlay();
+            }
+        });
+
+        // Touch/swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        function handleGesture() {
+            if (touchEndX < touchStartX - 50) {
+                nextSlide(); // Swipe left - next slide
+                stopAutoPlay();
+            }
+            if (touchEndX > touchStartX + 50) {
+                previousSlide(); // Swipe right - previous slide
+                stopAutoPlay();
+            }
+        }
+
+        const sliderContainer = document.querySelector('.slider-container');
+        if (sliderContainer) {
+            sliderContainer.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            sliderContainer.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleGesture();
+            }, { passive: true });
+
+            // Pause auto-play on hover
+            sliderContainer.addEventListener('mouseenter', stopAutoPlay);
+            sliderContainer.addEventListener('mouseleave', startAutoPlay);
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initSlider();
+            startAutoPlay(); // Start auto-play
+        });
+
+        // Modal functionality (kept for compatibility)
+        function openModal(title) {
+            const modal = document.getElementById('materialModal');
+            const modalContent = document.getElementById('modalContent');
+            
+            if (modal && modalContent) {
+                modalContent.innerHTML = `
+                    <h2 class="text-2xl font-bold text-white mb-4">${title}</h2>
+                    <div class="bg-blue-500/10 border border-blue-500/30 rounded-lg p-6 mb-6">
+                        <div class="flex items-center gap-3 mb-4">
+                            <i class="fas fa-info-circle text-blue-400 text-xl"></i>
+                            <h3 class="text-lg font-semibold text-blue-400">Course Material</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            This material was part of our comprehensive Web Development Course. 
+                            The course has been completed and enrollment is currently closed.
+                        </p>
+                        <p class="text-gray-400 text-sm">
+                            For access to similar learning materials or information about future courses, 
+                            please contact our team or join our community for updates.
+                        </p>
+                    </div>
+                    <div class="flex gap-4 justify-center">
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeJuIlW4REb117B8I4Kd_AkGgveW4ohVDxWk-Ux5w5dumAYFQ/viewform?usp=sharing" 
+                           class="cyber-button" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-users mr-2"></i>Join Community
+                        </a>
+                        <button onclick="closeModal()" class="cyber-button bg-gray-600 hover:bg-gray-700">
+                            <i class="fas fa-times mr-2"></i>Close
+                        </button>
+                    </div>
+                `;
+                
+                modal.style.display = 'block';
+            }
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('materialModal');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('materialModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
