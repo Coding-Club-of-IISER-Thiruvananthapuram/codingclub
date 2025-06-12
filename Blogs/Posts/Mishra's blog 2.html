@@ -2,12 +2,12 @@
 <head>
     <title>Multi-Agent Systems: The Future of Collaborative AI</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://snt-iiser-tvm.github.io/codingclub/Blogs/prism.css">
-    <link rel="stylesheet" href="https://snt-iiser-tvm.github.io/codingclub/Blogs/blogstyle.css">
+    <link rel="stylesheet" href="../prism.css">
+    <link rel="stylesheet" href="../blogstyle.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
-    <script src="https://snt-iiser-tvm.github.io/codingclub/Blogs/prism.js"></script>
+    <script src="../prism.js"></script>
     <div class="header" id="header">
         <canvas style="position: absolute; z-index: 0; left: 0px; padding:0px;" width="relative" id="artCanvas" ></canvas>
         <div class="header-contents">
@@ -22,13 +22,13 @@
 
      <nav class="navbar" id="navbar">
         <div class="navbar-logo">
-            <a href="https://snt-iiser-tvm.github.io/codingclub/">
+            <a href="../../index.html">
                 <i class="fas fa-home"></i>
                 <img src="https://share1.cloudhq-mkt3.net/015128b8139485.png" style="width: 35px; height: 22px; margin-bottom: -2px;">
             </a>
           </div>
         <ul class="navbar-nav">
-          <li><a href="https://snt-iiser-tvm.github.io/codingclub/Blogs/Blog main.html">New posts</a></li>
+          <li><a href="../Blog main.html">New posts</a></li>
         </ul>
     </nav>
 
@@ -36,7 +36,7 @@
         <div class="leftcolumn">
             <div class="card">
                 <figure style="margin: 0px;">
-                    <img src="https://snt-iiser-tvm.github.io/codingclub/Blogs/Media/img1.webp">
+                    <img src="../Media/img1.webp">
                     <figcaption style="font-size: 12px; color: #999999; text-align: center;">Image Source: U.S. Army CCDC Army Research Laboratory Public Affairs</figcaption>
             </figure>
                 <p>
@@ -68,11 +68,11 @@
                 </h2>
                 <hr>
                 <p>
-                    To implement this multi-agent system, we leverage the CrewAI framework, It’s designed to be developed in a modular architecture wherein the tasks are presented as independent, standalone units. In such architecture, every task is given to a particular agent with specific capabilities that can be carried out by a more focused and efficient agent. The modularity offers flexibility, scalability, and adaptability to the scientific field in many aspects.
+                    To implement this multi-agent system, we leverage the CrewAI framework, It's designed to be developed in a modular architecture wherein the tasks are presented as independent, standalone units. In such architecture, every task is given to a particular agent with specific capabilities that can be carried out by a more focused and efficient agent. The modularity offers flexibility, scalability, and adaptability to the scientific field in many aspects.
                 </p>
                 <figure style="margin: 0px;">
-                    <img src="https://snt-iiser-tvm.github.io/codingclub/Blogs/Media/img2.webp">
-                    <figcaption style="font-size: 12px; color: #999999; text-align: center;">The figure provides an overview of the agents’ operations.</figcaption>
+                    <img src="../Media/img2.webp">
+                    <figcaption style="font-size: 12px; color: #999999; text-align: center;">The figure provides an overview of the agents' operations.</figcaption>
             </figure>
                 <p>
                     Here is the code snippet on environment configuration and startup of the framework:
@@ -96,7 +96,7 @@ from crewai import LLM
                     The system employs the NVIDIA NeMo framework as the foundation for LLM deployment and customization to achieve high performance and adaptability. Specifically, it uses LLaMA 3.3, which is a open source transformer model with 70 billion parameters optimized for domain-specific language tasks.
                 </p>
                 <figure style="margin: 0px;">
-                    <img src="https://snt-iiser-tvm.github.io/codingclub/Blogs/Media/img3.webp">
+                    <img src="../Media/img3.webp">
                     <figcaption style="font-size: 12px; color: #999999; text-align: center;">Photo by <a href="https://unsplash.com/@boliviainteligente?utm_source=medium&utm_medium=referral">BoliviaInteligente</a> on <a href="https://unsplash.com/collections/WY49EEVlyjQ">unsplash</a></figcaption>
             </figure>
                 <ul>
@@ -320,7 +320,7 @@ result = research_crew.kickoff(inputs={"topic": text})
         <div class="rightcolumn">
             <div class="card" style="margin-top: 0px;">
               <h2>About the author</h2>
-              <img src="https://snt-iiser-tvm.github.io/codingclub/Blogs/Media/saurabprofile.jpg">
+              <img src="../Media/saurabprofile.jpg">
               <h4>Saurab Mishra</h4>
               <p>BSMS student at the Indian Institute of Science Education and Research, Thiruvananthapuram.<br><br> Expected to graduate by 2028</p>
               <p>
@@ -333,7 +333,7 @@ result = research_crew.kickoff(inputs={"topic": text})
             </div>
             <div style="margin-bottom: 0px;" class="card">
               <h3>Popular Posts</h3>
-              <a href="https://snt-iiser-tvm.github.io/codingclub/Blogs/Posts/Mishra's blog">
+              <a href="Mishra's blog">
                 Exploring the Future of Coding with the coding club
                 <hr>
               </a>
@@ -342,20 +342,20 @@ result = research_crew.kickoff(inputs={"topic": text})
      </div>
      <div class="more-blogs">
         <h2>Like what you read?<br>Check out more blogs!</h2>
-        <a href="https://snt-iiser-tvm.github.io/codingclub/Blogs/Blog main.html" class="btn-cta">Explore More Blogs</a>
+        <a href="../Blog main.html" class="btn-cta">Explore More Blogs</a>
       </div>
        <footer class="footer">
         <div class="footer-container">
         <div class="footer-logo">
-        <a href="https://snt-iiser-tvm.github.io/codingclub/" class="logo-link">
+        <a href="../../index.html" class="logo-link">
         <img src="https://share1.cloudhq-mkt3.net/015128b8139485.png" alt="Blog Logo">
         </a>
         </div>
         <div class="footer-social">
         <ul>
         <li><a href="https://chat.whatsapp.com/DkHaq5HxNk2C1d2LFtC1Sl" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
-        <li><a href="https://www.linkedin.com/in/codex-society-9898bb33a/" target="_blank"><i class="fab fa-linkedin"></i></a></li>
-        <li><a href="https://www.instagram.com/codexiiser/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+        <li><a href="https://www.linkedin.com/in/ccit-society-9898bb33a/" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+        <li><a href="https://www.instagram.com/ccitiiser/" target="_blank"><i class="fab fa-instagram"></i></a></li>
         </ul>
         </div>
         </div>

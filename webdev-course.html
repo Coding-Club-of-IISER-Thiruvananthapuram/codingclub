@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Absolute Beginner's Web Development Course - Coding Club IISER Thiruvananthapuram</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="preloader.css">
+    <link rel="stylesheet" href="responsive.css">
+    <style>
+        :root {
+            --primary-bg: #0f1221;
+            --secondary-bg: #1a1f2e;
+            --accent-color: #60a5fa;
+            --text-primary: #ffffff;
+            --text-secondary: #9ca3af;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .cyber-card {
+            background: rgba(26, 31, 46, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(96, 165, 250, 0.2);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .cyber-card:hover {
+            border-color: rgba(96, 165, 250, 0.5);
+            box-shadow: 0 0 30px rgba(96, 165, 250, 0.2);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #60a5fa, #34d399, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-link {
+            transition: all 0.3s ease;
+        }
+
+        .nav-hover-effect:hover {
+            color: #60a5fa;
+            transform: translateY(-2px);
+        }
+
+        .cyber-button {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .cyber-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+        }
+
+        .status-badge {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .course-outline-item {
+            background: rgba(26, 31, 46, 0.6);
+            border: 1px solid rgba(96, 165, 250, 0.1);
+            border-radius: 8px;
+            padding: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .course-outline-item:hover {
+            border-color: rgba(96, 165, 250, 0.3);
+            transform: translateX(4px);
+        }
+
+        .lesson-number {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader" class="preloader">
+        <div class="preloader__content">
+            <img src="connection_network_infinity_partial_logo.png" alt="Coding Club Logo" class="preloader__logo">
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-gray-900 bg-opacity-95 backdrop-blur-md fixed w-full z-50 border-b border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="flex items-center space-x-2" aria-label="Coding Club Home">
+                        <div class="h-12 w-auto cyber-card flex items-center justify-center nav-logo-container rounded-lg overflow-hidden px-2">
+                            <img src="connection_network_infinity_partial_logo.png" alt="Coding Club Logo" class="h-10 w-auto max-w-none transform hover:scale-110 transition-all duration-300">
+                        </div>
+                        <div>
+                            <span class="text-xl font-bold gradient-text">Coding Club</span>
+                            <p class="text-xs text-gray-400">IISER Thiruvananthapuram</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link nav-hover-effect" aria-label="Go to home">
+                        <i class="fas fa-home mr-2" aria-hidden="true"></i>Home
+                    </a>
+                    <a href="projects.html" class="nav-link nav-hover-effect" aria-label="View projects and courses">
+                        <i class="fas fa-project-diagram mr-2" aria-hidden="true"></i>Projects & Courses
+                    </a>
+                    <a href="team.html" class="nav-link nav-hover-effect" aria-label="Meet our team">
+                        <i class="fas fa-users mr-2" aria-hidden="true"></i>Team
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center pt-20 overflow-hidden relative">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="mb-8" data-aos="fade-up">
+                    <div class="flex items-center justify-center space-x-2 mb-6">
+                        <div class="h-1 w-16 bg-gradient-to-r from-blue-500 to-green-400"></div>
+                        <p class="text-sm uppercase tracking-widest text-blue-400 font-semibold">Course Details</p>
+                        <div class="h-1 w-16 bg-gradient-to-r from-green-400 to-blue-500"></div>
+                    </div>
+                    
+                    <h1 class="text-4xl md:text-6xl font-bold mb-6 gradient-text">
+                        Absolute Beginner's Web Development Course
+                    </h1>
+                      <div class="flex justify-center mb-6">
+                        <span class="status-badge bg-gradient-to-r from-green-500 to-blue-500">
+                            <i class="fas fa-play" aria-hidden="true"></i>
+                            Course Started - Day 1
+                        </span>
+                    </div>
+                    
+                    <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                        A comprehensive 6-week journey from zero to building your first web application using HTML, CSS, JavaScript, Python, and Django.
+                    </p>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center" data-aos="fade-up" data-aos-delay="400">
+                    <a href="#course-outline" class="cyber-button">
+                        <i class="fas fa-list mr-2" aria-hidden="true"></i>View Course Outline
+                    </a>
+                    <a href="projects.html" class="cyber-button bg-transparent border border-blue-500 hover:bg-blue-500/20">
+                        <i class="fas fa-arrow-left mr-2" aria-hidden="true"></i>Back to Courses
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Overview -->
+    <section class="py-24 relative overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                <!-- Course Info -->
+                <div class="lg:col-span-2">
+                    <div class="cyber-card p-8 mb-8" data-aos="fade-up">
+                        <h2 class="text-3xl font-bold mb-6 text-white">Course Overview</h2>                        <p class="text-gray-300 mb-6 leading-relaxed">
+                            This course is designed specifically for absolute beginners with no prior programming experience. 
+                            Over 6 weeks, participants will learn the fundamentals of web development through hands-on projects 
+                            and practical exercises. The course started today and we're excited to begin this journey!
+                        </p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="bg-gray-800/50 rounded-lg p-4">
+                                <h4 class="font-semibold text-blue-400 mb-2">Duration</h4>
+                                <p class="text-gray-300">6 weeks (5+1 completion week)</p>
+                            </div>
+                            <div class="bg-gray-800/50 rounded-lg p-4">
+                                <h4 class="font-semibold text-blue-400 mb-2">Level</h4>
+                                <p class="text-gray-300">Absolute Beginner</p>
+                            </div>
+                            <div class="bg-gray-800/50 rounded-lg p-4">
+                                <h4 class="font-semibold text-blue-400 mb-2">Prerequisites</h4>
+                                <p class="text-gray-300">None required</p>
+                            </div>
+                            <div class="bg-gray-800/50 rounded-lg p-4">
+                                <h4 class="font-semibold text-blue-400 mb-2">Format</h4>
+                                <p class="text-gray-300">Hands-on workshops</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Technologies -->
+                    <div class="cyber-card p-8" data-aos="fade-up" data-aos-delay="200">
+                        <h3 class="text-2xl font-bold mb-6 text-white">Technologies Covered</h3>
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                            <div class="tech-item bg-orange-900/30 border border-orange-800 rounded-lg p-4 text-center">
+                                <i class="fab fa-html5 text-3xl text-orange-400 mb-2"></i>
+                                <p class="text-orange-400 font-semibold">HTML5</p>
+                            </div>
+                            <div class="tech-item bg-blue-900/30 border border-blue-800 rounded-lg p-4 text-center">
+                                <i class="fab fa-css3-alt text-3xl text-blue-400 mb-2"></i>
+                                <p class="text-blue-400 font-semibold">CSS3</p>
+                            </div>
+                            <div class="tech-item bg-yellow-900/30 border border-yellow-800 rounded-lg p-4 text-center">
+                                <i class="fab fa-js-square text-3xl text-yellow-400 mb-2"></i>
+                                <p class="text-yellow-400 font-semibold">JavaScript</p>
+                            </div>
+                            <div class="tech-item bg-green-900/30 border border-green-800 rounded-lg p-4 text-center">
+                                <i class="fab fa-python text-3xl text-green-400 mb-2"></i>
+                                <p class="text-green-400 font-semibold">Python</p>
+                            </div>
+                            <div class="tech-item bg-purple-900/30 border border-purple-800 rounded-lg p-4 text-center">
+                                <i class="fas fa-server text-3xl text-purple-400 mb-2"></i>
+                                <p class="text-purple-400 font-semibold">Django</p>
+                            </div>
+                            <div class="tech-item bg-gray-700/30 border border-gray-600 rounded-lg p-4 text-center">
+                                <i class="fas fa-database text-3xl text-gray-400 mb-2"></i>
+                                <p class="text-gray-400 font-semibold">Databases</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="space-y-8">
+                    <!-- Course Status -->
+                    <div class="cyber-card p-6" data-aos="fade-up">
+                        <h3 class="text-xl font-bold mb-4 text-white">Course Status</h3>                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-300">Status:</span>
+                                <span class="status-badge bg-gradient-to-r from-green-500 to-blue-500">Active - Day 1</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-300">Participants:</span>
+                                <span class="text-white font-semibold">25+ Students</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-300">Progress:</span>
+                                <span class="text-blue-400 font-semibold">Just Started!</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Learning Outcomes -->
+                    <div class="cyber-card p-6" data-aos="fade-up" data-aos-delay="100">                        <h3 class="text-xl font-bold mb-4 text-white">Learning Goals</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-target text-blue-400 mt-1"></i>
+                                <span class="text-gray-300">Build responsive websites with HTML & CSS</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-target text-blue-400 mt-1"></i>
+                                <span class="text-gray-300">Create interactive web pages with JavaScript</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-target text-blue-400 mt-1"></i>
+                                <span class="text-gray-300">Master Python programming fundamentals</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-target text-blue-400 mt-1"></i>
+                                <span class="text-gray-300">Deploy a web application using Django & Flask</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Outline -->
+    <section id="course-outline" class="py-24 bg-gray-900/50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text" data-aos="fade-up">
+                    Course Outline
+                </h2>                <p class="text-gray-400 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    A structured learning path that will take you from zero to building your first web application
+                </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto space-y-6">                <!-- Week 1 -->
+                <div class="course-outline-item" data-aos="fade-up" data-aos-delay="150">
+                    <div class="flex items-start gap-4">
+                        <div class="lesson-number flex-shrink-0">1</div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-white mb-2">Week 1: Web Foundations - HTML & CSS</h3>
+                            <p class="text-gray-400 mb-3">Introduction to HTML fundamentals and CSS styling basics</p>                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-orange-900/30 text-orange-400 text-sm rounded-full">HTML Tags</span>
+                                <span class="px-3 py-1 bg-orange-900/30 text-orange-400 text-sm rounded-full">Document Structure</span>
+                                <span class="px-3 py-1 bg-blue-900/30 text-blue-400 text-sm rounded-full">CSS Basics</span>
+                                <span class="px-3 py-1 bg-blue-900/30 text-blue-400 text-sm rounded-full">Styling</span>
+                            </div>
+                            
+                            <div class="bg-purple-800/20 border border-purple-600/30 rounded-lg p-4 mb-4">
+                                <h4 class="text-sm font-semibold text-purple-400 mb-2">🎯 Learning Focus:</h4>
+                                <ul class="space-y-1 text-sm text-gray-300">
+                                    <li>• Understanding the basic concepts of the web and being able to create a simple, structured HTML page</li>
+                                    <li>• Styling HTML elements with CSS to make them visually appealing</li>
+                                </ul>
+                            </div>
+
+                              <div class="bg-gray-800/30 rounded-lg p-4 mt-3">
+                                <h4 class="text-sm font-semibold text-blue-400 mb-2">📚 Learning Resources:</h4>
+                                <ul class="space-y-1 text-sm text-gray-300">
+                                    <li>• <a href="https://learn.microsoft.com/en-us/training/paths/build-web-pages-html-css-for-beginners/" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 transition-colors">Microsoft Learn - Build Web Pages with HTML & CSS</a></li>
+                                    <li>• <a href="https://www.youtube.com/watch?v=HGTJBPNC-Gw" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 transition-colors">YouTube Tutorial - HTML & CSS Basics</a></li>
+                                </ul>
+                                <h4 class="text-sm font-semibold text-green-400 mb-2 mt-3">📖 Additional Materials:</h4>
+                                <ul class="space-y-1 text-sm text-gray-300">
+                                    <li>• <a href="https://www.freecodecamp.org/news/introduction-to-html-basics/" target="_blank" rel="noopener noreferrer" class="text-green-400 hover:text-green-300 transition-colors">FreeCodeCamp - HTML Basics</a></li>
+                                    <li>• <a href="https://developer.mozilla.org/en-US/docs/MDN/Tutorials" target="_blank" rel="noopener noreferrer" class="text-green-400 hover:text-green-300 transition-colors">MDN Web Docs - Tutorials</a></li>
+                                    <li>• <a href="https://www.w3schools.com/css/default.asp" target="_blank" rel="noopener noreferrer" class="text-green-400 hover:text-green-300 transition-colors">W3Schools - CSS Tutorial</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- Week 2 -->
+                <div class="course-outline-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-start gap-4">
+                        <div class="lesson-number flex-shrink-0">2</div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-white mb-2">Week 2: Python Essentials</h3>
+                            <p class="text-gray-400 mb-3">Learn Python programming fundamentals for web development</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-green-900/30 text-green-400 text-sm rounded-full">Python Syntax</span>
+                                <span class="px-3 py-1 bg-green-900/30 text-green-400 text-sm rounded-full">Data Types</span>
+                                <span class="px-3 py-1 bg-green-900/30 text-green-400 text-sm rounded-full">Functions</span>
+                                <span class="px-3 py-1 bg-green-900/30 text-green-400 text-sm rounded-full">Control Structures</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>                <!-- Week 3 -->
+                <div class="course-outline-item" data-aos="fade-up" data-aos-delay="250">
+                    <div class="flex items-start gap-4">
+                        <div class="lesson-number flex-shrink-0">3</div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-white mb-2">Week 3: Frontend Interactivity - JavaScript</h3>
+                            <p class="text-gray-400 mb-3">Adding dynamic interactivity to web pages with JavaScript</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-yellow-900/30 text-yellow-400 text-sm rounded-full">Variables</span>
+                                <span class="px-3 py-1 bg-yellow-900/30 text-yellow-400 text-sm rounded-full">Functions</span>
+                                <span class="px-3 py-1 bg-yellow-900/30 text-yellow-400 text-sm rounded-full">DOM Manipulation</span>
+                                <span class="px-3 py-1 bg-yellow-900/30 text-yellow-400 text-sm rounded-full">Events</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>                <!-- Week 4 -->
+                <div class="course-outline-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex items-start gap-4">
+                        <div class="lesson-number flex-shrink-0">4</div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-white mb-2">Week 4: Backend Fundamentals - Django</h3>
+                            <p class="text-gray-400 mb-3">Building powerful backend systems with Django framework</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-purple-900/30 text-purple-400 text-sm rounded-full">Django Setup</span>
+                                <span class="px-3 py-1 bg-purple-900/30 text-purple-400 text-sm rounded-full">Models</span>
+                                <span class="px-3 py-1 bg-purple-900/30 text-purple-400 text-sm rounded-full">Views</span>
+                                <span class="px-3 py-1 bg-purple-900/30 text-purple-400 text-sm rounded-full">Templates</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>                <!-- Week 5 -->
+                <div class="course-outline-item" data-aos="fade-up" data-aos-delay="350">
+                    <div class="flex items-start gap-4">
+                        <div class="lesson-number flex-shrink-0">5</div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-white mb-2">Week 5: Lightweight Backend - Flask</h3>
+                            <p class="text-gray-400 mb-3">Building lightweight web applications with Flask framework</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-gray-700/30 text-gray-300 text-sm rounded-full">Flask Setup</span>
+                                <span class="px-3 py-1 bg-gray-700/30 text-gray-300 text-sm rounded-full">Routes</span>
+                                <span class="px-3 py-1 bg-gray-700/30 text-gray-300 text-sm rounded-full">Templates</span>
+                                <span class="px-3 py-1 bg-gray-700/30 text-gray-300 text-sm rounded-full">APIs</span>                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-24">
+        <div class="container mx-auto px-6 text-center">
+            <div class="max-w-3xl mx-auto">                <h2 class="text-4xl font-bold mb-6 gradient-text" data-aos="fade-up">
+                    Join Our Learning Journey!
+                </h2>
+                <p class="text-xl text-gray-300 mb-8" data-aos="fade-up" data-aos-delay="100">
+                    The course has just started! Follow our progress and stay updated with our learning journey. Join our community for future courses and workshops.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeJuIlW4REb117B8I4Kd_AkGgveW4ohVDxWk-Ux5w5dumAYFQ/viewform?usp=sharing" 
+                       class="cyber-button" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-users mr-2" aria-hidden="true"></i>Join Our Community
+                    </a>
+                    <a href="projects.html" class="cyber-button bg-transparent border border-blue-500 hover:bg-blue-500/20">
+                        <i class="fas fa-arrow-left mr-2" aria-hidden="true"></i>View All Courses
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 pt-16 pb-8 border-t border-gray-800">
+        <div class="container mx-auto px-6 text-center">
+            <div class="flex items-center justify-center space-x-3 mb-6">
+                <img src="connection_network_infinity_partial_logo.png" alt="Coding Club Logo" class="h-8 w-auto">
+                <span class="text-xl font-bold gradient-text">Coding Club IISER Thiruvananthapuram</span>
+            </div>
+            <p class="text-gray-400 max-w-md mx-auto">
+                Empowering minds through code. Building the next generation of developers and innovators.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="home_button.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Preloader
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            setTimeout(() => {
+                preloader.style.opacity = '0';
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 500);
+            }, 1500);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

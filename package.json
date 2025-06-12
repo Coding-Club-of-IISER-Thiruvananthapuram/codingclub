@@ -1,0 +1,25 @@
+{
+  "name": "codingclub-website",
+  "version": "1.0.0",
+  "description": "Coding Club IISER TVM Website",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx browser-sync start --server --files \"*.html, *.css, *.js, **/*.html, **/*.css, **/*.js\" --open",
+    "start": "npx http-server"
+  },
+  "keywords": [
+    "coding",
+    "club",
+    "iiser",
+    "website"
+  ],
+  "author": "Coding Club IISER TVM",
+  "license": "MIT",
+  "dependencies": {
+    "aos": "^2.3.4"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1",
+    "browser-sync": "^2.29.3"
+  }
+}

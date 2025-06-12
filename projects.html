@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <meta name="description" content="Explore innovative projects and courses from IISER Thiruvananthapuram Coding Club - AI, machine learning, web development, and cutting-edge technology solutions.">
+    <meta name="keywords" content="coding club projects, coding courses, AI projects, machine learning projects, web development course, IISER Thiruvananthapuram projects, technology innovations, programming projects, beginner web development">
+    <meta name="theme-color" content="#0f1221">
+    <meta name="author" content="Coding Club IISER Thiruvananthapuram">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Our Projects & Courses - Coding Club IISER Thiruvananthapuram">
+    <meta property="og:description" content="Explore innovative projects and courses from IISER Thiruvananthapuram's Coding Club featuring AI, machine learning, and cutting-edge technology solutions.">
+    <meta property="og:image" content="./connection_network_infinity_partial_logo.png">
+    <meta property="og:url" content="https://codingclub.iisertvm.ac.in/projects.html">
+    <meta property="og:type" content="website">
+      <!-- Twitter Card data -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Our Projects & Courses - Coding Club IISER Thiruvananthapuram">
+    <meta name="twitter:description" content="Explore innovative projects and courses from IISER Thiruvananthapuram's Coding Club.">
+    <meta name="twitter:image" content="./connection_network_infinity_partial_logo.png">
+    
+    <title>Our Projects & Courses - Coding Club IISER Thiruvananthapuram</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="./connection_network_infinity_partial_logo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./connection_network_infinity_partial_logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./connection_network_infinity_partial_logo.png">
+    <link rel="manifest" href="./site.webmanifest">
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="connection_network_infinity_partial_logo.png" as="image">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" as="style">
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="preloader.css" rel="stylesheet">
+    <link href="responsive.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --cyber-gradient: linear-gradient(45deg, #00f260, #0575e6, #00f260);
+            --neon-glow: 0 0 10px rgba(0, 242, 96, 0.5), 0 0 20px rgba(5, 117, 230, 0.3);
+            --accent-color: #00f260;
+            --secondary-accent: #0575e6;
+            --bg-dark: #0f1221;
+            --card-bg: rgba(15, 18, 33, 0.8);
+            --font-primary: 'Space Grotesk', 'Inter', sans-serif;
+            --font-code: 'Fira Code', monospace;
+            --font-secondary: 'Poppins', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background: var(--bg-dark);
+            color: white;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }        /* Cyber Card Styles */
+        .cyber-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(5, 117, 230, 0.2);
+            border-radius: 12px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .cyber-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(5, 117, 230, 0.2),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .cyber-card:hover::before {
+            left: 100%;
+        }
+
+        .cyber-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--neon-glow);
+        }
+
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% 200%;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Cyber Button */
+        .cyber-button {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 24px;
+            background: linear-gradient(45deg, #3b82f6, #1d4ed8);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            overflow: hidden;
+        }
+
+        .cyber-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .cyber-button:hover::before {
+            left: 100%;
+        }
+
+        .cyber-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+        }
+
+        /* Navigation Styles */
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 6px;
+        }
+
+        .nav-link:hover {
+            background: rgba(59, 130, 246, 0.1);
+            color: #60a5fa;
+        }
+
+        /* Background Animation */
+        .bg-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(1px);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-menu.show {
+            transform: translateY(0);
+        }
+
+        /* Project specific styles */
+        .project-card {
+            transition: all 0.3s ease;
+        }
+
+        .project-overlay {
+            backdrop-filter: blur(5px);
+        }
+
+        .glowing-text {
+            text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+        }
+
+        .tech-tag {
+            transition: all 0.3s ease;
+        }
+
+        .stat-item {
+            transition: all 0.3s ease;
+        }
+
+        .contributor-avatar {
+            transition: all 0.3s ease;
+        }
+
+        .contributor-avatar:hover {
+            transform: scale(1.1);
+        }
+
+        .pulse-dot {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Navigation Enhancement Styles */
+        .section-nav-item.active,
+        .mobile-nav-item.active {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .mobile-nav-item {
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-item:hover {
+            background-color: rgba(75, 85, 99, 0.3);
+        }
+
+        /* Folder icon animation */
+        .folder-container {
+            perspective: 800px;
+        }
+        
+        .folder-icon {
+            animation: floatFolder 3s ease-in-out infinite;
+            transform-style: preserve-3d;
+            filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.5));
+        }
+        
+        .folder-back {
+            filter: brightness(0.9);
+        }
+        
+        .folder-front {
+            animation: glow 2s ease-in-out infinite;
+        }
+        
+        @keyframes glow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.2); }
+        }
+        
+        @keyframes floatFolder {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            25% { transform: translateY(-5px) translateX(5px); }
+            50% { transform: translateY(0) translateX(10px); }
+            75% { transform: translateY(5px) translateX(5px); }
+        }
+        
+        /* View All Projects button styling */
+        .cyber-button {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+        }
+        
+        .cyber-button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(transparent, rgba(255,255,255,0.2), transparent);
+            transform: rotate(30deg);
+            animation: buttonGlow 3s linear infinite;
+        }
+        
+        @keyframes buttonGlow {
+            0% { transform: translateX(-100%) rotate(30deg); }
+            100% { transform: translateX(100%) rotate(30deg); }
+        }
+        
+        /* Matrix code background */
+        .matrix-code-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            /* Fix header overlap issue */
+            .cyber-nav {
+                height: auto;
+                min-height: 60px;
+            }
+            
+            /* Ensure content doesn't hide under fixed header */
+            .pt-20 {
+                padding-top: 80px !important; /* Increased from 20px to 80px */
+            }
+            
+            .min-h-screen {
+                min-height: calc(100vh - 80px) !important; /* Account for header */
+            }
+            
+            /* Add proper spacing for all sections */
+            section {
+                scroll-margin-top: 80px; /* For smooth scrolling anchors */
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.125rem;
+            }
+            
+            /* Mobile responsive improvements */
+            .container {
+                padding-left: clamp(1rem, 5vw, 1.5rem);
+                padding-right: clamp(1rem, 5vw, 1.5rem);
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            /* Additional mobile header fix for very small screens */
+            .pt-20 {
+                padding-top: 90px !important;
+            }
+            
+            .min-h-screen {
+                min-height: calc(100vh - 90px) !important;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+        }
+
+        /* Burger Icon Styles */
+        .burger-icon {
+            cursor: pointer;
+            width: 24px;
+            height: 18px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .burger-icon span {
+            display: block;
+            height: 2px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .burger-icon.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .burger-icon.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .burger-icon.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+    </style>
+</head>
+
+<body>    <!-- Preloader -->
+    <div id="preloader" class="preloader">
+        <div class="preloader__content">
+            <img src="connection_network_infinity_partial_logo.png" alt="Coding Club Logo" class="preloader__logo">
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-gray-900 bg-opacity-95 backdrop-blur-md fixed w-full z-50 border-b border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-center h-20">                <!-- Logo -->
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="flex items-center space-x-2" aria-label="Coding Club Home">
+                        <div class="h-12 w-auto cyber-card flex items-center justify-center nav-logo-container rounded-lg overflow-hidden px-2">
+                            <img src="connection_network_infinity_partial_logo.png" alt="Coding Club Logo" class="h-10 w-auto max-w-none transform hover:scale-110 transition-all duration-300">
+                        </div>
+                        <div>
+                            <span class="text-xl font-bold gradient-text">Coding Club</span>
+                            <p class="text-xs text-gray-400">IISER TVM</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link nav-hover-effect" aria-label="Go to home">
+                        <i class="fas fa-home mr-2" aria-hidden="true"></i>Home
+                    </a>
+                    <a href="alumni.html" class="nav-link nav-hover-effect" aria-label="View alumni">
+                        <i class="fas fa-graduation-cap mr-2" aria-hidden="true"></i>Alumni
+                    </a>                    <a href="projects.html" class="nav-link nav-hover-effect text-blue-400" aria-label="View projects and courses">
+                        <i class="fas fa-project-diagram mr-2" aria-hidden="true"></i>Projects & Courses
+                    </a>
+                    <a href="team.html" class="nav-link nav-hover-effect" aria-label="Meet our team">
+                        <i class="fas fa-users mr-2" aria-hidden="true"></i>Team
+                    </a>
+                    <a href="Blogs/Blog main.html" class="nav-link nav-hover-effect" aria-label="Read our blogs">
+                        <i class="fas fa-blog mr-2" aria-hidden="true"></i>Blogs
+                    </a>
+                    <a href="store.html" class="nav-link nav-hover-effect" aria-label="Access resources">
+                        <i class="fas fa-book mr-2" aria-hidden="true"></i>Resources
+                    </a>
+                    <a href="index.html#faq" class="nav-link nav-hover-effect" aria-label="Frequently asked questions">
+                        <i class="fas fa-question-circle mr-2" aria-hidden="true"></i>FAQ
+                    </a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeJuIlW4REb117B8I4Kd_AkGgveW4ohVDxWk-Ux5w5dumAYFQ/viewform?usp=sharing" class="cyber-button py-2 px-4 text-sm" aria-label="Join our coding club">
+                        <i class="fas fa-rocket mr-1" aria-hidden="true"></i> Join Us
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button class="text-gray-300 hover:text-white focus:outline-none focus:text-white" aria-label="Toggle menu" onclick="toggleMobileMenu()">
+                        <div class="burger-icon">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="bg-gray-900 shadow-lg hidden w-full transform transition-all duration-300 mobile-menu" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 transition duration-300">Home</a>
+                <a href="alumni.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 transition duration-300">Alumni</a>
+                <a href="projects.html" class="block px-3 py-2 rounded-md text-base font-medium text-blue-400 hover:text-white hover:bg-gray-700 transition duration-300">Projects & Courses</a>
+                <a href="team.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 transition duration-300">Team</a>
+                <a href="Blogs/Blog main.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 transition duration-300">Blogs</a>
+                <a href="store.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 transition duration-300">Resources</a>
+                <a href="index.html#faq" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 transition duration-300">FAQ</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeJuIlW4REb117B8I4Kd_AkGgveW4ohVDxWk-Ux5w5dumAYFQ/viewform?usp=sharing" class="block px-3 py-2 rounded-md text-base font-medium bg-gradient-to-r from-blue-600 to-green-400 text-white">Join Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center pt-20 overflow-hidden relative">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center">
+                <div class="mb-8" data-aos="fade-up">
+                    <div class="flex items-center justify-center space-x-2 mb-6">
+                        <div class="h-1 w-16 bg-gradient-to-r from-purple-500 to-pink-400"></div>
+                        <p class="text-sm uppercase tracking-widest text-purple-400 font-semibold">Innovation Station</p>
+                        <div class="h-1 w-16 bg-gradient-to-r from-pink-400 to-purple-500"></div>
+                    </div>                    <h1 class="hero-title text-5xl md:text-7xl font-bold mb-6 gradient-text">
+                        Featured Projects & Courses
+                    </h1>
+                    <p class="hero-subtitle text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+                        Exploring the intersection of AI and Education through innovative solutions and comprehensive learning paths
+                    </p>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center" data-aos="fade-up" data-aos-delay="400">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeJuIlW4REb117B8I4Kd_AkGgveW4ohVDxWk-Ux5w5dumAYFQ/viewform?usp=sharing" class="cyber-button bg-gradient-to-r from-purple-600 to-pink-400 hover:from-purple-700 hover:to-pink-500" aria-label="Join our community">
+                        <i class="fas fa-users mr-2" aria-hidden="true"></i>Join Our Team
+                    </a>
+                    <a href="team.html" class="cyber-button bg-transparent border border-purple-500 hover:bg-purple-500 bg-opacity-20 transition-all duration-300" aria-label="Meet our team">
+                        <i class="fas fa-users mr-2" aria-hidden="true"></i>Meet the Team
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Animated background shapes -->
+        <div class="bg-shapes" aria-hidden="true">
+            <div class="shape shape-1 absolute h-64 w-64 rounded-full bg-purple-500 bg-opacity-10 -top-20 -left-20 animate-pulse"></div>
+            <div class="shape shape-2 absolute h-96 w-96 rounded-full bg-pink-500 bg-opacity-10 -bottom-40 -right-40 animate-pulse" style="animation-delay: 1s;"></div>
+            <div class="shape shape-3 absolute h-48 w-48 rounded-full bg-blue-500 bg-opacity-10 top-1/3 -right-20 animate-pulse" style="animation-delay: 2s;"></div>
+            <div class="shape shape-4 absolute h-72 w-72 rounded-full bg-green-500 bg-opacity-10 bottom-1/4 -left-36 animate-pulse" style="animation-delay: 3s;"></div>
+        </div>
+    </section>
+
+    <!-- Section Navigation Guide -->
+    <div class="fixed right-6 top-1/2 transform -translate-y-1/2 z-40 hidden lg:block">
+        <div class="bg-gray-900/90 backdrop-blur-md rounded-lg border border-gray-700 p-4 space-y-4">
+            <h4 class="text-sm font-semibold text-gray-300 text-center">Quick Navigation</h4>
+            <div class="space-y-3">
+                <a href="#courses" class="section-nav-item flex items-center space-x-2 p-2 rounded-lg transition-all duration-300 hover:bg-green-500/20" data-section="courses">
+                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                    <span class="text-sm text-gray-300">Courses</span>
+                </a>
+                <a href="#projects" class="section-nav-item flex items-center space-x-2 p-2 rounded-lg transition-all duration-300 hover:bg-blue-500/20" data-section="projects">
+                    <div class="w-3 h-3 rounded-full bg-blue-500"></div>
+                    <span class="text-sm text-gray-300">Projects</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Navigation Indicator -->
+    <div class="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-40 lg:hidden">
+        <div class="bg-gray-900/90 backdrop-blur-md rounded-full border border-gray-700 px-4 py-2 flex items-center space-x-4">
+            <a href="#courses" class="mobile-nav-item flex items-center space-x-2 px-3 py-2 rounded-full transition-all duration-300" data-section="courses">
+                <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                <span class="text-xs text-gray-300">Courses</span>
+            </a>
+            <div class="w-px h-4 bg-gray-600"></div>
+            <a href="#projects" class="mobile-nav-item flex items-center space-x-2 px-3 py-2 rounded-full transition-all duration-300" data-section="projects">
+                <div class="w-2 h-2 rounded-full bg-blue-500"></div>
+                <span class="text-xs text-gray-300">Projects</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Courses Section -->
+    <section id="courses" class="py-24 relative overflow-hidden bg-gradient-to-br from-gray-900 to-gray-800">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <div class="flex items-center justify-center space-x-2 mb-6">
+                    <div class="h-1 w-16 bg-gradient-to-r from-green-500 to-blue-400"></div>
+                    <p class="text-sm uppercase tracking-widest text-green-400 font-semibold">Learn & Grow</p>
+                    <div class="h-1 w-16 bg-gradient-to-r from-blue-400 to-green-500"></div>
+                </div>
+                <div class="flex items-center justify-center mb-4">
+                    <div class="bg-green-500/20 rounded-full p-4 mr-4">
+                        <svg class="w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        </svg>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-bold" data-aos="fade-up">
+                        <span class="bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 bg-clip-text text-transparent animate-gradient">
+                            Our Courses
+                        </span>
+                    </h2>
+                </div>
+                <p class="text-gray-400 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    Comprehensive learning paths designed to take you from beginner to expert
+                </p>
+                <div class="mt-4 p-3 bg-green-500/10 border border-green-500/30 rounded-lg inline-block">
+                    <p class="text-green-400 text-sm font-medium">📚 Educational Content Section</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Course Template -->
+                
+                <div class="course-card cyber-card group bg-gray-900 rounded-xl overflow-hidden shadow-lg transform transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(34,197,94,0.3)] border border-gray-800" data-aos="fade-up" data-aos-delay="150">
+                    <div class="relative h-64 overflow-hidden perspective-container">
+                        <!-- Course image and icon -->
+                        <div class="w-full h-full bg-gradient-to-br from-green-600 to-blue-600 flex items-center justify-center">
+                            <div class="text-center">
+                                <!-- Course icon SVG -->
+                                <svg class="w-24 h-24 text-white mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                                </svg>
+                                <!-- Course display title -->
+                                <h4 class="text-white text-xl font-bold">Web Development</h4>
+                            </div>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent"></div>
+                        <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center gap-4 transition-all duration-300 backdrop-blur-sm course-overlay">
+                            <a href="webdev-course.html"
+                               class="flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-blue-600 to-blue-800 text-white rounded-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                <span>Course Details</span>
+                            </a>
+                            <a href="course-layout.html"
+                               class="flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-green-600 to-green-800 text-white rounded-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+                                </svg>
+                                <span>Course Layout</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="p-6 space-y-6">
+                        <div class="space-y-2">
+                            <!-- Course full title -->
+                            <h3 class="text-2xl font-bold text-white flex items-center gap-2 glowing-text">
+                                <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                                </svg>
+                                Absolute Beginner's Web Development Course
+                            </h3>
+                            <!-- Course description -->
+                            <p class="text-gray-400 text-sm">Complete foundation course for building web applications from scratch</p>
+                        </div>
+
+                        <!-- Course details -->
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between text-sm text-gray-400">
+                                <div class="flex items-center gap-1">
+                                    <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    <span class="font-semibold text-green-400">Duration:</span>
+                                    <!-- Course duration -->
+                                    <span>{5+1} weeks</span>
+                                </div>
+                                <div class="flex items-center gap-1">
+                                    <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    <span class="font-semibold text-blue-400">Level:</span>
+                                    <!-- Course level (Beginner, Intermediate, Advanced) -->
+                                    <span>Beginner</span>
+                                </div>
+                            </div>
+
+                            <div class="bg-gray-800/50 rounded-lg p-4 space-y-3">
+                                <div>
+                                    <h5 class="text-sm font-semibold text-gray-300 mb-2">Prerequisites:</h5>
+                                    <!-- Course prerequisites -->
+                                    <p class="text-xs text-gray-400">None. This course is designed for absolute beginners.</p>
+                                </div>
+                                <div>
+                                    <h5 class="text-sm font-semibold text-gray-300 mb-2">Goal:</h5>
+                                    <!-- Course learning goals -->
+                                    <p class="text-xs text-gray-400">To equip participants with the foundational skills in HTML, CSS, Python, and then introduce them to building a very simple web application using JavaScript and Django.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Technologies covered -->
+                        <div class="space-y-3">
+                            <h4 class="text-sm font-semibold text-gray-400 flex items-center gap-2">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
+                                </svg>
+                                Technologies
+                            </h4>
+                            <!-- Technology tags - add/remove as needed -->
+                            <div class="flex flex-wrap gap-2">
+                                <span class="tech-tag px-3 py-1 text-xs font-medium bg-orange-900/30 text-orange-400 border border-orange-800 rounded-full hover:bg-orange-800/50 transition-all duration-300 cursor-default">HTML</span>
+                                <span class="tech-tag px-3 py-1 text-xs font-medium bg-blue-900/30 text-blue-400 border border-blue-800 rounded-full hover:bg-blue-800/50 transition-all duration-300 cursor-default">CSS</span>
+                                <span class="tech-tag px-3 py-1 text-xs font-medium bg-yellow-900/30 text-yellow-400 border border-yellow-800 rounded-full hover:bg-yellow-800/50 transition-all duration-300 cursor-default">JavaScript</span>
+                                <span class="tech-tag px-3 py-1 text-xs font-medium bg-green-900/30 text-green-400 border border-green-800 rounded-full hover:bg-green-800/50 transition-all duration-300 cursor-default">Python</span>
+                                <span class="tech-tag px-3 py-1 text-xs font-medium bg-purple-900/30 text-purple-400 border border-purple-800 rounded-full hover:bg-purple-800/50 transition-all duration-300 cursor-default">Django</span>
+                            </div>
+                        </div>
+
+                        <!-- Course Action Buttons -->
+                        <div class="pt-4 border-t border-gray-800 space-y-3">
+                            <div class="flex items-center justify-center mb-3">
+                                <span class="px-3 py-1 bg-red-500/20 text-red-400 border border-red-500/50 rounded-full text-sm font-medium">
+                                    <i class="fas fa-clock mr-1"></i>Enrollment Closed
+                                </span>
+                            </div>
+                            <div class="grid grid-cols-1 gap-3">
+                                <a href="webdev-course.html" 
+                                   class="w-full bg-gradient-to-r from-blue-600 to-blue-800 text-white py-3 px-4 rounded-lg font-semibold transition-all duration-300 hover:from-blue-700 hover:to-blue-900 hover:shadow-lg flex items-center justify-center gap-2">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    <span>Course Page</span>
+                                </a>
+                                <a href="course-layout.html" 
+                                   class="w-full bg-gradient-to-r from-green-600 to-green-800 text-white py-3 px-4 rounded-lg font-semibold transition-all duration-300 hover:from-green-700 hover:to-green-900 hover:shadow-lg flex items-center justify-center gap-2">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012 2v2M7 7h10"/>
+                                    </svg>
+                                    <span>Course Layout</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Course Template -->
+
+                <!-- Copy the template above for new courses -->
+                <div class="course-card cyber-card group bg-gradient-to-br from-gray-900 to-green-900/20 rounded-xl overflow-hidden shadow-lg transform transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(34,197,94,0.3)] border border-gray-800 flex flex-col justify-center items-center" data-aos="fade-up" data-aos-delay="250">
+                    <div class="p-10 text-center">
+                        <div class="course-icon mb-8">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-32 h-32 mx-auto text-green-400">
+                                <path fill="currentColor" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-3xl font-bold text-white mb-4">More Courses Coming Soon</h3>
+                        <p class="text-gray-300 mb-8">We're developing more comprehensive courses covering AI, Data Science, and Advanced Web Development.</p>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeJuIlW4REb117B8I4Kd_AkGgveW4ohVDxWk-Ux5w5dumAYFQ/viewform?usp=sharing" 
+                           class="cyber-button px-6 py-3 inline-block bg-gradient-to-r from-green-500 to-blue-400 hover:from-green-600 hover:to-blue-500 transition-all duration-300"
+                           target="_blank" rel="noopener noreferrer">
+                            <span class="flex items-center">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5-5-5h5v-5h5v5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z" fill="currentColor"/>
+                                </svg>
+                                <span>Get Notified</span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Background elements -->
+        <div class="bg-shapes" aria-hidden="true">
+            <div class="shape shape-1 absolute h-32 w-32 rounded-full bg-green-500 bg-opacity-5 top-20 left-10 animate-pulse"></div>
+            <div class="shape shape-2 absolute h-48 w-48 rounded-full bg-blue-500 bg-opacity-5 top-40 right-20 animate-pulse" style="animation-delay: 1s;"></div>
+            <div class="shape shape-3 absolute h-24 w-24 rounded-full bg-purple-500 bg-opacity-5 bottom-40 left-20 animate-pulse" style="animation-delay: 2s;"></div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <!-- Updated: Coding Club Website project removed -->
+    <section id="projects" class="py-24 relative overflow-hidden">        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <div class="flex items-center justify-center space-x-2 mb-6">
+                    <div class="h-1 w-16 bg-gradient-to-r from-blue-500 to-purple-400"></div>
+                    <p class="text-sm uppercase tracking-widest text-blue-400 font-semibold">Innovation Station</p>
+                    <div class="h-1 w-16 bg-gradient-to-r from-purple-400 to-blue-500"></div>
+                </div>
+                <div class="flex items-center justify-center mb-4">
+                    <div class="bg-blue-500/20 rounded-full p-4 mr-4">
+                        <svg class="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+                        </svg>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-bold" data-aos="fade-up">
+                        <span class="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-gradient">
+                            Featured Projects
+                        </span>
+                    </h2>
+                </div>
+                <p class="text-gray-400 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    Exploring the intersection of AI and Education through innovative solutions
+                </p>
+                <div class="mt-4 p-3 bg-blue-500/10 border border-blue-500/30 rounded-lg inline-block">
+                    <p class="text-blue-400 text-sm font-medium">🚀 Innovation Showcase Section</p>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Project Template -->
+
+                <div class="project-card cyber-card group bg-gray-900 rounded-xl overflow-hidden shadow-lg transform transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(59,130,246,0.3)] border border-gray-800" data-aos="fade-up" data-aos-delay="150">
+                    <div class="relative h-64 overflow-hidden perspective-container">
+                        <img src="step_mentor.png" alt="Step Mentor Project"
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 project-image">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent"></div>
+                        <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center gap-4 transition-all duration-300 backdrop-blur-sm project-overlay">
+                            <a href="https://www.youtube.com/watch?v=RVKZBXkMGrI"
+                               class="flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-blue-600 to-blue-800 text-white rounded-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                               target="_blank" rel="noopener noreferrer">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                </svg>
+                                <span>View Demo</span>
+                            </a>
+                            <a href="https://github.com/saurabmishra5/Step-Mentor"
+                               class="flex items-center gap-2 px-5 py-3 bg-gray-700 text-white rounded-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                               target="_blank" rel="noopener noreferrer">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                                <span>GitHub</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="p-6 space-y-6">
+                        <div class="space-y-2">
+                            <h3 class="text-2xl font-bold text-white flex items-center gap-2 glowing-text">
+                                <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                                </svg>
+                                Step Mentor
+                            </h3>
+                            <p class="text-gray-400 text-sm">AI-Driven Educational Platform for Personalized Learning</p>
+                        </div>
+
+                        <div class="flex items-center justify-between text-sm text-gray-400">
+                            <div class="flex items-center gap-1 stat-item">
+                                <svg class="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                </svg>
+                                <span>Educational AI</span>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                </svg>
+                                <span>Individual Project</span>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <h4 class="text-sm font-semibold text-gray-400 flex items-center gap-2">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
+                                </svg>
+                                Technologies
+                            </h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="tech-tag px-3 py-1 text-xs font-medium bg-blue-900/30 text-blue-400 border border-blue-800 rounded-full">Python</span>
+                                <span class="tech-tag px-3 py-1 text-xs font-medium bg-purple-900/30 text-purple-400 border border-purple-800 rounded-full">AI/ML</span>
+                                <span class="tech-tag px-3 py-1 text-xs font-medium bg-green-900/30 text-green-400 border border-green-800 rounded-full">Tesseract OCR</span>
+                                <span class="tech-tag px-3 py-1 text-xs font-medium bg-orange-900/30 text-orange-400 border border-orange-800 rounded-full">LLMs</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 border-t border-gray-800">
+                            <div class="flex items-center gap-3">
+                                <div class="relative contributor-avatar">
+                                    <img src="saurabprofile.jpg" alt="Saurab Mishra"
+                                         class="w-10 h-10 rounded-full object-cover border-2 border-blue-500 transition-all duration-300">
+                                    <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-gray-900 pulse-dot"></div>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-white">Saurab Mishra</h4>
+                                    <p class="text-gray-400 text-sm">Lead Developer</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- View More Projects Card -->
+                <div class="project-card cyber-card group bg-gradient-to-br from-gray-900 to-blue-900/20 rounded-xl overflow-hidden shadow-lg transform transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(59,130,246,0.3)] border border-gray-800 flex flex-col justify-center items-center" data-aos="fade-up" data-aos-delay="250">
+                    <div class="p-10 text-center relative h-full w-full overflow-hidden">
+                        <!-- Matrix code background - Canvas will be inserted here -->
+                        <canvas id="matrixCanvas" class="matrix-code-background absolute inset-0 opacity-20 z-0"></canvas>
+                        
+                        <!-- Folder Icon Container with Animation -->
+                        <div class="folder-container mb-8 relative inline-block z-10">
+                            <div class="folder-icon mx-auto mb-6 relative">
+                                <!-- Folder base shape -->
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-32 h-32">
+                                    <path class="folder-back" d="M22 8v10c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2h5l2 2h9c1.1 0 2 .9 2 2z" fill="#60A5FA" />
+                                    <path class="folder-front" d="M2 10h20v8c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2v-8z" fill="#93C5FD" />
+                                    <!-- Plus sign -->
+                                    <path d="M12 14V11M12 11V8M12 11H15M12 11H9" stroke="#1E3A8A" stroke-width="1.5" stroke-linecap="round" />
+                                </svg>
+                            </div>
+                        </div>
+                          <h3 class="text-3xl font-bold text-white mb-4 relative z-10">More Projects Coming Soon</h3>
+                        <p class="text-gray-300 mb-8 relative z-10">Our team is working on exciting new projects. Stay tuned for updates!</p>
+                        <a href="#" class="cyber-button px-6 py-3 inline-block relative z-10 bg-gradient-to-r from-cyan-500 to-green-400 hover:from-cyan-600 hover:to-green-500 transition-all duration-300">
+                            <span class="flex items-center">
+                                <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5-5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z" fill="currentColor"/>
+                                </svg>
+                                <span>Submit Your Project</span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 3D Tech background elements -->
+        <div class="tech-bg-elements">
+            <div class="code-particle"></div>
+            <div class="matrix-effect"></div>
+        </div>
+
+        <!-- Matrix code script -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Matrix Canvas Setup
+                const canvas = document.getElementById('matrixCanvas');
+                if (canvas) {
+                    const ctx = canvas.getContext('2d');
+                    
+                    // Set canvas size to match parent container
+                    const resizeCanvas = () => {
+                        const parent = canvas.parentElement;
+                        canvas.width = parent.offsetWidth;
+                        canvas.height = parent.offsetHeight;
+                    };
+                    
+                    window.addEventListener('resize', resizeCanvas);
+                    resizeCanvas();
+                    
+                    // Matrix effect characters (0 and 1 for binary look)
+                    const chars = '01';
+                    
+                    // Set column count based on canvas width
+                    const fontSize = 10;
+                    const columns = Math.floor(canvas.width / fontSize);
+                    
+                    // Array to track the y position of each column
+                    const drops = [];
+                    
+                    // Initialize all columns
+                    for (let i = 0; i < columns; i++) {
+                        drops[i] = Math.random() * -canvas.height;
+                    }
+                    
+                    // Draw the matrix
+                    function drawMatrix() {
+                        // Semi-transparent black background for trail effect
+                        ctx.fillStyle = 'rgba(15, 18, 33, 0.05)';
+                        ctx.fillRect(0, 0, canvas.width, canvas.height);
+                        
+                        // Set text style
+                        ctx.fillStyle = 'rgba(59, 130, 246, 0.6)'; // Blue color to match theme
+                        ctx.font = fontSize + 'px monospace';
+                        
+                        // Draw characters
+                        for (let i = 0; i < drops.length; i++) {
+                            // Get random character
+                            const text = chars.charAt(Math.floor(Math.random() * chars.length));
+                            
+                            // Draw character
+                            ctx.fillText(text, i * fontSize, drops[i] * 1);
+                            
+                            // Reset position if off-screen or randomly to create varied effect
+                            if (drops[i] * 1 > canvas.height || Math.random() > 0.98) {
+                                drops[i] = 0;
+                            }
+                            
+                            // Move drops down
+                            drops[i]++;
+                        }
+                    }
+                    
+                    // Animation loop
+                    function animate() {
+                        drawMatrix();
+                        setTimeout(animate, 100); // Speed control
+                    }
+                    
+                    // Start animation
+                    animate();
+                }
+            });        </script>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="py-24 relative overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center max-w-4xl mx-auto">
+                <div class="mb-8" data-aos="fade-up">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text">
+                        Ready to Build Something Amazing?
+                    </h2>
+                    <p class="text-xl text-gray-300 leading-relaxed">
+                        Join our community of innovators and turn your ideas into reality. Whether you're a beginner or an expert, there's a place for you in our coding club.
+                    </p>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center" data-aos="fade-up" data-aos-delay="200">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeJuIlW4REb117B8I4Kd_AkGgveW4ohVDxWk-Ux5w5dumAYFQ/viewform?usp=sharing" class="cyber-button bg-gradient-to-r from-blue-600 to-green-400 hover:from-blue-700 hover:to-green-500 px-8 py-3">
+                        <i class="fas fa-rocket mr-2"></i>
+                        <span>Join Our Community</span>
+                    </a>
+                    <a href="team.html" class="cyber-button bg-transparent border border-blue-500 hover:bg-blue-500/20 px-8 py-3">
+                        <i class="fas fa-eye mr-2"></i>
+                        <span>Meet the Team</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Background elements -->
+        <div class="bg-shapes" aria-hidden="true">
+            <div class="shape shape-1 absolute h-32 w-32 rounded-full bg-blue-500 bg-opacity-5 top-20 left-10 animate-pulse"></div>
+            <div class="shape shape-2 absolute h-48 w-48 rounded-full bg-purple-500 bg-opacity-5 top-40 right-20 animate-pulse" style="animation-delay: 1s;"></div>
+            <div class="shape shape-3 absolute h-24 w-24 rounded-full bg-green-500 bg-opacity-5 bottom-40 left-20 animate-pulse" style="animation-delay: 2s;"></div>        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-900 pt-16 pb-8 relative z-10 border-t border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                <!-- About -->
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <a href="https://www.iisertvm.ac.in/" target="_blank" class="flex items-center">
+                            <img src="iiser_logo.png" alt="IISER Thiruvananthapuram Logo" class="h-12 w-auto mr-3">
+                        </a>
+                        <div>
+                            <h3 class="text-xl font-bold bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent">Coding Club</h3>
+                            <p class="text-sm text-gray-400">IISER Thiruvananthapuram</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed">
+                        Empowering minds through code. We are a community of passionate programmers, innovators, and learners dedicated to exploring the frontiers of technology.
+                    </p>
+                    
+                    <!-- Social Media Links -->
+                    <div class="flex space-x-4 mt-6">
+                        <a href="https://www.instagram.com/codingclubiisertvm?igsh=N3pobjRyanB1dXNi" class="text-gray-400 hover:text-pink-400 transition-colors duration-300" aria-label="Follow us on Instagram">
+                            <i class="fab fa-instagram text-xl" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/company/106173849/admin/dashboard/" class="text-gray-400 hover:text-blue-400 transition-colors duration-300" aria-label="Connect with us on LinkedIn">
+                            <i class="fab fa-linkedin text-xl" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors duration-300" aria-label="Join our Discord server">
+                            <i class="fab fa-discord text-xl" aria-hidden="true"></i>
+                        </a>
+                        <a href="mailto:coding.club@iisertvm.ac.in" class="text-gray-400 hover:text-green-400 transition-colors duration-300" aria-label="Send us an email">
+                            <i class="fas fa-envelope text-xl" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-6">Quick Links</h3>
+                    <ul class="space-y-4">
+                        <li>
+                            <a href="index.html" class="text-gray-400 hover:text-blue-400 transition-colors duration-300 flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2" aria-hidden="true"></i> Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="index.html#tech-stack" class="text-gray-400 hover:text-blue-400 transition-colors duration-300 flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2" aria-hidden="true"></i> Tech Stack
+                            </a>
+                        </li>
+                        <li>
+                            <a href="projects.html" class="text-gray-400 hover:text-blue-400 transition-colors duration-300 flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2" aria-hidden="true"></i> Projects
+                            </a>
+                        </li>
+                        <li>
+                            <a href="index.html#faq" class="text-gray-400 hover:text-blue-400 transition-colors duration-300 flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2" aria-hidden="true"></i> FAQ
+                            </a>
+                        </li>
+                        <li>
+                            <a href="team.html" class="text-gray-400 hover:text-blue-400 transition-colors duration-300 flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2" aria-hidden="true"></i> Team
+                            </a>
+                        </li>
+                        <li>
+                            <a href="Blogs/Blog main.html" class="text-gray-400 hover:text-blue-400 transition-colors duration-300 flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2" aria-hidden="true"></i> Blogs
+                            </a>
+                        </li>
+                        <li>
+                            <a href="store.html" class="text-gray-400 hover:text-blue-400 transition-colors duration-300 flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2" aria-hidden="true"></i> Resources
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Contact -->
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-6">Contact Us</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-map-marker-alt text-blue-400 mt-1" aria-hidden="true"></i>
+                            <span class="text-gray-400">IISER Thiruvananthapuram, CET Campus, Thiruvananthapuram, Kerala, India - 695016</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-envelope text-blue-400" aria-hidden="true"></i>
+                            <a href="mailto:coding.club@iisertvm.ac.in" class="text-gray-400 hover:text-blue-400 transition-colors duration-300">coding.club@iisertvm.ac.in</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="border-t border-gray-800 mt-12 pt-8">
+                <div class="flex justify-center mb-6">
+                    <p class="text-gray-500 text-sm">
+                        &copy; 2024 Coding Club IISER Thiruvananthapuram. All rights reserved.
+                    </p>
+                </div>
+                
+                <!-- Credits Section -->
+                <div class="max-w-4xl mx-auto">
+                    <div class="bg-gray-800/30 rounded-lg p-6 border border-gray-700/50">
+                        <div class="flex flex-col md:flex-row items-center justify-center text-center space-y-4 md:space-y-0">
+                            <!-- Saurab Credit -->
+                            <div class="flex-1 text-center md:text-right md:pr-5">
+                                <div class="inline-block relative">
+                                    <span class="text-gray-400 text-sm">Website by</span>
+                                    <a href="https://saurabmishra5.github.io/" target="_blank" 
+                                       class="font-medium text-blue-400 hover:text-green-400 transition-colors duration-300 ml-1">
+                                        Saurab Mishra
+                                    </a>
+                                    <a href="https://saurabmishra5.github.io/" target="_blank" 
+                                       class="ml-1 text-xs inline-flex items-center justify-center h-4 w-4 text-gray-400 hover:text-blue-300 transition-colors" aria-label="Visit Saurab's website">
+                                        <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <!-- Center Divider -->
+                            <div class="hidden md:block h-10 w-px bg-gray-700 mx-5" aria-hidden="true"></div>
+                            
+                            <!-- Ayush Credit -->
+                            <div class="flex-1 text-center md:text-left md:pl-5">
+                                <div class="inline-block relative">
+                                    <span class="text-gray-400 text-sm">Updated by</span>
+                                    <a href="https://www.linkedin.com/in/ayush-siddha-614a14332/" target="_blank" 
+                                       class="font-medium text-blue-400 hover:text-green-400 transition-colors duration-300 ml-1">
+                                        Ayush
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="home_button.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('show');
+        }
+
+        // Preloader
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            setTimeout(() => {
+                preloader.classList.add('preloader--hidden');
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 500);
+            }, 1500);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Section navigation functionality
+        function initSectionNavigation() {
+            const sections = ['courses', 'projects'];
+            const navItems = document.querySelectorAll('.section-nav-item, .mobile-nav-item');
+            
+            // Update active navigation item based on scroll position
+            function updateActiveNavItem() {
+                let currentSection = '';
+                const scrollPosition = window.scrollY + window.innerHeight / 3;
+                
+                sections.forEach(sectionId => {
+                    const section = document.getElementById(sectionId);
+                    if (section) {
+                        const sectionTop = section.offsetTop;
+                        const sectionHeight = section.offsetHeight;
+                        
+                        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                            currentSection = sectionId;
+                        }
+                    }
+                });
+                
+                // Update navigation items
+                navItems.forEach(item => {
+                    const sectionData = item.getAttribute('data-section');
+                    if (sectionData === currentSection) {
+                        item.classList.add('active');
+                        if (sectionData === 'courses') {
+                            item.classList.add('bg-green-500/20');
+                            item.classList.remove('bg-blue-500/20');
+                        } else if (sectionData === 'projects') {
+                            item.classList.add('bg-blue-500/20');
+                            item.classList.remove('bg-green-500/20');
+                        }
+                    } else {
+                        item.classList.remove('active', 'bg-green-500/20', 'bg-blue-500/20');
+                    }
+                });
+            }
+            
+            // Add scroll listener with throttling
+            let isScrolling = false;
+            window.addEventListener('scroll', () => {
+                if (!isScrolling) {
+                    window.requestAnimationFrame(() => {
+                        updateActiveNavItem();
+                        isScrolling = false;
+                    });
+                    isScrolling = true;
+                }
+            });
+            
+            // Initial call
+            updateActiveNavItem();
+        }
+        
+        // Initialize section navigation
+        initSectionNavigation();
+
+        // Section navigation indicators
+        document.querySelectorAll('.section-nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const section = this.getAttribute('data-section');
+                const target = document.getElementById(section);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Mobile navigation indicators
+        document.querySelectorAll('.mobile-nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const section = this.getAttribute('data-section');
+                const target = document.getElementById(section);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
