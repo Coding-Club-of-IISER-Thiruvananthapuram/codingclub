@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<head>
+    <title>Multi-Agent Systems: The Future of Collaborative AI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../prism.css">
+    <link rel="stylesheet" href="../blogstyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- code for syntax highlightin -->
+ <style>
+    /* ...existing code... */
+code, pre {
+    background: #23272e;
+    color: #fffbcc;
+    border-radius: 0.5rem;
+    padding: 0.3em 0.7em;
+    font-family: 'Fira Mono', 'Consolas', 'Menlo', monospace;
+    font-size: 1em;
+    overflow-x: auto;
+    display: block;
+    margin: 1em 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+/* ...existing code... */
+
+/* General font size and spacing for the whole page */
+body {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    letter-spacing: 0.01em;
+}
+
+.main-content {
+    margin-top: 6rem;
+    margin-bottom: 2rem;
+    padding: 0 0.5rem;
+}
+/* ...existing code... */
+article {
+    padding-left: 1.5rem;
+    box-sizing: border-box;
+}
+
+/* Stylish code block */
+pre, code {
+    background: #23272e;
+    color: #e2e8f0;
+    border-radius: 0.7rem;
+    padding: 1em 1.5em;
+    font-family: 'Fira Mono', 'Consolas', 'Menlo', monospace;
+    font-size: 0.92em;
+    margin: 1.5em 0;
+    overflow-x: auto;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+    line-height: 1.6;
+    display: block;
+    white-space: pre;
+}
+
+
+
+ 
+/* ...existing code... */
+ </style>
+</head>
+<body>
+    <script src="../prism.js"></script>
+    <div class="header" id="header">
+        <canvas style="position: absolute; z-index: 0; left: 0px; padding:0px;" width="relative" id="artCanvas" ></canvas>
+        <div class="header-contents">
+            <h1 style="position: relative; z-index:1"> 
+                                    Is This the Future of Financial Analysis? RAG &amp; Multi-Agent Systems Explained
+                                </h1>
+            <ul style="display: flex; flex-wrap: wrap; margin: 0px; padding-left: 20px;">
+                <li style="margin-right: 20px; content: none;">Saurab Mishra</li>
+                <li style="margin-right: 20px;">June 14th, 2025</li>
+                <li style="margin-right: 20px">25 min read</li>
+            </ul>
+        </div>
+     </div>
+
+     <nav class="navbar" id="navbar">
+        <div class="navbar-logo">
+            <a href="../../index.html">
+                <i class="fas fa-home"></i>
+                <img src="../../connection_network_infinity_half_logo.png" style="width: 35px; height: 25px; margin-bottom: -2px;">
+            </a>
+          </div>
+        <ul class="navbar-nav">
+          <li><a href="../Blog main.html">New posts</a></li>
+        </ul>
+    </nav>
+
+     <div class="row">
+        <div class="leftcolumn">
+
+            <div id="medium-post"></div>
+
+<article>
+    <div class="m">
+        <div class="m"><span class="m"></span>
+            <section>
+                <div>
+                    <div class="fk lh ahc tk tl lb"></div>
+                    <div class="fz gi tm tn to">
+                        <div class="ac ck">
+                            <div class="hu bh hv hw hx hy">
+                                
+                                <figure class="yp yq yr ys yt yu ym yn paragraph-image">
+                                    <div role="button" tabindex="0" class="yv yw dn yx bh yy">
+                                        <div class="ym yn yo">
+                                            <picture>
+                                                <source srcset="https://miro.medium.com/v2/resize:fit:640/format:webp/1*6hjORi9YWxhZRiwC-th5Tw.png 640w, https://miro.medium.com/v2/resize:fit:720/format:webp/1*6hjORi9YWxhZRiwC-th5Tw.png 720w, https://miro.medium.com/v2/resize:fit:750/format:webp/1*6hjORi9YWxhZRiwC-th5Tw.png 750w, https://miro.medium.com/v2/resize:fit:786/format:webp/1*6hjORi9YWxhZRiwC-th5Tw.png 786w, https://miro.medium.com/v2/resize:fit:828/format:webp/1*6hjORi9YWxhZRiwC-th5Tw.png 828w, https://miro.medium.com/v2/resize:fit:1100/format:webp/1*6hjORi9YWxhZRiwC-th5Tw.png 1100w, https://miro.medium.com/v2/resize:fit:1400/format:webp/1*6hjORi9YWxhZRiwC-th5Tw.png 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px" type="image/webp">
+                                                <source data-testid="og" srcset="https://miro.medium.com/v2/resize:fit:640/1*6hjORi9YWxhZRiwC-th5Tw.png 640w, https://miro.medium.com/v2/resize:fit:720/1*6hjORi9YWxhZRiwC-th5Tw.png 720w, https://miro.medium.com/v2/resize:fit:750/1*6hjORi9YWxhZRiwC-th5Tw.png 750w, https://miro.medium.com/v2/resize:fit:786/1*6hjORi9YWxhZRiwC-th5Tw.png 786w, https://miro.medium.com/v2/resize:fit:828/1*6hjORi9YWxhZRiwC-th5Tw.png 828w, https://miro.medium.com/v2/resize:fit:1100/1*6hjORi9YWxhZRiwC-th5Tw.png 1100w, https://miro.medium.com/v2/resize:fit:1400/1*6hjORi9YWxhZRiwC-th5Tw.png 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px"><img alt="" class="bh rx yz c" width="700" height="700" loading="eager" role="presentation" src="https://miro.medium.com/v2/resize:fit:1050/1*6hjORi9YWxhZRiwC-th5Tw.png">
+                                            </picture>
+                                        </div>
+                                    </div>
+                                </figure>
+                                <p id="dbc2" class="pw-post-body-paragraph pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb fz bk" data-selectable-paragraph="">The modern financial sector is drowning in data. The large volume and complexity are exploding, overwhelming traditional analysis methods. Quickly and accurately extracting insights from this digital ocean isn’t just an advantage anymore — it’s essential for survival and success. Old approaches stumble with unstructured data, miss subtle market shifts, and struggle to adapt quickly, leading to missed opportunities and flawed decisions.</p>
+                                <p id="1b25" class="pw-post-body-paragraph pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb fz bk" data-selectable-paragraph="">Enter a new wave of AI: Retrieval-Augmented Generation (RAG) and multi-agent systems. This potent combination promises to reshape financial analysis, breaking through old limitations and unlocking deeper, faster insights from the ever-growing financial data universe.</p>
+                                <h2 id="94d5" class="zf zg pf bf zh mn zi mo mq mr zj ms mu js zk jt jw mx zl my nb nc zm nd ng zn bk" data-selectable-paragraph="">Demystifying Retrieval-Augmented Generation (RAG) in Finance</h2>
+                                <figure class="yp yq yr ys yt yu ym yn paragraph-image">
+                                    <div role="button" tabindex="0" class="yv yw dn yx bh yy">
+                                        <div class="ym yn zo">
+                                            <picture>
+                                                <source srcset="https://miro.medium.com/v2/resize:fit:640/format:webp/0*RVJ-K55i2OyUC3Is 640w, https://miro.medium.com/v2/resize:fit:720/format:webp/0*RVJ-K55i2OyUC3Is 720w, https://miro.medium.com/v2/resize:fit:750/format:webp/0*RVJ-K55i2OyUC3Is 750w, https://miro.medium.com/v2/resize:fit:786/format:webp/0*RVJ-K55i2OyUC3Is 786w, https://miro.medium.com/v2/resize:fit:828/format:webp/0*RVJ-K55i2OyUC3Is 828w, https://miro.medium.com/v2/resize:fit:1100/format:webp/0*RVJ-K55i2OyUC3Is 1100w, https://miro.medium.com/v2/resize:fit:1400/format:webp/0*RVJ-K55i2OyUC3Is 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px" type="image/webp">
+                                                <source data-testid="og" srcset="https://miro.medium.com/v2/resize:fit:640/0*RVJ-K55i2OyUC3Is 640w, https://miro.medium.com/v2/resize:fit:720/0*RVJ-K55i2OyUC3Is 720w, https://miro.medium.com/v2/resize:fit:750/0*RVJ-K55i2OyUC3Is 750w, https://miro.medium.com/v2/resize:fit:786/0*RVJ-K55i2OyUC3Is 786w, https://miro.medium.com/v2/resize:fit:828/0*RVJ-K55i2OyUC3Is 828w, https://miro.medium.com/v2/resize:fit:1100/0*RVJ-K55i2OyUC3Is 1100w, https://miro.medium.com/v2/resize:fit:1400/0*RVJ-K55i2OyUC3Is 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px"><img alt="" class="bh rx yz c" width="700" height="525" loading="lazy" role="presentation" src="https://miro.medium.com/v2/resize:fit:1050/0*RVJ-K55i2OyUC3Is">
+                                            </picture>
+                                        </div>
+                                    </div>
+                                    <figcaption class="zp ev zq ym yn zr zs bf b bg ab dy" data-selectable-paragraph="" style="color: white;">Photo by <a class="ag gh" href="https://unsplash.com/@duforddigital?utm_source=medium&amp;utm_medium=referral" rel="noopener ugc nofollow" target="_blank"  >MJ Duford</a> on <a class="ag gh" href="https://unsplash.com/?utm_source=medium&amp;utm_medium=referral" rel="noopener ugc nofollow" target="_blank">Unsplash</a></figcaption>
+                                </figure>
+                                <p id="397e" class="pw-post-body-paragraph pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb fz bk" data-selectable-paragraph="">Think of RAG as turbocharging Large Language Models (LLMs). It cleverly uses the LLM’s ability to generate human-like text with a dynamic retrieval system. This lets the AI fetch and use information from external, up-to-the-minute data sources — crucial in the fast-paced world of finance.</p>
+                                <p id="d240" class="pw-post-body-paragraph pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb fz bk" data-selectable-paragraph="">Unlike standard LLMs locked into their training data, RAG systems actively search vast knowledge bases (like internal company documents, financial databases, or the web) to find the <em class="zt">most relevant</em> information for a specific query <em class="zt">before</em> generating an answer. This on-demand access to current information is a game-changer.</p>
+                                <p id="9888" class="pw-post-body-paragraph pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb fz bk" data-selectable-paragraph=""><strong class="pg mm">How RAG Works in Practice (Simplified):</strong></p>
+                                <ol class="">
+                                    <li id="350e" class="pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb zu zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Data Ingestion &amp; Processing:</strong> Financial documents, reports, news feeds, etc., are collected.</li>
+                                    <li id="3c0a" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb zu zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Chunking:</strong> This data is broken down into smaller, meaningful pieces.</li>
+                                    <li id="d3cb" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb zu zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Embedding:</strong> An AI model converts these text chunks into numerical representations (vectors) that capture their meaning.</li>
+                                    <li id="d093" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb zu zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Vector Database Storage:</strong> These vectors are stored in a specialized database, optimized for finding similar vectors quickly.</li>
+                                    <li id="e4cd" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb zu zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Query &amp; Retrieval:</strong> When you ask a question (or an AI agent does), RAG converts the query into a vector and searches the database for the most similar data chunks (the most relevant information).</li>
+                                    <li id="4b2e" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb zu zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Augmentation:</strong> The retrieved relevant information is added as context to the original query.</li>
+                                    <li id="6f6e" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb zu zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Generation:</strong> The LLM (like Gemini) uses <em class="zt">both</em> the original query and the fetched context to generate a grounded, accurate, and up-to-date answer.</li>
+                                </ol>
+                                <p id="cd00" class="pw-post-body-paragraph pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb fz bk" data-selectable-paragraph=""><strong class="pg mm">Why is RAG a Big Deal for Finance?</strong></p>
+                                <ul class="">
+                                    <li id="552e" class="pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb abc zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Accuracy &amp; Reliability:</strong> Answers are based on verifiable data, not just the LLM’s internal knowledge. As one leader noted, “RAG is the answer to delivering enterprise AI into production… [It] can bring accurate, auditable AI to FSI enterprises…”</li>
+                                    <li id="3f02" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Better Decisions:</strong> Access to the latest data means faster, more informed analysis — critical when facing market volatility and strict regulations.</li>
+                                    <li id="649a" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Fewer “Hallucinations”:</strong> RAG reduces the risk of the AI making things up by grounding it in real data.</li>
+                                    <li id="7138" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Cost-Effective Updates:</strong> Instead of expensive retraining, you update the knowledge base RAG draws from, keeping the AI current without breaking the bank.</li>
+                                </ul>
+                                <p id="9219" class="pw-post-body-paragraph pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb fz bk" data-selectable-paragraph=""><strong class="pg mm">Recent RAG Advancements &amp; Applications:</strong></p>
+                                <ul class="">
+                                    <li id="2f50" class="pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb abc zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Adaptive Retrieval:</strong> Prioritizing contextually relevant, real-time data over static datasets.</li>
+                                    <li id="3113" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Cross-Disciplinary Techniques:</strong> Using knowledge graphs to connect disparate data points for more coherent insights.</li>
+                                    <li id="7b3d" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Multimodal RAG:</strong> Integrating text, images (like charts in PDFs), and potentially audio for richer analysis.</li>
+                                    <li id="2807" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Real-World Uses:</strong> Powering sophisticated legal AI, improving credit risk assessment with real-time data, personalizing investment advice, streamlining regulatory compliance (e.g., summarizing Basel III), enhancing algorithmic trading, boosting fraud detection/AML, and automating report generation.</li>
+                                </ul>
+                                <h2 id="6bb1" class="zf zg pf bf zh mn zi mo mq mr zj ms mu js zk jt jw mx zl my nb nc zm nd ng zn bk" data-selectable-paragraph="">The Synergy of Multi-Agent Systems for Financial Intelligence</h2>
+                                <p id="a215" class="pw-post-body-paragraph pd pe pf pg b ph abd pj pk pl abe pn po pp abf pr ps pt abg pv pw px abh pz qa qb fz bk" data-selectable-paragraph="">Why use one AI when you can have a team? Multi-agent systems employ multiple specialized AI agents that collaborate to tackle complex problems. Think of it as a distributed AI workforce. Instead of one generalist AI, you break down tasks (like financial analysis) and assign them to agents with specific expertise: a data retriever, a market analyst, a sentiment specialist, etc.</p>
+                                <p id="4112" class="pw-post-body-paragraph pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb fz bk" data-selectable-paragraph=""><strong class="pg mm">Advantages of the Multi-Agent Approach:</strong></p>
+                                <ul class="">
+                                    <li id="39b2" class="pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb abc zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Modularity &amp; Specialization:</strong> Each agent focuses on what it does best, improving efficiency and accuracy.</li>
+                                    <li id="f131" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Parallelism &amp; Speed:</strong> Multiple agents can work simultaneously, drastically speeding up analysis.</li>
+                                    <li id="9b6d" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Scalability &amp; Adaptability:</strong> Easily add or modify agents as market conditions or analysis needs change.</li>
+                                    <li id="bf75" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Robustness:</strong> The failure of one agent doesn’t necessarily crash the whole system.</li>
+                                    <li id="da17" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Improved Decision-Making:</strong> Problems are viewed from multiple angles, leading to more comprehensive solutions.</li>
+                                    <li id="f0f7" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Real-Time Responsiveness:</strong> Crucial for reacting quickly to market movements.</li>
+                                </ul>
+                                <p id="1ac3" class="pw-post-body-paragraph pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb fz bk" data-selectable-paragraph=""><strong class="pg mm">Multi-Agent Systems in Action in Finance:</strong></p>
+                                <ul class="">
+                                    <li id="7565" class="pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb abc zv zw bk" data-selectable-paragraph="">Optimizing investment strategies with real-time data.</li>
+                                    <li id="4ba5" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph="">Enhancing risk management through diverse perspectives.</li>
+                                    <li id="2ba6" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph="">Automating compliance checks and regulatory reporting.</li>
+                                    <li id="99d5" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph="">Improving fraud detection by monitoring transactions for anomalies.</li>
+                                    <li id="0931" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph="">Simulating market dynamics for better understanding.</li>
+                                    <li id="3688" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph="">Developing and backtesting trading strategies safely.</li>
+                                    <li id="8a66" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph="">Managing complex portfolios and executing trades efficiently.</li>
+                                </ul>
+                                <h2 id="53b4" class="zf zg pf bf zh mn zi mo mq mr zj ms mu js zk jt jw mx zl my nb nc zm nd ng zn bk" data-selectable-paragraph="">Introducing the RAG Specialist Agent</h2>
+                                <p id="a6f4" class="pw-post-body-paragraph pd pe pf pg b ph abd pj pk pl abe pn po pp abf pr ps pt abg pv pw px abh pz qa qb fz bk" data-selectable-paragraph="">To fully leverage RAG within our multi-agent system, we introduce a dedicated <strong class="pg mm">RAG Specialist Agent</strong>.</p>
+                                <ul class="">
+                                    <li id="2712" class="pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb abc zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Role:</strong> Knowledge Retriever &amp; Context Provider</li>
+                                    <li id="93a7" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Goal:</strong> To efficiently query vector databases and external knowledge sources, retrieve the most relevant and up-to-date information based on other agents’ needs, and provide this context for augmented analysis.</li>
+                                    <li id="c12f" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Backstory:</strong> An expert in semantic search, vector embeddings, database optimization, and information retrieval architecture.</li>
+                                    <li id="d6e4" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Potential Tools:</strong> Vector Database Query Tools (interfaces for ChromaDB, Pinecone, FAISS, etc.), Document Loaders/Parsers, Web Search APIs, Knowledge Graph Query Tools.</li>
+                                </ul>
+                                <p id="d481" class="pw-post-body-paragraph pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb fz bk" data-selectable-paragraph="">This agent acts as the librarian and research assistant for the entire crew, ensuring that all other agents have access to the best possible information before making decisions or generating insights.</p>
+                                <h2 id="2a7f" class="zf zg pf bf zh mn zi mo mq mr zj ms mu js zk jt jw mx zl my nb nc zm nd ng zn bk" data-selectable-paragraph="">CrewAI: Your Orchestration Platform for Financial Agents</h2>
+                                <p id="af2d" class="pw-post-body-paragraph pd pe pf pg b ph abd pj pk pl abe pn po pp abf pr ps pt abg pv pw px abh pz qa qb fz bk" data-selectable-paragraph="">CrewAI is a lean, fast Python framework specifically designed for building and managing multi-agent systems. It’s independent and offers both high-level simplicity for quick development and low-level control for customization — perfect for creating tailored financial AI teams.</p>
+                                <p id="4f1a" class="pw-post-body-paragraph pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb fz bk" data-selectable-paragraph=""><strong class="pg mm">Key CrewAI Features for Finance:</strong></p>
+                                <ul class="">
+                                    <li id="c5cc" class="pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb abc zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Role-Based Agents:</strong> Define agents with specific roles (like Market Analyst), goals, and backstories.</li>
+                                    <li id="ecd4" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Flexible Tools:</strong> Equip agents with custom functions or APIs (their “tools”) to interact with the outside world — fetching data, running calculations, executing code, etc.</li>
+                                    <li id="78f2" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Example Tools:</strong>Financial Data API Clients (Alpha Vantage, Yahoo Finance)</li>
+                                    <li id="61b9" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph="">Web Scraping Tools (using libraries like BeautifulSoup)</li>
+                                    <li id="a121" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph="">Sentiment Analysis APIs or Libraries (NLTK, spaCy, Transformers)</li>
+                                    <li id="899d" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph="">Technical Analysis Libraries (TA-Lib wrappers)</li>
+                                    <li id="cd7d" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph="">Quantitative Libraries (NumPy, SciPy for risk models)</li>
+                                    <li id="9b3b" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Code Execution Tools (PythonREPLTool):</strong> Allow agents to write and run Python code for custom calculations, data manipulation, or simple strategy testing.</li>
+                                    <li id="40e9" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Writing/Reporting Tools:</strong> Format outputs or generate summaries.</li>
+                                    <li id="467d" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph="">Vector Database Query Tools (for the RAG Specialist).</li>
+                                    <li id="97a6" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Intelligent Collaboration:</strong> Agents work together, share insights, and coordinate tasks (sequentially or hierarchically).</li>
+                                    <li id="4fb3" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Task Management:</strong> Define workflows (sequential or parallel) with automatic dependency management.</li>
+                                    <li id="9da4" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Memory &amp; Context:</strong> Agents remember past interactions for coherent reasoning.</li>
+                                    <li id="932c" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Monitoring &amp; Observability:</strong> Track agent performance and identify areas for improvement.</li>
+                                </ul>
+                                <h2 id="fa63" class="zf zg pf bf zh mn zi mo mq mr zj ms mu js zk jt jw mx zl my nb nc zm nd ng zn bk" data-selectable-paragraph="">Introducing the Manager Agent</h2>
+                                <p id="5808" class="pw-post-body-paragraph pd pe pf pg b ph abd pj pk pl abe pn po pp abf pr ps pt abg pv pw px abh pz qa qb fz bk" data-selectable-paragraph="">To ensure smooth operation and effective collaboration within our growing team of specialized agents, we introduce a <strong class="pg mm">Manager Agent</strong>.</p>
+                                <ul class="">
+                                    <li id="f5ad" class="pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb abc zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Role:</strong> Workflow Orchestrator &amp; Synthesizer</li>
+                                    <li id="efe6" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Goal:</strong> looks after the entire analysis process, delegate tasks to appropriate agents, ensure timely completion, manage dependencies, and synthesize the findings from different agents into a final, coherent output or recommendation.</li>
+                                    <li id="b681" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Backstory:</strong> An experienced project manager adept at coordinating complex systems, ensuring alignment with high-level objectives, and facilitating effective communication between specialized units.</li>
+                                    <li id="aa37" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Potential Tools:</strong> Task Scheduling/Delegation Tools (leveraging CrewAI’s internal mechanics), Progress Monitoring Tools, Report Aggregation/Formatting Tools, Quality Assurance Checks.</li>
+                                </ul>
+                                <p id="95ef" class="pw-post-body-paragraph pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb fz bk" data-selectable-paragraph="">The Manager Agent acts as the conductor of the AI orchestra, ensuring all the specialized agents play their part effectively and contribute to the overall goal.</p>
+                                <h2 id="5218" class="zf zg pf bf zh mn zi mo mq mr zj ms mu js zk jt jw mx zl my nb nc zm nd ng zn bk" data-selectable-paragraph="">Empowering Agents with Gemini: The Brains Behind the Analysis</h2>
+                                <p id="e139" class="pw-post-body-paragraph pd pe pf pg b ph abd pj pk pl abe pn po pp abf pr ps pt abg pv pw px abh pz qa qb fz bk" data-selectable-paragraph="">Gemini, Google’s advanced AI model, is an excellent choice to power the “thinking” of CrewAI agents.</p>
+                                <ul class="">
+                                    <li id="bf5b" class="pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb abc zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Native Multimodality:</strong> Understands text, code, and potentially images/charts — great for diverse financial data.</li>
+                                    <li id="ee64" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Strong Reasoning:</strong> Excels at natural language, complex math, and code generation — perfect for financial analysis and strategy development.</li>
+                                    <li id="2ff9" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Scalability:</strong> Efficiently processes the large datasets common in finance.</li>
+                                    <li id="7f4c" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Real-Time Capability:</strong> Designed to handle streaming data for timely insights.</li>
+                                    <li id="2617" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Google Ecosystem Integration:</strong> Connects with tools like Sheets and Docs for seamless workflows (if applicable).</li>
+                                </ul>
+                                <p id="9c08" class="pw-post-body-paragraph pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb fz bk" data-selectable-paragraph="">Using Gemini as the LLM gives the CrewAI agents powerful cognitive abilities to understand financial nuances and generate insightful outputs.</p>
+                                <h2 id="e2ec" class="zf zg pf bf zh mn zi mo mq mr zj ms mu js zk jt jw mx zl my nb nc zm nd ng zn bk" data-selectable-paragraph="">Building a Financial Analysis Powerhouse: Enhanced Implementation</h2>
+                                <p id="45a8" class="pw-post-body-paragraph pd pe pf pg b ph abd pj pk pl abe pn po pp abf pr ps pt abg pv pw px abh pz qa qb fz bk" data-selectable-paragraph="">Let’s revisit our portfolio management and trading decision system, now incorporating the RAG Specialist and Manager Agent, along with more specific tools.</p>
+                                <p id="efe5" class="pw-post-body-paragraph pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb fz bk" data-selectable-paragraph=""><strong class="pg mm">Our Enhanced AI Agent Crew:</strong></p>
+                                <p id="55a8" class="pw-post-body-paragraph pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb fz bk" data-selectable-paragraph=""><strong class="pg mm">RAG Specialist Agent:</strong> (As defined above) Retrieves relevant context from vector databases and external sources.</p>
+                                <ul class="">
+                                    <li id="a4a3" class="pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb abc zv zw bk" data-selectable-paragraph=""><em class="zt">Tools:</em> Vector DB Client, Document Parsers, Web Search Tool.</li>
+                                </ul>
+                                <p id="018c" class="pw-post-body-paragraph pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb fz bk" data-selectable-paragraph=""><strong class="pg mm">Data Retriever Agent:</strong> Fetches real-time and historical market data.</p>
+                                <ul class="">
+                                    <li id="999d" class="pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb abc zv zw bk" data-selectable-paragraph=""><em class="zt">Role:</em> Financial Data Specialist</li>
+                                    <li id="a818" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><em class="zt">Goal:</em> Acquire accurate, timely market data via APIs and other sources.</li>
+                                    <li id="c82a" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><em class="zt">Backstory:</em> Expert in financial data APIs, web scraping, and data cleaning.</li>
+                                    <li id="5dc4" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><em class="zt">Tools:</em> AlphaVantageTool, YahooFinanceTool, Custom Web Scraper Tool.</li>
+                                </ul>
+                                <p id="3b72" class="pw-post-body-paragraph pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb fz bk" data-selectable-paragraph=""><strong class="pg mm">Market Analyst Agent:</strong> Analyzes market trends, economic indicators, and performs technical/fundamental analysis.</p>
+                                <ul class="">
+                                    <li id="77a4" class="pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb abc zv zw bk" data-selectable-paragraph=""><em class="zt">Role:</em> Quantitative &amp; Qualitative Analyst</li>
+                                    <li id="ec85" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><em class="zt">Goal:</em> Identify investment opportunities and risks based on broad market conditions and specific asset analysis.</li>
+                                    <li id="78ce" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><em class="zt">Backstory:</em> Experienced analyst skilled in technical indicators, macroeconomic analysis, and financial modeling.</li>
+                                    <li id="0140" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><em class="zt">Tools:</em> WebsiteSearchTool, EconomicDataTool (FRED), TechnicalAnalysisTool (TA-Lib), CodeExecutionTool.</li>
+                                </ul>
+                                <p id="d024" class="pw-post-body-paragraph pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb fz bk" data-selectable-paragraph=""><strong class="pg mm">News Sentiment Analyzer Agent:</strong> Gauges market sentiment from news and social media.</p>
+                                <ul class="">
+                                    <li id="4eb1" class="pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb abc zv zw bk" data-selectable-paragraph=""><em class="zt">Role:</em> Sentiment Analysis Expert</li>
+                                    <li id="9e7d" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><em class="zt">Goal:</em> Quantify market mood towards specific assets or the market overall.</li>
+                                    <li id="6531" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><em class="zt">Backstory:</em> NLP expert specializing in financial text and sentiment extraction.</li>
+                                    <li id="6d45" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><em class="zt">Tools:</em> SentimentAnalysisAPI_Tool, SocialMediaMonitorTool, WebsiteSearchTool.</li>
+                                </ul>
+                                <p id="6f4f" class="pw-post-body-paragraph pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb fz bk" data-selectable-paragraph=""><strong class="pg mm">Trading Strategist Agent:</strong> Develops and backtests trading strategies.</p>
+                                <ul class="">
+                                    <li id="067a" class="pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb abc zv zw bk" data-selectable-paragraph=""><em class="zt">Role:</em> Strategy Developer &amp; Backtester</li>
+                                    <li id="5f1b" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><em class="zt">Goal:</em> Generate actionable trading signals (buy/sell/hold) based on integrated analysis.</li>
+                                    <li id="9d93" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><em class="zt">Backstory:</em> Seasoned algorithmic trader proficient in strategy design and validation.</li>
+                                    <li id="1eb1" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><em class="zt">Tools:</em> BacktestingFrameworkTool, CodeExecutionTool, TechnicalAnalysisTool.</li>
+                                </ul>
+                                <p id="d0cf" class="pw-post-body-paragraph pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb fz bk" data-selectable-paragraph=""><strong class="pg mm">Risk Management Agent:</strong> Assesses portfolio risk and potential trade risks.</p>
+                                <ul class="">
+                                    <li id="8526" class="pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb abc zv zw bk" data-selectable-paragraph=""><em class="zt">Role:</em> Risk Assessment Specialist</li>
+                                    <li id="c11c" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><em class="zt">Goal:</em> Quantify and mitigate financial risk using established models.</li>
+                                    <li id="db76" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><em class="zt">Backstory:</em> Quantitative risk expert familiar with VaR, portfolio theory, and stress testing.</li>
+                                    <li id="4a76" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph=""><em class="zt">Tools:</em> VaR_CalculationTool, PortfolioOptimizationTool, MonteCarloSimulationTool, CodeExecutionTool.</li>
+                                </ul>
+                                <p id="be36" class="pw-post-body-paragraph pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb fz bk" data-selectable-paragraph=""><strong class="pg mm">Manager Agent:</strong> (As defined above) Oversees the workflow, coordinates agents, and synthesizes the final output.</p>
+                                <ul class="">
+                                    <li id="6961" class="pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb abc zv zw bk" data-selectable-paragraph=""><em class="zt">Tools:</em> CrewAI Task Management, Report Synthesizer Tool.</li>
+                                </ul>
+                                <p id="436b" class="pw-post-body-paragraph pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb fz bk" data-selectable-paragraph=""><strong class="pg mm">Example Workflow &amp; Tasks:</strong></p>
+                                <ol class="">
+                                    <li id="83b6" class="pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb zu zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Task (Manager):</strong> Define analysis scope (e.g., analyze AAPL, GOOGL, MSFT for next trading day). Delegate initial data gathering.</li>
+                                    <li id="c1d6" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb zu zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Task (RAG Specialist):</strong> Retrieve recent relevant news summaries, analyst reports, and regulatory filings related to the target stocks and overall market sector from the knowledge base. Provide this context.</li>
+                                    <li id="ea24" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb zu zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Task (Data Retriever):</strong> Fetch latest price/volume data and relevant historical data for AAPL, GOOGL, MSFT.</li>
+                                    <li id="75d9" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb zu zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Task (Market Analyst):</strong> Analyze retrieved data and RAG context. Assess current market trends, economic indicators, perform technical analysis on target stocks. Generate market outlook report.</li>
+                                    <li id="e473" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb zu zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Task (News Sentiment Analyzer):</strong> Analyze retrieved news/social media data and RAG context. Generate sentiment scores/summaries for target stocks.</li>
+                                    <li id="5e4f" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb zu zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Task (Trading Strategist):</strong> Integrate Market Analyst report, Sentiment report, and RAG context. Develop potential buy/sell/hold signals with entry/exit points. Optionally, run simple backtests using the CodeExecutionTool.</li>
+                                    <li id="9e9b" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb zu zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Task (Risk Manager):</strong> Evaluate the risk profile of the proposed trades/strategy using its tools (e.g., calculate potential portfolio VaR change). Suggest risk mitigation adjustments if necessary.</li>
+                                    <li id="6e80" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb zu zv zw bk" data-selectable-paragraph=""><strong class="pg mm">Task (Manager):</strong> Synthesize inputs from all agents (Analysis, Sentiment, Strategy, Risk Assessment) into a final, concise recommendation report.</li>
+                                </ol>
+                                <pre class="yp yq yr ys yt abi abj abk bp abl bb bk">
+                                    <code class="language-python">
+                                                                       
+import os
+import requests
+import yfinance as yf
+import pandas as pd
+import numpy as np
+from bs4 import BeautifulSoup
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+from ta.volatility import BollingerBands
+from ta.momentum import RSIIndicator
+from ta.trend import MACD
+from crewai_tools import BaseTool
+from typing import Type, Any
+from pydantic.v1 import BaseModel, Field # crewai uses pydantic v1
+
+
+# --- RAG Simulation Tool ---
+class SimulatedVectorDBQueryTool(BaseTool):
+    name: str = "Simulated Knowledge Base Query"
+    description: str = ("Queries a simulated knowledge base for relevant information "
+                        "based on keywords. Input should be a string of keywords.")
+
+    # Simulate a simple knowledge base
+    knowledge_base = {
+        "market outlook": "Recent reports suggest cautious optimism in the tech sector, while energy faces headwinds.",
+        "AAPL news": "Apple reported strong earnings but issued conservative guidance for the next quarter.",
+        "GOOGL analysis": "Analysts remain bullish on Google's advertising revenue growth.",
+        "MSFT strategy": "Microsoft continues to expand its cloud offerings, driving significant growth.",
+        "interest rates": "The Federal Reserve is expected to maintain current interest rates in the upcoming meeting.",
+        "inflation": "Inflation metrics show a slight decrease but remain above the target range."
+    }
+
+    def _run(self, keywords: str) -> str:
+        results = []
+        search_terms = keywords.lower().split()
+        try:
+            for key, value in self.knowledge_base.items():
+                if any(term in key.lower() for term in search_terms):
+                    results.append(value)
+            if not results:
+                return "No specific information found for these keywords in the simulated knowledge base."
+            return "\n".join(results)
+        except Exception as e:
+            return f"Error querying simulated knowledge base: {e}"
+
+# --- Financial Data Tool ---
+class MarketDataTool(BaseTool):
+    name: str = "Yahoo Finance Market Data Fetcher"
+    description: str = ("Fetches historical stock price (Open, High, Low, Close) and Volume "
+                        "data from Yahoo Finance. Input should be the stock ticker symbol (e.g., 'AAPL'). "
+                        "Fetches data for the last 3 months by default.")
+
+    def _run(self, ticker: str) -> str:
+        try:
+            stock = yf.Ticker(ticker)
+            # Fetch data for the last 3 months
+            hist = stock.history(period="3mo")
+            if hist.empty:
+                return f"No historical data found for ticker {ticker} on Yahoo Finance."
+            # Return the data as a string representation (or summary)
+            return f"Fetched 3 months data for {ticker}:\n{hist.tail().to_string()}" # Show last 5 days
+        except Exception as e:
+            return f"Error fetching market data for {ticker}: {e}"
+
+# --- Basic Web Scraper Tool ---
+class SimpleWebScraperTool(BaseTool):
+    name: str = "Simple Financial News Headline Scraper"
+    description: str = ("Scrapes headlines from a specific financial news site "
+                       "(e.g., MarketWatch Market Pulse). Input should be the URL "
+                       "'https://www.marketwatch.com/investing/pulse'.")
+
+    def _run(self, url: str = "https://www.marketwatch.com/investing/pulse") -> str:
+        # Basic check to ensure the right URL is somewhat intended
+        if "marketwatch.com" not in url:
+             return "Error: This tool is configured for MarketWatch Pulse headlines."
+        try:
+            headers = {'User-Agent': 'Mozilla/5.0'} # Some sites block default python user-agent
+            response = requests.get(url, headers=headers, timeout=10)
+            response.raise_for_status() # Raise an exception for bad status codes
+
+            soup = BeautifulSoup(response.text, 'html.parser')
+
+            # NOTE: These selectors are specific to MarketWatch as of Apr 2025 and WILL BREAK if the site changes.
+            # This demonstrates the fragility of scraping.
+            headlines = []
+            # Look for common headline patterns (this requires inspecting the site)
+            elements = soup.select('h3.article__headline a.link, div.article__content h3 a') # Example selectors
+            
+            for elem in elements[:10]: # Limit to first 10 found headlines
+                if elem and elem.text:
+                    headlines.append(elem.text.strip())
+
+            if not headlines:
+                return "Could not find headlines using known selectors. Site structure may have changed."
+
+            return "Recent Headlines:\n- " + "\n- ".join(headlines)
+
+        except requests.exceptions.RequestException as e:
+            return f"Error during web request: {e}"
+        except Exception as e:
+            return f"Error scraping headlines from {url}: {e}"
+
+# --- Technical Analysis Tool ---
+class TechnicalAnalysisTool(BaseTool):
+    name: str = "Stock Technical Analysis Calculator"
+    description: str = ("Calculates common technical indicators (SMA 20, RSI 14, MACD) for a "
+                        "given stock ticker using the last 3 months of historical data. "
+                        "Input should be the stock ticker symbol (e.g., 'MSFT').")
+
+    def _run(self, ticker: str) -> str:
+        try:
+            stock = yf.Ticker(ticker)
+            hist = stock.history(period="3mo")
+            if hist.empty:
+                return f"No historical data found for {ticker} to perform technical analysis."
+
+            # Ensure DataFrame has 'Close' column
+            if 'Close' not in hist.columns:
+                return f"Historical data for {ticker} missing 'Close' column."
+
+            # Calculate indicators using the 'ta' library
+            hist['SMA_20'] = hist['Close'].rolling(window=20).mean()
+            rsi_indicator = RSIIndicator(close=hist['Close'], window=14)
+            hist['RSI_14'] = rsi_indicator.rsi()
+            macd_indicator = MACD(close=hist['Close'])
+            hist['MACD_diff'] = macd_indicator.macd_diff() # MACD Line - Signal Line
+
+            # Get the latest values
+            latest_sma = hist['SMA_20'].iloc[-1]
+            latest_rsi = hist['RSI_14'].iloc[-1]
+            latest_macd_diff = hist['MACD_diff'].iloc[-1]
+
+            return (f"Technical Indicators for {ticker} (latest):\n"
+                    f"- SMA(20): {latest_sma:.2f}\n"
+                    f"- RSI(14): {latest_rsi:.2f}\n"
+                    f"- MACD Diff: {latest_macd_diff:.2f}")
+
+        except Exception as e:
+            return f"Error calculating technical indicators for {ticker}: {e}"
+
+# --- Sentiment Analysis Tool ---
+class SentimentAnalysisTool(BaseTool):
+    name: str = "Simple Text Sentiment Analyzer"
+    description: str = ("Analyzes the sentiment (positive, neutral, negative) of a given "
+                        "text snippet using NLTK's VADER. Input is the text to analyze.")
+    analyzer: SentimentIntensityAnalyzer = None
+
+    def __init__(self, **kwargs: Any):
+        super().__init__(**kwargs)
+        # Initialize analyzer upon instantiation
+        self.analyzer = SentimentIntensityAnalyzer()
+
+    def _run(self, text: str) -> str:
+        try:
+            vs = self.analyzer.polarity_scores(text)
+            score = vs['compound']
+            if score >= 0.05:
+                sentiment = "Positive"
+            elif score <= -0.05:
+                sentiment = "Negative"
+            else:
+                sentiment = "Neutral"
+            return f"Sentiment: {sentiment} (Compound Score: {score:.3f})"
+        except Exception as e:
+            return f"Error analyzing sentiment: {e}"
+
+# --- Risk Calculation Tool ---
+class VaRCalculationTool(BaseTool):
+    name: str = "Simple Historical Value-at-Risk (VaR) Calculator"
+    description: str = ("Calculates the 1-day 95% historical Value-at-Risk (VaR) for a stock "
+                        "based on the last year of daily returns. Input is the stock ticker symbol (e.g., 'GOOGL').")
+
+    def _run(self, ticker: str) -> str:
+        try:
+            stock = yf.Ticker(ticker)
+            hist = stock.history(period="1y") # Get 1 year of data
+            if hist.empty or 'Close' not in hist.columns:
+                return f"Insufficient historical data for {ticker} to calculate VaR."
+
+            # Calculate daily percentage returns
+            hist['Daily_Return'] = hist['Close'].pct_change()
+            
+            # Drop NaN values (first value will be NaN)
+            daily_returns = hist['Daily_Return'].dropna()
+
+            if len(daily_returns) < 20: # Need some data points
+                 return f"Not enough return data points for {ticker} to calculate VaR reliably."
+
+            # Calculate VaR at 95% confidence level (5th percentile of returns)
+            var_95 = np.percentile(daily_returns, 5) # Or daily_returns.quantile(0.05)
+
+            return f"Estimated 1-Day 95% Historical VaR for {ticker}: {var_95:.2%}"
+
+        except Exception as e:
+            return f"Error calculating VaR for {ticker}: {e}"
+
+# --- Basic Report Formatting Tool ---
+class ReportFormatterTool(BaseTool):
+    name: str = "Simple Markdown Report Formatter"
+    description: str = ("Formats provided text sections into a basic markdown report. "
+                       "Input should be a dictionary where keys are section titles and values are the text content.")
+
+    def _run(self, report_sections: dict) -> str:
+        try:
+            markdown_report = f"# Financial Analysis Report - {pd.Timestamp.now().strftime('%Y-%m-%d')}\n\n"
+            for title, content in report_sections.items():
+                 markdown_report += f"## {title.replace('_', ' ').title()}\n"
+                 markdown_report += f"{content}\n\n"
+            return markdown_report.strip()
+        except Exception as e:
+            return f"Error formatting report: {e}"
+
+--
+from crewai_tools import PythonREPLTool
+# Note: This tool allows agents to execute arbitrary Python code.
+# Use with EXTREME caution in production environments due to security risks.
+python_repl_tool = PythonREPLTool()
+
+# --- Instantiate all tools ---
+vector_db_tool = SimulatedVectorDBQueryTool()
+market_data_tool = MarketDataTool()
+simple_scraper_tool = SimpleWebScraperTool()
+tech_analysis_tool = TechnicalAnalysisTool()
+sentiment_analyzer_tool = SentimentAnalysisTool()
+var_calculator_tool = VaRCalculationTool()
+report_formatter_tool = ReportFormatterTool()
+# Web search tool from crewai_tools
+from crewai_tools import WebsiteSearchTool 
+# You might want to use Serper for better web search, requires SERPER_API_KEY env var
+# from crewai_tools import SerperDevTool
+# web_search_tool = SerperDevTool() 
+web_search_tool = WebsiteSearchTool() # Using the basic one for less setup
+                                    </code>    
+                                </pre>
+                                <p id="eec5" class="pw-post-body-paragraph pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb fz bk" data-selectable-paragraph="">Multi Agents code block:</p>
+                                <pre class="yp yq yr ys yt abi abj abk bp abl bb bk">
+                                    <code class="language-python">
+                                                                        
+import os
+from crewai import Crew, Agent, Task, Process
+from langchain_google_genai import GoogleGenerativeAI
+from dotenv import load_dotenv
+
+load_dotenv() # Load environment variables from .env file
+
+# Initialize Gemini LLM
+gemini_llm = GoogleGenerativeAI(model="gemini-2.0-flash-001", google_api_key=os.environ.get("GOOGLE_API_KEY"))
+
+# Define Agents with Tools 
+
+rag_specialist = Agent(
+    role='Knowledge Retriever & Context Provider',
+    goal="""Retrieve the most relevant, up-to-date, and comprehensive contextual information
+    (news, analyst sentiment, market trends) about a given stock symbol ({stock_symbol}) and its sector.
+    Prioritize information quality and synthesis over raw data volume.""",
+    backstory="""An expert in semantic search, vector embeddings, and information retrieval systems.
+    You excel at querying diverse sources (vector databases, web search) and synthesizing disparate
+    pieces of information into a coherent narrative. You understand the nuances of financial markets
+    and can filter noise to extract meaningful context for analysts.""",
+    llm=gemini_llm,
+    tools=[vector_db_tool, web_search_tool],
+    verbose=True,
+    allow_delegation=True
+)
+
+data_retriever = Agent(
+    role='Financial Data Specialist',
+    goal="""Accurately and reliably acquire timely market data (historical prices, volume)
+    for a specific stock symbol ({stock_symbol}) using designated APIs (e.g., Yahoo Finance).
+    Ensure data integrity and correct formatting for downstream analysis.""",
+    backstory="""An expert in interacting with financial data APIs like Yahoo Finance.
+    You are meticulous about data accuracy, handling potential API errors gracefully,
+    and providing data in a clean, usable format. You understand the importance of
+    reliable data for quantitative analysis.""",
+    llm=gemini_llm,
+    tools=[market_data_tool],
+    verbose=True,
+    allow_delegation=True
+)
+
+market_analyst = Agent(
+    role='Quantitative & Qualitative Analyst',
+    goal="""Analyze market data for {stock_symbol} to identify potential investment opportunities and risks.
+    This involves calculating and interpreting key technical indicators, correlating them with market context,
+    and identifying significant patterns or events. Utilize calculation tools and web search for confirmation.""",
+    backstory="""A seasoned market analyst with deep expertise in technical analysis (chart patterns, indicators like SMA, RSI, MACD),
+    macroeconomic factors, and interpreting financial news. You are skilled at using quantitative tools
+    and coding for custom analysis, bridging the gap between raw data and actionable insights. You focus on
+    objective interpretation supported by evidence.""",
+    llm=gemini_llm,
+    tools=[tech_analysis_tool, web_search_tool, python_repl_tool],
+    verbose=True,
+    allow_delegation=True,
+)
+
+news_sentiment_analyzer = Agent(
+    role='Sentiment Analysis Expert',
+    goal="""Quantify the prevailing market sentiment towards {stock_symbol} by analyzing news headlines,
+    articles, and contextual information. Provide an aggregated sentiment score and identify key themes
+    driving the sentiment.""",
+    backstory="""An NLP expert specializing in financial text analysis. You leverage advanced sentiment analysis
+    models and web scraping techniques to gauge the market's mood concerning specific assets. You understand
+    that sentiment can be a leading indicator and focus on providing a nuanced view, including intensity
+    and key drivers of the observed sentiment.""",
+    llm=gemini_llm,
+    tools=[sentiment_analyzer_tool, simple_scraper_tool, web_search_tool],
+    verbose=True,
+    allow_delegation=True
+)
+
+trading_strategist = Agent(
+    role='Strategy Developer',
+    goal="""Synthesize technical analysis, sentiment data, and market context to generate a clear,
+    actionable short-term trading view (e.g., Bullish, Bearish, Neutral) for {stock_symbol}.
+    Provide concise justification based on the integrated analysis.""",
+    backstory="""An experienced algorithmic trader and strategist, proficient in translating complex analysis
+    into concrete trading decisions. You excel at weighing conflicting signals (e.g., technical vs. sentiment)
+    and formulating a probabilistic view. You can use coding tools to test simple strategic logic or weighting.""",
+    llm=gemini_llm,
+    tools=[tech_analysis_tool, python_repl_tool], # Can use TA tool for reference and REPL for logic
+    verbose=True,
+    allow_delegation=True
+)
+
+risk_manager = Agent(
+    role='Risk Assessment Specialist',
+    goal="""Quantify the potential downside risk for {stock_symbol} using standard financial risk models like
+    Value-at-Risk (VaR). Report the risk metric clearly and concisely.""",
+    backstory="""A quantitative risk expert with a strong background in financial modeling, portfolio theory,
+    and risk metrics. You are familiar with calculating and interpreting VaR and other risk measures,
+    understanding their assumptions and limitations. You focus on providing objective risk assessments.""",
+    llm=gemini_llm,
+    
+    tools=[var_calculator_tool, python_repl_tool], # REPL for potential custom risk calcs if needed
+    verbose=True,
+    allow_delegation=True
+)
+
+manager_agent = Agent(
+    role='Workflow Orchestrator & Report Synthesizer',
+    goal="""Oversee the entire analysis workflow for {stock_symbol}, ensuring agents collaborate effectively,
+    meet their objectives, and maintain high quality standards. Synthesize all findings into a cohesive,
+    well-structured final report for the end-user.""",
+    backstory="""An experienced AI project manager specialized in coordinating multi-agent systems for complex
+    analysis tasks. You excel at delegation, quality control, and synthesizing information from diverse sources
+    into a clear, actionable final product. You ensure the final report directly addresses the initial request
+    and integrates all analytical components logically.""",
+    llm=gemini_llm,
+    tools=[report_formatter_tool], # Primarily uses formatter, but orchestrates others
+    verbose=True,
+    allow_delegation=True # Can delegate tasks to other agents
+)
+
+
+# --- Define Tasks with Enhanced Descriptions (incorporating CoT-like steps) ---
+
+stock_symbol = 'AAPL' # Define the target stock
+
+task_retrieve_context = Task(
+    description=f"""
+    **Goal:** Gather comprehensive context for {stock_symbol}.
+    **Steps:**
+    1.  Identify key search terms related to {stock_symbol}, its industry (Tech/Consumer Electronics), and recent market trends.
+    2.  Query the vector database for internal analyst notes, past reports, or relevant saved articles using these terms.
+    3.  Perform web searches for the latest news headlines, analyst rating changes, and major sector news impacting {stock_symbol}.
+    4.  Filter results for relevance and timeliness (e.g., last month).
+    5.  Synthesize the findings into a structured summary covering: general market sentiment towards tech, specific {stock_symbol} news (product launches, earnings, competition), and notable analyst opinions.
+    **Deliverable:** A structured summary report.
+    """,
+    agent=rag_specialist,
+    expected_output=f"""A structured summary containing sections for:
+    - Overall Tech Market Outlook/Sentiment Summary
+    - Recent {stock_symbol}-Specific News Highlights
+    - Summary of Recent Analyst Ratings/Commentary (if found)"""
+)
+
+task_fetch_market_data = Task(
+    description=f"""
+    **Goal:** Obtain historical market data for {stock_symbol}.
+    **Steps:**
+    1.  Target stock: {stock_symbol}.
+    2.  Required data: Daily Open, High, Low, Close, Volume (OHLCV).
+    3.  Time period: Last 3 calendar months from today.
+    4.  Use the Yahoo Finance tool to fetch this data.
+    5.  Verify the data seems complete for the period (e.g., no large gaps).
+    6.  Return the data as a single string (e.g., CSV format or similar structured text).
+    **Deliverable:** A string containing the OHLCV data.
+    """,
+    agent=data_retriever,
+    expected_output=f"A string containing the last 3 months of OHLCV data for {stock_symbol}."
+)
+
+task_analyze_technicals = Task(
+    description=f"""
+    **Goal:** Perform technical analysis on {stock_symbol}'s historical data.
+    **Inputs:** Historical data string from the data fetcher task.
+    **Steps:**
+    1.  Parse the provided historical data. If necessary, use the Python REPL tool for parsing/formatting.
+    2.  Calculate the following technical indicators using the appropriate tool or Python REPL:
+        * Simple Moving Average (SMA) with a 20-day period. Note the latest value.
+        * Relative Strength Index (RSI) with a 14-day period. Note the latest value and whether it indicates overbought (>70) or oversold (<30) conditions.
+        * Moving Average Convergence Divergence (MACD) with standard parameters (e.g., 12, 26, 9). Note the latest MACD line, signal line values, and histogram value. Identify any recent crossovers.
+    3.  Optionally, use web search to check for *very recent* (today/yesterday) major technical chart events (e.g., significant gap up/down, break of major support/resistance) that might not be fully reflected in lagging indicators.
+    4.  Synthesize the findings, interpreting the current state of each indicator.
+    **Deliverable:** A technical analysis summary report.
+    """,
+    agent=market_analyst,
+    context=[task_fetch_market_data], # Depends on fetched data
+    expected_output=f"""A report summarizing:
+    - Latest SMA(20) value and trend implication.
+    - Latest RSI(14) value and interpretation (neutral, overbought, oversold).
+    - Latest MACD value, signal line, histogram, and interpretation (e.g., bullish/bearish crossover, momentum).
+    - Mention of any significant recent chart events found via web search.
+    - A brief overall technical picture (e.g., 'mildly bullish momentum', 'showing signs of consolidation')."""
+)
+
+task_analyze_sentiment = Task(
+    description=f"""
+    **Goal:** Assess the current market sentiment surrounding {stock_symbol}.
+    **Inputs:** Contextual information from the RAG specialist task.
+    **Steps:**
+    1.  Review the contextual summary provided (news, analyst notes).
+    2.  Identify a relevant financial news source (e.g., MarketWatch Pulse, Bloomberg headlines for {stock_symbol}). Use web search if needed to find a suitable URL.
+    3.  Use the simple scraper tool to extract recent headlines/snippets about {stock_symbol} from the chosen source.
+    4.  Apply the sentiment analysis tool to:
+        * The scraped headlines/snippets.
+        * The key points from the RAG context summary.
+    5.  Aggregate the sentiment scores. Calculate an overall average score (e.g., on a -1 to +1 scale).
+    6.  Summarize the findings, noting the overall sentiment score and mentioning key positive or negative themes driving the sentiment.
+    **Deliverable:** A sentiment analysis summary.
+    """,
+    agent=news_sentiment_analyzer,
+    context=[task_retrieve_context], # Depends on context
+    expected_output=f"""A summary report including:
+    - An overall sentiment score for {stock_symbol} (e.g., numerical score and qualitative label like Positive/Neutral/Negative).
+    - Key themes or news items identified as driving positive sentiment.
+    - Key themes or news items identified as driving negative sentiment."""
+)
+
+task_develop_strategy_view = Task(
+    description=f"""
+    **Goal:** Formulate a short-term trading view for {stock_symbol}.
+    **Inputs:** Technical analysis report, Sentiment analysis report.
+    **Steps:**
+    1.  Review the technical analysis: What is the trend? What is the momentum (RSI, MACD)? Are there key support/resistance levels suggested?
+    2.  Review the sentiment analysis: Is the current mood positive, negative, or neutral? Are there strong drivers?
+    3.  Synthesize these two aspects:
+        * Do technicals and sentiment align? (e.g., Bullish technicals + Positive sentiment)
+        * Do they conflict? (e.g., Bearish technicals + Positive sentiment - suggests caution or potential reversal)
+    4.  Consider the timeframe (short-term).
+    5.  Formulate a clear view: Bullish, Bearish, or Neutral.
+    6.  Write a brief justification explicitly referencing the key technical indicator(s) and sentiment findings that support the view. Use the REPL tool if a simple calculation (e.g., weighting scheme) helps decision-making.
+    **Deliverable:** A trading view statement with justification.
+    """,
+    agent=trading_strategist,
+    context=[task_analyze_technicals, task_analyze_sentiment], # Depends on analysis and sentiment
+    expected_output=f"""A concise statement comprising:
+    - **Trading View:** [Bullish/Bearish/Neutral]
+    - **Justification:** A brief explanation linking specific technical signals (e.g., 'RSI below 30 suggests oversold') and sentiment ('countered by negative news sentiment') to the derived view."""
+)
+
+task_assess_risk = Task(
+    description=f"""
+    **Goal:** Quantify the short-term downside risk for {stock_symbol} using VaR.
+    **Inputs:** Requires historical price data (implicitly accessible by the tool or potentially passed via context if the tool needs it explicitly).
+    **Steps:**
+    1.  Ensure access to the recent historical price data for {stock_symbol}.
+    2.  Use the Value-at-Risk (VaR) calculator tool.
+    3.  Specify the parameters: 1-day time horizon, 95% confidence level, using historical simulation method based on the available data.
+    4.  Execute the calculation.
+    5.  Report the resulting VaR percentage clearly.
+    **Deliverable:** The calculated VaR value.
+    """,
+    agent=risk_manager,
+    # Context could be added if the VaR tool explicitly needs the data string: context=[task_fetch_market_data],
+    expected_output=f"The calculated 1-day 95% historical VaR for {stock_symbol}, expressed as a percentage (e.g., '1-Day 95% VaR: 1.23%')."
+)
+
+task_synthesize_report = Task(
+    description=f"""
+    **Goal:** Create the final, comprehensive analysis report for {stock_symbol}.
+    **Inputs:** Outputs from all preceding tasks (Context, Technicals, Sentiment, Strategy View, Risk Assessment).
+    **Steps:**
+    1.  Gather the outputs from:
+        * `task_retrieve_context`
+        * `task_analyze_technicals`
+        * `task_analyze_sentiment`
+        * `task_develop_strategy_view`
+        * `task_assess_risk`
+    2.  Structure the final report logically. A recommended structure is:
+        * Executive Summary (1-2 sentences summarizing the overall picture and view).
+        * Market Context & News Summary (from `task_retrieve_context`).
+        * Technical Analysis (from `task_analyze_technicals`).
+        * Sentiment Analysis (from `task_analyze_sentiment`).
+        * Trading View & Justification (from `task_develop_strategy_view`).
+        * Risk Assessment (VaR) (from `task_assess_risk`).
+        * Disclaimer (standard non-advice clause).
+    3.  Synthesize the information for each section. Rephrase findings concisely; avoid simple copy-pasting. Ensure smooth transitions between sections.
+    4.  Use the report formatting tool to generate a clean, readable markdown report.
+    5.  Add a standard disclaimer stating this is not financial advice.
+    **Deliverable:** The final markdown report.
+    """,
+    agent=manager_agent,
+    context=[task_retrieve_context, task_analyze_technicals, task_analyze_sentiment, task_develop_strategy_view, task_assess_risk], # Depends on all previous results
+    expected_output=f"""A comprehensive, well-formatted markdown report covering the full analysis of {stock_symbol}, including:
+    - Executive Summary
+    - Market Context & News
+    - Technical Analysis (SMA, RSI, MACD interpretation)
+    - Sentiment Analysis (score and drivers)
+    - Trading View (Bullish/Bearish/Neutral) with Justification
+    - Risk Assessment (1-Day 95% VaR)
+    - Disclaimer"""
+)
+
+# --- Create and Run the Crew ---
+financial_crew = Crew(
+    agents=[manager_agent, rag_specialist, data_retriever, market_analyst, news_sentiment_analyzer, trading_strategist, risk_manager],
+    tasks=[
+        # Ordered logically based on dependencies
+        task_retrieve_context,
+        task_fetch_market_data,
+        task_analyze_technicals,
+        task_analyze_sentiment,
+        task_develop_strategy_view,
+        task_assess_risk,
+        task_synthesize_report # Manager's final task
+    ],
+    process=Process.hierarchical, # Manager delegates tasks based on dependencies
+    manager_llm=gemini_llm, 
+    verbose=True 
+)
+
+# Kick off the crew's work
+print(f"--- Starting Financial Analysis Crew for {stock_symbol} ---")
+try:
+    results = financial_crew.kickoff()
+
+    print("\n--- Final Analysis Report ---")
+    # The final result from a hierarchical process is typically the output of the last task assigned or synthesized by the manager.
+    print(results)
+
+except Exception as e:
+    print(f"\n--- An error occurred during crew execution ---")
+    print(e)
+    print("\nNote: If using placeholder tools/LLM, the output will be based on placeholder responses.")
+                                </code> 
+                                </pre>
+                                <h2 id="10ed" class="zf zg pf bf zh mn zi mo mq mr zj ms mu js zk jt jw mx zl my nb nc zm nd ng zn bk" data-selectable-paragraph="">The Role of Mathematics in Informed Financial Decisions</h2>
+                                <p id="0bce" class="pw-post-body-paragraph pd pe pf pg b ph abd pj pk pl abe pn po pp abf pr ps pt abg pv pw px abh pz qa qb fz bk" data-selectable-paragraph="">Quantitative finance relies heavily on mathematical models. In our AI system, these equations become tools wielded by the specialized agents.</p>
+                                <p id="9d29" class="pw-post-body-paragraph pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb fz bk" data-selectable-paragraph=""><strong class="pg mm">Common Mathematical Equations in Financial Analysis :</strong></p>
+                                <figure class="yp yq yr ys yt yu ym yn paragraph-image">
+                                    <div role="button" tabindex="0" class="yv yw dn yx bh yy">
+                                        <div class="ym yn abr">
+                                            <picture>
+                                                <source srcset="https://miro.medium.com/v2/resize:fit:640/format:webp/1*TaBFCi6vor3L5Bk8pVpo6w.png 640w, https://miro.medium.com/v2/resize:fit:720/format:webp/1*TaBFCi6vor3L5Bk8pVpo6w.png 720w, https://miro.medium.com/v2/resize:fit:750/format:webp/1*TaBFCi6vor3L5Bk8pVpo6w.png 750w, https://miro.medium.com/v2/resize:fit:786/format:webp/1*TaBFCi6vor3L5Bk8pVpo6w.png 786w, https://miro.medium.com/v2/resize:fit:828/format:webp/1*TaBFCi6vor3L5Bk8pVpo6w.png 828w, https://miro.medium.com/v2/resize:fit:1100/format:webp/1*TaBFCi6vor3L5Bk8pVpo6w.png 1100w, https://miro.medium.com/v2/resize:fit:1400/format:webp/1*TaBFCi6vor3L5Bk8pVpo6w.png 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px" type="image/webp">
+                                                <source data-testid="og" srcset="https://miro.medium.com/v2/resize:fit:640/1*TaBFCi6vor3L5Bk8pVpo6w.png 640w, https://miro.medium.com/v2/resize:fit:720/1*TaBFCi6vor3L5Bk8pVpo6w.png 720w, https://miro.medium.com/v2/resize:fit:750/1*TaBFCi6vor3L5Bk8pVpo6w.png 750w, https://miro.medium.com/v2/resize:fit:786/1*TaBFCi6vor3L5Bk8pVpo6w.png 786w, https://miro.medium.com/v2/resize:fit:828/1*TaBFCi6vor3L5Bk8pVpo6w.png 828w, https://miro.medium.com/v2/resize:fit:1100/1*TaBFCi6vor3L5Bk8pVpo6w.png 1100w, https://miro.medium.com/v2/resize:fit:1400/1*TaBFCi6vor3L5Bk8pVpo6w.png 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px"><img alt="" class="bh rx yz c" width="700" height="467" loading="lazy" role="presentation" src="https://miro.medium.com/v2/resize:fit:1050/1*TaBFCi6vor3L5Bk8pVpo6w.png">
+                                            </picture>
+                                        </div>
+                                    </div>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ac ck oq abs abt abu" role="separator"><span class="abv bx bm rz abw jd"></span><span class="abv bx bm rz abw jd"></span><span class="abv bx bm rz abw"></span></div>
+                    <div class="fz gi tm tn to">
+                        <div class="ac ck">
+                            <div class="hu bh hv hw hx hy">
+                                <ul class="">
+                                    <li id="5258" class="pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb abc zv zw bk" data-selectable-paragraph="">The <strong class="pg mm">Risk Management Agent</strong> might use Mean-Variance Optimization (calculating expected return and variance for different asset mixes) to find optimal portfolio allocations based on risk tolerance. It would use the VaR formula to quantify potential downside.</li>
+                                    <li id="c1b5" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph="">The <strong class="pg mm">Market Analyst</strong> and <strong class="pg mm">Risk Manager</strong> would both use Standard Deviation to measure volatility.</li>
+                                    <li id="bc28" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph="">The <strong class="pg mm">Market Analyst</strong> might use the P/E Ratio for comparative valuation.</li>
+                                    <li id="370e" class="pd pe pf pg b ph zx pj pk pl zy pn po pp zz pr ps pt aba pv pw px abb pz qa qb abc zv zw bk" data-selectable-paragraph="">The <strong class="pg mm">Trading Strategist</strong> could use DCF analysis (potentially via the CodeExecutionTool implementing the formula) to assess long-term intrinsic value.</li>
+                                </ul>
+                                <p id="9413" class="pw-post-body-paragraph pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb fz bk" data-selectable-paragraph="">Embedding these models within the agents allows the system to perform rigorous, data-driven financial analysis beyond simple pattern matching.</p>
+                                <h2 id="e568" class="zf zg pf bf zh mn zi mo mq mr zj ms mu js zk jt jw mx zl my nb nc zm nd ng zn bk" data-selectable-paragraph="">Conclusion: The Future of AI-Driven Financial Analysis</h2>
+                                <p id="5261" class="pw-post-body-paragraph pd pe pf pg b ph abd pj pk pl abe pn po pp abf pr ps pt abg pv pw px abh pz qa qb fz bk" data-selectable-paragraph="">Combining RAG with multi-agent systems, orchestrated by frameworks like CrewAI and powered by advanced LLMs like Gemini, marks a pivotal moment in financial analysis. This approach tackles data overload head-on, offering real-time insights, collaborative AI intelligence, and sophisticated analytical power.</p>
+                                <p id="1e62" class="pw-post-body-paragraph pd pe pf pg b ph za pj pk pl zb pn po pp zc pr ps pt zd pv pw px ze pz qa qb fz bk" data-selectable-paragraph="">The benefits are clear: greater efficiency, improved accuracy, and ultimately, smarter, more profitable decisions in the complex world of finance. As AI continues its rapid evolution, systems like these are set to become indispensable tools, empowering finance professionals to navigate modern markets with unprecedented confidence and insight.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</article>
+                
+        </div>
+        <div class="rightcolumn">
+            <div class="card" style="margin-top: 0px;">
+              <h2>About the author</h2>
+              <img src="../Media/saurabprofile.jpg">
+              <h4>Saurab Mishra</h4>
+              <p>BSMS student at the Indian Institute of Science Education and Research, Thiruvananthapuram.<br><br> Expected to graduate by 2028</p>
+              <p>
+                <strong>Posts: </strong>3<br>
+                <strong>Latest post: </strong>December 10th
+            </p>
+            <p>
+                Data Science and AI enthusiast with expertise in LLMs, AI, and MAS.
+            </p>
+            </div>
+            <div style="margin-bottom: 0px;" class="card">
+              <h3>Popular Posts</h3>
+              <a href="Mishra's blog">
+                Exploring the Future of Coding with the coding club
+                <hr>
+              </a>
+            </div>
+          </div>
+     </div>
+     <div class="more-blogs">
+        <h2>Like what you read?<br>Check out more blogs!</h2>
+        <a href="../Blog main.html" class="btn-cta">Explore More Blogs</a>
+      </div>
+       <footer class="footer">
+        <div class="footer-container">
+        <div class="footer-logo">
+        <a href="../../index.html" class="logo-link">
+        <img src="../../connection_network_infinity_full_logo.png" alt="Blog Logo">
+        </a>
+        </div>
+        <div class="footer-social">
+        <ul>
+        <li><a href="https://chat.whatsapp.com/DkHaq5HxNk2C1d2LFtC1Sl" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
+        <li><a href="https://www.linkedin.com/in/ccit-society-9898bb33a/" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+        <li><a href="https://www.instagram.com/ccitiiser/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+        </ul>
+        </div>
+        </div>
+        <div class="footer-copyright">
+        <p>&copy; 2024 The coding club. All rights reserved.</p>
+        </div>
+        </footer>
+     <script>
+        class GenerativeArt {
+            constructor(canvas) {
+                this.canvas = canvas;
+                this.ctx = canvas.getContext('2d');
+                this.width = document.getElementById('header').clientWidth;
+                this.height = document.getElementById('header').clientHeight;
+                this.particles = [];
+                this.initParticles();
+            }
+
+            initParticles() {
+                this.particles = [];
+                for (let i = 0; i < 50; i++) {
+                    this.particles.push({
+                        x: Math.random() * this.width,
+                        y: Math.random() * this.height,
+                        speed: {
+                            x: (Math.random() - 0.5),
+                            y: (Math.random() - 0.5)
+                        }
+                    });
+                }
+            }
+
+            update() {
+                const canvas = document.getElementById('artCanvas');
+                canvas.width = document.getElementById('header').clientWidth;
+                canvas.height = document.getElementById('header').clientHeight;
+
+                this.ctx.clearRect(0, 0, document.getElementById('header').clientWidth, document.getElementById('header').clientHeight);
+
+                this.particles.forEach(particle => {
+                    // Move particles
+                    particle.x += particle.speed.x;
+                    particle.y += particle.speed.y;
+
+                    // Bounce off walls
+                    if (particle.x < 0 || particle.x > document.getElementById('header').clientWidth) {
+                        particle.speed.x *= -1;
+                    }
+                    if (particle.y < 0 || particle.y > document.getElementById('header').clientHeight) {
+                        particle.speed.y *= -1;
+                    }
+
+                    if(particle.x < -5 || particle.x > document.getElementById('header').clientWidth+5 || particle.y < -5 || particle.y > document.getElementById('header').clientHeight+5)
+                    {
+                        particle.x = Math.random() * document.getElementById('header').clientWidth;
+                        particle.y = Math.random() * document.getElementById('header').clientHeight;
+                    }
+
+                    // Draw particle
+                    this.ctx.beginPath();
+                    this.ctx.fillStyle = particle.color;
+                    this.ctx.globalCompositeOperation = 'lighter';
+                    this.ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+                    this.ctx.fill();
+                });
+
+                // Connect particles with lines
+                this.particles.forEach((p1, index) => {
+                    for (let j = index + 1; j < this.particles.length; j++) {
+                        const p2 = this.particles[j];
+                        const distance = Math.hypot(p2.x - p1.x, p2.y - p1.y);
+                        
+                        if (distance < 100) {
+                            this.ctx.beginPath();
+                            this.ctx.strokeStyle = `rgba(255,255,255,${1 - distance/100})`;
+                            this.ctx.moveTo(p1.x, p1.y);
+                            this.ctx.lineTo(p2.x, p2.y);
+                            this.ctx.stroke();
+                        }
+                    }
+                });
+
+                requestAnimationFrame(() => this.update());
+            }
+        }
+
+        // Initialize the generative art
+        const canvas = document.getElementById('artCanvas');
+        canvas.width = document.getElementById('header').clientWidth;
+        canvas.height = document.getElementById('header').clientHeight;
+        const art = new GenerativeArt(canvas);
+        art.update();
+    </script>
+    <script>
+        const navbar = document.getElementById('navbar');
+        const row = document.getElementById('content');
+
+        window.addEventListener('scroll', () => {
+        if (window.scrollY > 10) {
+            navbar.style.backgroundColor = '#0b0d16';
+        } else {
+            navbar.style.backgroundColor = 'transparent';
+        }
+        });
+    </script>
+</body>
+</html>
