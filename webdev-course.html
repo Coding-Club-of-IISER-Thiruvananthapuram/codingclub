@@ -347,7 +347,7 @@
                                     <li>• <a href="https://developer.mozilla.org/en-US/docs/MDN/Tutorials" target="_blank" rel="noopener noreferrer" class="text-green-400 hover:text-green-300 transition-colors">MDN Web Docs - Tutorials</a></li>
                                     <li>• <a href="https://www.w3schools.com/css/default.asp" target="_blank" rel="noopener noreferrer" class="text-green-400 hover:text-green-300 transition-colors">W3Schools - CSS Tutorial</a></li>
                                 </ul>
-                            </div>                            <div class="bg-amber-800/20 border border-amber-600/30 rounded-lg p-4 mt-3">
+                            </div>                            <div class="bg-red-800/20 border border-red-600/30 rounded-lg p-4 mt-3">
                                 <h4 class="text-sm font-semibold text-red-400 mb-2">📋 Project for Week 1:</h4>
                                 <p class="text-sm text-gray-300 mb-2">Hands-on practice to reinforce your learning:</p>
                                 <ul class="space-y-1 text-sm text-gray-300">
@@ -355,9 +355,9 @@
                                     <li>• Style the "About Me" page using CSS (add colors, change fonts, adjust spacing)</li>
                                     <li>• Create a webpage where clicking a button changes some text or an image on the page</li>
                                 </ul>                                <p class="text-sm text-gray-300 mt-3">
-                                    <strong class="text-amber-400">📤 Submit your project here:</strong> 
+                                    <strong class="text-red-400">📤 Submit your project here:</strong> 
                                     <a href="https://classroom.github.com/a/mgkRiiKL" target="_blank" rel="noopener noreferrer" 
-                                       class="text-amber-400 hover:text-red-400 transition-colors underline ml-1">
+                                       class="text-red-400 hover:text-red-300 transition-colors underline ml-1">
                                         Click to Submit Assignment
                                     </a>
                                 </p>
@@ -498,6 +498,65 @@
                 }
             });
         });
+
+        // Course start date (June 16, 2025)
+        const courseStartDate = new Date('2025-06-12');
+        const currentDate = new Date();
+
+        const timeDiff = currentDate - courseStartDate;
+        const daysSinceStart = Math.floor(timeDiff / (1000 * 60 * 60 * 24)) + 1; 
+        function updateCourseStatus() {
+            const statusElements = document.querySelectorAll('.status-badge');
+            const progressElement = document.querySelector('.text-blue-400.font-semibold');
+            const heroStatusElement = statusElements[0];
+            const sidebarStatusElement = statusElements[1];
+            
+            let statusText, heroText, progressText, statusClass;
+            
+            if (daysSinceStart <= 0) {
+                statusText = 'Starting Soon';
+                heroText = '<i class="fas fa-clock" aria-hidden="true"></i> Starting Soon';
+                progressText = 'Course Not Started';
+                statusClass = 'status-badge bg-gradient-to-r from-yellow-500 to-orange-500';
+            } else if (daysSinceStart <= 42) {
+                statusText = `Active - Day ${daysSinceStart}`;
+                heroText = `<i class="fas fa-play" aria-hidden="true"></i> Course Started - Day ${daysSinceStart}`;
+                statusClass = 'status-badge bg-gradient-to-r from-green-500 to-blue-500';
+                
+                if (daysSinceStart <= 7) {
+                    progressText = `Week 1 - Day ${daysSinceStart}`;
+                } else if (daysSinceStart <= 14) {
+                    progressText = `Week 2 - Day ${daysSinceStart - 7}`;
+                } else if (daysSinceStart <= 21) {
+                    progressText = `Week 3 - Day ${daysSinceStart - 14}`;
+                } else if (daysSinceStart <= 28) {
+                    progressText = `Week 4 - Day ${daysSinceStart - 21}`;
+                } else if (daysSinceStart <= 35) {
+                    progressText = `Week 5 - Day ${daysSinceStart - 28}`;
+                } else {
+                    progressText = `Week 6 - Day ${daysSinceStart - 35}`;
+                }
+            } else {
+                statusText = 'Course Completed';
+                heroText = '<i class="fas fa-check-circle" aria-hidden="true"></i> Course Completed';
+                progressText = 'All Weeks Finished!';
+                statusClass = 'status-badge bg-gradient-to-r from-purple-500 to-pink-500';
+            }
+            
+            if (heroStatusElement) {
+                heroStatusElement.innerHTML = heroText;
+                heroStatusElement.className = statusClass;
+            }
+            if (sidebarStatusElement) {
+                sidebarStatusElement.textContent = statusText;
+                sidebarStatusElement.className = statusClass;
+            }
+            if (progressElement) {
+                progressElement.textContent = progressText;
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', updateCourseStatus);
     </script>
 </body>
 </html>
