@@ -11,113 +11,135 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .zebrafish {
-            width: 40px;
-            height: 15px;
-            background-color: #FFD700;
-            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            transition: top 2s ease-in-out, transform 2s ease-in-out;
-            box-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
-            z-index: 10;
-        }
-
-        .zebrafish::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 100%;
-            width: 0;
-            height: 0;
-            border-top: 7.5px solid transparent;
-            border-bottom: 7.5px solid transparent;
-            border-left: 10px solid #FFD700;
-            transform: translateY(-50%);
-        }
-
-        @keyframes swim {
-            0% { transform: translateX(-50%) rotateY(0deg); }
-            25% { transform: translateX(-48%) rotateY(5deg); }
-            50% { transform: translateX(-50%) rotateY(0deg); }
-            75% { transform: translateX(-52%) rotateY(-5deg); }
-            100% { transform: translateX(-50%) rotateY(0deg); }
-        }
-
-        .zebrafish-animated {
-            animation: swim 4s infinite ease-in-out;
-        }
-
         body {
-            font-family: 'Inter', sans-serif;
-        }
+    font-family: 'Inter', sans-serif;
+}
 
-        .tank-container {
-        width: 100%;
-        max-width: 480px;
-        aspect-ratio: 16/9;
-        border: 4px solid #334155;
-        background: linear-gradient(to bottom, #BFDBFE, #60A5FA);
-        position: relative;
-        overflow: hidden;
-        border-radius: 0.75rem;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        margin: 0 auto;
-        }
-        .water-surface {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 100%;
-            background: rgba(147, 197, 253, 0.2);
-            pointer-events: none;
-        }
+/* Layout for tank and stress meter side-by-side, always */
+.tank-container {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: 320px;
+    aspect-ratio: 16/9;
+    border: 4px solid #334155;
+    background: linear-gradient(to bottom, #BFDBFE, #60A5FA);
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    margin: 0 auto;
+}
 
-        .zone-line {
-            position: absolute;
-            left: 0;
-            right: 0;
-            border-bottom: 1px dashed rgba(0, 0, 0, 0.3);
-            z-index: 5;
-        }
-        .zone-line:nth-child(1) { top: 33.33%; }
-        .zone-line:nth-child(2) { top: 66.66%; }
+.water-surface {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: rgba(147, 197, 253, 0.2);
+    pointer-events: none;
+}
 
-        .zone-label {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: #1F2937;
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
-            z-index: 6;
-        }
-        .zone-label.top { top: 10%; }
-        .zone-label.middle { top: 43%; }
-        .zone-label.bottom { top: 76%; }
+.zone-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.3);
+    z-index: 5;
+}
+.zone-label {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #1F2937;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+    z-index: 6;
+}
+.zone-label.top { top: 10%; }
+.zone-label.middle { top: 43%; }
+.zone-label.bottom { top: 76%; }
 
-        .stress-meter-container {
-            width: 40px;
-            height: 270px;
-            border: 2px solid #CBD5E0;
-            border-radius: 0.5rem;
-            overflow: hidden;
-            position: relative;
-            background-color: #E2E8F0;
-        }
+.zebrafish {
+    width: 40px;
+    height: 15px;
+    background-color: #FFD700;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: top 2s ease-in-out, transform 2s ease-in-out;
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+    z-index: 10;
+}
+.zebrafish::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    width: 0;
+    height: 0;
+    border-top: 7.5px solid transparent;
+    border-bottom: 7.5px solid transparent;
+    border-left: 10px solid #FFD700;
+    transform: translateY(-50%);
+}
+@keyframes swim {
+    0% { transform: translateX(-50%) rotateY(0deg); }
+    25% { transform: translateX(-48%) rotateY(5deg); }
+    50% { transform: translateX(-50%) rotateY(0deg); }
+    75% { transform: translateX(-52%) rotateY(-5deg); }
+    100% { transform: translateX(-50%) rotateY(0deg); }
+}
+.zebrafish-animated {
+    animation: swim 4s infinite ease-in-out;
+}
 
-        .stress-meter-fill {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 0%;
-            background-color: #22C55E;
-            transition: height 2s ease-in-out, background-color 2s ease-in-out;
-        }
+.stress-meter-container {
+    width: 40px;
+    min-width: 20px;
+    max-width: 40px;
+    height: 270px;
+    max-height: 270px;
+    border: 2px solid #CBD5E0;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    position: relative;
+    background-color: #E2E8F0;
+    margin-left: 0.25rem;
+}
+
+.stress-meter-fill {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    background-color: #22C55E;
+    transition: height 2s ease-in-out, background-color 2s ease-in-out;
+}
+
+/* Responsive: Shrink, always side by side */
+@media (max-width: 600px) {
+    .tank-container {
+        max-width: 55vw;
+        min-width: 0;
+    }
+    .stress-meter-container {
+        width: 8vw;
+        min-width: 16px;
+        height: 24vw;
+        min-height: 60px;
+        max-height: 140px;
+    }
+    .zone-label {
+        font-size: 0.75rem;
+    }
+    .flex.items-end.gap-6.mb-6 {
+        gap: 0.5rem !important;
+    }
+}
     </style>
 </head>
 <body>
@@ -161,47 +183,40 @@
                 
                 <div>
                     <h2>Zebrafish Novel Tank Diving Assay</h2>
-                    <div class="bg-gray-100 flex items-center justify-center p-4" style="min-height:unset;">
-                    <div class="bg-white rounded-xl shadow-lg p-4 w-full max-w-xl flex flex-col items-center">
-                            <h1 class="font-bold text-gray-800 mb-4" style="font-size:clamp(1.25rem, 2.5vw, 2rem); text-align:center;">
-  Zebrafish Novel Tank Diving Assay
-</h1>
-                           <div class="flex flex-wrap items-end gap-6 mb-6">
-                                <div class="tank-container">
-                                    <div class="water-surface"></div>
+                   <div class="bg-gray-100 flex items-center justify-center p-4" style="min-height:unset;">
+  <div class="bg-white rounded-xl shadow-lg p-4 w-full max-w-xl flex flex-col items-center">
+    <h1 class="font-bold text-gray-800 mb-4" style="font-size:clamp(1.25rem, 2.5vw, 2rem); text-align:center;">
+      Zebrafish Novel Tank Diving Assay
+    </h1>
+    <div class="flex items-end gap-6 mb-6" style="width:100%;justify-content:center;">
+      <div class="tank-container">
+        <div class="water-surface"></div>
+        <div id="zebrafish" class="zebrafish top-[70%] zebrafish-animated"></div>
+        <div class="zone-line" style="top: 33.33%;"></div>
+        <div class="zone-line" style="top: 66.66%;"></div>
+        <div class="zone-label top">Top Zone</div>
+        <div class="zone-label middle">Middle Zone</div>
+        <div class="zone-label bottom">Bottom Zone</div>
+      </div>
+      <div class="flex flex-col items-center">
+        <span class="text-xs text-gray-600 mb-2 font-semibold">Stress Level</span>
+        <div class="relative" style="height: 275px; width: 40px;">
+          <div class="stress-meter-container">
+            <div id="stressMeterFill" class="stress-meter-fill"></div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-                                    <div id="zebrafish" class="zebrafish top-[70%] zebrafish-animated"></div>
+    <p class="text-gray-600 text-sm mt-6 text-center">
+      This assay measures anxiety-like behavior in zebrafish. Anxious fish tend to stay in the bottom zone, while less anxious fish explore the top. The stress meter indicates the current anxiety level.
+    </p>
 
-                                    <div class="zone-line" style="top: 33.33%;"></div>
-                                    <div class="zone-line" style="top: 66.66%;"></div>
-
-                                    <div class="zone-label top">Top Zone</div>
-                                    <div class="zone-label middle">Middle Zone</div>
-                                    <div class="zone-label bottom">Bottom Zone</div>
-                                </div>
-
-                                <div class="flex flex-col items-center">
-                                    <span class="text-xs text-gray-600 mb-2 font-semibold">Stress Level</span>
-                                    <div class="relative" style="height: 275px; width: 40px;">
-                                        <div class="stress-meter-container">
-                                            <div id="stressMeterFill" class="stress-meter-fill"></div>
-                                        </div>
-                                        <span class="absolute top-0 left-1/2 -translate-x-1/2 text-xs text-red-600 -mt-4">High</span>
-                                        <span class="absolute bottom-0 left-1/2 -translate-x-1/2 text-xs text-green-600 -mb-4">Low</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <p class="text-gray-600 text-sm mt-6 text-center">
-                                This assay measures anxiety-like behavior in zebrafish. Anxious fish tend to stay in the bottom zone, while less anxious fish explore the top. The stress meter indicates the current anxiety level.
-                            </p>
-
-                            <button id="toggleDive" class="mt-6 px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 transition duration-300 ease-in-out">
-                                Toggle Fish Position
-                            </button>
-                        </div>
-                    </div>
-                </div>
+    <button id="toggleDive" class="mt-6 px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 transition duration-300 ease-in-out">
+      Toggle Fish Position
+    </button>
+  </div>
+</div>
                 <p>
                     In recent years particularly in neurodevelopment research, zebrafish (Danio rerio) have emerged as a model organism to study stress, anxiety and other psychological states due to their genetic similarity to humans, external development and well characterized behaviours. One common method which is used to assess anxiety in zebrafish is Novel Tank Diving (NTD) assay, where fish are subject to a novel environment and their tendency to remain near the bottom of the tank is noted and is used as an indicator of anxiety.
                 </p>
