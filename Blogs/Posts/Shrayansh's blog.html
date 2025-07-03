@@ -12,111 +12,150 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .zebrafish {
-            width: 40px;
-            height: 15px;
-            background-color: #FFD700;
-            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            transition: top 2s ease-in-out, transform 2s ease-in-out;
-            box-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
-            z-index: 10;
-        }
+    width: 8vw;
+    min-width: 32px;
+    max-width: 40px;
+    height: 3vw;
+    min-height: 12px;
+    max-height: 15px;
+    background-color: #FFD700;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: top 2s ease-in-out, transform 2s ease-in-out;
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+    z-index: 10;
+}
 
-        .zebrafish::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 100%;
-            width: 0;
-            height: 0;
-            border-top: 7.5px solid transparent;
-            border-bottom: 7.5px solid transparent;
-            border-left: 10px solid #FFD700;
-            transform: translateY(-50%);
-        }
+.zebrafish::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    width: 0;
+    height: 0;
+    border-top: 7.5px solid transparent;
+    border-bottom: 7.5px solid transparent;
+    border-left: 10px solid #FFD700;
+    transform: translateY(-50%);
+}
 
-        @keyframes swim {
-            0% { transform: translateX(-50%) rotateY(0deg); }
-            25% { transform: translateX(-48%) rotateY(5deg); }
-            50% { transform: translateX(-50%) rotateY(0deg); }
-            75% { transform: translateX(-52%) rotateY(-5deg); }
-            100% { transform: translateX(-50%) rotateY(0deg); }
-        }
+@keyframes swim {
+    0% { transform: translateX(-50%) rotateY(0deg); }
+    25% { transform: translateX(-48%) rotateY(5deg); }
+    50% { transform: translateX(-50%) rotateY(0deg); }
+    75% { transform: translateX(-52%) rotateY(-5deg); }
+    100% { transform: translateX(-50%) rotateY(0deg); }
+}
 
-        .zebrafish-animated {
-            animation: swim 4s infinite ease-in-out;
-        }
+.zebrafish-animated {
+    animation: swim 4s infinite ease-in-out;
+}
 
-        body {
-            font-family: 'Inter', sans-serif;
-        }
+body {
+    font-family: 'Inter', sans-serif;
+}
 
-        .tank-container {
-            width: 480px;
-            height: 270px;
-            border: 4px solid #334155;
-            background: linear-gradient(to bottom, #BFDBFE, #60A5FA);
-            position: relative;
-            overflow: hidden;
-            border-radius: 0.75rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
+.tank-container {
+    width: 100%;
+    max-width: 480px;
+    aspect-ratio: 16/9;
+    border: 4px solid #334155;
+    background: linear-gradient(to bottom, #BFDBFE, #60A5FA);
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    margin: 0 auto;
+}
 
-        .water-surface {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 100%;
-            background: rgba(147, 197, 253, 0.2);
-            pointer-events: none;
-        }
+.water-surface {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: rgba(147, 197, 253, 0.2);
+    pointer-events: none;
+}
 
-        .zone-line {
-            position: absolute;
-            left: 0;
-            right: 0;
-            border-bottom: 1px dashed rgba(0, 0, 0, 0.3);
-            z-index: 5;
-        }
-        .zone-line:nth-child(1) { top: 33.33%; }
-        .zone-line:nth-child(2) { top: 66.66%; }
+.zone-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.3);
+    z-index: 5;
+}
+.zone-line:nth-child(1) { top: 33.33%; }
+.zone-line:nth-child(2) { top: 66.66%; }
 
-        .zone-label {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: #1F2937;
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
-            z-index: 6;
-        }
-        .zone-label.top { top: 10%; }
-        .zone-label.middle { top: 43%; }
-        .zone-label.bottom { top: 76%; }
+.zone-label {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #1F2937;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+    z-index: 6;
+}
+.zone-label.top { top: 10%; }
+.zone-label.middle { top: 43%; }
+.zone-label.bottom { top: 76%; }
 
-        .stress-meter-container {
-            width: 40px;
-            height: 270px;
-            border: 2px solid #CBD5E0;
-            border-radius: 0.5rem;
-            overflow: hidden;
-            position: relative;
-            background-color: #E2E8F0;
-        }
+.stress-meter-container {
+    width: 40px;
+    max-width: 15vw;
+    height: 270px;
+    max-height: 45vw;
+    border: 2px solid #CBD5E0;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    position: relative;
+    background-color: #E2E8F0;
+}
 
-        .stress-meter-fill {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 0%;
-            background-color: #22C55E;
-            transition: height 2s ease-in-out, background-color 2s ease-in-out;
-        }
+.stress-meter-fill {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    background-color: #22C55E;
+    transition: height 2s ease-in-out, background-color 2s ease-in-out;
+}
+
+@media (max-width: 600px) {
+    .bg-gray-100.flex.items-center.justify-center.min-h-screen.p-4 {
+        flex-direction: column !important;
+        padding: 0.5rem !important;
+    }
+    .tank-container {
+        max-width: 98vw;
+        min-width: 200px;
+        min-height: 120px;
+        height: auto;
+    }
+    .zebrafish {
+        width: 12vw;
+        min-width: 24px;
+        max-width: 32px;
+        height: 5vw;
+        min-height: 8px;
+        max-height: 12px;
+    }
+    .stress-meter-container {
+        width: 26px;
+        max-width: 12vw;
+        height: 160px;
+        max-height: 36vw;
+        margin-top: 1rem;
+    }
+    .zone-label {
+        font-size: 0.75rem;
+    }
+}
     </style>
 </head>
 <body>
