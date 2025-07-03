@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<head>
+    <title>Deep Learning Dives: Predicting Anxiety in Zebrafish Through AI-Powered Behavioral Analysis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../blogstyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .zebrafish {
+            width: 40px;
+            height: 15px;
+            background-color: #FFD700;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: top 2s ease-in-out, transform 2s ease-in-out;
+            box-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+            z-index: 10;
+        }
+
+        .zebrafish::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            width: 0;
+            height: 0;
+            border-top: 7.5px solid transparent;
+            border-bottom: 7.5px solid transparent;
+            border-left: 10px solid #FFD700;
+            transform: translateY(-50%);
+        }
+
+        @keyframes swim {
+            0% { transform: translateX(-50%) rotateY(0deg); }
+            25% { transform: translateX(-48%) rotateY(5deg); }
+            50% { transform: translateX(-50%) rotateY(0deg); }
+            75% { transform: translateX(-52%) rotateY(-5deg); }
+            100% { transform: translateX(-50%) rotateY(0deg); }
+        }
+
+        .zebrafish-animated {
+            animation: swim 4s infinite ease-in-out;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .tank-container {
+            width: 480px;
+            height: 270px;
+            border: 4px solid #334155;
+            background: linear-gradient(to bottom, #BFDBFE, #60A5FA);
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .water-surface {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: rgba(147, 197, 253, 0.2);
+            pointer-events: none;
+        }
+
+        .zone-line {
+            position: absolute;
+            left: 0;
+            right: 0;
+            border-bottom: 1px dashed rgba(0, 0, 0, 0.3);
+            z-index: 5;
+        }
+        .zone-line:nth-child(1) { top: 33.33%; }
+        .zone-line:nth-child(2) { top: 66.66%; }
+
+        .zone-label {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #1F2937;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+            z-index: 6;
+        }
+        .zone-label.top { top: 10%; }
+        .zone-label.middle { top: 43%; }
+        .zone-label.bottom { top: 76%; }
+
+        .stress-meter-container {
+            width: 40px;
+            height: 270px;
+            border: 2px solid #CBD5E0;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            position: relative;
+            background-color: #E2E8F0;
+        }
+
+        .stress-meter-fill {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0%;
+            background-color: #22C55E;
+            transition: height 2s ease-in-out, background-color 2s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="header" id="header">
+        <canvas style="position: absolute; z-index: 0; left: 0; padding:0px;" width="relative" id="artCanvas" ></canvas>
+        <div class="header-contents">
+            <h1 style="position: relative; z-index:1">Deep Learning Dives: Predicting Anxiety in Zebrafish Through AI-Powered Behavioral Analysis</h1>
+            <ul style="display: flex; flex-wrap: wrap; margin: 0px; padding-left: 20px;">
+                <li style="margin-right: 20px; content: none;">Research Author</li>
+                <li style="margin-right: 20px;">June 30, 2025</li>
+                <li style="margin-right: 20px">8 min read</li>
+            </ul>
+        </div>
+    </div>
+
+    <nav class="navbar" id="navbar">
+        <div class="navbar-logo">
+            <a href="../../index.html">
+                <i class="fas fa-home"></i>
+                <img src="https://share1.cloudhq-mkt3.net/015128b8139485.png" style="width: 35px; height: 22px; margin-bottom: -2px;">
+            </a>
+          </div>
+        <ul class="navbar-nav">
+          <li><a href="../Blog main.html">New posts</a></li>
+        </ul>
+    </nav>
+
+     <div class="row">
+        <div class="leftcolumn">
+            <div class="card">
+                <img src="../Media-shrayansh-blog/wallpapers.jpg">
+                <p>
+                    Many of us have pet fish or know someone who does. Fish are bright, colorful, and fascinating creatures. Beyond their calming presence as they swim freely, certain species—particularly zebrafish—serve as important model organisms in biological research. Have you ever wondered what a fish kept in a beautifully decorated aquarium might be feeling? Understanding how the organism behave under different conditions is a fundamental aspect of zebrafish research. Till now, this was done through manual observation: researchers would sit and watch hours of behavioural footage, noting down patterns by hand. However, with the advancement of technologies like Artificial Intelligence, this process is undergoing a transformation. In this blog, we'll explore how deep learning is automating behavioural analysis, making it faster, more accurate, and especially useful in studying anxiety in zebrafish.
+                </p>
+            </div>
+            <div class="card">
+                <h2>The Setup: Why Zebrafish and Novel Tank Diving?</h2><hr>
+                <img src="../Media-shrayansh-blog/wallpapers.jpg">
+                <div>
+                    <h2>Zebrafish Novel Tank Diving Assay</h2>
+                    <div class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+                        <div class="bg-white rounded-xl shadow-lg p-6 max-w-4xl w-full flex flex-col items-center">
+                            <h1 class="text-2xl font-bold text-gray-800 mb-6">Zebrafish Novel Tank Diving Assay</h1>
+
+                            <div class="flex items-end gap-6 mb-6">
+                                <div class="tank-container">
+                                    <div class="water-surface"></div>
+
+                                    <div id="zebrafish" class="zebrafish top-[70%] zebrafish-animated"></div>
+
+                                    <div class="zone-line" style="top: 33.33%;"></div>
+                                    <div class="zone-line" style="top: 66.66%;"></div>
+
+                                    <div class="zone-label top">Top Zone</div>
+                                    <div class="zone-label middle">Middle Zone</div>
+                                    <div class="zone-label bottom">Bottom Zone</div>
+                                </div>
+
+                                <div class="flex flex-col items-center">
+                                    <span class="text-xs text-gray-600 mb-2 font-semibold">Stress Level</span>
+                                    <div class="relative" style="height: 270px; width: 40px;">
+                                        <div class="stress-meter-container">
+                                            <div id="stressMeterFill" class="stress-meter-fill"></div>
+                                        </div>
+                                        <span class="absolute top-0 left-1/2 -translate-x-1/2 text-xs text-gray-600 -mt-4">High</span>
+                                        <span class="absolute bottom-0 left-1/2 -translate-x-1/2 text-xs text-gray-600 -mb-4">Low</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <p class="text-gray-600 text-sm mt-6 text-center">
+                                This assay measures anxiety-like behavior in zebrafish. Anxious fish tend to stay in the bottom zone, while less anxious fish explore the top. The stress meter indicates the current anxiety level.
+                            </p>
+
+                            <button id="toggleDive" class="mt-6 px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 transition duration-300 ease-in-out">
+                                Toggle Fish Position
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <p>
+                    In recent years particularly in neurodevelopment research, zebrafish (Danio rerio) have emerged as a model organism to study stress, anxiety and other psychological states due to their genetic similarity to humans, external development and well characterized behaviours. One common method which is used to assess anxiety in zebrafish is Novel Tank Diving (NTD) assay, where fish are subject to a novel environment and their tendency to remain near the bottom of the tank is noted and is used as an indicator of anxiety.
+                </p>
+                <p>
+                    Traditionally analyzing the assay will involve observing hours of video footage, timing the movements of fish and classifying the behaviour. This is a labour intensive method which is prone to human error and subjective interpretation. Some tracking software are also available nowadays but they are not specific to the assay and very expensive too. There was a huge gap which can be filled with more efficient, accurate and accessible solution - and AI might be it!
+                </p>
+            </div>
+            <div class="card">
+                <h2>The Solution: Leveraging Deep Learning for Behavioural Tracking</h2><hr>
+                <img src="../Media-shrayansh-blog/Mapendo-ML.jpeg">
+                <p>Image : Mapendo</p>
+                <p>
+                    The emergence of deep learning has revolutionized many fields specially image and video analysis using powerful tools for classification and feature extraction. One of the tools which enable accurate, marker less tracking of animal body parts using deep neural networks is DeepLabCut. In zebrafish behavioural research, DLC plays crucial role in capturing fine-scale movements enabling researchers to assess social behaviour, motor functions and stress related responses.
+                </p>
+                <h3>DeepLabCut: Precise marker-less tracking</h3>
+                <p>
+                    DLC is an advanced algorithm which obtains precise pose estimation data from lab animals with minimal training. Unlike conventional methods which require physical markers on animal for identification, DLC offers marker-less pose estimation, making the process less invasive.
+                </p>
+                <p>
+                    <strong>How it works for Zebrafish:</strong> Small number of frames (~20 frames per 5 minute) from high-res video recordings are manually labelled, which are then used to train the deep learning model. Six anatomical landmarks of the fish i.e. the head, two mid-dorsal points, two mid-ventral points and the tail are annotated. The labelled frames are then used to train DLC network.
+                </p>
+                <p>
+                    After training, DLC can efficiently track zebrafish movements throughout the inputed videos and gives accurate positional data. Studies found that data obtained using DLC is comparable to what is obtained using commercial software.
+                </p>
+            </div>
+            <div class="card">
+                <h2>From Pose Tracking to Behavioural Insights: Quantifying Anxiety</h2><hr>
+                <img src="../Media-shrayansh-blog/DeepLabCut.gif">
+                <p>
+                    The data obtained through DLC is then used to quantify key behavioural metrics associated with anxiety like responses in Zebrafish. These parameters include time allocation in tank zones, locomotor activity, inactivity period, turning angles, latency (time taken to first enter the top zone) and transition between zones. These parameters reflect subject's adaptation, risk avoidance and exploratory drive.
+                </p>
+                <p>
+                    Bottom-dwelling is the primary indicator of stress in the Novel Tank Diving assay. Zebrafish, when introduced to a new environment, if anxious, tend to remain near the bottom of the tank. Measuring the time spent near the bottom of the tank, the subject is classified as anxious (>80% of the time spent near the bottom) or non-anxious. Eventually with time, as the fish habituates to the environment, increase in the movement towards upper zone of the tank is observed which indicates reduction in anxiety level.
+                </p>
+            </div>
+            <div class="card">
+                <h2>Automating Behavioural Diagnosis: Using AI to Quantify and Predict Zebrafish Anxiety</h2><hr>
+                <img src="../Media-shrayansh-blog/Part-labelling.jpg">
+                <p>Image: Muralidharan et al (2024)</p>
+                <p>
+                    After DLC annotates the behaviour based on movement of fish, the dataset is used to train predictive models. Using Deep learning and Machine Learning algorithms, behavioural patterns are classified automatically. After evaluating a diverse range of models, researchers has grouped them broadly into two categories:
+                </p>
+                <h3>Convolutional Neural Networks - CNNs</h3>
+                <p>
+                    These models are very accurate in extracting complex hierarchical features from raw image frames. They are efficient for video based behavioural analysis.
+                </p>
+                <h3>Traditional ML models</h3>
+                <p>
+                    Algorithms such as Logistic Regression, Decision Tree and Random forest are trained of features derived from behavioural data such as turning angles and time spent in different zones.
+                </p>
+            </div>
+            <div class="card">
+                <h2>Benchmarking AI Performance: Assessing effectiveness in Behavioural Analysis</h2><hr>
+                <img src="../Media/zebrafish6.jpeg">
+                <p>
+                    Across models, the findings validated reliability of AI as a powerful tool for interpreting behavioural data in Zebrafish.
+                </p>
+                <h3>CNNs Performance</h3>
+                <p>
+                    Among the CNNs tested, researchers found that InceptionV3 emerged as the best model with an accuracy of 97% and high F1 scores. Other models like DenseNet and custom CNN also showed strong performance.
+                </p>
+                <h3>ML models Performance</h3>
+                <p>
+                    Among the traditional Machine learning models, Decision Tree and Random forest performed very well with exceptional accuracy, up to 99% across both control and stressed groups. These models are effective for analyzing behavioural datasets due to their well interpretability and resilience to noise.
+                </p>
+            </div>
+            <div class="card">
+                <h2>Integrating AI into Neuroscience: Unlocking New Dimensions of Efficiency</h2><hr>
+                <p>
+                    These findings from recent research shows advancement in quantifying behavioural neuroscience using AI models. Particularly deep learning and machine learning techniques offer an efficient alternative to traditional behaviour scoring methods. These models are reducing reliance on manual observation and expensive commercial softwares by enhancing reproducibility and efficiency.
+                </p>
+                <p>
+                    These techniques can be extended beyond zebrafish, to other model organisms with continued development. Moreover, as AI tools become more open source and accessible, the interdisciplinary collaborations between biologists, data scientist and engineer will fuel a new era of innovation.
+                </p>
+                <p>
+                    The future of neuroscience is computational, collaborating and something which will evolve continuously.
+                </p>
+            </div>
+            <div class="card">
+                <h2>Tools & Resources</h2><hr>
+                <p>
+                    <strong>Official DLC Github Repository:</strong><br>
+                    <a href="https://github.com/DeepLabCut/DeepLabCut" target="_blank">https://github.com/DeepLabCut/DeepLabCut</a>
+                </p>
+                <p>
+                    <strong>User guides & tutorials for DLC:</strong><br>
+                    <a href="https://deeplabcut.github.io/DeepLabCut/docs/quick-start/single_animal_quick_guide.html" target="_blank">https://deeplabcut.github.io/DeepLabCut/docs/quick-start/single_animal_quick_guide.html</a>
+                </p>
+                <p>
+                    <strong>Multi-camera 3D pose estimation using 2-camera calibration:</strong><br>
+                    <a href="https://github.com/DeepLabCut/DeepLabCut/tree/master/deeplabcut/pose_estimation_3d" target="_blank">GitHub Docs: DeepLabCut 3D</a>
+                </p>
+                <p>
+                    <strong>Complete DeepLabCut-based batch analysis for multi-well zebrafish videos:</strong><br>
+                    <a href="https://github.com/drconradlee/zfish_behavioural_pipeline" target="_blank">GitHub: drconradlee/zfish_behavioural_pipeline</a>
+                </p>
+                <p>
+                    <strong>Tool for segmenting multi-well AVI videos into single-well clips:</strong><br>
+                    <a href="https://github.com/drconradlee/zfish_video_segmentation" target="_blank">GitHub: drconradlee/zfish_video_segmentation</a>
+                </p>
+            </div>
+            <div class="card">
+                <h2>References</h2><hr>
+                <p>
+                    Muralidharan, A., Swaminathan, A. and Poulose, A., 2025. Deep learning dives: Predicting anxiety in Zebrafish through novel tank assay analysis (vol 287, 114696, 2024). PHYSIOLOGY & BEHAVIOR, 289.
+                </p>
+                <p>
+                    Vartika Srivastava, Anagha Muralidharan, Amrutha Swaminathan, Alwin Poulose, Anxiety in aquatics: Leveraging machine learning models to predict adult zebrafish behavior, Neuroscience, Volume 565, 2025, Pages 577-587
+                </p>
+            </div>
+        </div>
+        <div class="rightcolumn">
+            <div class="card" style="margin-top: 0px;">
+              <h2>About the author</h2>
+              <img src="../Media-shrayansh-blog/profile.jpeg">
+              <h4>Shrayansh Tiwari </h4>
+              <p>BSMS student, majoring in Biology at the Indian Institute of Science Education and Research, Thiruvananthapuram.<br><br> Expected to graduate by 2028</p>
+              <p>
+                <strong>Posts: </strong>1<br>
+                <strong>Latest post: </strong>July 3rd
+            </p>
+            </div>
+            <div style="margin-bottom: 0px;" class="card">
+              <h3>Popular Posts</h3>
+              <p>
+                Author has posted only one blog so far
+            </p>
+            </div>
+          </div>
+     </div>
+     <div class="more-blogs">
+        <h2>Like what you read?<br>Check out more blogs!</h2>
+        <a href="../Blog main.html" class="btn-cta">Explore More Blogs</a>
+      </div>
+       <footer class="footer">
+        <div class="footer-container">
+        <div class="footer-logo">
+        <a href="../../index.html" class="logo-link">
+        <img src="../../connection_network_infinity_full_logo.png" alt="Blog Logo">
+        </a>
+        </div>
+        <div class="footer-social">
+        <ul>
+        <li><a href="https://chat.whatsapp.com/DkHaq5HxNk2C1d2LFtC1Sl" target="_blank"><i class="fab fa-whatsapp"></i></a></li>        <li><a href="https://www.linkedin.com/company/cciisertvm/" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+        <li><a href="https://www.instagram.com/codingclubiisertvm/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+        </ul>
+        </div>
+        </div>
+        <div class="footer-copyright">
+        <p>&copy; 2025 The coding club. All rights reserved.</p>
+        </div>
+        </footer>
+     <script>
+        const zebrafish = document.getElementById('zebrafish');
+        const toggleDiveButton = document.getElementById('toggleDive');
+        const stressMeterFill = document.getElementById('stressMeterFill');
+
+        let isDiving = true;
+
+        function updateStressMeter(position) {
+            if (position === 'top') {
+                stressMeterFill.style.height = '20%';
+                stressMeterFill.style.backgroundColor = '#22C55E';
+            } else if (position === 'bottom') {
+                stressMeterFill.style.height = '80%';
+                stressMeterFill.style.backgroundColor = '#EF4444';
+            } else {
+                stressMeterFill.style.height = '50%';
+                stressMeterFill.style.backgroundColor = '#FACC15';
+            }
+        }
+
+        function toggleFishPosition() {
+            if (isDiving) {
+                zebrafish.style.top = '15%';
+                toggleDiveButton.textContent = 'Move to Bottom Zone';
+                updateStressMeter('top');
+            } else {
+                zebrafish.style.top = '70%';
+                toggleDiveButton.textContent = 'Move to Top Zone';
+                updateStressMeter('bottom');
+            }
+            isDiving = !isDiving;
+        }
+
+        if (toggleDiveButton) {
+            toggleDiveButton.addEventListener('click', toggleFishPosition);
+            toggleDiveButton.textContent = 'Move to Top Zone';
+            updateStressMeter('bottom');
+        }
+
+        class GenerativeArt {
+            constructor(canvas) {
+                this.canvas = canvas;
+                this.ctx = canvas.getContext('2d');
+                this.width = document.getElementById('header').clientWidth;
+                this.height = document.getElementById('header').clientHeight;
+                this.particles = [];
+                this.initParticles();
+            }
+
+            initParticles() {
+                this.particles = [];
+                for (let i = 0; i < 50; i++) {
+                    this.particles.push({
+                        x: Math.random() * this.width,
+                        y: Math.random() * this.height,
+                        speed: {
+                            x: (Math.random() - 0.5),
+                            y: (Math.random() - 0.5)
+                        }
+                    });
+                }
+            }
+
+            update() {
+                const canvas = document.getElementById('artCanvas');
+                const header = document.getElementById('header');
+                if (!canvas || !header) return;
+
+                canvas.width = header.clientWidth;
+                canvas.height = header.clientHeight;
+
+                this.ctx.clearRect(0, 0, header.clientWidth, header.clientHeight);
+
+                this.particles.forEach(particle => {
+                    particle.x += particle.speed.x;
+                    particle.y += particle.speed.y;
+
+                    if (particle.x < 0 || particle.x > header.clientWidth) {
+                        particle.speed.x *= -1;
+                    }
+                    if (particle.y < 0 || particle.y > header.clientHeight) {
+                        particle.speed.y *= -1;
+                    }
+
+                    if(particle.x < -5 || particle.x > header.clientWidth + 5 || particle.y < -5 || particle.y > header.clientHeight + 5)
+                    {
+                        particle.x = Math.random() * header.clientWidth;
+                        particle.y = Math.random() * header.clientHeight;
+                    }
+
+                    this.ctx.beginPath();
+                    this.ctx.fillStyle = particle.color;
+                    this.ctx.globalCompositeOperation = 'lighter';
+                    this.ctx.arc(particle.x, particle.y, 2, 0, Math.PI * 2);
+                    this.ctx.fill();
+                });
+
+                this.particles.forEach((p1, index) => {
+                    for (let j = index + 1; j < this.particles.length; j++) {
+                        const p2 = this.particles[j];
+                        const distance = Math.hypot(p2.x - p1.x, p2.y - p1.y);
+
+                        if (distance < 100) {
+                            this.ctx.beginPath();
+                            this.ctx.strokeStyle = `rgba(255,255,255,${1 - distance/100})`;
+                            this.ctx.moveTo(p1.x, p1.y);
+                            this.ctx.lineTo(p2.x, p2.y);
+                            this.ctx.stroke();
+                        }
+                    }
+                });
+
+                requestAnimationFrame(() => this.update());
+            }
+        }
+
+        window.onload = function() {
+            const canvas = document.getElementById('artCanvas');
+            const header = document.getElementById('header');
+            if (canvas && header) {
+                canvas.width = header.clientWidth;
+                canvas.height = header.clientHeight;
+                const art = new GenerativeArt(canvas);
+                art.update();
+            }
+        };
+
+        const navbar = document.getElementById('navbar');
+
+        window.addEventListener('scroll', () => {
+        if (window.scrollY > 10) {
+            navbar.style.backgroundColor = '#0b0d16';
+        } else {
+            navbar.style.backgroundColor = 'transparent';
+        }
+        });
+    </script>
+</body>
+</html>
