@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Coding Club IISER TVM Blogs - Explore thoughts, tutorials, and updates from our coding community.">
+    <meta name="keywords" content="coding, programming, IISER TVM, tech blogs, AI, machine learning">
+    <meta name="author" content="Coding Club IISER TVM">
+    <title>Coding Club Blogs</title>
+    <style>
+        /* Base Styles */
+        :root {
+            --primary-color: #38bdf8;
+            --bg-dark: #0f172a;
+            --card-bg: rgba(15, 23, 42, 0.7);
+            --text-light: #e2e8f0;
+            --text-muted: #94a3b8;
+            --header-height: 70px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        #canvas-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        /* Header/Navigation */
+        header {
+            background: rgba(15, 23, 42, 0.85);
+            padding: 10px 25px;
+            border-bottom: 1px solid #1e293b;
+            backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1002;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            min-height: var(--header-height);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 60px;
+            margin-right: 10px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            color: var(--primary-color);
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+            font-weight: bold;
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus {
+            color: var(--primary-color);
+            outline: none;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1004;
+        }
+
+        .hamburger .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: var(--text-light);
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active .bar:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .hamburger.active .bar:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* Layout */
+        .container {
+            display: flex;
+            flex: 1;
+            padding: 10px;
+            max-width: 1400px;
+            /* margin: calc(var(--header-height) + 20px) auto 0; */
+            margin-top: 1px;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            padding-top: 5px;
+            margin-top: 5px;
+          
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 10px;
+            
+            z-index: 1;
+            padding: 15px 0;
+            background: var(--card-bg);
+            border-radius: 10px;
+            min-height: 100px; /* Ensure consistent height */
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            color: var(--primary-color);
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Blog Cards */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .blog-card {
+            background: var(--card-bg);
+            border: 1px solid #1e293b;
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            backdrop-filter: blur(5px);
+        }
+
+        .blog-card:hover,
+        .blog-card:focus-within {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border-color: var(--primary-color);
+        }
+
+        .author-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+            border: 2px solid var(--primary-color);
+            loading: lazy;
+        }
+
+        .author-details h3 {
+            font-size: 1.1rem;
+            margin-bottom: 3px;
+            color: var(--text-light);
+        }
+
+        .author-details p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .blog-content h2 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .blog-content p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #cbd5e1;
+            margin-bottom: 15px;
+        }
+
+        .read-more {
+            display: inline-block;
+            padding: 8px 15px;
+            background: #1e40af;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+        }
+
+        .read-more:hover,
+        .read-more:focus {
+            background: #1e3a8a;
+            outline: none;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 300px;
+            padding: 20px;
+            background: var(--card-bg);
+            border-left: 1px solid #1e293b;
+            backdrop-filter: blur(5px);
+        }
+
+        .sidebar h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        .club-post {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #334155;
+        }
+
+        .club-post h3 {
+            font-size: 1rem;
+            margin-bottom: 5px;
+            color: var(--text-light);
+        }
+
+        .club-post p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .club-post .post-date {
+            font-size: 0.75rem;
+            color: #64748b;
+            margin-top: 5px;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(15, 23, 42, 0.9);
+            padding: 30px;
+            border-top: 1px solid #1e293b;
+            backdrop-filter: blur(5px);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .social-links a {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover,
+        .social-links a:focus {
+            color: var(--primary-color);
+            outline: none;
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .college-logo {
+            height: 15vh;
+            transition: transform 0.3s;
+        }
+
+        .college-logo:hover,
+        .college-logo:focus {
+            transform: scale(1.1);
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            body {
+                width: 100%;
+                overflow-x: hidden;
+            }
+
+            header {
+                padding: 15px 20px;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 100%;
+                max-width: 300px;
+                height: 100vh;
+                background: rgba(15, 23, 42, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                padding: 70px 20px 20px;
+                transition: right 0.3s ease;
+                z-index: 1003;
+                overflow-x: hidden;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                padding: 12px 0;
+                font-size: 1.2rem;
+                width: 100%;
+                text-align: left;
+            }
+
+            .container {
+                flex-direction: column;
+                margin-top: 8px; /* Reduced gap for mobile */
+                padding: 15px;
+            }
+
+            .header {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 10px 0;
+                min-height: 80px; /* Slightly smaller for mobile */
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .header p {
+                font-size: 1rem;
+                margin-top: 0.5rem;
+            }
+
+            .sidebar {
+                width: 100%;
+                border-left: none;
+                border-top: 1px solid #1e293b;
+                margin-top: 20px;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .college-logo {
+                height: 12vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- Animated Background Canvas -->
+        <canvas id="canvas-bg" aria-hidden="true"></canvas>
+
+        <!-- Header with Logo and Navigation -->
+        <header>
+            <a href="../index.html" class="logo" aria-label="Coding Club Home">
+                <img src="../codex_logo.png" alt="Coding Club Logo" class="logo-img" loading="lazy">
+                <span class="logo-text">Coding Club</span>
+            </a>
+            <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <nav class="nav-links" role="navigation">
+                <a href="../index.html">Home</a>
+                <a href="../index.html#events">Events</a>
+                <a href="../index.html#team-members">Members</a>
+                <a href="../index.html#AbOuT">About</a>
+            </nav>
+        </header>
+
+        <div class="container">
+            <main class="main-content" role="main">
+                <header class="header" id="blog-header">
+                    <h1>Blogs</h1>
+                    <p>Thoughts, tutorials, and updates from our coding club members</p>
+                </header>
+
+                <div class="blog-grid">
+                    <article class="blog-card">
+                        <div class="author-info">
+                            <img src="../user.jpg" alt="Ananya J R's avatar" class="avatar" loading="lazy">
+                            <div class="author-details">
+                                <h3>Ananya J R</h3>
+                                <p>December 22, 2024 · 5 min read</p>
+                            </div>
+                        </div>
+                        <div class="blog-content">
+                            <h2>The Future of AI and ML: Transforming Industries Through Code</h2>
+                            <p>What were once futuristic concepts have now turned into reality in various industries such as healthcare, finance, entertainment, and so on using AI. But what is really the role of coding in this revolution?</p>
+                            <a href="Posts/Ananya's blog.html" class="read-more">Read More</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-card">
+                        <div class="author-info">
+                            <img src="../user.jpg" alt="Manini Sharma's avatar" class="avatar" loading="lazy">
+                            <div class="author-details">
+                                <h3>Manini Sharma</h3>
+                                <p>December 21, 2024 · 8 min read</p>
+                            </div>
+                        </div>
+                        <div class="blog-content">
+                            <h2>A New Dawn of AI: Creating a World that Never Was</h2>
+                            <p>AI is real, no more the fiction of future, and dwelling with us- in living, working and interconnecting people.</p>
+                            <a href="Posts/Manini's blog.html" class="read-more">Read More</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-card">
+                        <div class="author-info">
+                            <img src="../saurabprofile.jpg" alt="Saurab Mishra's avatar" class="avatar" loading="lazy">
+                            <div class="author-details">
+                                <h3>Saurab Mishra</h3>
+                                <p>November 4, 2024 · 6 min read</p>
+                            </div>
+                        </div>
+                        <div class="blog-content">
+                            <h2>Exploring the Future of Coding</h2>
+                            <p>In this blog post, we'll dive into the latest trends and technologies shaping the future of coding. From the rise of low-code/no-code platforms to the increased importance of data science and machine learning, the coding landscape is rapidly evolving.</p>
+                            <a href="Posts/Mishra's blog.html" class="read-more">Read More</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-card">
+                        <div class="author-info">
+                            <img src="../user.jpg" alt="Abhinav Joshi's avatar" class="avatar" loading="lazy">
+                            <div class="author-details">
+                                <h3>Abhinav Joshi</h3>
+                                <p>December 20, 2024 · 20 min read</p>
+                            </div>
+                        </div>
+                        <div class="blog-content">
+                            <h2>Making a DAW with Python</h2>
+                            <p>The Blog aims in making a python programme to create a basic Digital Audio Workstation(DAW), which should in the end create a platform for you to build on.</p>
+                            <a href="Posts/Joshy's blog.html" class="read-more">Read More</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-card">
+                        <div class="author-info">
+                            <img src="../saurabprofile.jpg" alt="Saurab Mishra's avatar" class="avatar" loading="lazy">
+                            <div class="author-details">
+                                <h3>Saurab Mishra</h3>
+                                <p>December 10, 2024 · 7 min read</p>
+                            </div>
+                        </div>
+                        <div class="blog-content">
+                            <h2>Multi-Agent Systems: The Future of Collaborative AI</h2>
+                            <p>In this blog, I will present a modular multi-agent system for collaborative participation in artificial intelligence tasks. In this system, agents with differing task-specific capabilities work cooperatively toward achieving a research challenge.</p>
+                            <a href="Posts/Mishra's blog 2.html" class="read-more">Read More</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-card">
+                        <div class="author-info">
+                            <img src="../user.jpg" alt="Saurav Kumar Singh's avatar" class="avatar" loading="lazy">
+                            <div class="author-details">
+                                <h3>Saurav Kumar Singh</h3>
+                                <p>December 21, 2024 · 4 min read</p>
+                            </div>
+                        </div>
+                        <div class="blog-content">
+                            <h2>My First Research Project</h2>
+                            <p>As a first-year at IISER TVM, I explored whether fever patterns—temperature vs time graphs—could help diagnose diseases. This blog traces my journey from hypothesis to hurdles, and a surprising AI-powered twist.</p>
+                            <a href="Posts/Saurab's blog.html" class="read-more">Read More</a>
+                        </div>
+                    </article>
+                </div>
+            </main>
+
+            <aside class="sidebar" aria-label="Club updates">
+                <h2>Club Posts</h2>
+                <div class="club-post">
+                    <h3>First posts!</h3>
+                    <p>The coding club has deployed its blogging site, check out the first few posts!</p>
+                    <p class="post-date">Posted May 29, 2025</p>
+                </div>
+            </aside>
+        </div>
+
+        <footer>
+            <div class="footer-content">
+                <div>
+                    <a href="https://www.iisertvm.ac.in/" aria-label="IISER TVM">
+                        <img src="../iiser_logo.png" alt="IISER TVM Logo" class="college-logo" loading="lazy">
+                    </a>
+                    <p>Coding Club is IISER TVM's premier club, fostering technical excellence and innovation among students.</p>
+                </div>
+                <div class="social-links">
+                    <a href="https://chat.whatsapp.com/DkHaq5HxNk2C1d2LFtC1Sl" aria-label="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="#" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://in.linkedin.com/company/cciisertvm" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="#" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+                <p class="footer-text">© 2025 Coding Club IISER TVM. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <script>
+        // Particle Animation
+        (function() {
+            const canvas = document.getElementById('canvas-bg');
+            const ctx = canvas.getContext('2d', { alpha: true });
+            
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resizeCanvas();
+
+            const particles = [];
+            const particleCount = Math.min(Math.floor(window.innerWidth / 15), 100);
+            
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 2 + 1;
+                    this.speedX = Math.random() * 1 - 0.5;
+                    this.speedY = Math.random() * 1 - 0.5;
+                    this.color = `hsl(${Math.random() * 60 + 190}, 70%, 50%)`;
+                }
+                
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                    if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+                }
+                
+                draw() {
+                    ctx.fillStyle = this.color;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                    
+                    for (const particle of particles) {
+                        const dx = this.x - particle.x;
+                        const dy = this.y - particle.y;
+                        const distance = Math.hypot(dx, dy);
+                        
+                        if (distance < 80) {
+                            ctx.strokeStyle = `rgba(56, 189, 248, ${1 - distance/80})`;
+                            ctx.lineWidth = 0.4;
+                            ctx.beginPath();
+                            ctx.moveTo(this.x, this.y);
+                            ctx.lineTo(particle.x, particle.y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+            
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+            
+            let lastTime = 0;
+            function animate(time) {
+                if (time - lastTime > 1000 / 60) {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    particles.forEach(particle => {
+                        particle.update();
+                        particle.draw();
+                    });
+                    lastTime = time;
+                }
+                requestAnimationFrame(animate);
+            }
+            
+            animate(0);
+            window.addEventListener('resize', resizeCanvas);
+        })();
+
+        // Hamburger Menu
+        (function() {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            const body = document.body;
+            
+            function toggleMenu() {
+                const isOpen = hamburger.getAttribute('aria-expanded') === 'true';
+                hamburger.setAttribute('aria-expanded', !isOpen);
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+                
+                if (!isOpen) {
+                    body.style.overflow = 'hidden';
+                    body.style.position = 'fixed';
+                    body.style.width = '100%';
+                    navLinks.focus();
+                } else {
+                    body.style.overflow = '';
+                    body.style.position = '';
+                    body.style.width = '';
+                    hamburger.focus();
+                }
+            }
+            
+            function closeMenuOnResize() {
+                if (window.innerWidth > 768 && navLinks.classList.contains('active')) {
+                    toggleMenu();
+                }
+            }
+            
+            hamburger.addEventListener('click', toggleMenu);
+            window.addEventListener('resize', closeMenuOnResize);
+            
+            navLinks.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+                    toggleMenu();
+                }
+            });
+            
+            document.addEventListener('click', (e) => {
+                if (!navLinks.contains(e.target) && !hamburger.contains(e.target) && navLinks.classList.contains('active')) {
+                    toggleMenu();
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
