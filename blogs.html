@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CCIT Society Blog</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="bootstrap-navbar.css" rel="stylesheet">
+  <link href="responsive.css" rel="stylesheet">
   <style>
     body {
       font-family: 'Roboto Mono', monospace;
@@ -185,7 +189,8 @@
   </style>
 </head>
 <body>
-  <button class="home-button" onclick="window.location.href='index.html'">Home</button>
+  <!-- Navigation -->
+  <div id="navigation-placeholder"></div>
   <div class="background-image"></div>
   <div class="container">
     <h1 style="color: #FFFFFF; font-size: 3rem; margin-bottom: 2rem;">CCIT Society Blog</h1>
@@ -254,6 +259,7 @@ function redirectToExternal() {
     </div>
   </div>
 
+  <script src="shared-navbar.js"></script>
   <script>
     function openModal() {
       document.getElementById('blogModal').style.display = 'block';
@@ -280,5 +286,9 @@ function redirectToExternal() {
       }
     });
   </script>
+  <!-- Bootstrap JavaScript dependencies -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="shared-navbar.js"></script>
 </body>
 </html>

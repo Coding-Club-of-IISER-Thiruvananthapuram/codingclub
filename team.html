@@ -38,6 +38,9 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href="preloader.css" rel="stylesheet">
     <link href="responsive.css" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="bootstrap-navbar.css" rel="stylesheet">
     
     <style>
         :root {
@@ -301,75 +304,7 @@
     </div>
 
     <!-- Navigation -->
-    <nav class="bg-gray-900 bg-opacity-95 backdrop-blur-md fixed w-full z-50 border-b border-gray-800">
-        <div class="container mx-auto px-6">
-            <div class="flex justify-between items-center h-20">
-                <!-- Logo -->
-                <div class="flex items-center space-x-3">
-                    <a href="index.html" class="flex items-center space-x-3">
-                        <img src="connection_network_infinity_partial_logo.png" alt="Coding Club Logo" class="h-12 w-auto transition-transform duration-300 hover:scale-110">
-                        <div>
-                            <h1 class="text-xl font-bold bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent">
-                                Coding Club
-                            </h1>
-                            <p class="text-xs text-gray-400">IISER TVM</p>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="index.html" class="nav-link nav-hover-effect" aria-label="Go to home">
-                        <i class="fas fa-home mr-2" aria-hidden="true"></i>Home
-                    </a>
-                    <a href="alumni.html" class="nav-link nav-hover-effect" aria-label="View alumni">
-                        <i class="fas fa-graduation-cap mr-2" aria-hidden="true"></i>Alumni
-                    </a>
-                    <a href="projects.html" class="nav-link nav-hover-effect" aria-label="View projects and courses">
-                        <i class="fas fa-project-diagram mr-2" aria-hidden="true"></i>Projects & Courses
-                    </a>
-                    <a href="team.html" class="nav-link nav-hover-effect text-blue-400" aria-label="Meet our team">
-                        <i class="fas fa-users mr-2" aria-hidden="true"></i>Team
-                    </a>
-                    <a href="Blogs/Blog main.html" class="nav-link nav-hover-effect" aria-label="Read our blogs">
-                        <i class="fas fa-blog mr-2" aria-hidden="true"></i>Blogs
-                    </a>
-                    <a href="store.html" class="nav-link nav-hover-effect" aria-label="Access resources">
-                        <i class="fas fa-book mr-2" aria-hidden="true"></i>Resources
-                    </a>
-                    <a href="index.html#faq" class="nav-link nav-hover-effect" aria-label="Frequently asked questions">
-                        <i class="fas fa-question-circle mr-2" aria-hidden="true"></i>FAQ
-                    </a>
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeJuIlW4REb117B8I4Kd_AkGgveW4ohVDxWk-Ux5w5dumAYFQ/viewform?usp=sharing" class="cyber-button py-2 px-4 text-sm" aria-label="Join our coding club">
-                        <i class="fas fa-rocket mr-1" aria-hidden="true"></i> Join Us
-                    </a>
-                </div>                <!-- Mobile Menu Button -->
-                <div class="md:hidden">
-                    <button class="text-gray-300 hover:text-white focus:outline-none focus:text-white" aria-label="Toggle menu" onclick="toggleMobileMenu()">
-                        <div class="burger-icon">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div class="bg-gray-900 shadow-lg hidden w-full transform transition-all duration-300 mobile-menu" id="mobile-menu">
-            <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 transition duration-300">Home</a>
-                <a href="alumni.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 transition duration-300">Alumni</a>
-                <a href="projects.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 transition duration-300">Projects & Courses</a>
-                <a href="team.html" class="block px-3 py-2 rounded-md text-base font-medium text-blue-400 hover:text-white hover:bg-gray-700 transition duration-300">Team</a>
-                <a href="Blogs/Blog main.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 transition duration-300">Blogs</a>
-                <a href="store.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 transition duration-300">Resources</a>
-                <a href="index.html#faq" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 transition duration-300">FAQ</a>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeJuIlW4REb117B8I4Kd_AkGgveW4ohVDxWk-Ux5w5dumAYFQ/viewform?usp=sharing" class="block px-3 py-2 rounded-md text-base font-medium bg-gradient-to-r from-blue-600 to-green-400 text-white">Join Us</a>
-            </div>
-        </div>
-    </nav>
+    <div id="navigation-placeholder"></div>
 
     <!-- Hero Section -->
     <section class="min-h-screen flex items-center pt-20 overflow-hidden relative">
@@ -703,6 +638,7 @@
 
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="shared-navbar.js"></script>
     <script src="home_button.js"></script>
     <script>
         // Initialize AOS
@@ -711,13 +647,6 @@
             once: true,
             offset: 100
         });
-
-        // Mobile menu toggle
-        function toggleMobileMenu() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenu.classList.toggle('hidden');
-            mobileMenu.classList.toggle('show');
-        }
 
         // Preloader
         window.addEventListener('load', function() {
@@ -851,5 +780,9 @@
             }
         });
     </script>
+    <!-- Bootstrap JavaScript dependencies -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="shared-navbar.js"></script>
 </body>
 </html>

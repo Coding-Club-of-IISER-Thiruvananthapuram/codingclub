@@ -7,10 +7,19 @@
     <meta name="keywords" content="coding, programming, IISER TVM, tech blogs, AI, machine learning">
     <meta name="author" content="Coding Club IISER TVM">
     <title>Coding Club Blogs</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+    <link rel="manifest" href="../site.webmanifest">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap Navbar CSS -->
+    <link href="../bootstrap-navbar.css" rel="stylesheet">
     <style>
         /* Base Styles */
         :root {
@@ -36,6 +45,7 @@
             display: flex;
             flex-direction: column;
             overflow-x: hidden;
+            padding-top: 70px; /* Account for fixed navbar */
         }
 
         /* Animated Background */
@@ -49,96 +59,14 @@
             opacity: 0.3;
         }
 
-        /* Header/Navigation */
-        header {
-            background: rgba(15, 23, 42, 0.85);
-            padding: 10px 25px;
-            border-bottom: 1px solid #1e293b;
-            positio
-            backdrop-filter: blur(5px);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1002;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            min-height: var(--header-height);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-        }
-
-        .logo-img {
-            height: 60px;
-            margin-right: 10px;
-            object-fit: contain;
-        }
-
-        .logo-text {
-            color: var(--primary-color);
-            text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
-            font-weight: bold;
-            font-size: 2rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-size: 1rem;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover,
-        .nav-links a:focus {
-            color: var(--primary-color);
-            outline: none;
-        }
-
-        /* Hamburger Menu */
-        .hamburger {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 10px;
-            z-index: 1004;
-        }
-
-        .hamburger .bar {
-            display: block;
-            width: 25px;
-            height: 3px;
-            margin: 5px auto;
-            background-color: var(--text-light);
-            transition: all 0.3s ease;
-        }
-
-        .hamburger.active .bar:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active .bar:nth-child(1) {
-            transform: translateY(8px) rotate(45deg);
-        }
-
-        .hamburger.active .bar:nth-child(3) {
-            transform: translateY(-8px) rotate(-45deg);
-        }
-
         /* Layout */
         .container {
             display: flex;
             flex: 1;
-            padding: 10px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
             max-width: 1400px;
             /* margin: calc(var(--header-height) + 20px) auto 0; */
             margin-top: 1px;
@@ -214,7 +142,6 @@
             object-fit: cover;
             margin-right: 15px;
             border: 2px solid var(--primary-color);
-            loading: lazy;
         }
 
         .author-details h3 {
@@ -256,6 +183,23 @@
         .read-more:focus {
             background: #1e3a8a;
             outline: none;
+        }
+
+        /* External link styling */
+        .read-more[target="_blank"] {
+            background: linear-gradient(135deg, #0575e6, #00f260);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .read-more[target="_blank"]:hover {
+            background: linear-gradient(135deg, #00f260, #0575e6);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 242, 96, 0.3);
+        }
+
+        .read-more[target="_blank"] i {
+            margin-right: 6px;
         }
 
         /* Sidebar */
@@ -347,60 +291,16 @@
             transform: scale(1.1);
         }
 
-        /* Mobile Styles */
+        /* Mobile Responsive Styles */
         @media (max-width: 768px) {
             body {
                 width: 100%;
                 overflow-x: hidden;
             }
 
-            header {
-                padding: 15px 20px;
-            }
-
-            .hamburger {
-                display: block;
-            }
-
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 100%;
-                max-width: 300px;
-                height: 100vh;
-                background: rgba(15, 23, 42, 0.98);
-                backdrop-filter: blur(10px);
-                flex-direction: column;
-                padding: 70px 20px 20px;
-                transition: right 0.3s ease;
-                z-index: 1003;
-                overflow-x: hidden;
-            }
-
-            .nav-links.active {
-                right: 0;
-            }
-
-            .nav-links a {
-                padding: 12px 0;
-                font-size: 1.2rem;
-                width: 100%;
-                text-align: left;
-            }
-
             .container {
                 flex-direction: column;
-                margin-top: 8px; /* Reduced gap for mobile */
                 padding: 15px;
-            }
-
-            .header {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                padding: 10px 0;
-                min-height: 80px; /* Slightly smaller for mobile */
             }
 
             .header h1 {
@@ -422,10 +322,6 @@
             .blog-grid {
                 grid-template-columns: 1fr;
             }
-
-            .college-logo {
-                height: 12vh;
-            }
         }
     </style>
 </head>
@@ -434,24 +330,8 @@
         <!-- Animated Background Canvas -->
         <canvas id="canvas-bg" aria-hidden="true"></canvas>
 
-        <!-- Header with Logo and Navigation -->
-        <header>
-            <a href="../index.html" class="logo" aria-label="Coding Club Home">
-                <img src="../connection_network_infinity_half_logo.png" alt="Coding Club Logo" class="logo-img" loading="lazy">
-                <span class="logo-text">Coding Club</span>
-            </a>
-            <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-            <nav class="nav-links" role="navigation">
-                <a href="../index.html">Home</a>
-                <a href="../index.html#events">Events</a>
-                <a href="../index.html#team-members">Members</a>
-                <a href="../index.html#AbOuT">About</a>
-            </nav>
-        </header>
+        <!-- Navigation Placeholder for Bootstrap Navbar -->
+        <div id="navigation-placeholder"></div>
 
         <div class="container">
             <main class="main-content" role="main">
@@ -461,6 +341,25 @@
                 </header>
 
                 <div class="blog-grid">
+                     <article class="blog-card">
+                        <div class="author-info">
+                            <img src="../saurabprofile.jpg" alt="Saurab Mishra's avatar" class="avatar" loading="lazy">
+                            <div class="author-details">
+                                <h3>Saurab Mishra</h3>
+                                <p>September 10, 2025 · 12 min read</p>
+                            </div>
+                        </div>
+                        <div class="blog-content">
+                            <h2>RLHF: The Engine Tuning Human Values into Large Language Models</h2>
+                            <p>Explore how Reinforcement Learning from Human Feedback (RLHF) is revolutionizing AI alignment by incorporating human values into language models. Discover the technical mechanisms, challenges, and future implications of this groundbreaking approach.</p>
+                            <a href="https://medium.com/towards-artificial-intelligence/rlhf-the-engine-tuning-human-values-into-large-language-models-9c4bfd75fc79" 
+                               target="_blank" 
+                               rel="noopener noreferrer" 
+                               class="read-more">
+                               <i class="fas fa-external-link-alt"></i> Read on Medium
+                            </a>
+                        </div>
+                     </article>
                      <article class="blog-card">
                         <div class="author-info">
                             <img src="../Blogs/Media-shr-blog/profile.jpeg" alt="Shrayansh Tiwari's avatar" class="avatar" loading="lazy">
@@ -713,53 +612,11 @@
             animate(0);
             window.addEventListener('resize', resizeCanvas);
         })();
-
-        // Hamburger Menu
-        (function() {
-            const hamburger = document.querySelector('.hamburger');
-            const navLinks = document.querySelector('.nav-links');
-            const body = document.body;
-            
-            function toggleMenu() {
-                const isOpen = hamburger.getAttribute('aria-expanded') === 'true';
-                hamburger.setAttribute('aria-expanded', !isOpen);
-                hamburger.classList.toggle('active');
-                navLinks.classList.toggle('active');
-                
-                if (!isOpen) {
-                    body.style.overflow = 'hidden';
-                    body.style.position = 'fixed';
-                    body.style.width = '100%';
-                    navLinks.focus();
-                } else {
-                    body.style.overflow = '';
-                    body.style.position = '';
-                    body.style.width = '';
-                    hamburger.focus();
-                }
-            }
-            
-            function closeMenuOnResize() {
-                if (window.innerWidth > 768 && navLinks.classList.contains('active')) {
-                    toggleMenu();
-                }
-            }
-            
-            hamburger.addEventListener('click', toggleMenu);
-            window.addEventListener('resize', closeMenuOnResize);
-            
-            navLinks.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && navLinks.classList.contains('active')) {
-                    toggleMenu();
-                }
-            });
-            
-            document.addEventListener('click', (e) => {
-                if (!navLinks.contains(e.target) && !hamburger.contains(e.target) && navLinks.classList.contains('active')) {
-                    toggleMenu();
-                }
-            });
-        })();
     </script>
+
+    <!-- Bootstrap JavaScript dependencies -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../shared-navbar.js"></script>
 </body>
 </html>
