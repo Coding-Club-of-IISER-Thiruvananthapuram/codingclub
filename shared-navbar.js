@@ -6,7 +6,7 @@
 function createSharedNavigation() {
     // Detect if we're in a subdirectory and adjust paths accordingly
     const currentPath = window.location.pathname;
-    const isInSubdirectory = currentPath.includes('/Blogs/');
+    const isInSubdirectory = currentPath.includes('/Blogs/') || currentPath.includes('/members/');
     const pathPrefix = isInSubdirectory ? '../' : '';
     
     return `
@@ -42,7 +42,7 @@ function createSharedNavigation() {
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a href="${pathPrefix}projects.html"><i class="fas fa-project-diagram"></i> Projects & Courses</a></li>
-                                <li><a href="${isInSubdirectory ? 'Blog main.html' : 'Blogs/Blog main.html'}"><i class="fas fa-blog"></i> Blogs</a></li>
+                                <li><a href="${isInSubdirectory && currentPath.includes('/Blogs/') ? 'Blog main.html' : pathPrefix + 'Blogs/Blog main.html'}"><i class="fas fa-blog"></i> Blogs</a></li>
                                 <li><a href="${pathPrefix}store.html"><i class="fas fa-store"></i> Resources</a></li>
                             </ul>
                         </li>
@@ -89,7 +89,7 @@ function initializeNavigation() {
 // Auto-initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Insert navigation if placeholder exists
-    const navPlaceholder = document.getElementById('navigation-placeholder');
+    const navPlaceholder = document.getElementById('navigation-placeholder') || document.getElementById('navbar-placeholder');
     if (navPlaceholder) {
         navPlaceholder.innerHTML = createSharedNavigation();
         

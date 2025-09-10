@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Abhinav Girish - Applied Mathematics and Computer Science enthusiast at IISER Thiruvananthapuram Coding Club">
+    <meta name="keywords" content="Abhinav Girish, Applied Mathematics, Computer Science, Simulations, IISER Thiruvananthapuram, coding club">
+    <meta name="theme-color" content="#0f1221">
+    <meta name="author" content="Coding Club IISER Thiruvananthapuram">
+    
+    <title>Abhinav Girish - Coding Club IISER Thiruvananthapuram</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="../connection_network_infinity_partial_logo.png">
+    
+    <!-- External CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="../bootstrap-navbar.css" rel="stylesheet">
+    <link href="../preloader.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --cyber-gradient: linear-gradient(45deg, #00f260, #0575e6, #00f260);
+            --neon-glow: 0 0 10px rgba(0, 242, 96, 0.5), 0 0 20px rgba(5, 117, 230, 0.3);
+            --accent-color: #a855f7;
+            --secondary-accent: #9333ea;
+            --bg-dark: #0f1221;
+            --card-bg: rgba(15, 18, 33, 0.8);
+            --font-primary: 'Space Grotesk', 'Inter', sans-serif;
+            --font-code: 'Fira Code', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background: var(--bg-dark);
+            color: white;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .cyber-card {
+            background: rgba(31, 41, 55, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #a855f7 0%, #9333ea 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .skill-tag {
+            background: rgba(168, 85, 247, 0.1);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            padding: 8px 16px;
+            border-radius: 20px;
+            color: #a855f7;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: rgba(168, 85, 247, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: rgba(168, 85, 247, 0.1);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #a855f7;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: rgba(168, 85, 247, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(168, 85, 247, 0.2);
+            color: white;
+            text-decoration: none;
+        }
+
+        .back-button {
+            background: linear-gradient(45deg, #a855f7, #9333ea);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .back-button:hover {
+            background: linear-gradient(45deg, #9333ea, #a855f7);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(168, 85, 247, 0.3);
+            color: white;
+            text-decoration: none;
+        }
+
+        .project-card {
+            background: rgba(31, 41, 55, 0.8);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            border-color: rgba(168, 85, 247, 0.5);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader" class="preloader">
+        <div class="preloader__content">
+            <img src="../connection_network_infinity_partial_logo.png" alt="Coding Club Logo" class="preloader__logo">
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div id="navigation-placeholder"></div>
+
+    <!-- Member Profile Section -->
+    <section class="min-h-screen pt-24 pb-12 relative overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10">
+            <!-- Back Button -->
+            <div class="mb-8" data-aos="fade-up">
+                <a href="../team.html" class="back-button">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Team
+                </a>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Profile Card -->
+                <div class="lg:col-span-1" data-aos="fade-up">
+                    <div class="cyber-card p-8 text-center">
+                        <div class="relative mb-6">
+                            <img src="../abhinav.png" alt="Abhinav Girish" class="w-48 h-48 rounded-full mx-auto object-cover border-4 border-purple-500">
+                            <div class="absolute -bottom-2 -right-2 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
+                                <i class="fas fa-check text-white"></i>
+                            </div>
+                        </div>
+                        
+                        <h1 class="text-3xl font-bold mb-2 gradient-text">Abhinav Girish</h1>
+                        <p class="text-purple-400 mb-4 text-lg">Member</p>
+                        <p class="text-gray-300 mb-6">"Just a guy who likes computers"</p>
+                        
+                        <!-- Social Links -->
+                        <div class="flex justify-center space-x-4 mb-6">
+                            <a href="#" class="social-link" aria-label="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#" class="social-link" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="mailto:abhinavggp@gmail.com" class="social-link" aria-label="Email">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+
+                        <!-- Contact Info -->
+                        <div class="text-left space-y-3">
+                            <div class="flex items-center text-gray-300">
+                                <i class="fas fa-envelope w-5 text-purple-400 mr-3"></i>
+                                <span class="text-sm">abhinavggp@gmail.com</span>
+                            </div>
+                            <div class="flex items-center text-gray-300">
+                                <i class="fas fa-map-marker-alt w-5 text-purple-400 mr-3"></i>
+                                <span class="text-sm">IISER Thiruvananthapuram</span>
+                            </div>
+                            <div class="flex items-center text-gray-300">
+                                <i class="fas fa-calendar w-5 text-purple-400 mr-3"></i>
+                                <span class="text-sm">Active Member</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Details Section -->
+                <div class="lg:col-span-2 space-y-8">
+                    <!-- About -->
+                    <div class="cyber-card p-8" data-aos="fade-up" data-aos-delay="200">
+                        <h2 class="text-2xl font-bold mb-4 text-purple-400">About Me</h2>
+                        <p class="text-gray-300 leading-relaxed mb-4">
+                            Hi! I'm Abhinav Girish, and as I like to put it simply - I'm just a guy who likes computers. 
+                            My passion lies in applied mathematics, computational simulations, and exploring the fascinating 
+                            world of Large Language Models.
+                        </p>
+                        <p class="text-gray-300 leading-relaxed">
+                            At IISER Thiruvananthapuram's Coding Club, I enjoy working on projects that bridge the gap 
+                            between mathematical theory and practical applications, particularly in the realm of AI and 
+                            computational modeling.
+                        </p>
+                    </div>
+
+                    <!-- Skills -->
+                    <div class="cyber-card p-8" data-aos="fade-up" data-aos-delay="300">
+                        <h2 class="text-2xl font-bold mb-6 text-purple-400">Skills & Expertise</h2>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <h3 class="text-lg font-semibold mb-3 text-green-400">Technical Skills</h3>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="skill-tag">Python</span>
+                                    <span class="skill-tag">Applied Mathematics</span>
+                                    <span class="skill-tag">Computational Modeling</span>
+                                    <span class="skill-tag">NumPy</span>
+                                    <span class="skill-tag">SciPy</span>
+                                    <span class="skill-tag">Matplotlib</span>
+                                    <span class="skill-tag">Jupyter</span>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold mb-3 text-orange-400">Specializations</h3>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="skill-tag">Simulations</span>
+                                    <span class="skill-tag">Large Language Models</span>
+                                    <span class="skill-tag">Mathematical Modeling</span>
+                                    <span class="skill-tag">Data Analysis</span>
+                                    <span class="skill-tag">Algorithm Design</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projects -->
+                    <div class="cyber-card p-8" data-aos="fade-up" data-aos-delay="400">
+                        <h2 class="text-2xl font-bold mb-6 text-purple-400">Featured Projects</h2>
+                        <div class="grid gap-6">
+                            <div class="project-card">
+                                <h3 class="text-xl font-semibold mb-2 text-green-400">Mathematical Simulation Framework</h3>
+                                <p class="text-gray-300 mb-3">
+                                    Developed a comprehensive framework for running complex mathematical simulations, 
+                                    focusing on efficiency and accuracy in computational modeling.
+                                </p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-2 py-1 bg-blue-900/30 text-blue-400 rounded text-xs">Python</span>
+                                    <span class="px-2 py-1 bg-purple-900/30 text-purple-400 rounded text-xs">NumPy</span>
+                                    <span class="px-2 py-1 bg-green-900/30 text-green-400 rounded text-xs">Simulation</span>
+                                </div>
+                            </div>
+                            
+                            <div class="project-card">
+                                <h3 class="text-xl font-semibold mb-2 text-indigo-400">LLM Research Tools</h3>
+                                <p class="text-gray-300 mb-3">
+                                    Created tools and utilities for researching and experimenting with Large Language Models, 
+                                    contributing to the understanding of AI behavior and capabilities.
+                                </p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-2 py-1 bg-blue-900/30 text-blue-400 rounded text-xs">Python</span>
+                                    <span class="px-2 py-1 bg-indigo-900/30 text-indigo-400 rounded text-xs">AI</span>
+                                    <span class="px-2 py-1 bg-pink-900/30 text-pink-400 rounded text-xs">NLP</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interests & Approach -->
+                    <div class="cyber-card p-8" data-aos="fade-up" data-aos-delay="500">
+                        <h2 class="text-2xl font-bold mb-6 text-purple-400">Interests & Approach</h2>
+                        <div class="space-y-4">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-3 h-3 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                                <div>
+                                    <h3 class="font-semibold text-purple-400">Computational Mathematics</h3>
+                                    <p class="text-gray-300 text-sm">Bridging theoretical mathematics with practical computational applications</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="w-3 h-3 bg-green-400 rounded-full mt-2 flex-shrink-0"></div>
+                                <div>
+                                    <h3 class="font-semibold text-green-400">AI & Machine Learning</h3>
+                                    <p class="text-gray-300 text-sm">Exploring the capabilities and limitations of Large Language Models</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="w-3 h-3 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
+                                <div>
+                                    <h3 class="font-semibold text-blue-400">Simple Solutions</h3>
+                                    <p class="text-gray-300 text-sm">Believing in the power of simple, elegant solutions to complex problems</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Background Animation -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none" style="z-index: -1;">
+            <div class="absolute h-64 w-64 rounded-full bg-purple-500 bg-opacity-10 -top-20 -left-20 animate-pulse"></div>
+            <div class="absolute h-96 w-96 rounded-full bg-indigo-500 bg-opacity-10 -bottom-40 -right-40 animate-pulse" style="animation-delay: 1s;"></div>
+            <div class="absolute h-48 w-48 rounded-full bg-violet-500 bg-opacity-10 top-1/3 -right-20 animate-pulse" style="animation-delay: 2s;"></div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../shared-navbar.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Preloader
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            setTimeout(() => {
+                preloader.classList.add('preloader--hidden');
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 500);
+            }, 1500);
+        });
+    </script>
+</body>
+</html>

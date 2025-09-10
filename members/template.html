@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{MEMBER_NAME}} - Member of IISER Thiruvananthapuram Coding Club">
+    <meta name="keywords" content="{{MEMBER_NAME}}, IISER Thiruvananthapuram, coding club, technology, programming">
+    <meta name="theme-color" content="#0f1221">
+    <meta name="author" content="Coding Club IISER Thiruvananthapuram">
+    
+    <title>{{MEMBER_NAME}} - Coding Club IISER Thiruvananthapuram</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="../connection_network_infinity_partial_logo.png">
+    
+    <!-- External CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="../bootstrap-navbar.css" rel="stylesheet">
+    <link href="../preloader.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --cyber-gradient: linear-gradient(45deg, #00f260, #0575e6, #00f260);
+            --neon-glow: 0 0 10px rgba(0, 242, 96, 0.5), 0 0 20px rgba(5, 117, 230, 0.3);
+            --accent-color: {{ACCENT_COLOR}};
+            --secondary-accent: {{SECONDARY_COLOR}};
+            --bg-dark: #0f1221;
+            --card-bg: rgba(15, 18, 33, 0.8);
+            --font-primary: 'Space Grotesk', 'Inter', sans-serif;
+            --font-code: 'Fira Code', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background: var(--bg-dark);
+            color: white;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .cyber-card {
+            background: rgba(31, 41, 55, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            border: 1px solid {{BORDER_COLOR}};
+            transition: all 0.3s ease;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, {{ACCENT_COLOR}} 0%, {{SECONDARY_COLOR}} 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .skill-tag {
+            background: {{ACCENT_COLOR_ALPHA}};
+            border: 1px solid {{ACCENT_COLOR_BORDER}};
+            padding: 8px 16px;
+            border-radius: 20px;
+            color: {{ACCENT_COLOR}};
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: {{ACCENT_COLOR_HOVER}};
+            transform: translateY(-2px);
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: {{ACCENT_COLOR_ALPHA}};
+            border: 1px solid {{ACCENT_COLOR_BORDER}};
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: {{ACCENT_COLOR}};
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: {{ACCENT_COLOR_HOVER}};
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px {{ACCENT_COLOR_SHADOW}};
+            color: white;
+            text-decoration: none;
+        }
+
+        .back-button {
+            background: linear-gradient(45deg, {{ACCENT_COLOR}}, {{SECONDARY_COLOR}});
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .back-button:hover {
+            background: linear-gradient(45deg, {{SECONDARY_COLOR}}, {{ACCENT_COLOR}});
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px {{ACCENT_COLOR_SHADOW}};
+            color: white;
+            text-decoration: none;
+        }
+
+        .project-card {
+            background: rgba(31, 41, 55, 0.8);
+            border: 1px solid {{BORDER_COLOR}};
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            border-color: {{ACCENT_COLOR_BORDER}};
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader" class="preloader">
+        <div class="preloader__content">
+            <img src="../connection_network_infinity_partial_logo.png" alt="Coding Club Logo" class="preloader__logo">
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div id="navigation-placeholder"></div>
+
+    <!-- Member Profile Section -->
+    <section class="min-h-screen pt-24 pb-12 relative overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10">
+            <!-- Back Button -->
+            <div class="mb-8" data-aos="fade-up">
+                <a href="../team.html" class="back-button">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Team
+                </a>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Profile Card -->
+                <div class="lg:col-span-1" data-aos="fade-up">
+                    <div class="cyber-card p-8 text-center">
+                        <div class="relative mb-6">
+                            <div class="w-48 h-48 rounded-full mx-auto bg-gray-600 flex items-center justify-center border-4" style="border-color: {{ACCENT_COLOR}};">
+                                <div class="text-center">
+                                    <i class="fas fa-user text-6xl mb-2 opacity-50" style="color: {{ACCENT_COLOR}};"></i>
+                                    <div class="text-sm opacity-75">{{MEMBER_NAME}}</div>
+                                </div>
+                            </div>
+                            <div class="absolute -bottom-2 -right-2 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
+                                <i class="fas fa-check text-white"></i>
+                            </div>
+                        </div>
+                        
+                        <h1 class="text-3xl font-bold mb-2 gradient-text">{{MEMBER_NAME}}</h1>
+                        <p class="mb-4 text-lg" style="color: {{ACCENT_COLOR}};">Member</p>
+                        <p class="text-gray-300 mb-6">{{MEMBER_DESCRIPTION}}</p>
+                        
+                        <!-- Social Links -->
+                        <div class="flex justify-center space-x-4 mb-6">
+                            <a href="#" class="social-link" aria-label="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#" class="social-link" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="#" class="social-link" aria-label="Email">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+
+                        <!-- Contact Info -->
+                        <div class="text-left space-y-3">
+                            <div class="flex items-center text-gray-300">
+                                <i class="fas fa-envelope w-5 mr-3" style="color: {{ACCENT_COLOR}};"></i>
+                                <span class="text-sm">{{MEMBER_EMAIL}}</span>
+                            </div>
+                            <div class="flex items-center text-gray-300">
+                                <i class="fas fa-map-marker-alt w-5 mr-3" style="color: {{ACCENT_COLOR}};"></i>
+                                <span class="text-sm">IISER Thiruvananthapuram</span>
+                            </div>
+                            <div class="flex items-center text-gray-300">
+                                <i class="fas fa-calendar w-5 mr-3" style="color: {{ACCENT_COLOR}};"></i>
+                                <span class="text-sm">Active Member</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Details Section -->
+                <div class="lg:col-span-2 space-y-8">
+                    <!-- About -->
+                    <div class="cyber-card p-8" data-aos="fade-up" data-aos-delay="200">
+                        <h2 class="text-2xl font-bold mb-4" style="color: {{ACCENT_COLOR}};">About Me</h2>
+                        <p class="text-gray-300 leading-relaxed mb-4">
+                            {{MEMBER_ABOUT}}
+                        </p>
+                        <p class="text-gray-300 leading-relaxed">
+                            As an active member of the Coding Club at IISER Thiruvananthapuram, I contribute to various 
+                            projects and initiatives that advance our mission of innovation and technological excellence.
+                        </p>
+                    </div>
+
+                    <!-- Skills -->
+                    <div class="cyber-card p-8" data-aos="fade-up" data-aos-delay="300">
+                        <h2 class="text-2xl font-bold mb-6" style="color: {{ACCENT_COLOR}};">Skills & Interests</h2>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <h3 class="text-lg font-semibold mb-3 text-green-400">Technical Skills</h3>
+                                <div class="flex flex-wrap gap-2">
+                                    {{TECHNICAL_SKILLS}}
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold mb-3 text-blue-400">Interests</h3>
+                                <div class="flex flex-wrap gap-2">
+                                    {{INTERESTS}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contributions -->
+                    <div class="cyber-card p-8" data-aos="fade-up" data-aos-delay="400">
+                        <h2 class="text-2xl font-bold mb-6" style="color: {{ACCENT_COLOR}};">Contributions & Activities</h2>
+                        <div class="space-y-4">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-3 h-3 rounded-full mt-2 flex-shrink-0" style="background-color: {{ACCENT_COLOR}};"></div>
+                                <div>
+                                    <h3 class="font-semibold" style="color: {{ACCENT_COLOR}};">Active Club Participation</h3>
+                                    <p class="text-gray-300 text-sm">Regular participation in coding club meetings and events</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="w-3 h-3 bg-green-400 rounded-full mt-2 flex-shrink-0"></div>
+                                <div>
+                                    <h3 class="font-semibold text-green-400">Collaborative Projects</h3>
+                                    <p class="text-gray-300 text-sm">Contributing to team projects and collaborative initiatives</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="w-3 h-3 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
+                                <div>
+                                    <h3 class="font-semibold text-blue-400">Learning & Growth</h3>
+                                    <p class="text-gray-300 text-sm">Continuously learning new technologies and sharing knowledge</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Background Animation -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none" style="z-index: -1;">
+            <div class="absolute h-64 w-64 rounded-full bg-opacity-10 -top-20 -left-20 animate-pulse" style="background-color: {{ACCENT_COLOR}};"></div>
+            <div class="absolute h-96 w-96 rounded-full bg-opacity-10 -bottom-40 -right-40 animate-pulse" style="background-color: {{SECONDARY_COLOR}}; animation-delay: 1s;"></div>
+            <div class="absolute h-48 w-48 rounded-full bg-opacity-10 top-1/3 -right-20 animate-pulse" style="background-color: {{ACCENT_COLOR}}; animation-delay: 2s;"></div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../shared-navbar.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Preloader
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            setTimeout(() => {
+                preloader.classList.add('preloader--hidden');
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 500);
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
