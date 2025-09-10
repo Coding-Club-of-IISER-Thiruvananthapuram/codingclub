@@ -1,0 +1,300 @@
+/* Bootstrap-based Cyber Navigation Styles */
+
+/* Override Bootstrap navbar styles to maintain cyber theme */
+.cyber-nav.navbar-inverse {
+    background: rgba(15, 18, 33, 0.95) !important;
+    backdrop-filter: blur(15px);
+    border: none;
+    border-bottom: 1px solid rgba(5, 117, 230, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    margin-bottom: 0;
+}
+
+.cyber-nav.navbar-inverse.scrolled {
+    background: rgba(15, 18, 33, 0.98) !important;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Brand styling */
+.cyber-nav .navbar-brand {
+    color: #00f260 !important;
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+}
+
+.cyber-nav .navbar-brand:hover,
+.cyber-nav .navbar-brand:focus {
+    color: #0575e6 !important;
+    text-decoration: none;
+}
+
+/* Navigation links */
+.cyber-nav .navbar-nav > li > a {
+    color: #ffffff !important;
+    font-weight: 500;
+    padding: 15px 12px;
+    transition: all 0.3s ease;
+    border-radius: 0;
+    position: relative;
+}
+
+.cyber-nav .navbar-nav > li > a:hover,
+.cyber-nav .navbar-nav > li > a:focus {
+    color: #00f260 !important;
+    background: rgba(0, 242, 96, 0.05) !important;
+}
+
+.cyber-nav .navbar-nav > li > a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(45deg, #00f260, #0575e6);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.cyber-nav .navbar-nav > li > a:hover::after {
+    width: 80%;
+}
+
+/* Dropdown styles */
+.cyber-nav .dropdown-menu {
+    background: rgba(15, 18, 33, 0.98);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(5, 117, 230, 0.2);
+    border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    margin-top: 0;
+    padding: 8px 0;
+}
+
+.cyber-nav .dropdown-menu > li > a {
+    color: #ffffff !important;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.cyber-nav .dropdown-menu > li > a:hover,
+.cyber-nav .dropdown-menu > li > a:focus {
+    background: rgba(0, 242, 96, 0.1) !important;
+    color: #00f260 !important;
+    transform: translateX(4px);
+}
+
+.cyber-nav .dropdown-menu > li > a i {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    width: 16px;
+}
+
+/* CTA Button */
+.cyber-nav .navbar-cta {
+    background: linear-gradient(45deg, #0575e6, #00f260) !important;
+    color: white !important;
+    padding: 8px 16px !important;
+    border-radius: 6px !important;
+    margin: 7px 0 !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 0 10px rgba(0, 242, 96, 0.2);
+    display: inline-flex !important;
+    align-items: center;
+    gap: 6px;
+}
+
+.cyber-nav .navbar-cta:hover,
+.cyber-nav .navbar-cta:focus {
+    background: linear-gradient(45deg, #00f260, #0575e6) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(0, 242, 96, 0.4);
+    text-decoration: none !important;
+}
+
+/* Mobile toggle button */
+.cyber-nav .navbar-toggle {
+    border: 1px solid rgba(5, 117, 230, 0.3) !important;
+    background: transparent !important;
+    padding: 8px 12px !important;
+    border-radius: 4px !important;
+    margin-top: 12px !important;
+    margin-bottom: 12px !important;
+    margin-right: 15px !important;
+    position: relative;
+    width: 44px !important;
+    height: 40px !important;
+}
+
+.cyber-nav .navbar-toggle:hover,
+.cyber-nav .navbar-toggle:focus {
+    background: rgba(0, 242, 96, 0.1) !important;
+    border-color: rgba(0, 242, 96, 0.5) !important;
+    outline: none !important;
+    box-shadow: 0 0 10px rgba(0, 242, 96, 0.2) !important;
+}
+
+.cyber-nav .navbar-toggle .icon-bar {
+    background-color: #00f260 !important;
+    height: 1.5px !important;
+    width: 20px !important;
+    border-radius: 0.5px !important;
+    margin: 4px 0 !important;
+    transition: all 0.3s ease !important;
+    display: block !important;
+    border: none !important;
+}
+
+.cyber-nav .navbar-toggle:hover .icon-bar {
+    background-color: #0575e6 !important;
+    box-shadow: 0 0 5px rgba(0, 242, 96, 0.3) !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+    .cyber-nav .navbar-nav {
+        margin: 0;
+    }
+    
+    .cyber-nav .navbar-nav > li > a {
+        padding: 12px 15px;
+        border-bottom: 1px solid rgba(5, 117, 230, 0.1);
+    }
+    
+    .cyber-nav .dropdown-menu {
+        background: rgba(15, 18, 33, 0.95);
+        border: none;
+        box-shadow: none;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .cyber-nav .dropdown-menu > li > a {
+        padding: 8px 30px;
+        border-bottom: 1px solid rgba(5, 117, 230, 0.05);
+    }
+    
+    .cyber-nav .navbar-cta {
+        margin: 10px 15px !important;
+        text-align: center;
+    }
+    
+    /* Ensure hamburger button is properly styled on mobile */
+    .cyber-nav .navbar-toggle {
+        float: right !important;
+        margin-right: 15px !important;
+        margin-top: 12px !important;
+        margin-bottom: 12px !important;
+        width: 44px !important;
+        height: 40px !important;
+        padding: 8px 12px !important;
+    }
+    
+    .cyber-nav .navbar-toggle .icon-bar {
+        width: 20px !important;
+        height: 1.5px !important;
+        margin: 4px auto !important;
+        border-radius: 0.5px !important;
+    }
+}
+
+/* Animation for gradient text */
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* FontAwesome icon adjustments */
+.cyber-nav i {
+    margin-right: 6px;
+}
+
+.cyber-nav .caret {
+    margin-left: 6px;
+}
+
+/* Remove default Bootstrap focus outlines and add custom ones */
+.cyber-nav .navbar-nav > li > a:focus,
+.cyber-nav .dropdown-menu > li > a:focus {
+    outline: 2px solid rgba(0, 242, 96, 0.5);
+    outline-offset: 2px;
+}
+
+/* Ensure proper z-index */
+.cyber-nav {
+    z-index: 1030;
+}
+
+.cyber-nav .dropdown-menu {
+    z-index: 1031;
+}
+
+/* Ensure body has top margin for fixed navbar */
+body {
+    padding-top: 70px;
+}
+
+/* Force consistent hamburger button styling across all pages */
+.navbar-inverse .navbar-toggle {
+    border: 1px solid rgba(5, 117, 230, 0.3) !important;
+    background: transparent !important;
+}
+
+.navbar-inverse .navbar-toggle:hover,
+.navbar-inverse .navbar-toggle:focus {
+    background: rgba(0, 242, 96, 0.1) !important;
+    border-color: rgba(0, 242, 96, 0.5) !important;
+}
+
+.navbar-inverse .navbar-toggle .icon-bar {
+    background-color: #00f260 !important;
+    width: 20px !important;
+    height: 1.5px !important;
+    margin: 4px auto !important;
+    border-radius: 0.5px !important;
+    border: none !important;
+}
+
+/* Override any potential Bootstrap default styles for toggle button */
+.navbar-toggle {
+    position: relative !important;
+    float: right !important;
+    padding: 8px 12px !important;
+    margin-top: 12px !important;
+    margin-right: 15px !important;
+    margin-bottom: 12px !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border: 1px solid transparent !important;
+    border-radius: 4px !important;
+    width: 44px !important;
+    height: 40px !important;
+}
+
+.navbar-toggle .icon-bar {
+    display: block !important;
+    width: 20px !important;
+    height: 1.5px !important;
+    border-radius: 0.5px !important;
+    margin: 4px auto !important;
+    background-color: #00f260 !important;
+    border: none !important;
+}
+
+/* Open dropdown on hover for desktop */
+@media (min-width: 768px) {
+    .cyber-nav .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+}
