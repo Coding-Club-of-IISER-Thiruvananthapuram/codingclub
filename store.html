@@ -4,21 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CCIT Club - Resource Library</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href="preloader.css" rel="stylesheet">
     <link href="responsive.css" rel="stylesheet">
     <style>
         :root {
-            --bg-primary: #0f172a;
-            --bg-secondary: #1e293b;
-            --accent-blue: #3b82f6;
-            --accent-purple: #8b5cf6;
-            --text-primary: #e2e8f0;
-            --text-secondary: #94a3b8;
-            --card-bg: #1e293b;
-            --card-hover: #2d3a4f;
+            --cyber-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #667eea 100%);
+            --primary-gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #ec4899 100%);
+            --accent-gradient: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #8b5cf6 100%);
+            --success-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            --neon-glow: 0 0 20px rgba(79, 70, 229, 0.4), 0 0 40px rgba(124, 58, 237, 0.2);
+            --accent-color: #4f46e5;
+            --secondary-accent: #7c3aed;
+            --bg-dark: #0f0f23;
+            --bg-darker: #080817;
+            --card-bg: rgba(15, 15, 35, 0.9);
+            --card-border: rgba(79, 70, 229, 0.2);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --font-primary: 'Inter', 'Space Grotesk', system-ui, sans-serif;
+            --font-code: 'Fira Code', 'Cascadia Code', 'SF Mono', monospace;
+            --font-secondary: 'Poppins', sans-serif;
+            --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.15);
+            --shadow-hard: 0 10px 40px rgba(0, 0, 0, 0.3);
+            --border-radius: 16px;
+            --border-radius-small: 8px;
         }
 
         * {
@@ -28,126 +38,258 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            min-height: 100vh;
-            position: relative;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-darker) 100%);
+            color: #ffffff;
+            font-family: var(--font-primary);
             overflow-x: hidden;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            min-height: 100vh;
         }
 
-        .glow {
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Enhanced background effects */
+        .cyber-background {
             position: fixed;
-            top: -50%;
-            width: 80%;
-            height: 80%;
-            background: radial-gradient(
-                circle,
-                rgba(59, 130, 246, 0.1) 0%,
-                rgba(139, 92, 246, 0.1) 100%
-            );
-            filter: blur(100px);
-            z-index: 0;
-            animation: moveGlow 20s linear infinite;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            background: 
+                radial-gradient(ellipse at top, rgba(79, 70, 229, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom, rgba(124, 58, 237, 0.15) 0%, transparent 50%),
+                linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-darker) 100%);
+            overflow: hidden;
         }
 
-        @keyframes moveGlow {
-            0% { transform: translate(-50%, -50%) rotate(0deg); }
-            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        .cyber-background::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(79, 70, 229, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(124, 58, 237, 0.1) 0%, transparent 50%);
+            animation: morphing 20s ease-in-out infinite;
         }
 
+        @keyframes morphing {
+            0%, 100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 0.8;
+            }
+            33% {
+                transform: scale(1.1) rotate(120deg);
+                opacity: 0.6;
+            }
+            66% {
+                transform: scale(0.9) rotate(240deg);
+                opacity: 0.9;
+            }
+        }
+
+        .cyber-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(79, 70, 229, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(79, 70, 229, 0.08) 1px, transparent 1px);
+            background-size: 60px 60px;
+            animation: gridFloat 30s linear infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes gridFloat {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-60px, -60px); }
+        }
+
+        /* Modern Navigation */
         .navbar {
-            background: rgba(30, 41, 59, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 1rem 5%;
+            background: rgba(15, 15, 35, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(79, 70, 229, 0.2);
+            padding: 1rem 0;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 100;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-soft);
         }
 
         .nav-content {
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
-            justify-content: flex-start; 
+            justify-content: space-between;
             align-items: center;
+            padding: 0 2rem;
         }
 
         .logo {
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--accent-blue);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
             text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .logo i {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-size: 1.75rem;
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
         }
 
         .nav-links {
             display: flex;
             gap: 2rem;
+            align-items: center;
         }
 
-        .nav-links a {
-    text-decoration: none;
-    color: var(--text-primary);
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-weight: 500;
-    transition: color 0.3s;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    background: transparent;
-    margin-left: auto;  /* Aligns the link to the right */
-}
-
-
-        .nav-links a:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--accent-blue);
+        .nav-link {
+            position: relative;
+            color: white;
+            text-decoration: none;
+            padding: 10px 18px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: var(--border-radius-small);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: var(--primary-gradient);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .nav-link:hover {
+            color: #ffffff;
+            background: rgba(79, 70, 229, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .nav-link:hover::after {
+            width: 80%;
+        }
+
+        /* Main Content Layout */
         .main-content {
-            max-width: 1200px;
-            margin: 7rem auto 2rem;
-            padding: 0 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 120px 2rem 4rem;
             position: relative;
             z-index: 1;
         }
 
+        /* Enhanced Header Section */
         .header {
-            margin-bottom: 3rem;
             text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(79, 70, 229, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(79, 70, 229, 0.1);
+            border: 1px solid rgba(79, 70, 229, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--accent-color);
+            margin-bottom: 2rem;
         }
 
         .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(to right, var(--accent-blue), var(--accent-purple));
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: var(--primary-gradient);
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .header p {
+            font-size: 1.25rem;
+            color: #a1a1aa;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+
+        /* Enhanced Search Bar */
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            position: relative;
         }
 
         .search-bar {
-            max-width: 500px;
-            margin: 0 auto;
-            background: var(--bg-secondary);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 1rem;
-            padding: 0.75rem 1.5rem;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--border-radius);
+            padding: 1rem 1.5rem;
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            transition: all 0.3s;
+            gap: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
         }
 
         .search-bar:focus-within {
-            border-color: var(--accent-blue);
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+            border-color: var(--accent-color);
+            box-shadow: var(--neon-glow);
+            transform: translateY(-2px);
         }
 
         .search-bar input {
@@ -155,292 +297,771 @@
             background: transparent;
             border: none;
             outline: none;
-            color: var(--text-primary);
-            font-size: 1rem;
+            color: white;
+            font-size: 1.125rem;
+            font-weight: 500;
+        }
+
+        .search-bar input::placeholder {
+            color: #6b7280;
         }
 
         .search-bar i {
-            color: var(--text-secondary);
+            color: var(--accent-color);
+            font-size: 1.25rem;
         }
 
+        /* Filter Controls */
+        .filter-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.75rem 1.5rem;
+            border: 1px solid rgba(79, 70, 229, 0.3);
+            background: transparent;
+            color: white;
+            border-radius: var(--border-radius-small);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .filter-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-gradient);
+            transition: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: -1;
+        }
+
+        .filter-btn:hover::before,
+        .filter-btn.active::before {
+            left: 0;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            transform: translateY(-2px);
+            border-color: transparent;
+            box-shadow: var(--shadow-soft);
+        }
+
+        /* Enhanced Resource Grid */
         .resource-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 2rem;
-            padding: 1rem;
+            margin-top: 2rem;
         }
 
         .resource-card {
             background: var(--card-bg);
-            border-radius: 1rem;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--card-border);
+            border-radius: var(--border-radius);
             overflow: hidden;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
+            box-shadow: var(--shadow-soft);
+            cursor: pointer;
         }
 
         .resource-card::before {
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border-radius: 1rem;
-            background: linear-gradient(45deg, var(--accent-blue), var(--accent-purple));
-            opacity: 0;
-            transition: opacity 0.3s;
-            z-index: -1;
-        }
-
-        .resource-card:hover {
-            transform: translateY(-10px);
-            border-color: transparent;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(79, 70, 229, 0.1),
+                transparent
+            );
+            transition: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .resource-card:hover::before {
-            opacity: 0.1;
+            left: 100%;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: var(--neon-glow), var(--shadow-hard);
+            border-color: rgba(79, 70, 229, 0.4);
         }
 
         .card-image {
-            height: 200px;
+            height: 220px;
             overflow: hidden;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            background: linear-gradient(45deg, rgba(79, 70, 229, 0.1), rgba(124, 58, 237, 0.1));
         }
 
         .card-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .resource-card:hover .card-image img {
             transform: scale(1.1);
         }
 
+        .card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(79, 70, 229, 0.8) 0%,
+                rgba(124, 58, 237, 0.8) 100%
+            );
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .resource-card:hover .card-overlay {
+            opacity: 1;
+        }
+
+        .overlay-icon {
+            color: white;
+            font-size: 3rem;
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+
+        .resource-card:hover .overlay-icon {
+            transform: scale(1);
+        }
+
         .card-content {
-            padding: 1.5rem;
+            padding: 2rem;
+        }
+
+        .card-badge {
+            display: inline-block;
+            background: rgba(79, 70, 229, 0.1);
+            color: var(--accent-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         .card-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-            color: var(--text-primary);
+            font-size: 1.375rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: white;
+            line-height: 1.3;
+            letter-spacing: -0.025em;
         }
 
         .card-description {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
+            color: #a1a1aa;
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
             line-height: 1.6;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
         }
 
         .download-btn {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            background: linear-gradient(45deg, var(--accent-blue), var(--accent-purple));
+            background: var(--primary-gradient);
             color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
+            padding: 0.875rem 1.75rem;
+            border-radius: var(--border-radius-small);
             text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+            transition: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: -1;
+        }
+
+        .download-btn:hover::before {
+            left: 100%;
         }
 
         .download-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: var(--neon-glow), var(--shadow-hard);
         }
 
+        .download-btn:active {
+            transform: translateY(-1px) scale(1.02);
+        }
+
+        .card-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+            padding: 2rem 0;
+            border-top: 1px solid rgba(79, 70, 229, 0.2);
+            border-bottom: 1px solid rgba(79, 70, 229, 0.2);
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(79, 70, 229, 0.05);
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(79, 70, 229, 0.1);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #a1a1aa;
+            font-weight: 500;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #6b7280;
+        }
+
+        .empty-state i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .empty-state h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .empty-state p {
+            font-size: 1.125rem;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        /* Enhanced Mobile Responsiveness */
         @media (max-width: 768px) {
-            /* Fix header overlap issue */
-            .navbar {
-                height: auto;
-                min-height: 60px;
-                padding: 0.75rem 1rem;
-            }
-            
-            /* Ensure content doesn't hide under fixed header */
             .main-content {
-                padding-top: 80px !important; /* Account for fixed header */
-                margin-top: 0;
+                padding: 100px 1rem 2rem;
             }
             
-            .header {
-                padding-top: 2rem;
+            .nav-content {
+                padding: 0 1rem;
             }
             
-            /* Add proper spacing for all sections */
-            section {
-                scroll-margin-top: 80px; /* For smooth scrolling anchors */
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .nav-link {
+                padding: 8px 12px;
+                font-size: 0.875rem;
+            }
+
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .header p {
+                font-size: 1.125rem;
+            }
+            
+            .search-container {
+                margin: 0 auto 1.5rem;
+            }
+            
+            .filter-controls {
+                gap: 0.75rem;
+                margin-bottom: 2rem;
+            }
+            
+            .filter-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.875rem;
+            }
+            
+            .resource-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .card-content {
+                padding: 1.5rem;
+            }
+            
+            .card-title {
+                font-size: 1.25rem;
+            }
+            
+            .download-btn {
+                padding: 0.75rem 1.5rem;
+                font-size: 0.875rem;
+            }
+            
+            .stats-section {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 1rem;
+                margin: 2rem 0;
+            }
+            
+            .stat-card {
+                padding: 1rem;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-content {
+                padding: 90px 1rem 2rem;
             }
 
             .header h1 {
                 font-size: 2rem;
             }
             
+            .header p {
+                font-size: 1rem;
+            }
+            
+            .search-bar {
+                padding: 0.875rem 1.25rem;
+            }
+            
+            .search-bar input {
+                font-size: 1rem;
+            }
+            
             .resource-grid {
-                grid-template-columns: 1fr;
                 gap: 1rem;
-                padding: 0 1rem;
             }
             
-            .nav-content {
-                padding: 0;
+            .card-content {
+                padding: 1.25rem;
             }
             
-            .nav-links {
-                flex-wrap: wrap;
-                gap: 0.5rem;
-            }
-            
-            .nav-links a {
-                padding: 0.5rem 1rem;
-                font-size: 0.875rem;
+            .download-btn {
+                padding: 0.75rem 1.25rem;
+                font-size: 0.8rem;
+                width: 100%;
+                justify-content: center;
             }
         }
 
-        @media (max-width: 480px) {
-            /* Additional mobile header fix for very small screens */
-            .main-content {
-                padding-top: 90px !important;
-            }
+        /* Loading Animation */
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+        }
 
-            .header h1 {
-                font-size: 1.5rem;
-            }
-            
-            .resource-grid {
-                padding: 0 0.5rem;
-            }
-            
-            .nav-links a {
-                padding: 0.4rem 0.8rem;
-                font-size: 0.8rem;
-            }
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(79, 70, 229, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--accent-color);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-gradient);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.25rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 100;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: var(--neon-glow);
         }
     </style>
 </head>
 <body>
-    <div class="glow"></div>
+    <div class="cyber-background">
+        <div class="cyber-grid"></div>
+    </div>
     
     <nav class="navbar">
         <div class="nav-content">
+            <a href="index.html" class="logo">
+                <i class="fas fa-cube"></i>
+                CCIT Store
+            </a>
             <div class="nav-links">
-                <a href="index.html"><i class="fas fa-home"></i>            Home</a>
-                
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    Home
+                </a>
+                <a href="#resources" class="nav-link">
+                    <i class="fas fa-download"></i>
+                    Resources
+                </a>
             </div>
         </div>
     </nav>
 
     <main class="main-content">
-        <div class="header">
-            <h1>Resource Library</h1>
-            <div class="search-bar">
-                <i class="fas fa-search"></i>
-                <input type="text" placeholder="Search resources..." id="searchInput">
+        <div class="header" data-aos="fade-up">
+            <div class="header-badge">
+                <i class="fas fa-star"></i>
+                Resource Library
+            </div>
+            <h1>Download Center</h1>
+            <p>Access exclusive presentations, documents, and learning materials from our coding club events and workshops</p>
+            
+            <div class="search-container">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search for presentations, PDFs, and more..." id="searchInput">
+                </div>
+            </div>
+            
+            <div class="filter-controls">
+                <button class="filter-btn active" data-filter="all">
+                    <i class="fas fa-th"></i>
+                    All Resources
+                </button>
+                <button class="filter-btn" data-filter="presentation">
+                    <i class="fas fa-presentation"></i>
+                    Presentations
+                </button>
+                <button class="filter-btn" data-filter="document">
+                    <i class="fas fa-file-pdf"></i>
+                    Documents
+                </button>
+                <button class="filter-btn" data-filter="workshop">
+                    <i class="fas fa-tools"></i>
+                    Workshops
+                </button>
             </div>
         </div>
 
-        <div class="resource-grid" id="resourceGrid">
-            <!-- Resources will be populated here -->
+        <div class="stats-section" data-aos="fade-up" data-aos-delay="200">
+            <div class="stat-card">
+                <div class="stat-number" id="totalResources">0</div>
+                <div class="stat-label">Total Resources</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="totalDownloads">250+</div>
+                <div class="stat-label">Downloads</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Categories</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">New</div>
+                <div class="stat-label">Updated Weekly</div>
+            </div>
         </div>
+
+        <section id="resources">
+            <div class="resource-grid" id="resourceGrid">
+                <!-- Resources will be populated here -->
+            </div>
+            
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <i class="fas fa-search"></i>
+                <h3>No resources found</h3>
+                <p>Try adjusting your search or filter criteria to find what you're looking for.</p>
+            </div>
+        </section>
     </main>
+
+    <button class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="home_button.js"></script>
     <script>
-        // ===== RESOURCES ARRAY - TEMPLATE FOR ADDING NEW DOWNLOADABLE RESOURCES =====
-        // 
-        // TO ADD A NEW RESOURCE:
-        // 1. Copy the template below and add it to the resources array
-        // 2. Update all the fields with your resource information
-        // 3. Ensure the downloadUrl points to the correct file path
-        // 4. Use a proper placeholder image or upload a custom image
-        //
-        // TEMPLATE FOR NEW RESOURCE:
-        // {
-        //     title: "Your Resource Title Here",
-        //     description: "Brief description of what this resource contains",
-        //     image: "Image URL or path",
-        //     downloadUrl: "File path/URL to downloadable resource"
-        // },
-        //
-        // FIELD DESCRIPTIONS:
-        // - title: Display name for the resource (keep it descriptive but concise)
-        // - description: Explanation of what users will get from this resource
-        // - image: Thumbnail image (placeholder images work well for consistency)
-        // - downloadUrl: Path to the actual file users can download
-        //
-        // NOTE: Add new resources to the end of the array, before the closing bracket ]
-        // ===== END TEMPLATE INSTRUCTIONS =====
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
 
+        // Enhanced Resources Array with Categories
         const resources = [
             {
                 title: "Let's Build AI, Run Simulations, and Talk About the Universe!",
                 description: "The future of technology is here, and it's more exciting than ever. Join us as we explore the cutting-edge world of AI, LIGO, and beyond.",
-                image: "https://via.placeholder.com/400x300/1e293b/e2e8f0?text=LIGO",
-                downloadUrl: "Coding_Club_Talk.pdf"
+                image: "https://via.placeholder.com/400x300/4f46e5/ffffff?text=AI+%26+LIGO",
+                downloadUrl: "Coding_Club_Talk.pdf",
+                category: "presentation",
+                type: "PDF",
+                size: "2.3 MB",
+                date: "2024"
             },
-
-              {
-        title: "Alumni Meet & Interaction",
-        description: "Relive the highlights of our Alumni Meet & Interaction event! Explore the shared experiences, insights, and valuable discussions presented during the session through this detailed PPT.",
-        image: "https://via.placeholder.com/400x300/1e293b/e2e8f0?text=Alumni+Meet",
-        downloadUrl: "Alumni_Meet_Presentation.pdf"
-    }
-
-            // ===== ADD NEW RESOURCES HERE =====
-            // Copy the template from above and paste it here
-            // Remember to add a comma after the previous resource entry
-            // Example:
-            // ,
-            // {
-            //     title: "New Resource Title",
-            //     description: "Resource description here",
-            //     image: "https://via.placeholder.com/400x300/1e293b/e2e8f0?text=YourTitle",
-            //     downloadUrl: "path/to/your/file.pdf"
-            // }
-            // ===== END NEW RESOURCES SECTION =====
-            
+            {
+                title: "Alumni Meet & Interaction",
+                description: "Relive the highlights of our Alumni Meet & Interaction event! Explore the shared experiences, insights, and valuable discussions presented during the session through this detailed PPT.",
+                image: "https://via.placeholder.com/400x300/7c3aed/ffffff?text=Alumni+Meet",
+                downloadUrl: "Alumni_Meet_Presentation.pdf",
+                category: "presentation",
+                type: "PDF",
+                size: "1.8 MB",
+                date: "2024"
+            }
+            // Add more resources here following the same structure
         ];
 
-        function renderResources(filteredResources = resources) {
+        let currentFilter = 'all';
+        let filteredResources = [...resources];
+
+        // Render Resources Function
+        function renderResources(resourcesToRender = filteredResources) {
             const grid = document.getElementById('resourceGrid');
-            grid.innerHTML = filteredResources.map(resource => `
-                <div class="resource-card">
+            const emptyState = document.getElementById('emptyState');
+            
+            if (resourcesToRender.length === 0) {
+                grid.style.display = 'none';
+                emptyState.style.display = 'block';
+                return;
+            }
+            
+            grid.style.display = 'grid';
+            emptyState.style.display = 'none';
+            
+            grid.innerHTML = resourcesToRender.map((resource, index) => `
+                <div class="resource-card" data-aos="fade-up" data-aos-delay="${index * 100}">
                     <div class="card-image">
-                        <img src="${resource.image}" alt="${resource.title}">
+                        <img src="${resource.image}" alt="${resource.title}" loading="lazy">
+                        <div class="card-overlay">
+                            <i class="fas fa-download overlay-icon"></i>
+                        </div>
                     </div>
                     <div class="card-content">
+                        <div class="card-badge">${resource.category}</div>
                         <h3 class="card-title">${resource.title}</h3>
                         <p class="card-description">${resource.description}</p>
-                        <a href="${resource.downloadUrl}" class="download-btn">
-                            <i class="fas fa-download"></i>
-                            Download Resource
-                        </a>
+                        <div class="card-footer">
+                            <a href="${resource.downloadUrl}" class="download-btn" onclick="trackDownload('${resource.title}')">
+                                <i class="fas fa-download"></i>
+                                Download ${resource.type}
+                            </a>
+                            <div class="card-meta">
+                                <i class="fas fa-file"></i>
+                                ${resource.size}
+                            </div>
+                        </div>
                     </div>
                 </div>
             `).join('');
+            
+            // Re-initialize AOS for new elements
+            AOS.refresh();
         }
 
-        document.getElementById('searchInput').addEventListener('input', (e) => {
-            const searchTerm = e.target.value.toLowerCase();
-            const filtered = resources.filter(resource => 
-                resource.title.toLowerCase().includes(searchTerm) ||
-                resource.description.toLowerCase().includes(searchTerm)
-            );
+        // Search Functionality
+        function handleSearch(searchTerm) {
+            const filtered = resources.filter(resource => {
+                const matchesSearch = resource.title.toLowerCase().includes(searchTerm) ||
+                                    resource.description.toLowerCase().includes(searchTerm);
+                const matchesFilter = currentFilter === 'all' || resource.category === currentFilter;
+                return matchesSearch && matchesFilter;
+            });
+            
+            filteredResources = filtered;
             renderResources(filtered);
+        }
+
+        // Filter Functionality
+        function handleFilter(filter) {
+            currentFilter = filter;
+            
+            // Update filter buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`[data-filter="${filter}"]`).classList.add('active');
+            
+            // Apply filter
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            handleSearch(searchTerm);
+        }
+
+        // Track Downloads
+        function trackDownload(resourceTitle) {
+            console.log(`Downloaded: ${resourceTitle}`);
+            // Here you could add analytics tracking
+        }
+
+        // Update Stats
+        function updateStats() {
+            document.getElementById('totalResources').textContent = resources.length;
+        }
+
+        // Scroll to Top Functionality
+        function handleScrollTop() {
+            const scrollBtn = document.getElementById('scrollTop');
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    scrollBtn.classList.add('visible');
+                } else {
+                    scrollBtn.classList.remove('visible');
+                }
+            });
+            
+            scrollBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            // Search input
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', (e) => {
+                handleSearch(e.target.value.toLowerCase());
+            });
+
+            // Filter buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    handleFilter(e.target.dataset.filter);
+                });
+            });
+
+            // Initialize
+            renderResources();
+            updateStats();
+            handleScrollTop();
         });
 
+        // Loading Animation
+        function showLoading() {
+            document.getElementById('resourceGrid').innerHTML = `
+                <div class="loading">
+                    <div class="loading-spinner"></div>
+                </div>
+            `;
+        }
 
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
 
-        // Initial render
-        renderResources();
+        // Enhanced keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.getElementById('searchInput').value = '';
+                handleSearch('');
+            }
+            
+            if (e.ctrlKey && e.key === 'k') {
+                e.preventDefault();
+                document.getElementById('searchInput').focus();
+            }
+        });
     </script>
 </body>
 </html>
