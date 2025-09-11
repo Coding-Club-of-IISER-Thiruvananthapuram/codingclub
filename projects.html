@@ -358,6 +358,104 @@
                 width: 100%;
                 max-width: 100%;
             }
+
+            /* Innovation Showcase Section - Mobile Responsive Fixes */
+            
+            /* Grid layout adjustments */
+            .grid.md\\:grid-cols-2.lg\\:grid-cols-3 {
+                grid-template-columns: 1fr !important;
+                gap: 1.5rem !important;
+            }
+            
+            /* Project card responsive fixes */
+            .project-card {
+                margin: 0 auto;
+                max-width: 100%;
+                width: 100%;
+            }
+            
+            /* Image container adjustments */
+            .project-card .relative.h-64 {
+                height: 200px !important;
+            }
+            
+            /* Content padding adjustments */
+            .project-card .p-6 {
+                padding: 1.25rem !important;
+            }
+            
+            .project-card .space-y-6 {
+                gap: 1rem !important;
+            }
+            
+            /* Title adjustments */
+            .project-card h3.text-2xl {
+                font-size: 1.5rem !important;
+                line-height: 1.3 !important;
+            }
+            
+            /* Tech tags responsive layout */
+            .project-card .flex.flex-wrap.gap-2 {
+                gap: 0.5rem !important;
+            }
+            
+            .project-card .tech-tag {
+                font-size: 0.75rem !important;
+                padding: 0.25rem 0.75rem !important;
+            }
+            
+            /* Contributor section adjustments */
+            .project-card .contributor-avatar img {
+                width: 2.5rem !important;
+                height: 2.5rem !important;
+            }
+            
+            /* Button group in overlay */
+            .project-overlay {
+                flex-direction: column !important;
+                gap: 0.75rem !important;
+            }
+            
+            .project-overlay a {
+                padding: 0.75rem 1.25rem !important;
+                font-size: 0.875rem !important;
+                width: auto !important;
+                min-width: 120px !important;
+            }
+            
+            /* "More Projects" card adjustments */
+            .project-card .p-10 {
+                padding: 2rem !important;
+            }
+            
+            .project-card h3.text-3xl {
+                font-size: 1.75rem !important;
+                margin-bottom: 1rem !important;
+            }
+            
+            .project-card .w-32.h-32 {
+                width: 6rem !important;
+                height: 6rem !important;
+            }
+            
+            /* Matrix canvas adjustments */
+            #matrixCanvas {
+                display: none !important; /* Hide on mobile for performance */
+            }
+            
+            /* Innovation showcase header */
+            .text-blue-400.text-sm {
+                font-size: 0.875rem !important;
+                text-align: center !important;
+            }
+            
+            /* Badge adjustments */
+            .bg-blue-500\/10 {
+                padding: 0.75rem !important;
+                margin: 1rem auto !important;
+                display: block !important;
+                width: fit-content !important;
+            }
         }
 
         @media (max-width: 480px) {
@@ -376,6 +474,158 @@
 
             .hero-subtitle {
                 font-size: 1rem;
+            }
+
+            /* Extra small screen adjustments for Innovation Showcase */
+            
+            /* Further reduce spacing */
+            .grid.md\\:grid-cols-2.lg\\:grid-cols-3 {
+                gap: 1rem !important;
+            }
+            
+            /* Smaller image height */
+            .project-card .relative.h-64 {
+                height: 180px !important;
+            }
+            
+            /* Course card image height */
+            .course-card .relative.h-64 {
+                height: 180px !important;
+            }
+            
+            /* Tighter padding */
+            .project-card .p-6,
+            .course-card .p-6 {
+                padding: 1rem !important;
+            }
+            
+            /* Smaller title */
+            .project-card h3.text-2xl,
+            .course-card h3.text-2xl {
+                font-size: 1.25rem !important;
+            }
+            
+            /* Course and project overlay adjustments */
+            .course-overlay,
+            .project-overlay {
+                flex-direction: column !important;
+                gap: 0.5rem !important;
+            }
+            
+            .course-overlay a,
+            .project-overlay a {
+                padding: 0.5rem 1rem !important;
+                font-size: 0.875rem !important;
+            }
+        }
+
+        /* Enhanced Section Containers */
+        .section-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        /* Enhanced Grid Layouts */
+        .enhanced-grid {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        }
+
+        @media (max-width: 768px) {
+            .enhanced-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .enhanced-grid {
+                gap: 1rem;
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Card Container Improvements */
+        .card-container {
+            position: relative;
+            transform-style: preserve-3d;
+            transition: all 0.3s ease;
+        }
+
+        .card-container:hover {
+            transform: translateY(-8px) rotateX(5deg);
+        }
+
+        /* Technology Tags Responsive */
+        .tech-tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 480px) {
+            .tech-tags-container {
+                gap: 0.25rem;
+            }
+            
+            .tech-tag {
+                font-size: 0.75rem !important;
+                padding: 0.25rem 0.5rem !important;
+            }
+            
+            /* Compact tech tags */
+            .project-card .tech-tag {
+                font-size: 0.7rem !important;
+                padding: 0.2rem 0.5rem !important;
+            }
+            
+            /* Smaller contributor avatar */
+            .project-card .contributor-avatar img {
+                width: 2rem !important;
+                height: 2rem !important;
+            }
+            
+            /* Stack overlay buttons vertically */
+            .project-overlay a {
+                padding: 0.5rem 1rem !important;
+                font-size: 0.8rem !important;
+                width: 100% !important;
+                max-width: 200px !important;
+            }
+            
+            /* "More Projects" card compact */
+            .project-card .p-10 {
+                padding: 1.5rem !important;
+            }
+            
+            .project-card h3.text-3xl {
+                font-size: 1.5rem !important;
+            }
+            
+            .project-card .w-32.h-32 {
+                width: 4rem !important;
+                height: 4rem !important;
+            }
+            
+            /* Smaller cyber button */
+            .cyber-button {
+                padding: 0.75rem 1.25rem !important;
+                font-size: 0.875rem !important;
             }
         }
 
@@ -493,7 +743,7 @@
     </div>
 
     <!-- Courses Section -->
-    <section id="courses" class="py-24 relative overflow-hidden bg-gradient-to-br from-gray-900 to-gray-800">
+    <section id="courses" class="section-container py-24 relative overflow-hidden bg-gradient-to-br from-gray-900 to-gray-800">
         <div class="container mx-auto px-6 relative z-10">
             <div class="text-center mb-16">
                 <div class="flex items-center justify-center space-x-2 mb-6">
@@ -521,11 +771,11 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Enhanced Grid Container for Courses -->
+            <div class="enhanced-grid">
                 
-                <!-- Course Template -->
-                
-                <div class="course-card cyber-card group bg-gray-900 rounded-xl overflow-hidden shadow-lg transform transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(34,197,94,0.3)] border border-gray-800" data-aos="fade-up" data-aos-delay="150">
+                <!-- Web Development Course Card -->
+                <div class="card-container course-card cyber-card group bg-gray-900 rounded-xl overflow-hidden shadow-lg transform transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(34,197,94,0.3)] border border-gray-800" data-aos="fade-up" data-aos-delay="150">
                     <div class="relative h-64 overflow-hidden perspective-container">
                         <!-- Course image and icon -->
                         <div class="w-full h-full bg-gradient-to-br from-green-600 to-blue-600 flex items-center justify-center">
@@ -613,85 +863,75 @@
                                 </svg>
                                 Technologies
                             </h4>
-                            <!-- Technology tags - add/remove as needed -->
-                            <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-                            <script src="shared-navbar.js"></script>
-                            <script>
-                                // Section navigation functionality
-                                function initSectionNavigation() {
-                                    const sections = ['courses', 'projects'];
-                                    const navItems = document.querySelectorAll('.section-nav-item, .mobile-nav-item');
-                                    // Update active navigation item based on scroll position
-                                    function updateActiveNavItem() {
-                                        let currentSection = '';
-                                        const scrollPosition = window.scrollY + window.innerHeight / 3;
-                                        sections.forEach(sectionId => {
-                                            const section = document.getElementById(sectionId);
-                                            if (section) {
-                                                const sectionTop = section.offsetTop;
-                                                const sectionHeight = section.offsetHeight;
-                                                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                                                    currentSection = sectionId;
-                                                }
-                                            }
-                                        });
-                                        // Update navigation items
-                                        navItems.forEach(item => {
-                                            const sectionData = item.getAttribute('data-section');
-                                            if (sectionData === currentSection) {
-                                                item.classList.add('active');
-                                                if (sectionData === 'courses') {
-                                                    item.classList.add('bg-green-500/20');
-                                                    item.classList.remove('bg-blue-500/20');
-                                                } else if (sectionData === 'projects') {
-                                                    item.classList.add('bg-blue-500/20');
-                                                    item.classList.remove('bg-green-500/20');
-                                                }
-                                            } else {
-                                                item.classList.remove('active', 'bg-green-500/20', 'bg-blue-500/20');
-                                            }
-                                        });
-                                    }
-                                    // Add scroll listener with throttling
-                                    let isScrolling = false;
-                                    window.addEventListener('scroll', () => {
-                                        if (!isScrolling) {
-                                            window.requestAnimationFrame(() => {
-                                                updateActiveNavItem();
-                                                isScrolling = false;
-                                            });
-                                            isScrolling = true;
-                                        }
-                                    });
-                                    // Initial call
-                                    updateActiveNavItem();
-                                }
-                                // Initialize section navigation
-                                document.addEventListener('DOMContentLoaded', function() {
-                                    AOS.init({ duration: 1000, once: true, offset: 100 });
-                                    initSectionNavigation();
-                                    // Section navigation indicators
-                                    document.querySelectorAll('.section-nav-item').forEach(item => {
-                                        item.addEventListener('click', function() {
-                                            const section = this.getAttribute('data-section');
-                                            const target = document.getElementById(section);
-                                            if (target) {
-                                                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                                            }
-                                        });
-                                    });
-                                    // Mobile navigation indicators
-                                    document.querySelectorAll('.mobile-nav-item').forEach(item => {
-                                        item.addEventListener('click', function() {
-                                            const section = this.getAttribute('data-section');
-                                            const target = document.getElementById(section);
-                                            if (target) {
-                                                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                                            }
-                                        });
-                                    });
-                                });
-                            </script>
+                            <!-- Technology tags -->
+                            <div class="tech-tags-container">
+                                <span class="tech-tag px-3 py-1 text-xs font-medium bg-orange-900/30 text-orange-400 border border-orange-800 rounded-full">HTML</span>
+                                <span class="tech-tag px-3 py-1 text-xs font-medium bg-blue-900/30 text-blue-400 border border-blue-800 rounded-full">CSS</span>
+                                <span class="tech-tag px-3 py-1 text-xs font-medium bg-yellow-900/30 text-yellow-400 border border-yellow-800 rounded-full">JavaScript</span>
+                                <span class="tech-tag px-3 py-1 text-xs font-medium bg-green-900/30 text-green-400 border border-green-800 rounded-full">Python</span>
+                                <span class="tech-tag px-3 py-1 text-xs font-medium bg-purple-900/30 text-purple-400 border border-purple-800 rounded-full">Django</span>
+                            </div>
+                        </div>
+
+                        <!-- Course stats and info -->
+                        <div class="bg-gray-800/50 rounded-lg p-4 space-y-3">
+                            <div class="flex items-center justify-between text-sm">
+                                <div class="flex items-center gap-1">
+                                    <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                    </svg>
+                                    <span class="font-semibold text-green-400">Students:</span>
+                                    <span class="text-gray-300">50+ enrolled</span>
+                                </div>
+                                <div class="flex items-center gap-1">
+                                    <svg class="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                    <span class="font-semibold text-yellow-400">Rating:</span>
+                                    <span class="text-gray-300">4.8/5</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Course instructors -->
+                        <div class="pt-4 border-t border-gray-800">
+                            <h5 class="text-sm font-semibold text-gray-400 mb-3">Course Instructors</h5>
+                            <div class="flex items-center gap-3">
+                                <div class="relative contributor-avatar">
+                                    <img src="user.jpg" alt="Course Instructor"
+                                         class="w-10 h-10 rounded-full object-cover border-2 border-green-500 transition-all duration-300">
+                                    <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-gray-900 pulse-dot"></div>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-white">Coding Club Team</h4>
+                                    <p class="text-gray-400 text-sm">Expert Instructors</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section (Innovation Showcase) -->
+    <section id="projects" class="section-container py-24 relative overflow-hidden bg-gradient-to-br from-gray-900 to-indigo-900">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <div class="flex items-center justify-center space-x-2 mb-6">
+                    <div class="h-1 w-16 bg-gradient-to-r from-blue-500 to-purple-400"></div>
+                    <p class="text-sm uppercase tracking-widest text-blue-400 font-semibold">Innovation Hub</p>
+                    <div class="h-1 w-16 bg-gradient-to-r from-purple-400 to-blue-500"></div>
+                </div>
+                <div class="flex items-center justify-center mb-4">
+                    <div class="bg-blue-500/20 rounded-full p-4 mr-4">
+                        <svg class="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                        </svg>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-bold" data-aos="fade-up">
+                        <span class="bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent animate-gradient">
                             Featured Projects
                         </span>
                     </h2>
@@ -703,11 +943,12 @@
                     <p class="text-blue-400 text-sm font-medium">🚀 Innovation Showcase Section</p>
                 </div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- Enhanced Grid Container for Projects -->
+            <div class="enhanced-grid">
 
-                <!-- Project Template -->
-
-                <div class="project-card cyber-card group bg-gray-900 rounded-xl overflow-hidden shadow-lg transform transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(59,130,246,0.3)] border border-gray-800" data-aos="fade-up" data-aos-delay="150">
+                <!-- Step Mentor Project Card -->
+                <div class="card-container project-card cyber-card group bg-gray-900 rounded-xl overflow-hidden shadow-lg transform transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(59,130,246,0.3)] border border-gray-800" data-aos="fade-up" data-aos-delay="150">
                     <div class="relative h-64 overflow-hidden perspective-container">
                         <img src="step_mentor.png" alt="Step Mentor Project"
                              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 project-image">
@@ -765,7 +1006,7 @@
                                 </svg>
                                 Technologies
                             </h4>
-                            <div class="flex flex-wrap gap-2">
+                            <div class="tech-tags-container">
                                 <span class="tech-tag px-3 py-1 text-xs font-medium bg-blue-900/30 text-blue-400 border border-blue-800 rounded-full">Python</span>
                                 <span class="tech-tag px-3 py-1 text-xs font-medium bg-purple-900/30 text-purple-400 border border-purple-800 rounded-full">AI/ML</span>
                                 <span class="tech-tag px-3 py-1 text-xs font-medium bg-green-900/30 text-green-400 border border-green-800 rounded-full">Tesseract OCR</span>
@@ -791,7 +1032,7 @@
 
 
                 <!-- View More Projects Card -->
-                <div class="project-card cyber-card group bg-gradient-to-br from-gray-900 to-blue-900/20 rounded-xl overflow-hidden shadow-lg transform transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(59,130,246,0.3)] border border-gray-800 flex flex-col justify-center items-center" data-aos="fade-up" data-aos-delay="250">
+                <div class="card-container project-card cyber-card group bg-gradient-to-br from-gray-900 to-blue-900/20 rounded-xl overflow-hidden shadow-lg transform transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(59,130,246,0.3)] border border-gray-800 flex flex-col justify-center items-center" data-aos="fade-up" data-aos-delay="250">
                     <div class="p-10 text-center relative h-full w-full overflow-hidden">
                         <!-- Matrix code background - Canvas will be inserted here -->
                         <canvas id="matrixCanvas" class="matrix-code-background absolute inset-0 opacity-20 z-0"></canvas>
