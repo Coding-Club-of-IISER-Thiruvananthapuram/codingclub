@@ -8,6 +8,7 @@
   <!-- libs -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <link href="Blogs/prism.css" rel="stylesheet"/>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
   <style>
@@ -473,44 +474,6 @@
       margin-bottom: 0.75rem;
     }
 
-    /* Enhanced Code Containers */
-    pre {
-      background: rgba(0, 0, 0, 0.85) !important;
-      border: 1px solid rgba(79, 70, 229, 0.4);
-      border-radius: var(--border-radius-small);
-      padding: 1.5rem;
-      margin: 1.5rem 0;
-      overflow-x: auto;
-      font-family: 'Fira Code', 'Cascadia Code', monospace;
-      font-size: 0.9rem;
-      line-height: 1.6;
-      position: relative;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-    }
-
-    pre code {
-      background: none !important;
-      color: #e2e8f0 !important;
-      padding: 0;
-      border-radius: 0;
-      font-family: inherit;
-      font-size: inherit;
-      white-space: pre;
-      display: block;
-      width: 100%;
-    }
-
-    code {
-      background: rgba(0, 0, 0, 0.7) !important;
-      color: #e2e8f0 !important;
-      padding: 0.25rem 0.5rem;
-      border-radius: 4px;
-      font-family: 'Fira Code', 'Cascadia Code', monospace;
-      font-size: 0.85em;
-      border: 1px solid rgba(79, 70, 229, 0.3);
-    }
 
     .stats-display {
       background: rgba(79, 70, 229, 0.1);
@@ -773,26 +736,6 @@
         font-size: 0.8rem;
       }
       
-      /* Mobile code container improvements */
-      pre {
-        padding: 1rem !important;
-        margin: 1rem 0 !important;
-        font-size: 0.8rem !important;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-      }
-      
-      pre code {
-        white-space: pre !important;
-        word-wrap: normal;
-        overflow-wrap: normal;
-      }
-      
-      code {
-        font-size: 0.8em !important;
-        padding: 0.2rem 0.4rem !important;
-      }
-      
       .stats {
         padding: 0.75rem;
         font-size: 0.8rem;
@@ -921,7 +864,7 @@
 
     <div class="card">
       <h2>Python Implementation of Gradient Descent</h2>
-      <pre><code>
+      <pre><code class="language-python">
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -960,7 +903,7 @@ plt.show()
   </div>
 </div>
   
-
+<script src="Blogs/prism.js"></script>
 <script>
 
     let isPlaying = false;
