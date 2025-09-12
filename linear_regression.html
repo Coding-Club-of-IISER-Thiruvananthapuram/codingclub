@@ -2,183 +2,674 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Linear Regression — Gradient Descent (manual step)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Linear Regression — Gradient Descent | CCIT Club</title>
 
   <!-- libs -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <link href="Blogs/prism.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
   <style>
-    :root{
-      --bg:#0f1221;
-      --card:#151826;
-      --accent1:#00d9ff;
-      --accent2:#ff00a8;
-      --accent3:#ac6bff;
-      --accent4:#ff6b00;
-      --muted:#181818;
-      --fg:#ffffff;
+    :root {
+      --primary-gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #ec4899 100%);
+      --accent-gradient: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #8b5cf6 100%);
+      --success-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      --neon-glow: 0 0 20px rgba(79, 70, 229, 0.4), 0 0 40px rgba(124, 58, 237, 0.2);
+      --accent-color: #4f46e5;
+      --secondary-accent: #7c3aed;
+      --bg-dark: #0f0f23;
+      --bg-darker: #080817;
+      --card-bg: rgba(15, 15, 35, 0.9);
+      --card-border: rgba(79, 70, 229, 0.2);
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --font-primary: 'Inter', 'Space Grotesk', system-ui, sans-serif;
+      --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.15);
+      --shadow-hard: 0 10px 40px rgba(0, 0, 0, 0.3);
+      --border-radius: 16px;
+      --border-radius-small: 8px;
     }
-    body{
-      margin:0;
-      font-family:Inter,Arial,Helvetica,sans-serif;
-      background:var(--bg);
-      color:var(--fg);
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:16px;
-      padding:20px;
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    h1 {
-      background: linear-gradient(90deg, #0575e6, #8b5cf6, #f472b6);
+
+    body {
+      font-family: var(--font-primary);
+      background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-darker) 100%);
+      color: white;
+      overflow-x: hidden;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      min-height: 100vh;
+    }
+
+    /* Enhanced background effects */
+    .cyber-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+      background: 
+        radial-gradient(ellipse at top, rgba(79, 70, 229, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at bottom, rgba(124, 58, 237, 0.15) 0%, transparent 50%),
+        linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-darker) 100%);
+      overflow: hidden;
+    }
+
+    .cyber-background::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        radial-gradient(circle at 25% 25%, rgba(79, 70, 229, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(124, 58, 237, 0.1) 0%, transparent 50%);
+      animation: morphing 20s ease-in-out infinite;
+    }
+
+    @keyframes morphing {
+      0%, 100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 0.8;
+      }
+      33% {
+        transform: scale(1.1) rotate(120deg);
+        opacity: 0.6;
+      }
+      66% {
+        transform: scale(0.9) rotate(240deg);
+        opacity: 0.9;
+      }
+    }
+
+    /* Modern Navigation */
+    .navbar {
+      background: rgba(15, 15, 35, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(79, 70, 229, 0.2);
+      padding: 1rem 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .nav-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .logo i {
+      background: var(--primary-gradient);
       -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      font-size: 2em;
-      margin: 20px;
+      background-clip: text;
+      color: transparent;
+      font-size: 1.75rem;
     }
+
+    .logo:hover {
+      transform: translateY(-2px);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-link {
+      position: relative;
+      color: white;
+      text-decoration: none;
+      padding: 10px 18px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: var(--border-radius-small);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 50%;
+      width: 0;
+      height: 3px;
+      background: var(--primary-gradient);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+
+    .nav-link:hover {
+      color: #ffffff;
+      background: rgba(79, 70, 229, 0.1);
+      transform: translateY(-1px);
+    }
+
+    .nav-link:hover::after {
+      width: 80%;
+    }
+
+    /* Main content wrapper */
+    .main-content {
+      padding: 120px 30px 60px;
+      max-width: 1600px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 4rem;
+      position: relative;
+      padding: 2rem 0;
+    }
+
+    .page-header::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(79, 70, 229, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      z-index: -1;
+    }
+
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(79, 70, 229, 0.1);
+      border: 1px solid rgba(79, 70, 229, 0.2);
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--accent-color);
+      margin-bottom: 1.5rem;
+    }
+
+    h1 {
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
     h2 {
-        margin-bottom: 0px;
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 2rem 0 1rem;
     }
 
-    ul {
-        margin: 0px;;
-        padding: 10px;
-    }
-
-    li {
-        margin-bottom: 10px;
+    .page-description {
+      font-size: 1.125rem;
+      color: #a1a1aa;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      line-height: 1.6;
     }
 
     .container {
-      width:100%;
-      max-width:1100px;
-      
-      grid-template-columns: 1fr 420px;
-      gap:16px;
-      align-items:start;
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 450px;
+      gap: 3rem;
+      align-items: start;
+      padding: 0 20px;
     }
 
-    /* Left column: plots stacked */
     .plots {
-      display:flex;
-      flex-direction:column;
-      gap:14px;
-      background:transparent;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
     }
 
     .card {
-      background:var(--card);
-      padding:14px;
-      border-radius:12px;
-      box-shadow: 0 6px 24px rgba(0,0,0,0.6);
-      margin-bottom: 20px;
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--card-border);
+      border-radius: var(--border-radius);
+      padding: 2.5rem;
+      margin-bottom: 2.5rem;
+      box-shadow: var(--shadow-soft);
+      transition: all 0.3s ease;
     }
 
-    /* ensure responsive plot sizing */
-    #regressionCanvas { width:100% !important; height: 100% !important;}
-    #lossPlot { width:100%; height:420px; }
+    .card:hover {
+      border-color: rgba(79, 70, 229, 0.4);
+      box-shadow: var(--neon-glow), var(--shadow-hard);
+    }
 
-    /* right column: controls / stats */
     .controls {
-      display:flex;
-      flex-direction:column;
-      gap:12px;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      padding: 1rem;
     }
-    label{ font-size:0.9rem; display:block; margin-bottom:6px; color:var(--fg); }
-    .row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
-    input[type=range]{ width:100%; }
-    .small { font-size:0.9rem; color:#ddd; }
+
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    label {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #e2e8f0;
+      margin-bottom: 0.5rem;
+    }
+
+    .row {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      height: 6px;
+      background: rgba(79, 70, 229, 0.2);
+      border-radius: 3px;
+      outline: none;
+      -webkit-appearance: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      background: var(--primary-gradient);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+      box-shadow: var(--neon-glow);
+    }
+
+    input[type="number"] {
+      background: rgba(79, 70, 229, 0.1);
+      border: 1px solid rgba(79, 70, 229, 0.3);
+      border-radius: var(--border-radius-small);
+      padding: 0.5rem;
+      color: white;
+      font-family: inherit;
+      font-size: 0.9rem;
+      width: 80px;
+    }
+
+    input[type="number"]:focus {
+      outline: none;
+      border-color: var(--accent-color);
+      box-shadow: 0 0 10px rgba(79, 70, 229, 0.3);
+    }
 
     button {
-      padding: 10px 20px;
-      background: linear-gradient(90deg, #0575e6, #00f260);
+      padding: 14px 28px;
+      background: var(--primary-gradient);
       border: none;
-      border-radius: 6px;
+      border-radius: var(--border-radius-small);
       color: white;
-      font-weight: bold;
+      font-weight: 600;
       cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      font-family: inherit;
+      font-size: 1rem;
+      margin: 0.5rem 0;
     }
-    .muted { color:#cfcfcf; font-size:0.95rem; }
 
-    /* mobile */
-    @media (max-width:980px){
-      .container{ grid-template-columns: 1fr; }
-      #regressionCanvas{ height:320px !important; }
-      #lossPlot{ height:360px; }
+    button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+      transition: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: -1;
+    }
+
+    button:hover::before {
+      left: 100%;
+    }
+
+    button:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: var(--neon-glow);
+    }
+
+    button:active {
+      transform: translateY(0) scale(1);
+    }
+
+    .small {
+      font-size: 0.875rem;
+      color: #a1a1aa;
+    }
+
+    .muted {
+      color: #a1a1aa;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    #regressionCanvas {
+      width: 100% !important;
+      height: 400px !important;
+      border-radius: var(--border-radius-small);
+    }
+
+    #lossPlot {
+      width: 100%;
+      height: 450px;
+      border-radius: var(--border-radius-small);
+    }
+
+    ul {
+      color: #a1a1aa;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      margin: 1rem 0 1.5rem 1.5rem;
+    }
+
+    li {
+      margin-bottom: 0.75rem;
+    }
+
+    pre {
+      background: rgba(17, 19, 21, 0.8);
+      border: 1px solid rgba(79, 70, 229, 0.2);
+      border-radius: var(--border-radius-small);
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      overflow-x: auto;
+      font-family: 'Fira Code', 'Cascadia Code', monospace;
+    }
+
+    code {
+      color: #e2e8f0;
+      font-family: 'Fira Code', 'Cascadia Code', monospace;
+    }
+
+    .stats-display {
+      background: rgba(79, 70, 229, 0.1);
+      border: 1px solid rgba(79, 70, 229, 0.2);
+      border-radius: var(--border-radius-small);
+      padding: 1rem;
+      margin: 1rem 0;
+    }
+
+    .stats-display strong {
+      color: var(--accent-color);
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 980px) {
+      .container {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        padding: 0 20px;
+      }
+      
+      .main-content {
+        padding: 120px 25px 60px;
+      }
+      
+      .card {
+        padding: 2rem;
+        margin-bottom: 2rem;
+      }
+      
+      .nav-content {
+        padding: 0 1rem;
+      }
+      
+      .nav-links {
+        gap: 1rem;
+      }
+      
+      .nav-link {
+        padding: 8px 12px;
+        font-size: 0.875rem;
+      }
+
+      h1 {
+        font-size: 2.8rem;
+      }
+      
+      .page-header {
+        margin-bottom: 3.5rem;
+        padding: 1.5rem 0;
+      }
+      
+      #regressionCanvas {
+        height: 320px !important;
+      }
+      
+      #lossPlot {
+        height: 360px;
+      }
+      
+      .row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+      }
+      
+      button {
+        width: 100%;
+        margin: 0.75rem 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .main-content {
+        padding: 100px 15px 40px;
+      }
+
+      h1 {
+        font-size: 2.2rem;
+      }
+      
+      .card {
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+      
+      .controls {
+        gap: 1.5rem;
+        padding: 0.5rem;
+      }
+      
+      button {
+        padding: 12px 24px;
+        font-size: 0.95rem;
+        margin: 0.5rem 0;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>Linear Regression</h1>
-
-  <div class="container">
-    <!-- Plots -->
-    <div class="plots">
-      <div class="card">
-        <canvas id="regressionCanvas"></canvas>
-      </div>
-
-      <div class="card">
-        <div id="lossPlot"></div>
+  <div class="cyber-background"></div>
+  
+  <nav class="navbar">
+    <div class="nav-content">
+      <a href="index.html" class="logo">
+        <i class="fas fa-cube"></i>
+        CCIT Resources
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">
+          <i class="fas fa-home"></i>
+          Home
+        </a>
+        <a href="store.html" class="nav-link">
+          <i class="fas fa-store"></i>
+          Resource
+        </a>
+        <a href="dbscan.html" class="nav-link">
+          <i class="fas fa-project-diagram"></i>
+          DBSCAN
+        </a>
       </div>
     </div>
+  </nav>
 
-    <!-- Controls & stats -->
-    <div class="card controls">
-      <div>
-        <label>Learning rate (η)</label>
-        <input id="lr" type="range" min="0.0005" max="0.5" step="0.0005" value="0.01">
-        <div class="small">η = <span id="lrVal">0.010</span></div>
+  <main class="main-content">
+    <div class="page-header">
+      <div class="header-badge">
+        <i class="fas fa-chart-line"></i>
+        Machine Learning Visualization
       </div>
+      <h1>Linear Regression</h1>
+      <p class="page-description">
+        Interactive visualization of linear regression with gradient descent. 
+        Watch how the algorithm optimizes parameters to find the best-fitting line.
+      </p>
+    </div>
 
-      <div>
-        <label>Initial parameters</label>
-        <div class="row">
-            <label class="small">w0 <input id="b0" type="number" step="0.1" value="0.0" style="width:80px;margin-left:8px"></label>
-          <label class="small">w1 <input id="m0" type="number" step="0.1" value="0.0" style="width:80px;margin-left:8px"></label>
+      <div class="container">
+      <!-- Plots -->
+      <div class="plots">
+        <div class="card">
+          <h2>Regression Line Fitting</h2>
+          <canvas id="regressionCanvas"></canvas>
+        </div>
+
+        <div class="card">
+          <h2>Loss Surface & Optimization Path</h2>
+          <div id="lossPlot"></div>
         </div>
       </div>
 
-      <div class="row">
-        <button id="stepBtn">Step (one update)</button>
-        <button id="resetBtn">Reset data & params</button>
-        <button id="playPauseBtn">Play</button>
-        <label>Simulation speed</label>
-        <input type="range" id="speedRange" min="100" max="2000" value="1000">
-      </div>
-
-      <div>
-        <label>Current parameters & loss</label>
-        <div class="muted">
-        w0 = <strong id="bVal">0.00</strong> &nbsp;&nbsp;
-          w1 = <strong id="mVal">0.00</strong> &nbsp;&nbsp;
-          Loss = <strong id="lossVal">0.00</strong>
-        </div>
-      </div>
-
-      <div>
-        <div class="small">Click <em>Step</em> to perform one gradient-descent update. Watch the regression line move (top) while the orange trajectory point moves over the loss surface (bottom). Try changing the value of the learning rate to see how it affetcs the algorithm</div>
-      </div>
-
-
-      <div>
-        <h2>Here are some things you may notice</h2>
-        <ul>
-            <li><strong>Step size matters:</strong> A learning rate that is too large can cause the algorithm to overshoot the minimum, while a rate that is too small will make convergence very slow.</li>
-            <li><strong>Convergence patterns:</strong> The path of descent often looks like a staircase in higher dimensions, or a zig-zag when the cost function has steep and narrow valleys.</li>
-            <li><strong>Local vs global minima:</strong> Gradient descent may settle into a local minimum depending on the shape of the cost function and the starting point.</li>
-            <li><strong>Plateaus and saddle points:</strong> Progress may appear very slow in flat regions where the gradient is close to zero, even if you haven’t reached the minimum yet.</li>
-        </ul>
+      <!-- Controls & stats -->
+      <div class="card controls">
+        <h2>Controls</h2>
+        
+        <div class="control-group">
+          <label>Learning rate (η)</label>
+          <input id="lr" type="range" min="0.0005" max="0.5" step="0.0005" value="0.01">
+          <div class="small">η = <span id="lrVal">0.010</span></div>
         </div>
 
+        <div class="control-group">
+          <label>Initial parameters</label>
+          <div class="row">
+            <label class="small">w0 (intercept)
+              <input id="b0" type="number" step="0.1" value="0.0">
+            </label>
+            <label class="small">w1 (slope)
+              <input id="m0" type="number" step="0.1" value="0.0">
+            </label>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="row">
+            <button id="stepBtn">
+              <i class="fas fa-step-forward"></i>
+              Step
+            </button>
+            <button id="resetBtn">
+              <i class="fas fa-refresh"></i>
+              Reset
+            </button>
+            <button id="playPauseBtn">
+              <i class="fas fa-play"></i>
+              Play
+            </button>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label>Simulation speed</label>
+          <input type="range" id="speedRange" min="100" max="2000" value="1000">
+          <div class="small">Speed: <span id="speedLabel">1.0s/step</span></div>
+        </div>
+
+        <div class="stats-display">
+          <label>Current parameters & loss</label>
+          <div class="muted">
+            w0 = <strong id="bVal">0.00</strong> &nbsp;&nbsp;
+            w1 = <strong id="mVal">0.00</strong> &nbsp;&nbsp;
+            Loss = <strong id="lossVal">0.00</strong>
+          </div>
+        </div>
+
+        <div class="small">
+          Click <em>Step</em> to perform one gradient-descent update. Watch the regression line move (top) while the orange trajectory point moves over the loss surface (bottom). Try changing the learning rate to see how it affects the algorithm.
+        </div>
+      </div>
     </div>
 
     <div class="card">
-  <h2>Python Implementation of Gradient Descent</h2>
-  <pre><code class="language-python">
+      <h2>Key Observations</h2>
+      <ul>
+        <li><strong>Step size matters:</strong> A learning rate that is too large can cause the algorithm to overshoot the minimum, while a rate that is too small will make convergence very slow.</li>
+        <li><strong>Convergence patterns:</strong> The path of descent often looks like a staircase in higher dimensions, or a zig-zag when the cost function has steep and narrow valleys.</li>
+        <li><strong>Local vs global minima:</strong> Gradient descent may settle into a local minimum depending on the shape of the cost function and the starting point.</li>
+        <li><strong>Plateaus and saddle points:</strong> Progress may appear very slow in flat regions where the gradient is close to zero, even if you haven't reached the minimum yet.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Python Implementation of Gradient Descent</h2>
+      <pre><code class="language-python">
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -212,10 +703,10 @@ plt.ylabel("E(w)")
 plt.title("Gradient Descent Example")
 plt.legend()
 plt.show()
-  </code></pre>
-
+      </code></pre>
     </div>
   </div>
+</div>
   
 
 <script src="Blogs/prism.js"></script>
@@ -451,15 +942,18 @@ document.getElementById('playPauseBtn').addEventListener('click', () => {
 });
 
 document.getElementById('speedRange').addEventListener('input', (e) => {
-    const delay = e.target.value;
+    const delay = parseInt(e.target.value);
     document.getElementById('speedLabel').innerText = (delay / 1000).toFixed(1) + "s/step";
     if (isPlaying) {
-    clearInterval(intervalId);
-    intervalId = setInterval(() => {
-        stepGradientDescent();
-    }, delay);
+        clearInterval(intervalId);
+        intervalId = setInterval(() => {
+            gradientStep();
+        }, delay);
     }
 });
+
+// Initialize speed label
+document.getElementById('speedLabel').innerText = (1000 / 1000).toFixed(1) + "s/step";
 
 /* initialize with one marker on surface at (m,b) */
 (function initTrajectory(){
