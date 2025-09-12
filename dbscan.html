@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DBSCAN Step-by-Step Visualization</title>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <link href="prism.css" rel="stylesheet" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f1221;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+    h1 {
+      background: linear-gradient(90deg, #0575e6, #8b5cf6, #f472b6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 2em;
+      margin: 20px;
+    }
+    .controls {
+      margin: 20px 0;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+    }
+    .card {
+    color: #ffffff;
+    background-color: #151826;
+    margin: 20px auto;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    max-width: 1000px;
+    width: 100%;
+    box-sizing: border-box;
+    }
+    button {
+      padding: 10px 20px;
+      background: linear-gradient(90deg, #0575e6, #00f260);
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    select {
+        padding: 10px 20px;
+      background: linear-gradient(90deg, #0575e6, #00f260);
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover { opacity: 0.85; }
+    label { display:block; margin-bottom:4px; }
+    #plot {
+    width: 100% !important;
+    height: 70vh !important;  /* scale by viewport height */
+    }
+  </style>
+</head>
+<body>
+  <h1>DBSCAN Step-by-Step</h1>
+
+  <div class="card">
+    <div class="controls">
+        <button id="resetBtn">Reset Dataset</button>
+        <button id="stepBtn">Step</button>
+        <button id="autoBtn">Start / Stop</button>
+        <div>
+        <select id="dataset">
+            <option value="blobs">Blobs</option>
+            <option value="moons">Moons</option>
+            <option value="circles">Circles</option>
+        </select>
+        </div>
+        <div>
+        <label>Eps: <span id="epsVal">0.2</span></label>
+        <input type="range" id="eps" min="0.05" max="1" step="0.05" value="0.2">
+        </div>
+        <div>
+        <label>Min Samples: <span id="minSamplesVal">5</span></label>
+        <input type="range" id="minSamples" min="2" max="20" step="1" value="5">
+        </div>
+        <div>
+        <label>Playback Speed: <span id="speedVal">500</span> ms</label>
+        <input type="range" id="speed" min="100" max="2000" step="100" value="500">
+        </div>
+    </div>
+    <div id="plot"></div>
+  </div>
+
+  <!-- DBSCAN: What is DBSCAN? (content card) -->
+    <div class="card" id="card-dbscan-what">
+    <h2 style="background: linear-gradient(90deg, #0575e6, #8b5cf6, #f472b6);
+                -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+        What is DBSCAN?
+    </h2>
+
+    <p style="line-height:1.6;">
+        <strong>DBSCAN</strong> (Density-Based Spatial Clustering of Applications with Noise) is a
+        density-based clustering algorithm. Rather than trying to divide data into a
+        pre-defined number of clusters, DBSCAN groups together points that are close
+        to many other points (high local density) and marks points in low-density
+        regions as <em>noise</em>.
+    </p>
+
+    <h3 style="margin-top:12px;">Key ideas</h3>
+    <ul style="text-align:left; line-height:1.6;">
+        <li><strong>ε (eps)</strong>: neighborhood radius — how close points must be to be considered neighbors.</li>
+        <li><strong>minPts</strong>: minimum number of points required in an ε-neighborhood for a point to be a <em>core</em> point.</li>
+        <li><strong>Core point</strong>: has ≥ minPts points (including itself) within ε.</li>
+        <li><strong>Border point</strong>: not a core point, but lies within ε of a core point.</li>
+        <li><strong>Noise</strong>: neither core nor border — treated as outliers.</li>
+    </ul>
+
+    <h3 style="margin-top:12px;">Why use DBSCAN?</h3>
+    <ul style="text-align:left; line-height:1.6;">
+        <li>Finds clusters of arbitrary shape (not only spherical).</li>
+        <li>Automatically detects noise (outliers).</li>
+        <li>No need to specify number of clusters up front.</li>
+    </ul>
+
+    <h3 style="margin-top:12px;">Limitations</h3>
+    <ul style="text-align:left; line-height:1.6;">
+        <li>Sensitive to choice of <code>eps</code> and <code>minPts</code>.</li>
+        <li>Harder to use when cluster densities vary widely.</li>
+        <li>Quadratic worst-case time (naïve); spatial index (KD-tree) needed for large data.</li>
+    </ul>
+
+    <h3 style="margin-top:12px;">Compact pseudocode</h3>
+    <pre style="background:#111315; padding:12px; border-radius:8px; color:#fff; overflow:auto;">
+    <code class="language-python">
+    for each point P:
+    if P is not visited:
+        mark P visited
+        N = regionQuery(P, eps)
+        if |N| &lt; minPts:
+        label P as noise
+        else:
+        create new cluster C
+        add P to C
+        seeds = N
+        while seeds not empty:
+            Q = seeds.pop()
+            if Q not visited:
+            mark Q visited
+            Nq = regionQuery(Q, eps)
+            if |Nq| &gt;= minPts:
+                seeds += Nq              # expand neighborhood
+            if Q not yet assigned to any cluster:
+            add Q to cluster C
+    </code>
+    </pre>
+
+    <h3 style="margin-top:12px;">Scikit-learn example</h3>
+    <pre style="background:#111315; padding:12px; border-radius:8px; color:#fff; overflow:auto;">
+    <code class="language-python">
+    from sklearn.cluster import DBSCAN
+    from sklearn.datasets import make_blobs
+
+    X, _ = make_blobs(n_samples=300, centers=3, cluster_std=0.6, random_state=42)
+
+    db = DBSCAN(eps=0.3, min_samples=5)
+    labels = db.fit_predict(X)   # -1 = noise, 0..k = cluster ids
+    </code>
+    </pre>
+
+    <h3 style="margin-top:12px;">How to demo this card with your visualization</h3>
+    <ul style="text-align:left; line-height:1.6;">
+        <li><strong>Show a point</strong> → highlight its ε-neighborhood (draw a circle of radius eps around it).</li>
+        <li><strong>Count neighbors</strong> → color the point as core (green) if ≥ minPts, border (yellow) if neighbor of core, noise (gray) otherwise.</li>
+        <li><strong>Play the step-by-step</strong> so students see cluster seeds grow by expanding neighborhoods (your Step / Auto controls).</li>
+        <li><strong>After the run</strong>, show final clusters + legend, and display metrics (silhouette / DB index) to discuss cluster quality.</li>
+    </ul>
+
+    <h3 style="margin-top:12px;">Quick talking points (1–2 minutes)</h3>
+    <ol style="text-align:left; line-height:1.6;">
+        <li>DBSCAN groups high-density regions and labels sparse points as noise.</li>
+        <li>The two parameters control neighborhood size and density threshold; tuning them changes results dramatically.</li>
+        <li>Good for non-spherical clusters and noisy data; poor when clusters have different densities.</li>
+    </ol>
+
+    <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
+        <button onclick="document.getElementById('card-dbscan-what').scrollIntoView({behavior:'smooth'})">
+        Focus
+        </button>
+        <button onclick="alert('Tip: try eps small then increase; set minPts≈2×dimensions')">
+        Tip
+        </button>
+    </div>
+    </div>
+
+  <script src="prism.js"></script>
+  <script>
+    function gaussianRandom(mean=0, stdev=1) {
+      const u = 1 - Math.random();
+      const v = Math.random();
+      return Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v) * stdev + mean;
+    }
+
+    function generateBlobs(n=300) {
+      const points = [];
+      const centers = [[0,0],[3,3],[-3,3]];
+      for (let i=0;i<n;i++) {
+        const c = centers[Math.floor(Math.random()*centers.length)];
+        const x = c[0] + gaussianRandom(0, 0.3);
+        const y = c[1] + gaussianRandom(0, 0.3);
+        points.push([x,y]);
+      }
+      return points;
+    }
+    function generateMoons(n=300) {
+      const points = [];
+      for (let i=0;i<n/2;i++) {
+        const t = Math.PI * Math.random();
+        points.push([Math.cos(t), Math.sin(t)]);
+      }
+      for (let i=0;i<n/2;i++) {
+        const t = Math.PI * Math.random();
+        points.push([1 - Math.cos(t), 1 - Math.sin(t) - 0.5]);
+      }
+      return points;
+    }
+    function generateCircles(n=300) {
+      const points = [];
+      for (let i=0;i<n/2;i++) {
+        const t = 2*Math.PI*Math.random();
+        points.push([Math.cos(t), Math.sin(t)]);
+      }
+      for (let i=0;i<n/2;i++) {
+        const t = 2*Math.PI*Math.random();
+        points.push([2*Math.cos(t), 2*Math.sin(t)]);
+      }
+      return points;
+    }
+
+    function dist(a,b) {
+      const dx=a[0]-b[0], dy=a[1]-b[1];
+      return Math.sqrt(dx*dx+dy*dy);
+    }
+    function regionQuery(points, idx, eps) {
+      return points.map((p,i)=>[p,i])
+                   .filter(([p,i])=>dist(points[idx],p)<=eps)
+                   .map(([p,i])=>i);
+    }
+
+    // --- State ---
+    let points = generateBlobs();
+    let stepIndex = 0;
+    let eps = 0.2, minPts = 5;
+    let autoInterval = null;
+    let speed = 500;
+
+    // --- Plotting ---
+    function plotStep(currentIdx=null, neighbors=[]) {
+      const x = points.map(p=>p[0]);
+      const y = points.map(p=>p[1]);
+      const colors = points.map((p,i)=>{
+        if (i===currentIdx) return '#f472b6'; 
+        if (neighbors.includes(i)) return '#00f260'; 
+        return '#888'; 
+      });
+      Plotly.newPlot('plot',[{
+        x,y,mode:'markers',type:'scatter',
+        marker:{color:colors, size:8}
+      }],{
+        paper_bgcolor:'#151826',
+        plot_bgcolor:'#151826',
+        margin:{t:20}
+      }, {responsive: true});
+    }
+
+    // --- Step logic ---
+    function dbscanStep() {
+      if (stepIndex >= points.length) {
+        clearInterval(autoInterval);
+        autoInterval = null;
+        runDBSCANFinal();
+        return;
+      }
+      const neighbors = regionQuery(points, stepIndex, eps);
+      plotStep(stepIndex, neighbors);
+      stepIndex++;
+    }
+
+    function runDBSCANFinal() {
+    const n = points.length;
+    const labels = new Array(n).fill(undefined);
+    const visited = new Array(n).fill(false);
+    let clusterId = 0;
+
+    function expandCluster(pointIdx, neighbors, clusterId) {
+        labels[pointIdx] = clusterId;
+        let queue = [...neighbors];
+        while (queue.length > 0) {
+        const idx = queue.pop();
+        if (!visited[idx]) {
+            visited[idx] = true;
+            const neigh = regionQuery(points, idx, eps);
+            if (neigh.length >= minPts) {
+            queue = queue.concat(neigh);
+            }
+        }
+        if (labels[idx] === undefined) {
+            labels[idx] = clusterId;
+        }
+        }
+    }
+
+    for (let i=0;i<n;i++) {
+        if (visited[i]) continue;
+        visited[i] = true;
+        const neighbors = regionQuery(points, i, eps);
+        if (neighbors.length < minPts) {
+        labels[i] = -1; // noise
+        } else {
+        expandCluster(i, neighbors, clusterId);
+        clusterId++;
+        }
+    }
+
+    const traces = [];
+    const uniqueClusters = [...new Set(labels)];
+
+    uniqueClusters.forEach(c => {
+        const clusterPoints = points.filter((_,i)=>labels[i]===c);
+        const x = clusterPoints.map(p=>p[0]);
+        const y = clusterPoints.map(p=>p[1]);
+
+        traces.push({
+        x, y,
+        mode:'markers',
+        type:'scatter',
+        name: c === -1 ? 'Noise' : `Cluster ${c}`,
+        marker:{size:8, color: c === -1 ? '#888' : `hsl(${(c*60)%360},70%,50%)`}
+        });
+    });
+
+    Plotly.newPlot('plot', traces, {
+        title:"Final Clusters",
+        paper_bgcolor:'#151826',
+        plot_bgcolor:'#151826',
+        margin:{t:40}
+    }, {responsive: true});
+    }
+
+
+    plotStep();
+
+    document.getElementById('resetBtn').onclick=()=>{
+      const dataset = document.getElementById('dataset').value;
+      if (dataset==="blobs") points=generateBlobs();
+      if (dataset==="moons") points=generateMoons();
+      if (dataset==="circles") points=generateCircles();
+      stepIndex=0;
+      clearInterval(autoInterval); autoInterval=null;
+      plotStep();
+    };
+    document.getElementById('stepBtn').onclick=()=>{ dbscanStep(); };
+    document.getElementById('autoBtn').onclick=()=>{
+      if (autoInterval) {
+        clearInterval(autoInterval);
+        autoInterval=null;
+        document.getElementById('autoBtn').innerText="Start/Stop";
+      } else {
+        autoInterval=setInterval(dbscanStep,speed);
+        document.getElementById('autoBtn').innerText="Start/Stop";
+      }
+    };
+    document.getElementById('eps').oninput=(e)=>{
+      eps=parseFloat(e.target.value);
+      document.getElementById('epsVal').innerText=eps.toFixed(2);
+    };
+    document.getElementById('minSamples').oninput=(e)=>{
+      minPts=parseInt(e.target.value);
+      document.getElementById('minSamplesVal').innerText=minPts;
+    };
+    document.getElementById('speed').oninput=(e)=>{
+      speed=parseInt(e.target.value);
+      document.getElementById('speedVal').innerText=speed;
+      if (autoInterval) {
+        clearInterval(autoInterval);
+        autoInterval=setInterval(dbscanStep,speed);
+      }
+    };
+  </script>
+</body>
+</html>

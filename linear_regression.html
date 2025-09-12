@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Linear Regression — Gradient Descent (manual step)</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <!-- libs -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <link href="prism.css" rel="stylesheet" />
+
+  <style>
+    :root{
+      --bg:#0f1221;
+      --card:#151826;
+      --accent1:#00d9ff;
+      --accent2:#ff00a8;
+      --accent3:#ac6bff;
+      --accent4:#ff6b00;
+      --muted:#181818;
+      --fg:#ffffff;
+    }
+    body{
+      margin:0;
+      font-family:Inter,Arial,Helvetica,sans-serif;
+      background:var(--bg);
+      color:var(--fg);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:16px;
+      padding:20px;
+    }
+    h1 {
+      background: linear-gradient(90deg, #0575e6, #8b5cf6, #f472b6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 2em;
+      margin: 20px;
+    }
+    h2 {
+        margin-bottom: 0px;
+    }
+
+    ul {
+        margin: 0px;;
+        padding: 10px;
+    }
+
+    li {
+        margin-bottom: 10px;
+    }
+
+    .container {
+      width:100%;
+      max-width:1100px;
+      
+      grid-template-columns: 1fr 420px;
+      gap:16px;
+      align-items:start;
+    }
+
+    /* Left column: plots stacked */
+    .plots {
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      background:transparent;
+    }
+
+    .card {
+      background:var(--card);
+      padding:14px;
+      border-radius:12px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.6);
+      margin-bottom: 20px;
+    }
+
+    /* ensure responsive plot sizing */
+    #regressionCanvas { width:100% !important; height: 100% !important;}
+    #lossPlot { width:100%; height:420px; }
+
+    /* right column: controls / stats */
+    .controls {
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    label{ font-size:0.9rem; display:block; margin-bottom:6px; color:var(--fg); }
+    .row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+    input[type=range]{ width:100%; }
+    .small { font-size:0.9rem; color:#ddd; }
+
+    button {
+      padding: 10px 20px;
+      background: linear-gradient(90deg, #0575e6, #00f260);
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .muted { color:#cfcfcf; font-size:0.95rem; }
+
+    /* mobile */
+    @media (max-width:980px){
+      .container{ grid-template-columns: 1fr; }
+      #regressionCanvas{ height:320px !important; }
+      #lossPlot{ height:360px; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Linear Regression</h1>
+
+  <div class="container">
+    <!-- Plots -->
+    <div class="plots">
+      <div class="card">
+        <canvas id="regressionCanvas"></canvas>
+      </div>
+
+      <div class="card">
+        <div id="lossPlot"></div>
+      </div>
+    </div>
+
+    <!-- Controls & stats -->
+    <div class="card controls">
+      <div>
+        <label>Learning rate (η)</label>
+        <input id="lr" type="range" min="0.0005" max="0.5" step="0.0005" value="0.01">
+        <div class="small">η = <span id="lrVal">0.010</span></div>
+      </div>
+
+      <div>
+        <label>Initial parameters</label>
+        <div class="row">
+            <label class="small">w0 <input id="b0" type="number" step="0.1" value="0.0" style="width:80px;margin-left:8px"></label>
+          <label class="small">w1 <input id="m0" type="number" step="0.1" value="0.0" style="width:80px;margin-left:8px"></label>
+        </div>
+      </div>
+
+      <div class="row">
+        <button id="stepBtn">Step (one update)</button>
+        <button id="resetBtn">Reset data & params</button>
+        <button id="playPauseBtn">Play</button>
+        <label>Simulation speed</label>
+        <input type="range" id="speedRange" min="100" max="2000" value="1000">
+      </div>
+
+      <div>
+        <label>Current parameters & loss</label>
+        <div class="muted">
+        w0 = <strong id="bVal">0.00</strong> &nbsp;&nbsp;
+          w1 = <strong id="mVal">0.00</strong> &nbsp;&nbsp;
+          Loss = <strong id="lossVal">0.00</strong>
+        </div>
+      </div>
+
+      <div>
+        <div class="small">Click <em>Step</em> to perform one gradient-descent update. Watch the regression line move (top) while the orange trajectory point moves over the loss surface (bottom). Try changing the value of the learning rate to see how it affetcs the algorithm</div>
+      </div>
+
+
+      <div>
+        <h2>Here are some things you may notice</h2>
+        <ul>
+            <li><strong>Step size matters:</strong> A learning rate that is too large can cause the algorithm to overshoot the minimum, while a rate that is too small will make convergence very slow.</li>
+            <li><strong>Convergence patterns:</strong> The path of descent often looks like a staircase in higher dimensions, or a zig-zag when the cost function has steep and narrow valleys.</li>
+            <li><strong>Local vs global minima:</strong> Gradient descent may settle into a local minimum depending on the shape of the cost function and the starting point.</li>
+            <li><strong>Plateaus and saddle points:</strong> Progress may appear very slow in flat regions where the gradient is close to zero, even if you haven’t reached the minimum yet.</li>
+        </ul>
+        </div>
+
+    </div>
+
+    <div class="card">
+  <h2>Python Implementation of Gradient Descent</h2>
+  <pre><code class="language-python">
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Example quadratic cost function: E(w) = (w - 3)^2
+def cost(w):
+    return (w - 3)**2
+
+# Derivative: E'(w) = 2(w - 3)
+def gradient(w):
+    return 2 * (w - 3)
+
+# Gradient descent algorithm
+def gradient_descent(start_w, learning_rate=0.1, n_iterations=20):
+    w = start_w
+    history = [w]
+    for i in range(n_iterations):
+        grad = gradient(w)
+        w = w - learning_rate * grad
+        history.append(w)
+    return history
+
+# Run the algorithm
+path = gradient_descent(start_w=0.0, learning_rate=0.2, n_iterations=15)
+
+# Plot the path of descent
+w_values = np.linspace(-1, 6, 100)
+plt.plot(w_values, cost(w_values), label="Cost function")
+plt.scatter(path, [cost(w) for w in path], color='red', zorder=5, label="Descent path")
+plt.xlabel("w")
+plt.ylabel("E(w)")
+plt.title("Gradient Descent Example")
+plt.legend()
+plt.show()
+  </code></pre>
+
+    </div>
+  </div>
+  
+
+<script src="prism.js"></script>
+<script>
+
+    let isPlaying = false;
+    let intervalId = null;
+/* ---------- utilities ---------- */
+function linspace(a,b,n){
+  if(n===1) return [a];
+  const step=(b-a)/(n-1);
+  return Array.from({length:n},(_,i)=>a + step*i);
+}
+
+/* ---------- dataset (artificial) ---------- */
+let X=[], Y=[], nSamples=40;
+function genData(){
+  X=[]; Y=[];
+  const trueM = 2.5, trueB = 3.0;
+  const rng = () => Math.random();
+  for(let i=0;i<nSamples;i++){
+    const x = 10 * rng();
+    const noise = (Math.random()-0.5)*4.0; // moderate noise
+    const y = trueM*x + trueB + noise;
+    X.push(x); Y.push(y);
+  }
+}
+genData();
+
+/* ---------- setup Chart.js (2D scatter + regression line) ---------- */
+const ctx = document.getElementById('regressionCanvas').getContext('2d');
+
+const scatterDataset = {
+  label: 'Data points',
+  data: X.map((x,i)=>({x:x, y:Y[i]})),
+  pointBackgroundColor: '#00d9ff',
+  pointRadius: 5,
+  showLine: false,
+  type: 'scatter'
+};
+const lineDataset = {
+  label: 'Regression line',
+  data: [{x:0,y:0},{x:1,y:0}], // placeholder, will update
+  borderColor: '#ff00a8',
+  borderWidth: 2,
+  showLine: true,
+  fill:false,
+  pointRadius: 0,
+  tension: 0.0,
+  type: 'line'
+};
+
+const regressionChart = new Chart(ctx, {
+  type: 'scatter',
+  data: { datasets: [ scatterDataset, lineDataset ] },
+  options: {
+    animation:false,
+    plugins: { legend: { labels: { color: '#fff' } } },
+    scales: {
+      x: {
+        type: 'linear',
+        ticks: { color: '#fff' },
+        grid: { color: '#181818' }
+      },
+      y: {
+        ticks: { color: '#fff' },
+        grid: { color: '#181818' }
+      },
+    }
+  }
+});
+
+/* ---------- Loss surface (Plotly) ---------- */
+const mVals = linspace(-5, 10, 70);
+const bVals = linspace(-5, 5, 70);
+
+// compute loss function (MSE)
+function computeLoss(m,b){
+  let s=0;
+  for(let i=0;i<X.length;i++){
+    const pred = m*X[i] + b;
+    const e = Y[i] - pred;
+    s += e*e;
+  }
+  return s / X.length;
+}
+
+// z must be 2D array where rows correspond to y-axis (b) and cols to x-axis (m)
+const Z = bVals.map(b => mVals.map(m => computeLoss(m,b)));
+
+const surfaceTrace = {
+  z: Z,
+  x: mVals,
+  y: bVals,
+  type: 'surface',
+  colorscale: [[0,'#00d9ff'],[0.5,'#ac6bff'],[1,'#ff6b00']],
+  showscale: false,
+  opacity: 0.95
+};
+
+// trajectory trace (updated each step)
+const trajTrace = {
+  x: [], y: [], z: [],
+  mode: 'lines+markers',
+  type: 'scatter3d',
+  line: { color: '#ff6b00', width: 4 },
+  marker:{ size:4, color:'#ff00a8', symbol:'circle' },
+  name: 'trajectory'
+};
+
+const layout = {
+  paper_bgcolor: 'transparent',
+  plot_bgcolor: 'transparent',
+  scene: {
+    xaxis:{ title:'w1 (slope)', color:'#fff' },
+    yaxis:{ title:'w0 (intercept)', color:'#fff' },
+    zaxis:{ title:'Loss', color:'#fff' },
+    bgcolor:'#151826'
+  },
+  margin: { l:0, r:0, b:0, t:30 }
+};
+
+Plotly.newPlot('lossPlot', [surfaceTrace, trajTrace], layout, {responsive:true});
+
+/* ---------- gradient descent state ---------- */
+let m = parseFloat(document.getElementById('m0').value) || 0.0;
+let b = parseFloat(document.getElementById('b0').value) || 0.0;
+let lr = parseFloat(document.getElementById('lr').value) || 0.01;
+
+let trajX = [], trajY = [], trajZ = [];
+
+/* update DOM stats */
+function updateStats(){
+  document.getElementById('mVal').innerText = m.toFixed(4);
+  document.getElementById('bVal').innerText = b.toFixed(4);
+  document.getElementById('lossVal').innerText = computeLoss(m,b).toFixed(4);
+}
+
+/* update regression line on Chart.js */
+function updateRegressionLine(){
+  const minX = Math.min(...X);
+  const maxX = Math.max(...X);
+  const linePoints = [{x:minX, y: m*minX + b}, {x:maxX, y: m*maxX + b}];
+  regressionChart.data.datasets[1].data = linePoints;
+  regressionChart.update();
+}
+
+function updatePlots() {
+    plotRegressionLine();
+    plotLossSurface();
+}
+
+/* plot initial regression line and stats */
+updateRegressionLine();
+updateStats();
+
+/* ---------- single gradient step (manual) ---------- */
+function gradientStep(){
+  // compute gradients of MSE
+  const n = X.length;
+  let dm = 0, db = 0;
+  for(let i=0;i<n;i++){
+    const xi = X[i], yi = Y[i];
+    const pred = m*xi + b;
+    const err = yi - pred;
+    dm += -2 * xi * err;  // derivative w.r.t m: (-2)*xi*(yi - (m xi + b))
+    db += -2 * err;       // derivative w.r.t b: (-2)*(yi - (m xi + b))
+  }
+  dm /= n;
+  db /= n;
+
+  // parameter update
+  m = m - lr * dm;
+  b = b - lr * db;
+
+  // update visuals
+  const loss = computeLoss(m,b);
+  trajX.push(m); trajY.push(b); trajZ.push(loss);
+
+  // extend the trajectory trace (trace index 1)
+  Plotly.extendTraces('lossPlot', { x: [[m]], y: [[b]], z: [[loss]] }, [1]);
+
+  updateRegressionLine();
+  updateStats();
+}
+
+/* ---------- controls ---------- */
+document.getElementById('lr').addEventListener('input', (e)=>{
+  lr = parseFloat(e.target.value);
+  document.getElementById('lrVal').innerText = lr.toFixed(3);
+});
+
+document.getElementById('stepBtn').addEventListener('click', ()=>{
+  gradientStep();
+});
+
+document.getElementById('resetBtn').addEventListener('click', ()=>{
+  // regenerate data & reset params & clear trajectory
+  genData();
+  // refresh scatter points
+  regressionChart.data.datasets[0].data = X.map((x,i)=>({x:x, y:Y[i]}));
+  regressionChart.update();
+
+  // reset params to inputs
+  m = parseFloat(document.getElementById('m0').value) || 0.0;
+  b = parseFloat(document.getElementById('b0').value) || 0.0;
+  lr = parseFloat(document.getElementById('lr').value) || 0.01;
+  document.getElementById('lrVal').innerText = lr.toFixed(3);
+
+  // reset trajectory
+  trajX=[]; trajY=[]; trajZ=[];
+  Plotly.restyle('lossPlot', { x:[[]], y:[[]], z:[[]] }, [1]);
+
+  // recompute global surface (in case new data changed loss landscape)
+  const newZ = bVals.map(bv => mVals.map(mv => computeLoss(mv,bv)));
+  Plotly.update('lossPlot', { z: [newZ] }, {}, [0]); // update only the surface's z
+  updateRegressionLine();
+  updateStats();
+});
+
+document.getElementById('playPauseBtn').addEventListener('click', () => {
+    if (!isPlaying) {
+    isPlaying = true;
+    document.getElementById('playPauseBtn').innerText = 'Pause';
+    intervalId = setInterval(() => {
+        gradientStep();
+    }, document.getElementById('speedRange').value);
+    } else {
+    isPlaying = false;
+    document.getElementById('playPauseBtn').innerText = 'Play';
+    clearInterval(intervalId);
+    }
+});
+
+document.getElementById('speedRange').addEventListener('input', (e) => {
+    const delay = e.target.value;
+    document.getElementById('speedLabel').innerText = (delay / 1000).toFixed(1) + "s/step";
+    if (isPlaying) {
+    clearInterval(intervalId);
+    intervalId = setInterval(() => {
+        stepGradientDescent();
+    }, delay);
+    }
+});
+
+/* initialize with one marker on surface at (m,b) */
+(function initTrajectory(){
+  const initLoss = computeLoss(m,b);
+  Plotly.extendTraces('lossPlot', { x:[[m]], y:[[b]], z:[[initLoss]] }, [1]);
+  trajX.push(m); trajY.push(b); trajZ.push(initLoss);
+  updateStats();
+})();
+</script>
+</body>
+</html>
