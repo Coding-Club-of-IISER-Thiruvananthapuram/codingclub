@@ -2,110 +2,597 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>DBSCAN Step-by-Step Visualization</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DBSCAN Step-by-Step Visualization | CCIT Club</title>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <link href="Blogs/prism.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <style>
+    :root {
+      --primary-gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #ec4899 100%);
+      --accent-gradient: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #8b5cf6 100%);
+      --success-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      --neon-glow: 0 0 20px rgba(79, 70, 229, 0.4), 0 0 40px rgba(124, 58, 237, 0.2);
+      --accent-color: #4f46e5;
+      --secondary-accent: #7c3aed;
+      --bg-dark: #0f0f23;
+      --bg-darker: #080817;
+      --card-bg: rgba(15, 15, 35, 0.9);
+      --card-border: rgba(79, 70, 229, 0.2);
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --font-primary: 'Inter', 'Space Grotesk', system-ui, sans-serif;
+      --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.15);
+      --shadow-hard: 0 10px 40px rgba(0, 0, 0, 0.3);
+      --border-radius: 16px;
+      --border-radius-small: 8px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      background: #0f1221;
+      font-family: var(--font-primary);
+      background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-darker) 100%);
       color: white;
+      overflow-x: hidden;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      min-height: 100vh;
+    }
+
+    /* Enhanced background effects */
+    .cyber-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+      background: 
+        radial-gradient(ellipse at top, rgba(79, 70, 229, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at bottom, rgba(124, 58, 237, 0.15) 0%, transparent 50%),
+        linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-darker) 100%);
+      overflow: hidden;
+    }
+
+    .cyber-background::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        radial-gradient(circle at 25% 25%, rgba(79, 70, 229, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(124, 58, 237, 0.1) 0%, transparent 50%);
+      animation: morphing 20s ease-in-out infinite;
+    }
+
+    @keyframes morphing {
+      0%, 100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 0.8;
+      }
+      33% {
+        transform: scale(1.1) rotate(120deg);
+        opacity: 0.6;
+      }
+      66% {
+        transform: scale(0.9) rotate(240deg);
+        opacity: 0.9;
+      }
+    }
+
+    /* Modern Navigation */
+    .navbar {
+      background: rgba(15, 15, 35, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(79, 70, 229, 0.2);
+      padding: 1rem 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .nav-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .logo i {
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-size: 1.75rem;
+    }
+
+    .logo:hover {
+      transform: translateY(-2px);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-link {
+      position: relative;
+      color: white;
+      text-decoration: none;
+      padding: 10px 18px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: var(--border-radius-small);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 50%;
+      width: 0;
+      height: 3px;
+      background: var(--primary-gradient);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+
+    .nav-link:hover {
+      color: #ffffff;
+      background: rgba(79, 70, 229, 0.1);
+      transform: translateY(-1px);
+    }
+
+    .nav-link:hover::after {
+      width: 80%;
+    }
+
+    /* Main content wrapper */
+    .main-content {
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 20px;
+      padding: 120px 20px 40px;
+      max-width: 1400px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    .page-header::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(79, 70, 229, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      z-index: -1;
+    }
+
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(79, 70, 229, 0.1);
+      border: 1px solid rgba(79, 70, 229, 0.2);
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--accent-color);
+      margin-bottom: 1.5rem;
+    }
+
     h1 {
-      background: linear-gradient(90deg, #0575e6, #8b5cf6, #f472b6);
+      background: var(--primary-gradient);
       -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      font-size: 2em;
-      margin: 20px;
+      background-clip: text;
+      color: transparent;
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
     }
+
+    .page-description {
+      font-size: 1.125rem;
+      color: #a1a1aa;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      line-height: 1.6;
+    }
+
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--card-border);
+      border-radius: var(--border-radius);
+      padding: 2rem;
+      margin: 1rem 0;
+      width: 100%;
+      max-width: 1200px;
+      box-shadow: var(--shadow-soft);
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      border-color: rgba(79, 70, 229, 0.4);
+      box-shadow: var(--neon-glow), var(--shadow-hard);
+    }
+
     .controls {
-      margin: 20px 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      align-items: end;
+    }
+
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    button, select {
+      padding: 12px 24px;
+      background: var(--primary-gradient);
+      border: none;
+      border-radius: var(--border-radius-small);
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      font-family: inherit;
+    }
+
+    button::before, select::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+      transition: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: -1;
+    }
+
+    button:hover::before, select:hover::before {
+      left: 100%;
+    }
+
+    button:hover, select:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: var(--neon-glow);
+    }
+
+    button:active, select:active {
+      transform: translateY(0) scale(1);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #e2e8f0;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      height: 6px;
+      background: rgba(79, 70, 229, 0.2);
+      border-radius: 3px;
+      outline: none;
+      -webkit-appearance: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      background: var(--primary-gradient);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+      box-shadow: var(--neon-glow);
+    }
+
+    #plot {
+      width: 100% !important;
+      height: 70vh !important;
+      border-radius: var(--border-radius-small);
+      overflow: hidden;
+    }
+
+    /* Educational content styling */
+    .content-card {
+      margin-top: 3rem;
+    }
+
+    .content-card h2 {
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    .content-card h3 {
+      color: #e2e8f0;
+      font-size: 1.375rem;
+      font-weight: 600;
+      margin: 2rem 0 1rem;
+    }
+
+    .content-card p {
+      color: #a1a1aa;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .content-card ul, .content-card ol {
+      color: #a1a1aa;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      margin: 1rem 0 1.5rem 1.5rem;
+    }
+
+    .content-card li {
+      margin-bottom: 0.75rem;
+    }
+
+    .content-card pre {
+      background: rgba(17, 19, 21, 0.8);
+      border: 1px solid rgba(79, 70, 229, 0.2);
+      border-radius: var(--border-radius-small);
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      overflow-x: auto;
+      font-family: 'Fira Code', 'Cascadia Code', monospace;
+    }
+
+    .content-card code {
+      background: rgba(79, 70, 229, 0.2);
+      color: #e2e8f0;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-family: 'Fira Code', 'Cascadia Code', monospace;
+      font-size: 0.9em;
+    }
+
+    .action-buttons {
       display: flex;
       gap: 1rem;
+      margin-top: 2rem;
       flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
     }
-    .card {
-    color: #ffffff;
-    background-color: #151826;
-    margin: 20px auto;
-    padding: 30px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    border-radius: 12px;
-    max-width: 1000px;
-    width: 100%;
-    box-sizing: border-box;
-    }
-    button {
-      padding: 10px 20px;
-      background: linear-gradient(90deg, #0575e6, #00f260);
-      border: none;
-      border-radius: 6px;
-      color: white;
-      font-weight: bold;
+
+    .action-btn {
+      padding: 0.75rem 1.5rem;
+      background: rgba(79, 70, 229, 0.1);
+      border: 1px solid rgba(79, 70, 229, 0.3);
+      border-radius: var(--border-radius-small);
+      color: var(--accent-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
       cursor: pointer;
     }
-    select {
+
+    .action-btn:hover {
+      background: rgba(79, 70, 229, 0.2);
+      border-color: var(--accent-color);
+      transform: translateY(-2px);
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+      .main-content {
+        padding: 100px 1rem 2rem;
+      }
+      
+      .nav-content {
+        padding: 0 1rem;
+      }
+      
+      .nav-links {
+        gap: 1rem;
+      }
+      
+      .nav-link {
+        padding: 8px 12px;
+        font-size: 0.875rem;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+      }
+      
+      .controls {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      
+      .card {
+        padding: 1.5rem;
+        margin: 0.5rem 0;
+      }
+      
+      #plot {
+        height: 50vh !important;
+      }
+      
+      .action-buttons {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      
+      .action-btn {
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .main-content {
+        padding: 90px 1rem 2rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+      
+      .card {
+        padding: 1.25rem;
+      }
+      
+      button, select {
         padding: 10px 20px;
-      background: linear-gradient(90deg, #0575e6, #00f260);
-      border: none;
-      border-radius: 6px;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    button:hover { opacity: 0.85; }
-    label { display:block; margin-bottom:4px; }
-    #plot {
-    width: 100% !important;
-    height: 70vh !important;  /* scale by viewport height */
+        font-size: 0.875rem;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>DBSCAN Step-by-Step</h1>
+  <div class="cyber-background"></div>
+  
+  <nav class="navbar">
+    <div class="nav-content">
+      <a href="index.html" class="logo">
+        <i class="fas fa-cube"></i>
+        CCIT Resources
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">
+          <i class="fas fa-home"></i>
+          Home
+        </a>
+        <a href="store.html" class="nav-link">
+          <i class="fas fa-store"></i>
+          Resource
+        </a>
+        <a href="linear_regression.html" class="nav-link">
+          <i class="fas fa-chart-line"></i>
+          Linear Regression
+        </a>
+      </div>
+    </div>
+  </nav>
 
-  <div class="card">
-    <div class="controls">
-        <button id="resetBtn">Reset Dataset</button>
-        <button id="stepBtn">Step</button>
-        <button id="autoBtn">Start / Stop</button>
-        <div>
-        <select id="dataset">
+  <main class="main-content">
+    <div class="page-header">
+      <div class="header-badge">
+        <i class="fas fa-project-diagram"></i>
+        Machine Learning Visualization
+      </div>
+      <h1>DBSCAN Step-by-Step</h1>
+      <p class="page-description">
+        Interactive visualization of the DBSCAN clustering algorithm. 
+        Explore how density-based spatial clustering works with different datasets and parameters.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="controls">
+        <div class="control-group">
+          <button id="resetBtn">
+            <i class="fas fa-refresh"></i>
+            Reset Dataset
+          </button>
+        </div>
+        <div class="control-group">
+          <button id="stepBtn">
+            <i class="fas fa-step-forward"></i>
+            Step
+          </button>
+        </div>
+        <div class="control-group">
+          <button id="autoBtn">
+            <i class="fas fa-play"></i>
+            Start / Stop
+          </button>
+        </div>
+        <div class="control-group">
+          <label for="dataset">Dataset Type</label>
+          <select id="dataset">
             <option value="blobs">Blobs</option>
             <option value="moons">Moons</option>
             <option value="circles">Circles</option>
-        </select>
+          </select>
         </div>
-        <div>
-        <label>Eps: <span id="epsVal">0.2</span></label>
-        <input type="range" id="eps" min="0.05" max="1" step="0.05" value="0.2">
+        <div class="control-group">
+          <label>Eps: <span id="epsVal">0.2</span></label>
+          <input type="range" id="eps" min="0.05" max="1" step="0.05" value="0.2">
         </div>
-        <div>
-        <label>Min Samples: <span id="minSamplesVal">5</span></label>
-        <input type="range" id="minSamples" min="2" max="20" step="1" value="5">
+        <div class="control-group">
+          <label>Min Samples: <span id="minSamplesVal">5</span></label>
+          <input type="range" id="minSamples" min="2" max="20" step="1" value="5">
         </div>
-        <div>
-        <label>Playback Speed: <span id="speedVal">500</span> ms</label>
-        <input type="range" id="speed" min="100" max="2000" step="100" value="500">
+        <div class="control-group">
+          <label>Playback Speed: <span id="speedVal">500</span> ms</label>
+          <input type="range" id="speed" min="100" max="2000" step="100" value="500">
         </div>
+      </div>
+      <div id="plot"></div>
     </div>
-    <div id="plot"></div>
-  </div>
 
   <!-- DBSCAN: What is DBSCAN? (content card) -->
-    <div class="card" id="card-dbscan-what">
-    <h2 style="background: linear-gradient(90deg, #0575e6, #8b5cf6, #f472b6);
-                -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+    <div class="card content-card" id="card-dbscan-what">
+    <h2>
         What is DBSCAN?
     </h2>
 
-    <p style="line-height:1.6;">
+    <p>
         <strong>DBSCAN</strong> (Density-Based Spatial Clustering of Applications with Noise) is a
         density-based clustering algorithm. Rather than trying to divide data into a
         pre-defined number of clusters, DBSCAN groups together points that are close
@@ -113,8 +600,8 @@
         regions as <em>noise</em>.
     </p>
 
-    <h3 style="margin-top:12px;">Key ideas</h3>
-    <ul style="text-align:left; line-height:1.6;">
+    <h3>Key ideas</h3>
+    <ul>
         <li><strong>ε (eps)</strong>: neighborhood radius — how close points must be to be considered neighbors.</li>
         <li><strong>minPts</strong>: minimum number of points required in an ε-neighborhood for a point to be a <em>core</em> point.</li>
         <li><strong>Core point</strong>: has ≥ minPts points (including itself) within ε.</li>
@@ -122,84 +609,87 @@
         <li><strong>Noise</strong>: neither core nor border — treated as outliers.</li>
     </ul>
 
-    <h3 style="margin-top:12px;">Why use DBSCAN?</h3>
-    <ul style="text-align:left; line-height:1.6;">
+    <h3>Why use DBSCAN?</h3>
+    <ul>
         <li>Finds clusters of arbitrary shape (not only spherical).</li>
         <li>Automatically detects noise (outliers).</li>
         <li>No need to specify number of clusters up front.</li>
     </ul>
 
-    <h3 style="margin-top:12px;">Limitations</h3>
-    <ul style="text-align:left; line-height:1.6;">
+    <h3>Limitations</h3>
+    <ul>
         <li>Sensitive to choice of <code>eps</code> and <code>minPts</code>.</li>
         <li>Harder to use when cluster densities vary widely.</li>
         <li>Quadratic worst-case time (naïve); spatial index (KD-tree) needed for large data.</li>
     </ul>
 
-    <h3 style="margin-top:12px;">Compact pseudocode</h3>
-    <pre style="background:#111315; padding:12px; border-radius:8px; color:#fff; overflow:auto;">
-    <code class="language-python">
-    for each point P:
+    <h3>Compact pseudocode</h3>
+    <pre><code class="language-python">
+for each point P:
     if P is not visited:
         mark P visited
         N = regionQuery(P, eps)
         if |N| &lt; minPts:
-        label P as noise
+            label P as noise
         else:
-        create new cluster C
-        add P to C
-        seeds = N
-        while seeds not empty:
-            Q = seeds.pop()
-            if Q not visited:
-            mark Q visited
-            Nq = regionQuery(Q, eps)
-            if |Nq| &gt;= minPts:
-                seeds += Nq              # expand neighborhood
-            if Q not yet assigned to any cluster:
-            add Q to cluster C
-    </code>
-    </pre>
+            create new cluster C
+            add P to C
+            seeds = N
+            while seeds not empty:
+                Q = seeds.pop()
+                if Q not visited:
+                    mark Q visited
+                    Nq = regionQuery(Q, eps)
+                    if |Nq| &gt;= minPts:
+                        seeds += Nq              # expand neighborhood
+                if Q not yet assigned to any cluster:
+                    add Q to cluster C
+    </code></pre>
 
-    <h3 style="margin-top:12px;">Scikit-learn example</h3>
-    <pre style="background:#111315; padding:12px; border-radius:8px; color:#fff; overflow:auto;">
-    <code class="language-python">
-    from sklearn.cluster import DBSCAN
-    from sklearn.datasets import make_blobs
+    <h3>Scikit-learn example</h3>
+    <pre><code class="language-python">
+from sklearn.cluster import DBSCAN
+from sklearn.datasets import make_blobs
 
-    X, _ = make_blobs(n_samples=300, centers=3, cluster_std=0.6, random_state=42)
+X, _ = make_blobs(n_samples=300, centers=3, cluster_std=0.6, random_state=42)
 
-    db = DBSCAN(eps=0.3, min_samples=5)
-    labels = db.fit_predict(X)   # -1 = noise, 0..k = cluster ids
-    </code>
-    </pre>
+db = DBSCAN(eps=0.3, min_samples=5)
+labels = db.fit_predict(X)   # -1 = noise, 0..k = cluster ids
+    </code></pre>
 
-    <h3 style="margin-top:12px;">How to demo this card with your visualization</h3>
-    <ul style="text-align:left; line-height:1.6;">
-        <li><strong>Show a point</strong> → highlight its ε-neighborhood (draw a circle of radius eps around it).</li>
-        <li><strong>Count neighbors</strong> → color the point as core (green) if ≥ minPts, border (yellow) if neighbor of core, noise (gray) otherwise.</li>
-        <li><strong>Play the step-by-step</strong> so students see cluster seeds grow by expanding neighborhoods (your Step / Auto controls).</li>
-        <li><strong>After the run</strong>, show final clusters + legend, and display metrics (silhouette / DB index) to discuss cluster quality.</li>
+    <h3>How to use this visualization</h3>
+    <ul>
+        <li><strong>Step Mode</strong> → Click "Step" to see how the algorithm progresses point by point</li>
+        <li><strong>Auto Mode</strong> → Click "Start/Stop" to watch the automatic clustering process</li>
+        <li><strong>Parameter Tuning</strong> → Adjust eps and min samples to see how they affect clustering</li>
+        <li><strong>Dataset Selection</strong> → Try different data patterns (blobs, moons, circles) to understand algorithm behavior</li>
     </ul>
 
-    <h3 style="margin-top:12px;">Quick talking points (1–2 minutes)</h3>
-    <ol style="text-align:left; line-height:1.6;">
-        <li>DBSCAN groups high-density regions and labels sparse points as noise.</li>
-        <li>The two parameters control neighborhood size and density threshold; tuning them changes results dramatically.</li>
-        <li>Good for non-spherical clusters and noisy data; poor when clusters have different densities.</li>
+    <h3>Quick tips for parameter tuning</h3>
+    <ol>
+        <li>Start with eps small, then gradually increase until you see meaningful clusters</li>
+        <li>Set minPts to approximately 2 × number of dimensions (for 2D data, try 4-6)</li>
+        <li>If you see too much noise, decrease eps or increase minPts</li>
+        <li>If clusters are merging inappropriately, decrease eps</li>
     </ol>
 
-    <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
-        <button onclick="document.getElementById('card-dbscan-what').scrollIntoView({behavior:'smooth'})">
-        Focus
+    <div class="action-buttons">
+        <button class="action-btn" onclick="document.getElementById('card-dbscan-what').scrollIntoView({behavior:'smooth'})">
+            <i class="fas fa-bookmark"></i>
+            Focus on Theory
         </button>
-        <button onclick="alert('Tip: try eps small then increase; set minPts≈2×dimensions')">
-        Tip
+        <button class="action-btn" onclick="alert('💡 Tip: For 2D data, try eps=0.2-0.5 and minPts=4-8 as starting points!')">
+            <i class="fas fa-lightbulb"></i>
+            Get Tuning Tips
         </button>
+        <a href="linear_regression.html" class="action-btn">
+            <i class="fas fa-arrow-right"></i>
+            Try Linear Regression
+        </a>
     </div>
     </div>
-
-  <script src="prism.js"></script>
+  </main>
+  <script src="Blogs/prism.js"></script>
   <script>
     function gaussianRandom(mean=0, stdev=1) {
       const u = 1 - Math.random();
@@ -273,8 +763,9 @@
         x,y,mode:'markers',type:'scatter',
         marker:{color:colors, size:8}
       }],{
-        paper_bgcolor:'#151826',
-        plot_bgcolor:'#151826',
+        paper_bgcolor:'rgba(15, 15, 35, 0.9)',
+        plot_bgcolor:'rgba(15, 15, 35, 0.9)',
+        font: {color: 'white'},
         margin:{t:20}
       }, {responsive: true});
     }
@@ -347,15 +838,17 @@
 
     Plotly.newPlot('plot', traces, {
         title:"Final Clusters",
-        paper_bgcolor:'#151826',
-        plot_bgcolor:'#151826',
+        paper_bgcolor:'rgba(15, 15, 35, 0.9)',
+        plot_bgcolor:'rgba(15, 15, 35, 0.9)',
+        font: {color: 'white'},
         margin:{t:40}
     }, {responsive: true});
     }
 
-
+    // Initialize
     plotStep();
 
+    // Event listeners
     document.getElementById('resetBtn').onclick=()=>{
       const dataset = document.getElementById('dataset').value;
       if (dataset==="blobs") points=generateBlobs();
@@ -363,27 +856,33 @@
       if (dataset==="circles") points=generateCircles();
       stepIndex=0;
       clearInterval(autoInterval); autoInterval=null;
+      document.getElementById('autoBtn').innerHTML = '<i class="fas fa-play"></i> Start / Stop';
       plotStep();
     };
+    
     document.getElementById('stepBtn').onclick=()=>{ dbscanStep(); };
+    
     document.getElementById('autoBtn').onclick=()=>{
       if (autoInterval) {
         clearInterval(autoInterval);
         autoInterval=null;
-        document.getElementById('autoBtn').innerText="Start/Stop";
+        document.getElementById('autoBtn').innerHTML = '<i class="fas fa-play"></i> Start / Stop';
       } else {
         autoInterval=setInterval(dbscanStep,speed);
-        document.getElementById('autoBtn').innerText="Start/Stop";
+        document.getElementById('autoBtn').innerHTML = '<i class="fas fa-pause"></i> Start / Stop';
       }
     };
+    
     document.getElementById('eps').oninput=(e)=>{
       eps=parseFloat(e.target.value);
       document.getElementById('epsVal').innerText=eps.toFixed(2);
     };
+    
     document.getElementById('minSamples').oninput=(e)=>{
       minPts=parseInt(e.target.value);
       document.getElementById('minSamplesVal').innerText=minPts;
     };
+    
     document.getElementById('speed').oninput=(e)=>{
       speed=parseInt(e.target.value);
       document.getElementById('speedVal').innerText=speed;
