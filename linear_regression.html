@@ -8,7 +8,6 @@
   <!-- libs -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  <link href="Blogs/prism.css" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
   <style>
@@ -91,20 +90,42 @@
       }
     }
 
-    /* Modern Navigation */
-    .navbar {
-      background: rgba(15, 15, 35, 0.95);
+    /* Simple Navigation */
+    .simple-nav {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      z-index: 1000;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .nav-btn {
+      width: 48px;
+      height: 48px;
+      background: rgba(15, 15, 35, 0.9);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(79, 70, 229, 0.2);
-      padding: 0.75rem 0;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 100;
+      border: 1px solid rgba(79, 70, 229, 0.3);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: var(--shadow-soft);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .nav-btn:hover {
+      background: rgba(79, 70, 229, 0.2);
+      border-color: var(--accent-color);
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(79, 70, 229, 0.4);
+    }
+
+    .nav-btn i {
+      font-size: 1.1rem;
     }
 
     .nav-content {
@@ -183,7 +204,7 @@
 
     /* Main content wrapper */
     .main-content {
-      padding: 120px 30px 60px;
+      padding: 2rem;
       max-width: 1600px;
       margin: 0 auto;
       position: relative;
@@ -322,10 +343,12 @@
       border-radius: 3px;
       outline: none;
       -webkit-appearance: none;
+      appearance: none;
     }
 
     input[type="range"]::-webkit-slider-thumb {
       -webkit-appearance: none;
+      appearance: none;
       width: 20px;
       height: 20px;
       background: var(--primary-gradient);
@@ -450,19 +473,43 @@
       margin-bottom: 0.75rem;
     }
 
+    /* Enhanced Code Containers */
     pre {
-      background: rgba(17, 19, 21, 0.8);
-      border: 1px solid rgba(79, 70, 229, 0.2);
+      background: rgba(0, 0, 0, 0.85) !important;
+      border: 1px solid rgba(79, 70, 229, 0.4);
       border-radius: var(--border-radius-small);
       padding: 1.5rem;
       margin: 1.5rem 0;
       overflow-x: auto;
       font-family: 'Fira Code', 'Cascadia Code', monospace;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      position: relative;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    pre code {
+      background: none !important;
+      color: #e2e8f0 !important;
+      padding: 0;
+      border-radius: 0;
+      font-family: inherit;
+      font-size: inherit;
+      white-space: pre;
+      display: block;
+      width: 100%;
     }
 
     code {
-      color: #e2e8f0;
+      background: rgba(0, 0, 0, 0.7) !important;
+      color: #e2e8f0 !important;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
       font-family: 'Fira Code', 'Cascadia Code', monospace;
+      font-size: 0.85em;
+      border: 1px solid rgba(79, 70, 229, 0.3);
     }
 
     .stats-display {
@@ -569,12 +616,19 @@
     }
 
     @media (max-width: 768px) {
-      body {
-        padding-top: 60px; /* Reduced padding */
+      .simple-nav {
+        top: 0.75rem;
+        left: 0.75rem;
+        gap: 0.375rem;
       }
       
-      .navbar {
-        padding: 0.5rem 0; /* Thinner navbar */
+      .nav-btn {
+        width: 42px;
+        height: 42px;
+      }
+      
+      .nav-btn i {
+        font-size: 1rem;
       }
       
       .container {
@@ -583,7 +637,7 @@
       }
       
       .main-content {
-        padding: 70px 1rem 1.5rem; /* Better spacing */
+        padding: 1rem;
       }
       
       .header {
@@ -654,12 +708,19 @@
     }
 
     @media (max-width: 480px) {
-      body {
-        padding-top: 55px; /* Even thinner */
+      .simple-nav {
+        top: 0.5rem;
+        left: 0.5rem;
+        gap: 0.25rem;
       }
       
-      .navbar {
-        padding: 0.375rem 0; /* Thinnest navbar */
+      .nav-btn {
+        width: 38px;
+        height: 38px;
+      }
+      
+      .nav-btn i {
+        font-size: 0.9rem;
       }
       
       .container {
@@ -667,7 +728,7 @@
       }
       
       .main-content {
-        padding: 65px 0.75rem 1.5rem;
+        padding: 0.75rem;
       }
 
       .header {
@@ -712,6 +773,26 @@
         font-size: 0.8rem;
       }
       
+      /* Mobile code container improvements */
+      pre {
+        padding: 1rem !important;
+        margin: 1rem 0 !important;
+        font-size: 0.8rem !important;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      
+      pre code {
+        white-space: pre !important;
+        word-wrap: normal;
+        overflow-wrap: normal;
+      }
+      
+      code {
+        font-size: 0.8em !important;
+        padding: 0.2rem 0.4rem !important;
+      }
+      
       .stats {
         padding: 0.75rem;
         font-size: 0.8rem;
@@ -731,28 +812,15 @@
 <body>
   <div class="cyber-background"></div>
   
-  <nav class="navbar">
-    <div class="nav-content">
-      <a href="index.html" class="logo">
-        <i class="fas fa-cube"></i>
-        CCIT Resources
-      </a>
-      <div class="nav-links">
-        <a href="index.html" class="nav-link">
-          <i class="fas fa-home"></i>
-          Home
-        </a>
-        <a href="store.html" class="nav-link">
-          <i class="fas fa-store"></i>
-          Resource
-        </a>
-        <a href="dbscan.html" class="nav-link">
-          <i class="fas fa-project-diagram"></i>
-          DBSCAN
-        </a>
-      </div>
-    </div>
-  </nav>
+  <!-- Simple Navigation -->
+  <div class="simple-nav">
+    <a href="index.html" class="nav-btn home-btn" title="Home">
+      <i class="fas fa-home"></i>
+    </a>
+    <a href="javascript:history.back()" class="nav-btn back-btn" title="Back">
+      <i class="fas fa-arrow-left"></i>
+    </a>
+  </div>
 
   <main class="main-content">
     <div class="page-header">
@@ -853,7 +921,7 @@
 
     <div class="card">
       <h2>Python Implementation of Gradient Descent</h2>
-      <pre><code class="language-python">
+      <pre><code>
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -893,7 +961,6 @@ plt.show()
 </div>
   
 
-<script src="Blogs/prism.js"></script>
 <script>
 
     let isPlaying = false;

@@ -46,6 +46,7 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             min-height: 100vh;
+            padding-top: 0; /* Remove navbar padding */
         }
 
         /* Smooth scrolling */
@@ -113,20 +114,42 @@
             100% { transform: translate(-60px, -60px); }
         }
 
-        /* Modern Navigation */
-        .navbar {
-            background: rgba(15, 15, 35, 0.95);
+        /* Simple Navigation */
+        .simple-nav {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 1000;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .nav-btn {
+            width: 48px;
+            height: 48px;
+            background: rgba(15, 15, 35, 0.9);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(79, 70, 229, 0.2);
-            padding: 0.75rem 0;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 100;
+            border: 1px solid rgba(79, 70, 229, 0.3);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: var(--shadow-soft);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-btn:hover {
+            background: rgba(79, 70, 229, 0.2);
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(79, 70, 229, 0.4);
+        }
+
+        .nav-btn i {
+            font-size: 1.1rem;
         }
 
         .nav-content {
@@ -207,7 +230,7 @@
         .main-content {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 120px 2rem 4rem;
+            padding: 2rem;
             position: relative;
             z-index: 1;
         }
@@ -405,8 +428,12 @@
         }
 
         .card-content {
-            padding: 2.5rem;
+            padding: 2rem;
             position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            min-height: 350px;
         }
 
         .card-icon {
@@ -421,6 +448,7 @@
             font-size: 1.5rem;
             color: white;
             box-shadow: 0 8px 25px rgba(79, 70, 229, 0.3);
+            flex-shrink: 0;
         }
 
         .card-badge {
@@ -448,8 +476,9 @@
         .card-description {
             color: #a1a1aa;
             font-size: 0.95rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             line-height: 1.6;
+            flex-grow: 1;
         }
 
         .card-footer {
@@ -457,6 +486,8 @@
             justify-content: space-between;
             align-items: center;
             margin-top: auto;
+            padding-top: 1rem;
+            flex-shrink: 0;
         }
 
         .download-btn {
@@ -572,20 +603,23 @@
 
         /* Enhanced Mobile Responsiveness */
         @media (max-width: 768px) {
-            body {
-                padding-top: 60px; /* Reduced from higher value */
+            .simple-nav {
+                top: 0.75rem;
+                left: 0.75rem;
+                gap: 0.375rem;
             }
             
-            .navbar {
-                padding: 0.5rem 0; /* Thinner navbar on mobile */
+            .nav-btn {
+                width: 42px;
+                height: 42px;
+            }
+            
+            .nav-btn i {
+                font-size: 1rem;
             }
             
             .main-content {
-                padding: 70px 1rem 1.5rem; /* Better spacing */
-            }
-            
-            .nav-content {
-                padding: 0 1rem;
+                padding: 1rem;
             }
             
             .nav-links {
@@ -630,12 +664,13 @@
             
             .resource-grid {
                 grid-template-columns: 1fr;
-                gap: 1.25rem; /* Better spacing */
+                gap: 1.25rem;
                 margin-top: 1.5rem;
             }
             
             .card-content {
-                padding: 1.25rem; /* More spacious */
+                padding: 1.5rem;
+                min-height: 320px;
             }
             
             .card-title {
@@ -643,10 +678,16 @@
                 margin-bottom: 0.75rem;
             }
             
+            .card-description {
+                margin-bottom: 1rem;
+                font-size: 0.9rem;
+            }
+            
             .download-btn {
-                padding: 0.75rem 1.5rem;
+                padding: 0.75rem 1.25rem;
                 font-size: 0.875rem;
-                margin-top: 1rem; /* More space above button */
+                width: 100%;
+                justify-content: center;
             }
             
             .stats-section {
@@ -666,16 +707,23 @@
         }
 
         @media (max-width: 480px) {
-            body {
-                padding-top: 55px; /* Even thinner on small mobile */
+            .simple-nav {
+                top: 0.5rem;
+                left: 0.5rem;
+                gap: 0.25rem;
             }
             
-            .navbar {
-                padding: 0.375rem 0; /* Thinnest navbar */
+            .nav-btn {
+                width: 38px;
+                height: 38px;
+            }
+            
+            .nav-btn i {
+                font-size: 0.9rem;
             }
             
             .main-content {
-                padding: 65px 0.75rem 1.5rem; /* Tighter but comfortable */
+                padding: 0.75rem;
             }
 
             .header {
@@ -693,38 +741,26 @@
                 margin-bottom: 1.25rem;
             }
             
-            .search-bar {
-                padding: 0.75rem 1rem; /* Smaller search bar */
-            }
-            
-            .search-bar input {
-                font-size: 0.9rem;
-            }
-            
-            .filter-controls {
-                gap: 0.375rem;
-                margin-bottom: 1.5rem;
-            }
-            
-            .filter-btn {
-                padding: 0.5rem 0.875rem;
-                font-size: 0.75rem;
-            }
-            
             .resource-grid {
                 gap: 1rem;
             }
             
             .card-content {
-                padding: 1rem;
+                padding: 1.25rem;
+                min-height: 300px;
             }
             
             .card-title {
                 font-size: 1rem;
             }
             
+            .card-description {
+                font-size: 0.85rem;
+                margin-bottom: 1rem;
+            }
+            
             .download-btn {
-                padding: 0.625rem 1.25rem;
+                padding: 0.625rem 1rem;
                 font-size: 0.8rem;
                 width: 100%;
                 justify-content: center;
@@ -787,24 +823,15 @@
         <div class="cyber-grid"></div>
     </div>
     
-    <nav class="navbar">
-        <div class="nav-content">
-            <a href="index.html" class="logo">
-                <i class="fas fa-cube"></i>
-                CCIT Resources
-            </a>
-            <div class="nav-links">
-                <a href="index.html" class="nav-link">
-                    <i class="fas fa-home"></i>
-                    Home
-                </a>
-                <a href="#resources" class="nav-link">
-                    <i class="fas fa-download"></i>
-                    Resources
-                </a>
-            </div>
-        </div>
-    </nav>
+    <!-- Simple Navigation -->
+    <div class="simple-nav">
+        <a href="index.html" class="nav-btn home-btn" title="Home">
+            <i class="fas fa-home"></i>
+        </a>
+        <a href="javascript:history.back()" class="nav-btn back-btn" title="Back">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+    </div>
 
     <main class="main-content">
         <div class="header" data-aos="fade-up">
