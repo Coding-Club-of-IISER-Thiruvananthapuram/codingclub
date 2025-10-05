@@ -779,6 +779,31 @@
     </style>
 </head>
 <body>
+    <!-- Hackathon Popup Modal -->
+    <div id="hackathon-popup" style="display:none;" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60">
+        <div class="cyber-card p-8 max-w-md w-full text-center relative animate__animated animate__fadeInDown" style="box-shadow: 0 8px 40px rgba(79,70,229,0.25);">
+            <button id="close-hackathon-popup" aria-label="Close popup" class="absolute top-3 right-3 text-gray-400 hover:text-white text-2xl font-bold bg-transparent border-none outline-none">&times;</button>
+            <img src="connection_network_infinity_partial_logo.png" alt="Hackathon Logo" class="mx-auto mb-4" style="width:64px;height:64px;">
+            <h2 class="gradient-text text-3xl font-bold mb-2">Coding Club Hackathon 2025</h2>
+            <p class="text-gray-200 mb-4">Oct 25-26 • IISER TVM Campus</p>
+            <p class="mb-6">Unleash your creativity, build with friends, and win exciting prizes!<br>Don’t miss out on the biggest coding event of the year.</p>
+            <a href="hackathon.html" class="cyber-button w-full" style="font-size:1.1rem;">Learn More & Register</a>
+        </div>
+    </div>
+    <script>
+    // Show popup after short delay, only once per session
+    window.addEventListener('DOMContentLoaded', function() {
+        if (!sessionStorage.getItem('hackathonPopupShown')) {
+            setTimeout(function() {
+                document.getElementById('hackathon-popup').style.display = 'flex';
+                sessionStorage.setItem('hackathonPopupShown', 'yes');
+            }, 1200);
+        }
+        document.getElementById('close-hackathon-popup').onclick = function() {
+            document.getElementById('hackathon-popup').style.display = 'none';
+        };
+    });
+    </script>
     <!-- Preloader -->
     <div class="preloader" id="preloader">
         <div class="preloader__content">
