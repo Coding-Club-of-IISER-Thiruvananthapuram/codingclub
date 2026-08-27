@@ -3,964 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Alumni of the Coding Club at IISER Thiruvananthapuram.">
+    <meta name="theme-color" content="#000000">
+    <meta name="author" content="Coding Club IISER Thiruvananthapuram">
     <title>Alumni - Coding Club IISER Thiruvananthapuram</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="responsive.css" rel="stylesheet">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href="bootstrap-navbar.css" rel="stylesheet">
-    <style>
-        :root {
-            --cyber-gradient: linear-gradient(45deg, #00f260, #0575e6, #00f260);
-            --neon-glow: 0 0 10px rgba(0, 242, 96, 0.5), 0 0 20px rgba(5, 117, 230, 0.3);
-            --accent-color: #00f260;
-            --secondary-accent: #0575e6;
-            --bg-dark: #0f1221;
-            --card-bg: rgba(15, 18, 33, 0.8);
-            --font-primary: 'Space Grotesk', 'Inter', sans-serif;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: var(--bg-dark);
-            color: #fff;
-            min-height: 100vh;
-            line-height: 1.6;
-            font-family: var(--font-primary);
-            overflow-x: hidden;
-            padding-top: 70px; /* Account for fixed navbar */
-        }
-
-        /* Enhanced background with animated particles */
-        .background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background:
-                radial-gradient(circle at 20% 20%, rgba(0, 242, 96, 0.1) 0%, transparent 40%),
-                radial-gradient(circle at 80% 80%, rgba(5, 117, 230, 0.1) 0%, transparent 40%),
-                radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.05) 0%, transparent 60%);
-            z-index: -1;
-            animation: backgroundPulse 15s ease-in-out infinite alternate;
-        }
-
-        @keyframes backgroundPulse {
-            0% { 
-                opacity: 0.3;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 0.6;
-                transform: scale(1.02);
-            }
-            100% { 
-                opacity: 0.4;
-                transform: scale(1);
-            }
-        }
-
-        /* Page entrance animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .alumni-card {
-            animation: fadeInUp 0.6s ease-out forwards;
-            animation-delay: calc(var(--index) * 0.1s);
-            opacity: 0;
-        }
-
-        .search-container {
-            animation: slideInLeft 0.8s ease-out;
-        }
-
-        /* Scroll to top button */
-        .scroll-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(45deg, var(--accent-color), var(--secondary-accent));
-            border: none;
-            border-radius: 50%;
-            color: white;
-            font-size: 1.2rem;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0, 242, 96, 0.3);
-        }
-
-        .scroll-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .scroll-to-top:hover {
-            transform: translateY(-3px) scale(1.1);
-            box-shadow: 0 6px 20px rgba(0, 242, 96, 0.5);
-        }
-
-        /* Gradient Text */
-        .gradient-text {
-            background: var(--cyber-gradient);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            animation: gradient 5s ease infinite;
-        }
-
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Cyber Card Styles */
-        .cyber-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(5, 117, 230, 0.2);
-            border-radius: 12px;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .cyber-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(5, 117, 230, 0.2),
-                transparent
-            );
-            transition: 0.5s;
-        }
-
-        .cyber-card:hover::before {
-            left: 100%;
-        }
-
-        .cyber-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--neon-glow);
-        }
-
-        /* Alumni specific styles */
-        .alumni-grid {
-            max-width: 1000px;
-            margin: 3rem auto;
-            padding: 0 1.5rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .alumni-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(5, 117, 230, 0.2);
-            border-radius: 12px;
-            padding: 1.5rem;
-            text-align: center;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            max-width: 320px;
-            margin: 0 auto;
-        }
-
-        .alumni-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--neon-glow);
-        }
-
-        .alumni-photo {
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            margin: 0 auto 1rem;
-            object-fit: cover;
-            border: 2px solid var(--accent-color);
-            box-shadow: 0 0 15px rgba(0, 242, 96, 0.3);
-        }
-
-        .alumni-name {
-            font-size: 1.25rem;
-            font-weight: bold;
-            margin-bottom: 0.4rem;
-            color: var(--accent-color);
-        }
-
-        .alumni-position {
-            color: #60a5fa;
-            font-weight: 600;
-            margin-bottom: 0.4rem;
-            font-size: 0.95rem;
-        }
-
-        .alumni-batch {
-            color: #9ca3af;
-            font-size: 0.85rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .alumni-intro {
-            color: #d1d5db;
-            line-height: 1.5;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-        }
-
-        .alumni-links {
-            display: flex;
-            justify-content: center;
-            gap: 0.8rem;
-        }
-
-        .alumni-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            background: rgba(5, 117, 230, 0.1);
-            color: var(--accent-color);
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-
-        .alumni-link:hover {
-            background: var(--accent-color);
-            color: var(--bg-dark);
-            transform: translateY(-2px);
-        }
-
-        /* Enhanced search container */
-        .search-container {
-            max-width: 600px;
-            margin: 3rem auto;
-            padding: 0 2rem;
-            position: relative;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 1.2rem 1.2rem 1.2rem 3.5rem;
-            background: rgba(15, 18, 33, 0.8);
-            backdrop-filter: blur(15px);
-            border: 2px solid rgba(5, 117, 230, 0.3);
-            border-radius: 15px;
-            color: white;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            font-family: var(--font-primary);
-        }
-
-        .search-input:focus {
-            outline: none;
-            border-color: var(--accent-color);
-            box-shadow: 0 0 30px rgba(0, 242, 96, 0.3);
-            background: rgba(15, 18, 33, 0.95);
-        }
-
-        .search-input::placeholder {
-            color: #9ca3af;
-            font-style: italic;
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 3.2rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--accent-color);
-            font-size: 1.2rem;
-            z-index: 1;
-        }
-
-        /* Enhanced no results styling */
-        .no-results {
-            text-align: center;
-            padding: 4rem 2rem;
-            color: #666;
-            background: rgba(15, 18, 33, 0.5);
-            border-radius: 15px;
-            margin: 2rem auto;
-            max-width: 500px;
-            border: 1px solid rgba(5, 117, 230, 0.1);
-        }
-        
-        .no-results svg {
-            width: 64px;
-            height: 64px;
-            margin: 0 auto 1rem;
-            color: #444;
-        }
-
-        .no-results h3 {
-            color: var(--accent-color);
-            margin-bottom: 0.5rem;
-            font-size: 1.3rem;
-        }
-
-        .no-results p {
-            color: #9ca3af;
-            font-size: 1rem;
-        }
-
-        /* Header styles */
-        .header h1 {
-            background: var(--cyber-gradient);
-            background-size: 300% 300%;
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: gradient 5s ease infinite;
-        }
-
-        .header p {
-            color: #999;
-            font-size: 1.3rem;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        /* Alumni Search Styles */
-        #alumniSearchInput:focus {
-            outline: none;
-            border-color: rgba(37, 99, 235, 0.5);
-            box-shadow: 0 0 20px rgba(37, 99, 235, 0.2);
-        }
-        
-        #alumniSearchInput:hover {
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-        
-        #clearAlumniSearch:hover {
-            color: #fff !important;
-        }
-        
-        .alumni-card.hidden {
-            display: none;
-        }
-        
-        .no-results {
-            text-align: center;
-            padding: 4rem 2rem;
-            color: #666;
-        }
-        
-        .no-results svg {
-            width: 64px;
-            height: 64px;
-            margin: 0 auto 1rem;
-            color: #444;
-        }
-
-        /* Alumni Grid and Card Styles - Enhanced */
-        .alumni-grid {
-            max-width: 1200px;
-            margin: 4rem auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        /* Override the original alumni-card with enhanced styling */
-        .alumni-card {
-            background: rgba(15, 18, 33, 0.95);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(5, 117, 230, 0.2);
-            border-radius: 16px;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            width: 280px;
-            margin: 0 auto;
-            height: auto;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .alumni-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(5, 117, 230, 0.1), transparent);
-            transition: 0.5s;
-        }
-
-        .alumni-card:hover::before {
-            left: 100%;
-        }
-
-        .alumni-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 0 30px rgba(0, 242, 96, 0.3), 0 8px 30px rgba(5, 117, 230, 0.2);
-            border-color: rgba(0, 242, 96, 0.4);
-        }
-
-        /* Enhanced photo styling */
-        .alumni-photo {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            margin: 0 auto 1.5rem;
-            object-fit: cover;
-            border: 3px solid var(--accent-color);
-            box-shadow: 0 0 20px rgba(0, 242, 96, 0.4);
-            transition: all 0.3s ease;
-        }
-
-        .alumni-card:hover .alumni-photo {
-            transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(0, 242, 96, 0.6);
-        }
-
-        /* Enhanced text styling */
-        .alumni-name {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--accent-color);
-            text-shadow: 0 0 10px rgba(0, 242, 96, 0.3);
-        }
-
-        .alumni-position {
-            color: #60a5fa;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            font-size: 1rem;
-            line-height: 1.3;
-        }
-
-        .alumni-batch {
-            color: #9ca3af;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-            font-weight: 500;
-        }
-
-        .alumni-intro {
-            color: #d1d5db;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-            text-align: left;
-        }
-
-        /* Enhanced social links */
-        .alumni-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: auto;
-            flex-wrap: wrap;
-        }
-
-        .alumni-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(5, 117, 230, 0.1);
-            color: var(--accent-color);
-            transition: all 0.3s ease;
-            text-decoration: none;
-            border: 1px solid rgba(5, 117, 230, 0.2);
-            font-size: 1.1rem;
-        }
-
-        .alumni-link:hover {
-            background: var(--accent-color);
-            color: var(--bg-dark);
-            transform: translateY(-3px) scale(1.1);
-            box-shadow: 0 5px 15px rgba(0, 242, 96, 0.4);
-            border-color: var(--accent-color);
-        }
-
-        .social-link {
-            background: linear-gradient(135deg, #0575e6, #00f260);
-            color: white;
-            padding: 0.6rem 1rem;
-            border-radius: 25px;
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            white-space: nowrap;
-            border: 1px solid rgba(0, 242, 96, 0.3);
-        }
-
-        .social-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 20px rgba(0, 242, 96, 0.4);
-            background: linear-gradient(135deg, #00f260, #0575e6);
-        }
-
-        .email-link {
-            background: linear-gradient(135deg, #7c3aed, #9333ea);
-        }
-
-        .email-link:hover {
-            background: linear-gradient(135deg, #9333ea, #7c3aed);
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            /* Fix header overlap issue */
-            .nav-bar {
-                height: auto;
-                min-height: 60px;
-                flex-direction: column;
-                gap: 1rem;
-                padding: 1rem;
-            }
-            
-            /* Ensure content doesn't hide under fixed header */
-            .alumni-section {
-                padding-top: 80px !important; /* Account for fixed header */
-            }
-            
-            .container {
-                padding-top: 2rem;
-            }
-            
-            /* Add proper spacing for all sections */
-            section {
-                scroll-margin-top: 80px; /* For smooth scrolling anchors */
-            }
-
-            .alumni-grid {
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-                gap: 2rem;
-                padding: 0 1rem;
-            }
-
-            .alumni-card {
-                min-height: 420px;
-            }
-
-            .image-container {
-                height: 200px;
-            }
-
-            .alumni-info {
-                padding: 1.25rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            /* Additional mobile header fix for very small screens */
-            .alumni-section {
-                padding-top: 90px !important;
-            }
-
-            .alumni-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-                padding: 0 0.5rem;
-            }
-            
-            .alumni-card {
-                min-height: 380px;
-            }
-            
-            .image-container {
-                height: 180px;
-            }
-
-            .header h1 {
-                font-size: 2rem;
-            }
-
-            .header p {
-                font-size: 1rem;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .footer-section {
-                text-align: center;
-            }
-        }
-
-        /* Footer */
-        footer {
-            background: rgba(17, 17, 17, 0.98);
-            padding: 4rem 2rem;
-            margin-top: 4rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-        }
-
-        .footer-section {
-            text-align: left;
-        }
-
-        .footer-section h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(to right, #2563eb, #7c3aed);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .footer-section p {
-            color: #999;
-            margin-bottom: 1rem;
-        }
-
-        .footer-section a {
-            color: #2563eb;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-section a:hover {
-            color: #7c3aed;
-        }
-
-        .copyright {
-            text-align: center;
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #666;
-        }
-    </style>
+    <link href="console.css" rel="stylesheet">
 </head>
 <body>
-    <div class="background"></div>
 
-    <!-- Navigation -->
-    <div id="navigation-placeholder"></div>
+<div class="deck" data-deck data-page="alumni.html" data-title="Network">
+    <div class="screen" data-screen>
+        <div class="glass" aria-hidden="true"></div>
 
-    <!-- Header Section -->
-    <header class="min-h-screen flex items-center pt-4 overflow-hidden relative">
-        <div class="container mx-auto px-6 relative z-10">
-            <div class="text-center">
-                <div class="mb-8">
-                    <div class="flex items-center justify-center space-x-2 mb-6">
-                        <div class="h-1 w-16 bg-gradient-to-r from-blue-500 to-green-400"></div>
-                        <p class="text-sm uppercase tracking-widest text-blue-400 font-semibold">Our Legacy</p>
-                        <div class="h-1 w-16 bg-gradient-to-r from-green-400 to-blue-500"></div>
+        <section class="hero" data-name="Alumni">
+            <div class="wrap">
+                <p class="hero__desig">CCIT &middot; NETWORK</p>
+                <h1 class="hero__title">Alumni</h1>
+                <p class="hero__lede">Members who have moved on from IISER Thiruvananthapuram and kept building. Reach out to any of them directly.</p>
+                
+            </div>
+        </section>
+
+        <section class="sec" id="network" data-name="Network">
+            <div class="wrap">
+                <div class="sec__head">
+                    <div class="divider"><span class="lbl">Panel A &middot; Alumni</span></div>
+                    <h2 class="sec__title">Graduates</h2>
+                    <p class="sec__sub">2 published profiles.</p>
+                </div>
+                <div class="roster">
+                    <div class="person">
+                        <span class="person__img"><img src="alumni_ashutosh.jpg" alt="Ashutosh Kumar" loading="lazy"></span>
+                        <span class="person__body">
+                            <span class="person__desig">A&middot;01</span>
+                            <span class="person__name">Ashutosh Kumar</span>
+                            <span class="person__role">Batch 2019</span>
+                            <span class="person__bio">Exploring the realm of Quantum Information and computation</span>
+                            <span class="person__tags"><span class="tag">Ph.D. at University of Jyvaskala</span></span>
+                            <span class="person__links">
+                                <a href="https://www.linkedin.com/in/ashutosh-kumar-a7134b202/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="mailto:ashutoshkr19@iisertvm.ac.in" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                            </span>
+                        </span>
                     </div>
-                    <h1 class="text-5xl md:text-7xl font-bold mb-6 gradient-text">
-                        Alumni Network
-                    </h1>
-                    <p class="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed mb-8">
-                        Meet our distinguished alumni from IISER Thiruvananthapuram's premier coding club, who continue to inspire and innovate in their respective fields.
-                    </p>
+                    <div class="person">
+                        <span class="person__img"><img src="alumni_krishna.jpg" alt="Krishna Kumar Singh" loading="lazy"></span>
+                        <span class="person__body">
+                            <span class="person__desig">A&middot;02</span>
+                            <span class="person__name">Krishna Kumar Singh</span>
+                            <span class="person__role">Batch 2019</span>
+                            <span class="person__bio">An astrophysicist studying the extreme universe in the Computer Simulation Lab</span>
+                            <span class="person__tags"><span class="tag">Ph.D. at University of Leeds</span></span>
+                            <span class="person__links">
+                                <a href="https://www.linkedin.com/in/kks0/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="mailto:Krishna19@alumni.iisertvm.ac.in" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                            </span>
+                        </span>
+                    </div>
                 </div>
             </div>
-        </div>
-    </header>
+        </section>
 
-    <!-- Search Section -->
-    <section class="py-12">
-        <div class="search-container">
-            <div class="relative">
-                <i class="fas fa-search search-icon"></i>
-                <input type="text" 
-                       id="alumniSearchInput" 
-                       class="search-input"
-                       placeholder="Search alumni by name, batch, research area..."
-                       aria-label="Search alumni">
-                <button id="clearAlumniSearch" 
-                        class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white transition-colors hidden"
-                        aria-label="Clear search">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Alumni Grid Section -->
-    <section class="py-12">
-        <div class="container mx-auto px-4">
-            <div class="alumni-grid" id="alumni-container">
-                <!-- Alumni cards will be dynamically inserted here -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Scroll to Top Button -->
-    <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
-        <i class="fas fa-chevron-up"></i>
-    </button>
-
-   <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <div class="footer-logo">
-    <img src="iisertvm_logoWhite.png" alt="IISER Thiruvananthapuram Logo" style="width: 100px; height: auto;">
-    <h3>IISER Thiruvananthapuram</h3>
-</div>
-
-                <p>CCIT Society is IISER Thiruvananthapuram's premier coding club, fostering technical excellence and innovation among students.</p>
-                <a href="https://www.iisertvm.ac.in" target="_blank" class="iiser-link">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" width="17" height="17">
-    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-    <path d="M15 3h6v6"></path>
-    <path d="M10 14L21 3"></path>
-</svg>
-
-                    Visit IISER Thiruvananthapuram Official Website
-                </a>
-            </div>
-
-            <div class="footer-section">
-                <h3>Connect With Us</h3>
-                <p>Follow us on social media for updates:</p>
-                <p><a href="https://www.linkedin.com/in/ccit-society-9898bb33a/" class="iiser-link">LinkedIn: CCIT Society IISER Thiruvananthapuram</a></p>
-                <p><a href="https://www.instagram.com/ccitiiser/" class="iiser-link">Instagram: CCIT Society IISER Thiruvananthapuram</a></p>
-            </div>
-
-            <div class="footer-section">
-                <h3>Contact Us</h3>
-                <p>IISER Thiruvananthapuram</p>
-                <p>Maruthamala PO, Vithura</p>
-                <p>Kerala, India - 695551</p>
-            </div>
-        </div>
-
-
-    </footer>
-
-    <script>
-        // ========== ALUMNI DATA TEMPLATE ==========
-        // To add a new alumni member, copy the template below and update all the details
-        
-        const alumni = [
-            // ========== ALUMNI MEMBER TEMPLATE ==========
-            // Copy this entire object and update the values to add a new alumni member
-            {
-                // Alumni full name
-                name: "Ashutosh Kumar",
-                // Batch/graduation year  
-                batch: "Batch 2019",
-                // Brief introduction/research area description
-                intro: "Exploring the realm of Quantum Information and computation",
-                // Current position/role and institution
-                position: "Ph.D. at University of Jyvaskala",
-                // Profile image filename
-                image: "alumni_ashutosh.jpg",
-                // LinkedIn profile URL
-                linkedin: "https://www.linkedin.com/in/ashutosh-kumar-a7134b202/",
-                // Email address (optional)
-                email: "ashutoshkr19@iisertvm.ac.in"
-            },
-            // ========== END ALUMNI MEMBER TEMPLATE ==========
-            
-            // Add more alumni members by copying the template above
-            {
-                name: "Krishna Kumar Singh",
-                batch: "Batch 2019",
-                intro: "An Astrophysicist Passionate to Study Extreme Universe in Computer Simulation Lab",
-                position: "Ph.D. at University of Leeds",
-                image: "alumni_krishna.jpg",
-                linkedin: "https://www.linkedin.com/in/kks0/",
-                email: "Krishna19@alumni.iisertvm.ac.in"
-            }
-        ];
-        // ========== END ALUMNI DATA TEMPLATE ==========
-
-        function displayAlumni(filteredAlumni = alumni) {
-            const container = document.getElementById('alumni-container');
-            container.innerHTML = filteredAlumni.map(person => `
-                <div class="alumni-card">
-                    <img src="${person.image}" alt="${person.name}" class="alumni-image">
-                    <div class="alumni-info">
-
-                        <h2 class="alumni-name">${person.name}</h2>
-                        <p class="alumni-batch">${person.batch}</p>
-                        <p class="alumni-intro">${person.intro}</p>
-                        <h5 class="alumni-position">${person.position}</h5>
-                        <div class="alumni-links">
-                            <a href="${person.linkedin}" target="_blank" class="social-link">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
-                                </svg>
-                                LinkedIn
-                            </a>
-                            ${person.email ? `
-                                <a href="mailto:${person.email}" class="social-link email-link">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                                    </svg>
-                                    Email
-                                </a>
-                            ` : ''}
+        <section class="sec" id="about" data-name="About">
+            <div class="wrap">
+                <div class="sec__head">
+                    <div class="divider"><span class="lbl">Panel B &middot; Institution</span></div>
+                    <h2 class="sec__title">The club</h2>
+                    
+                </div>
+                <div class="comms">
+                    <div class="card">
+                        <span class="lbl">Institution</span>
+                        <p style="color:var(--ink-dim);margin:1rem 0 1.25rem">IISER Thiruvananthapuram's student coding club, running technical projects and workshops for members at every level.</p>
+                        <a class="btn" href="https://www.iisertvm.ac.in/" target="_blank" rel="noopener">Institute site <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="card">
+                        <span class="lbl">Address</span>
+                        <div style="margin-top:1rem">
+                            <div class="field"><span>Campus</span><span class="field__v">Maruthamala PO, Vithura</span></div>
+                            <div class="field"><span>State</span><span class="field__v">Kerala, India</span></div>
+                            <div class="field"><span>PIN</span><span class="field__v">695551</span></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <span class="lbl">Channels</span>
+                        <div style="margin-top:0.5rem">
+                            <a class="link-row" href="https://www.linkedin.com/company/cciisertvm/" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i><span>LinkedIn</span><small>@cciisertvm</small></a>
+                            <a class="link-row" href="https://www.instagram.com/codingclubiisertvm/?hl=en" target="_blank" rel="noopener"><i class="fab fa-instagram"></i><span>Instagram</span><small>@codingclubiisertvm</small></a>
+                            <a class="link-row" href="mailto:codingclub@iisertvm.ac.in"><i class="fas fa-envelope"></i><span>Email</span><small>codingclub@iisertvm.ac.in</small></a>
                         </div>
                     </div>
                 </div>
-            `).join('');
-        }
+            </div>
+        </section>
 
-        displayAlumni();
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            // Scroll to top functionality
-            const scrollToTopButton = document.getElementById('scrollToTop');
-            
-            // Show/hide scroll to top button
-            window.addEventListener('scroll', function() {
-                if (window.pageYOffset > 300) {
-                    scrollToTopButton.classList.add('visible');
-                } else {
-                    scrollToTopButton.classList.remove('visible');
-                }
-            });
+        <section class="sec" data-name="Comms">
+            <div class="wrap">
+                <div class="foot">
+                    <img src="connection_network_infinity_partial_logo.png" alt="">
+                    <span>Coding Club &middot; IISER Thiruvananthapuram</span>
+                    <span class="lbl">Built by members</span>
+                </div>
+            </div>
+        </section>
 
-            // Scroll to top when clicked
-            scrollToTopButton.addEventListener('click', function() {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
+    </div>
+</div>
 
-            // Alumni search functionality
-            const alumniSearchInput = document.getElementById('alumniSearchInput');
-            const clearAlumniSearch = document.getElementById('clearAlumniSearch');
-            
-            if (alumniSearchInput) {
-                alumniSearchInput.addEventListener('input', function() {
-                    const query = this.value.toLowerCase().trim();
-                    
-                    // Show/hide clear button
-                    if (query.length > 0) {
-                        clearAlumniSearch.style.display = 'block';
-                    } else {
-                        clearAlumniSearch.style.display = 'none';
-                    }
-                    
-                    const alumniCards = document.querySelectorAll('.alumni-card');
-                    let visibleCount = 0;
-                    
-                    alumniCards.forEach(card => {
-                        const name = card.querySelector('.alumni-name')?.textContent.toLowerCase() || '';
-                        const batch = card.querySelector('.alumni-batch')?.textContent.toLowerCase() || '';
-                        const intro = card.querySelector('.alumni-intro')?.textContent.toLowerCase() || '';
-                        const position = card.querySelector('.alumni-position')?.textContent.toLowerCase() || '';
-                        
-                        const searchableText = `${name} ${batch} ${intro} ${position}`;
-                        
-                        if (query.length === 0 || searchableText.includes(query)) {
-                            card.classList.remove('hidden');
-                            card.style.display = 'block';
-                            visibleCount++;
-                        } else {
-                            card.classList.add('hidden');
-                            card.style.display = 'none';
-                        }
-                    });
-                    
-                    // Show/hide no results message
-                    let noResultsMsg = document.getElementById('noAlumniResults');
-                    if (query.length > 0 && visibleCount === 0) {
-                        if (!noResultsMsg) {
-                            noResultsMsg = document.createElement('div');
-                            noResultsMsg.id = 'noAlumniResults';
-                            noResultsMsg.className = 'no-results';
-                            noResultsMsg.innerHTML = `
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-                                    <circle cx="11" cy="11" r="8"></circle>
-                                    <path d="m21 21-4.35-4.35"></path>
-                                </svg>
-                                <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem; color: #999;">No alumni found</h3>
-                                <p>Try searching for names, graduation years, research areas, or positions</p>
-                            `;
-                            document.getElementById('alumni-container').appendChild(noResultsMsg);
-                        }
-                        noResultsMsg.style.display = 'block';
-                    } else if (noResultsMsg) {
-                        noResultsMsg.style.display = 'none';
-                    }
-                });
-                
-                // Clear search functionality
-                clearAlumniSearch.addEventListener('click', function() {
-                    alumniSearchInput.value = '';
-                    alumniSearchInput.dispatchEvent(new Event('input'));
-                    alumniSearchInput.focus();
-                });
-                
-                // ESC key to clear search
-                alumniSearchInput.addEventListener('keydown', function(e) {
-                    if (e.key === 'Escape') {
-                        this.value = '';
-                        this.dispatchEvent(new Event('input'));
-                    }
-                });
-            }
-        });
-    </script>
-    <!-- Bootstrap JavaScript dependencies -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="shared-navbar.js"></script>
+<script src="console.js"></script>
 </body>
 </html>

@@ -3,409 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coding Club Hackathon 2025</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="./connection_network_infinity_partial_logo.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./connection_network_infinity_partial_logo.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="./connection_network_infinity_partial_logo.png">
-    <link rel="manifest" href="./site.webmanifest">
-    <link rel="preload" href="connection_network_infinity_partial_logo.png" as="image">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" as="style">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <meta name="description" content="Codyssey, the IISER Thiruvananthapuram coding club hackathon.">
+    <meta name="theme-color" content="#000000">
+    <meta name="author" content="Coding Club IISER Thiruvananthapuram">
+    <title>Codyssey Hackathon - Coding Club IISER Thiruvananthapuram</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="preloader.css" rel="stylesheet">
-    <link href="responsive.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href="bootstrap-navbar.css" rel="stylesheet">
-    <link href="shared-navbar.css" rel="stylesheet">
-    <style>
-        :root {
-            --cyber-gradient: linear-gradient(45deg, #00f260, #0575e6, #00f260);
-            --neon-glow: 0 0 10px rgba(0, 242, 96, 0.5), 0 0 20px rgba(5, 117, 230, 0.3);
-            --accent-color: #00f260;
-            --secondary-accent: #0575e6;
-            --bg-dark: #0f1221;
-            --card-bg: rgba(15, 18, 33, 0.8);
-            --font-primary: 'Space Grotesk', 'Inter', sans-serif;
-        }
-        body {
-            font-family: var(--font-primary);
-            background: var(--bg-dark);
-            color: white;
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-        .hackathon-header {
-            background: transparent;
-            color: #fff;
-            padding: 4rem 1rem 2.5rem 1rem;
-            text-align: center;
-            border-radius: 0 0 32px 32px;
-            margin-bottom: 2.5rem;
-        }
-        .hackathon-section {
-            max-width: 1100px;
-            margin: 4.5rem auto 4.5rem auto;
-            background: var(--card-bg);
-            border-radius: 24px;
-            box-shadow: 0 2px 32px rgba(0,242,96,0.10);
-            padding: 4rem 3.5rem 4rem 3.5rem;
-            color: #e5e7eb;
-            font-size: 2.2rem; /* Increased for better readability */
-            font-weight: 400;
-            line-height: 1.7;
-            letter-spacing: 0.02em;
-            display: flex;
-            flex-direction: column;
-            gap: 4.5rem;
-        }
-        .gradient-text {
-            background: linear-gradient(135deg, #60a5fa, #34d399, #f59e0b);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            color: transparent;
-            background-size: 200% 200%;
-            animation: gradientShift 3s ease infinite;
-        }
-        .gradient-text-alt {
-            background: linear-gradient(90deg, #3b82f6 0%, #1d4ed8 100%);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            color: transparent;
-            background-size: 200% 200%;
-            animation: gradientShift 3s ease infinite;
-        }
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-        .hackathon-section h2 {
-            margin-top: 0;
-            margin-bottom: 1.7rem;
-            font-size: 3rem; /* Increased for better readability */
-            font-weight: 700;
-            letter-spacing: 0.03em;
-            text-shadow: 0 2px 16px rgba(59,130,246,0.10);
-        }
-        .hackathon-section ul, .hackathon-section ol {
-            margin-bottom: 1.5rem;
-        }
-        .hackathon-section li {
-            margin-bottom: 1.3em;
-            padding-left: 0.1em;
-        }
-        .hackathon-section .section-block {
-            margin-bottom: 2.5rem;
-            padding-bottom: 2.5rem;
-            border-bottom: 1.5px solid rgba(59,130,246,0.10);
-        }
-        .hackathon-section .section-block:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-        .hackathon-section > .grid {
-            gap: 0;
-        }
-        .cyber-button, .hackathon-btn {
-            margin-top: 2.2rem;
-            margin-bottom: 1.2rem;
-        }
-        .hackathon-section strong {
-            color: #34d399;
-            font-weight: 600;
-            letter-spacing: 0.01em;
-        }
-        .hackathon-section a {
-            color: #60a5fa;
-            text-decoration: underline;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-        .hackathon-section a:hover {
-            color: #34d399;
-        }
-        .bg-shapes {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: -1;
-        }
-        .shape {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(1px);
-            animation: float 6s ease-in-out infinite;
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
-        .cyber-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(5, 117, 230, 0.2);
-            border-radius: 12px;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-        }
-        .cyber-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(5, 117, 230, 0.2), transparent);
-            transition: 0.5s;
-        }
-        .cyber-card:hover::before {
-            left: 100%;
-        }
-        .cyber-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--neon-glow);
-        }
-        @media (max-width: 900px) {
-            .hackathon-section { padding: 1.5rem 0.5rem; }
-            .hackathon-header { padding: 2.5rem 0.5rem 1.5rem 0.5rem; }
-        }
-        .hackathon-btn {
-            background: linear-gradient(90deg, #3949ab 0%, #7c3aed 100%);
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            padding: 0.75rem 2rem;
-            font-size: 1.1rem;
-            margin-top: 1.5rem;
-            transition: background 0.2s;
-            box-shadow: 0 2px 12px rgba(79,70,229,0.10);
-        }
-        .hackathon-btn:hover {
-            background: linear-gradient(90deg, #1a237e 0%, #3949ab 100%);
-        }
-        @media (max-width: 600px) {
-            .hackathon-section { padding: 1rem; }
-            .hackathon-header { padding: 2rem 0.5rem 1rem 0.5rem; }
-        }
-        .hackathon-section ul.text-blue-200.text-sm,
-        .hackathon-section ol.text-blue-200.text-sm,
-        .hackathon-section ul.text-blue-100.text-sm,
-        .hackathon-section ol.text-blue-100.text-sm,
-        .hackathon-section ul.text-blue-200,
-        .hackathon-section ol.text-blue-200,
-        .hackathon-section ul.text-blue-100,
-        .hackathon-section ol.text-blue-100,
-        .hackathon-section li.text-blue-200.text-sm,
-        .hackathon-section li.text-blue-100.text-sm {
-            font-size: 1rem !important;
-            color: #a1a1aa !important;
-            font-weight: 400;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="console.css" rel="stylesheet">
 </head>
 <body>
-    <div id="navbar-container"></div>
-        <!-- Animated background shapes inspired by projects page -->
-        <div class="bg-shapes" aria-hidden="true">
-            <div class="shape shape-1 absolute h-64 w-64 rounded-full bg-purple-500 bg-opacity-10 -top-20 -left-20 animate-pulse"></div>
-            <div class="shape shape-2 absolute h-96 w-96 rounded-full bg-pink-500 bg-opacity-10 -bottom-40 -right-40 animate-pulse" style="animation-delay: 1s;"></div>
-            <div class="shape shape-3 absolute h-48 w-48 rounded-full bg-blue-500 bg-opacity-10 top-1/3 -right-20 animate-pulse" style="animation-delay: 2s;"></div>
-            <div class="shape shape-4 absolute h-72 w-72 rounded-full bg-green-500 bg-opacity-10 bottom-1/4 -left-36 animate-pulse" style="animation-delay: 3s;"></div>
-        </div>
-    <div class="hackathon-header">
-    <h1 class="gradient-text text-5xl md:text-6xl font-bold mb-4">Codyssey</h1>
-    <p class="gradient-text-alt text-2xl md:text-3xl mb-4 font-semibold">Code to Create. Create to Change.</p>
-    <a href="https://warpinnovate.devpost.com/" class="cyber-button mt-4">Join Hackathon</a>
-    </div>
-    <div class="hackathon-section">
-        <div class="section-block">
-            <h2 class="gradient-text text-2xl font-bold mb-2">Event Overview</h2>
-            <p class="mb-6">Codyssey is IISER TVM’s flagship hackathon, part of the science fest Anvesha. Join students, researchers, and tech enthusiasts to solve real-world problems using AI, ML, and more. From ideation to impact, build solutions that are innovative and practical.</p>
-            <ul class="mb-4 text-blue-200 text-sm">
-                <li><strong>Deadline:</strong> Nov 1, 2025 @ 12:30pm GMT+5:30</li>
-                <li><strong>Mode:</strong> Online</li>
-                <li><strong>Eligibility:</strong> Ages 16+, teams of 1–5, select countries, no companies/professionals</li>
-                <li><strong>Beginner Friendly:</strong> Yes</li>
-                <li><strong>Theme:</strong> Machine Learning/AI for Social Good</li>
-                <li><strong>Host:</strong> IISER Thiruvananthapuram</li>
-                <li><strong>Prize:</strong> Cash prize for best solution, certificates, mentorship, and more</li>
-            </ul>
-            <a href="https://warpinnovate.devpost.com/rules" class="text-blue-400 underline hover:text-blue-200">View full rules</a>
-            <div class="mt-4 text-green-300 font-semibold"><span id="days-remaining">27</span> days to deadline</div>
-            <!-- <a href="#schedule" class="text-blue-400 underline hover:text-blue-200 ml-4">View schedule</a> -->
-            <script>
-            // Dynamic countdown to Nov 1, 2025 @ 12:30pm GMT+5:30
-            (function() {
-                var deadline = new Date('2025-11-01T12:30:00+05:30');
-                var now = new Date();
-                var diff = deadline - now;
-                var days = Math.max(0, Math.ceil(diff / (1000 * 60 * 60 * 24)));
-                document.getElementById('days-remaining').textContent = days;
-            })();
-            </script>
-        </div>
-        <div class="section-block">
-            <h2 class="gradient-text text-2xl font-bold mb-2">Hackathon Structure</h2>
-            <ol class="list-decimal list-inside mb-4 text-blue-100">
-                <li><strong>Registration & Submission</strong> (Oct 5 – Nov 1, 2025): Teams (1–5) register and submit projects directly.</li>
-                <li><strong>Submission must include:</strong>
-                    <ul class="list-disc list-inside ml-4 text-blue-200 text-sm">
-                        <li>Problem Statement & Importance</li>
-                        <li>Proposed Solution</li>
-                        <li>Target Audience</li>
-                        <li>Technical Approach & Tech Stack</li>
-                        <li>Implementation (code + docs)</li>
-                        <li>Demo Video/Presentation</li>
-                        <li>Impact & Feasibility</li>
-                        <li>Challenges & Mitigation</li>
-                    </ul>
-                </li>
-            </ol>
-        </div>
-        <div class="section-block">
-            <h2 class="gradient-text text-2xl font-bold mb-2">Judging Criteria</h2>
-            <ul class="mb-4 text-blue-200 text-sm">
-                <li><strong>Novelty & Creativity:</strong> Uniqueness and innovation</li>
-                <li><strong>Technical Soundness:</strong> Code quality, feasibility, implementation</li>
-                <li><strong>Impact:</strong> Practical value and benefits</li>
-                <li><strong>Presentation:</strong> Clarity and demonstration</li>
-            </ul>
-        </div>
-        <div class="section-block">
-            <h2 class="gradient-text text-2xl font-bold mb-2">Extra Notes</h2>
-            <ul class="text-blue-200 text-sm">
-                <li>Interdisciplinary solutions encouraged</li>
-                <li>Think beyond code: combine research, creativity, and impact</li>
-                <li>Follow ethical coding and cite third-party resources</li>
-            </ul>
-        </div>
-    </div>
-    <!-- JS dependencies for navbar and icons -->
-    <!-- Footer Section (from projects page) -->
-    <footer class="bg-gray-900 pt-16 pb-8 relative z-10 border-t border-gray-800">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-                <!-- About -->
-                <div>
-                    <div class="flex items-center space-x-3 mb-6">
-                        <a href="https://www.iisertvm.ac.in/" target="_blank" class="flex items-center">
-                            <img src="iisertvm_logoWhite.png" alt="IISER Thiruvananthapuram Logo" class="h-12 w-auto mr-3">
-                        </a>
-                        <div>
-                            <h3 class="text-xl font-bold bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent">Coding Club</h3>
-                            <p class="text-sm text-gray-400">IISER Thiruvananthapuram</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-400 leading-relaxed">
-                        Empowering minds through code. We are a community of passionate programmers, innovators, and learners dedicated to exploring the frontiers of technology.
-                    </p>
-                    <!-- Social Media Links -->
-                    <div class="flex space-x-4 mt-6">
-                        <a href="https://www.instagram.com/codingclubiisertvm?igsh=N3pobjRyanB1dXNi" class="text-gray-400 hover:text-pink-400 transition-colors duration-300" aria-label="Follow us on Instagram">
-                            <i class="fab fa-instagram text-xl" aria-hidden="true"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/company/106173849/admin/dashboard/" class="text-gray-400 hover:text-blue-400 transition-colors duration-300" aria-label="Connect with us on LinkedIn">
-                            <i class="fab fa-linkedin text-xl" aria-hidden="true"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors duration-300" aria-label="Join our Discord server">
-                            <i class="fab fa-discord text-xl" aria-hidden="true"></i>
-                        </a>
-                        <a href="mailto:coding.club@iisertvm.ac.in" class="text-gray-400 hover:text-green-400 transition-colors duration-300" aria-label="Send us an email">
-                            <i class="fas fa-envelope text-xl" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                </div>
-                <!-- Quick Links -->
-                <div>
-                    <h3 class="text-lg font-semibold text-white mb-6">Quick Links</h3>
-                    <ul class="space-y-4">
-                        <li>
-                            <a href="index.html" class="text-gray-400 hover:text-blue-400 transition-colors duration-300 flex items-center">
-                                <i class="fas fa-chevron-right text-xs mr-2" aria-hidden="true"></i> Home
-                            </a>
-                        </li>
-                        <li>
-                            <a href="index.html#tech-stack" class="text-gray-400 hover:text-blue-400 transition-colors duration-300 flex items-center">
-                                <i class="fas fa-chevron-right text-xs mr-2" aria-hidden="true"></i> Tech Stack
-                            </a>
-                        </li>
-                        <li>
-                            <a href="projects.html" class="text-gray-400 hover:text-blue-400 transition-colors duration-300 flex items-center">
-                                <i class="fas fa-chevron-right text-xs mr-2" aria-hidden="true"></i> Projects
-                            </a>
-                        </li>
-                        <li>
-                            <a href="index.html#faq" class="text-gray-400 hover:text-blue-400 transition-colors duration-300 flex items-center">
-                                <i class="fas fa-chevron-right text-xs mr-2" aria-hidden="true"></i> FAQ
-                            </a>
-                        </li>
-                        <li>
-                            <a href="team.html" class="text-gray-400 hover:text-blue-400 transition-colors duration-300 flex items-center">
-                                <i class="fas fa-chevron-right text-xs mr-2" aria-hidden="true"></i> Team
-                            </a>
-                        </li>
-                        <li>
-                            <a href="Blogs/Blog main.html" class="text-gray-400 hover:text-blue-400 transition-colors duration-300 flex items-center">
-                                <i class="fas fa-chevron-right text-xs mr-2" aria-hidden="true"></i> Blogs
-                            </a>
-                        </li>
-                        <li>
-                            <a href="store.html" class="text-gray-400 hover:text-blue-400 transition-colors duration-300 flex items-center">
-                                <i class="fas fa-chevron-right text-xs mr-2" aria-hidden="true"></i> Resources
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- Contact -->
-                <div>
-                    <h3 class="text-lg font-semibold text-white mb-6">Contact Us</h3>
-                    <ul class="space-y-4">
-                        <li class="flex items-start space-x-3">
-                            <i class="fas fa-map-marker-alt text-blue-400 mt-1" aria-hidden="true"></i>
-                            <span class="text-gray-400">IISER Thiruvananthapuram, CET Campus, Thiruvananthapuram, Kerala, India - 695016</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <i class="fas fa-envelope text-blue-400" aria-hidden="true"></i>
-                            <a href="mailto:coding.club@iisertvm.ac.in" class="text-gray-400 hover:text-blue-400 transition-colors duration-300">coding.club@iisertvm.ac.in</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!-- Copyright -->
-            <div class="border-t border-gray-800 mt-12 pt-8">
-                <div class="flex justify-center mb-6">
-                    <p class="text-gray-500 text-sm">
-                        &copy; 2025 Coding Club IISER Thiruvananthapuram. All rights reserved.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </footer>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="shared-navbar.js"></script>
-    <script>
-        // Load the shared navbar
-        if (typeof createSharedNavigation === 'function') {
-            document.getElementById('navbar-container').innerHTML = createSharedNavigation();
-        } else {
-            window.addEventListener('DOMContentLoaded', function() {
-                if (typeof createSharedNavigation === 'function') {
-                    document.getElementById('navbar-container').innerHTML = createSharedNavigation();
-                }
-            });
-        }
-    </script>
+<div class="deck" data-deck data-page="hackathon.html" data-title="Codyssey">
+    <div class="screen" data-screen>
+        <div class="glass" aria-hidden="true"></div>
+
+        <section class="hero" data-name="Codyssey">
+            <div class="wrap">
+                <p class="hero__desig">CCIT &middot; CODYSSEY</p>
+                <h1 class="hero__title">Codyssey</h1>
+                <p class="hero__lede">Code to create. Create to change. IISER TVM's flagship hackathon, run as part of the science fest Anvesha. Build something that solves a real problem using AI and ML.</p>
+                <div class="hero__actions"><a class="btn btn--go" href="https://warpinnovate.devpost.com/" target="_blank" rel="noopener">Register on Devpost <i class="fas fa-arrow-right"></i></a><a class="btn" href="https://warpinnovate.devpost.com/rules" target="_blank" rel="noopener">Full rules</a></div>
+            </div>
+        </section>
+
+        <section class="sec" id="brief" data-name="Brief">
+            <div class="wrap">
+                <div class="sec__head">
+                    <div class="divider"><span class="lbl">Panel A &middot; Event</span></div>
+                    <h2 class="sec__title">Brief</h2>
+                    
+                </div>
+                <div class="spec">
+                    <div class="spec__row" data-core><span class="spec__tag">KEY</span><span class="spec__key">Theme</span><span class="spec__val">Machine learning and AI for social good.</span></div>
+                    <div class="spec__row" data-core><span class="spec__tag">KEY</span><span class="spec__key">Deadline</span><span class="spec__val">1 November 2025, 12:30 IST.</span></div>
+                    <div class="spec__row" data-core><span class="spec__tag">KEY</span><span class="spec__key">Mode</span><span class="spec__val">Online.</span></div>
+                    <div class="spec__row"><span class="spec__tag">INFO</span><span class="spec__key">Eligibility</span><span class="spec__val">Ages 16+, teams of 1&ndash;5, select countries. No companies or professionals.</span></div>
+                    <div class="spec__row"><span class="spec__tag">INFO</span><span class="spec__key">Experience</span><span class="spec__val">Beginner friendly. You do not need to have done a hackathon before.</span></div>
+                    <div class="spec__row"><span class="spec__tag">INFO</span><span class="spec__key">Host</span><span class="spec__val">IISER Thiruvananthapuram.</span></div>
+                    <div class="spec__row"><span class="spec__tag">INFO</span><span class="spec__key">Prizes</span><span class="spec__val">Cash prize for the best solution, plus certificates and mentorship.</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="sec" data-name="Comms">
+            <div class="wrap">
+                <div class="foot">
+                    <img src="connection_network_infinity_partial_logo.png" alt="">
+                    <span>Coding Club &middot; IISER Thiruvananthapuram</span>
+                    <span class="lbl">Built by members</span>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</div>
+
+<script src="console.js"></script>
 </body>
 </html>

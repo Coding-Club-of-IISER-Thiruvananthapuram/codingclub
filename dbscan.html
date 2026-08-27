@@ -7,6 +7,10 @@
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <link href="Blogs/prism.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="console.css" rel="stylesheet">
   <style>
     :root {
       --primary-gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #ec4899 100%);
@@ -667,21 +671,51 @@
       }
     }
   </style>
+  <!-- flight-deck: retarget this page's own tokens onto the shared palette -->
+  <style>
+    :root {
+      --accent-color: #a855ff; --secondary-accent: #6d28f5;
+      --bg-dark: #000000; --bg-darker: #000000;
+      --card-bg: #06080e; --card-border: #262c32;
+      --glass-bg: transparent;
+      --primary-gradient: none; --accent-gradient: none; --success-gradient: none;
+      --neon-glow: none; --shadow-soft: none; --shadow-hard: none;
+      --border-radius: 0; --border-radius-small: 0;
+      --font-primary: 'Barlow', system-ui, sans-serif;
+    }
+    html, body { height: 100%; margin: 0; overflow: hidden; }
+    body { background: #000; color: var(--ink); font-family: var(--font-body); }
+    .main-content { max-width: 1180px; margin: 0 auto; padding: clamp(2rem,6vh,4rem) clamp(1.25rem,4vw,3rem); }
+    .card, .controls, .control-group, .btn, button, select, input, .panel, .legend {
+      border-radius: 0 !important; box-shadow: none !important;
+    }
+    .card { background: var(--panel) !important; border: 1px solid var(--rule) !important; }
+    .page-header h1 {
+      font-family: var(--font-ui); font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.02em; color: var(--ink);
+    }
+    .page-description { color: var(--ink-dim); }
+    .header-badge {
+      font-family: var(--font-ui); font-size: 0.6875rem; font-weight: 600;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--ink-faint); background: none !important; border: 0 !important;
+      padding: 0 !important;
+    }
+    button, .btn {
+      font-family: var(--font-ui) !important; text-transform: uppercase;
+      letter-spacing: 0.14em; background: var(--raised) !important;
+      border: 1px solid var(--rule-lit) !important; color: var(--ink) !important;
+    }
+    button:hover, .btn:hover { border-color: var(--violet) !important; }
+  </style>
+
 </head>
 <body>
-  <div class="cyber-background"></div>
-  
-  <!-- Simple Navigation -->
-  <div class="simple-nav">
-    <a href="index.html" class="nav-btn home-btn" title="Home">
-      <i class="fas fa-home"></i>
-    </a>
-    <a href="javascript:history.back()" class="nav-btn back-btn" title="Back">
-      <i class="fas fa-arrow-left"></i>
-    </a>
-  </div>
 
-  <main class="main-content">
+<div class="deck" data-deck data-page="dbscan.html" data-title="DBSCAN">
+  <div class="screen" data-screen>
+    <div class="glass" aria-hidden="true"></div>
+<main class="main-content">
     <div class="page-header">
       <div class="header-badge">
         <i class="fas fa-project-diagram"></i>
@@ -832,6 +866,9 @@ for each point P:
     </div>
     </div>
   </main>
+  </div>
+</div>
+
   <script src="Blogs/prism.js"></script>
   <script>
     function gaussianRandom(mean=0, stdev=1) {
@@ -1035,5 +1072,6 @@ for each point P:
       }
     };
   </script>
+<script src="console.js"></script>
 </body>
 </html>

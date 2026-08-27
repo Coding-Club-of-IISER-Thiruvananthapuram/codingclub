@@ -1,294 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CCIT Society Blog</title>
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link href="bootstrap-navbar.css" rel="stylesheet">
-  <link href="responsive.css" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Roboto Mono', monospace;
-      margin: 0;
-      padding: 0;
-      background-color: #0F0F0F;
-      color: #BDBDBD;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Member-written posts from the Coding Club at IISER Thiruvananthapuram.">
+    <meta name="theme-color" content="#000000">
+    <meta name="author" content="Coding Club IISER Thiruvananthapuram">
+    <title>Blogs - Coding Club IISER Thiruvananthapuram</title>
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2rem;
-    }
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 
-    .blog-post {
-      background-color: rgba(28, 28, 28, 0.8);
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      margin-bottom: 2rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .blog-post:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: linear-gradient(45deg, #1E88E5, #673AB7, #212121);
-      opacity: 0.3;
-      z-index: 0;
-    }
-
-    .blog-post h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      color: #FFFFFF;
-      position: relative;
-      z-index: 1;
-    }
-
-    .blog-post p {
-      line-height: 1.6;
-      margin-bottom: 1rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .blog-post .meta {
-      font-size: 0.875rem;
-      color: #9E9E9E;
-      margin-bottom: 1rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .blog-post button {
-      background-color: #1E88E5;
-      color: #FFFFFF;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 4px;
-      font-size: 0.875rem;
-      cursor: pointer;
-      position: relative;
-      z-index: 1;
-      transition: background-color 0.3s ease;
-    }
-
-    .blog-post button:hover {
-      background-color: #1565C0;
-    }
-
-    .home-button {
-      position: fixed;
-      top: 1rem;
-      left: 1rem;
-      background-color: #1E88E5;
-      color: #FFFFFF;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 4px;
-      font-size: 0.875rem;
-      cursor: pointer;
-      z-index: 2;
-    }
-
-    .home-button:hover {
-      background-color: #1565C0;
-    }
-
-    .background-image {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      background-size: cover;
-      background-position: center;
-      animation: backgroundAnimation 30s ease infinite;
-      background-image: url('/api/placeholder/1920/1080?1');
-      filter: brightness(0.5) contrast(1.2);
-    }
-
-    /* Modal Styles */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.8);
-      z-index: 1000;
-      overflow-y: auto;
-    }
-
-    .modal-content {
-      background-color: #1C1C1C;
-      margin: 2rem auto;
-      padding: 2rem;
-      width: 90%;
-      max-width: 800px;
-      border-radius: 8px;
-      position: relative;
-      animation: modalFadeIn 0.3s ease;
-    }
-
-    .close-button {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: none;
-      border: none;
-      color: #FFFFFF;
-      font-size: 1.5rem;
-      cursor: pointer;
-      padding: 0.5rem;
-      line-height: 1;
-    }
-
-    .close-button:hover {
-      color: #1E88E5;
-    }
-
-    @keyframes modalFadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes backgroundAnimation {
-      0% {
-        background-image: url('/api/placeholder/1920/1080?1');
-      }
-      25% {
-        background-image: url('/api/placeholder/1920/1080?2');
-      }
-      50% {
-        background-image: url('/api/placeholder/1920/1080?3');
-      }
-      75% {
-        background-image: url('/api/placeholder/1920/1080?4');
-      }
-      100% {
-        background-image: url('/api/placeholder/1920/1080?1');
-      }
-    }
-  </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="console.css" rel="stylesheet">
 </head>
 <body>
-  <!-- Navigation -->
-  <div id="navigation-placeholder"></div>
-  <div class="background-image"></div>
-  <div class="container">
-    <h1 style="color: #FFFFFF; font-size: 3rem; margin-bottom: 2rem;">CCIT Society Blog</h1>
-    
-    <!-- Blog Posts -->
-    
-      <div class="blog-post">
-      <h2>Multi-Agent Systems: The Future of Collaborative AI</h2>
-      <div class="meta">Posted by Saurab on December 20, 2024</div>
-      <p>
-       Learn how modular multi-agent systems are changing the game for AI collaboration.
-      </p>
-          <button onclick="redirectToExternal()">View Full Post</button>
 
-<script>
-function redirectToExternal() {
-    alert("You are being redirected to an external website.");
-    location.href = 'https://saurabmishra12.github.io/saurabmishra.github.io/MAS-Blog.html';
-}
-</script>
+<div class="deck" data-deck data-page="blogs.html" data-title="Archive">
+    <div class="screen" data-screen>
+        <div class="glass" aria-hidden="true"></div>
 
+        <section class="hero" data-name="Blogs">
+            <div class="wrap">
+                <p class="hero__desig">CCIT &middot; WRITING</p>
+                <h1 class="hero__title">Blogs</h1>
+                <p class="hero__lede">Posts written by members about what they have been building and reading. Code samples are syntax-highlighted.</p>
+                <div class="hero__actions"><a class="btn" href="Blogs/Blog main.html">Full post index</a></div>
+            </div>
+        </section>
+
+        <section class="sec" id="posts" data-name="Posts">
+            <div class="wrap">
+                <div class="sec__head">
+                    <div class="divider"><span class="lbl">Panel A &middot; Archive</span></div>
+                    <h2 class="sec__title">Published</h2>
+                    <p class="sec__sub">9 posts by 7 authors.</p>
+                </div>
+                <div class="manifest">
+                    <a class="manifest__row" href="Blogs/Posts/Ananya&#x27;s blog.html">
+                        <span class="manifest__when">Ananya</span>
+                        <div><div class="manifest__name">The Future of AI and ML: Transforming Industries Through Code</div><p class="manifest__desc">Read the full post</p></div>
+                        <span class="state">Post</span>
+                    </a>
+                    <a class="manifest__row" href="Blogs/Posts/Gowri&#x27;s blog.html">
+                        <span class="manifest__when">Gowri</span>
+                        <div><div class="manifest__name">Decode, Discover, Display: 5 Tools for Biology Research and Visualisation</div><p class="manifest__desc">Read the full post</p></div>
+                        <span class="state">Post</span>
+                    </a>
+                    <a class="manifest__row" href="Blogs/Posts/Joshy&#x27;s blog.html">
+                        <span class="manifest__when">Joshy</span>
+                        <div><div class="manifest__name">Making a DAW with Python</div><p class="manifest__desc">Read the full post</p></div>
+                        <span class="state">Post</span>
+                    </a>
+                    <a class="manifest__row" href="Blogs/Posts/Manini&#x27;s blog.html">
+                        <span class="manifest__when">Manini</span>
+                        <div><div class="manifest__name">A New Dawn of AI: Creating a World that Never Was</div><p class="manifest__desc">Read the full post</p></div>
+                        <span class="state">Post</span>
+                    </a>
+                    <a class="manifest__row" href="Blogs/Posts/Mishra&#x27;s blog 2.html">
+                        <span class="manifest__when">Mishra</span>
+                        <div><div class="manifest__name">Multi-Agent Systems: The Future of Collaborative AI</div><p class="manifest__desc">Read the full post</p></div>
+                        <span class="state">Post</span>
+                    </a>
+                    <a class="manifest__row" href="Blogs/Posts/Mishra&#x27;s blog 3.html">
+                        <span class="manifest__when">Mishra</span>
+                        <div><div class="manifest__name">Multi-Agent Systems: The Future of Collaborative AI</div><p class="manifest__desc">Read the full post</p></div>
+                        <span class="state">Post</span>
+                    </a>
+                    <a class="manifest__row" href="Blogs/Posts/Mishra&#x27;s blog.html">
+                        <span class="manifest__when">Mishra</span>
+                        <div><div class="manifest__name">Exploring the Future of Coding with the coding club</div><p class="manifest__desc">Read the full post</p></div>
+                        <span class="state">Post</span>
+                    </a>
+                    <a class="manifest__row" href="Blogs/Posts/Saurab&#x27;s blog.html">
+                        <span class="manifest__when">Saurab</span>
+                        <div><div class="manifest__name">Saurab&#x27;s blog</div><p class="manifest__desc">Read the full post</p></div>
+                        <span class="state">Post</span>
+                    </a>
+                    <a class="manifest__row" href="Blogs/Posts/Shrayansh&#x27;s blog.html">
+                        <span class="manifest__when">Shrayansh</span>
+                        <div><div class="manifest__name">Shrayansh&#x27;s Blog</div><p class="manifest__desc">Read the full post</p></div>
+                        <span class="state">Post</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="sec" data-name="Comms">
+            <div class="wrap">
+                <div class="foot">
+                    <img src="connection_network_infinity_partial_logo.png" alt="">
+                    <span>Coding Club &middot; IISER Thiruvananthapuram</span>
+                    <span class="lbl">Built by members</span>
+                </div>
+            </div>
+        </section>
 
     </div>
+</div>
 
-
-
-    <div class="blog-post">
-      <h2>Exploring the Future of Coding with CCIT</h2>
-      <div class="meta">Posted by Saurab on November 4, 2024</div>
-      <p>
-        In this blog post, we'll dive into the latest trends and technologies shaping the future of coding...
-      </p>
-      <button onclick="openModal()">View Full Post</button>
-    </div>
-    <!-- End Blog Posts -->
-    
-  </div>
-
-  <!-- Modal -->
-  <div id="blogModal" class="modal">
-    <div class="modal-content">
-      <button class="close-button" onclick="closeModal()">&times;</button>
-      <h2>Exploring the Future of Coding with CCIT</h2>
-      <div class="meta">Posted by Saurab on November 4, 2024</div>
-      <p>
-        In this blog post, we'll dive into the latest trends and technologies shaping the future of coding. From the rise of low-code/no-code platforms to the increased importance of data science and machine learning, the coding landscape is rapidly evolving. We'll explore how CCIT Society is staying ahead of the curve and preparing our members for the challenges and opportunities that lie ahead.
-      </p>
-      <p>
-        The democratization of coding has been one of the most significant trends in recent years. Low-code and no-code platforms have made it possible for individuals with minimal programming experience to create sophisticated applications. However, this doesn't diminish the importance of traditional coding skills. Instead, it creates new opportunities for developers to focus on more complex problems and innovative solutions.
-      </p>
-      <p>
-        Data science and machine learning continue to be at the forefront of technological advancement. The ability to process and analyze large datasets, combined with sophisticated AI algorithms, is transforming industries across the board. CCIT Society members are actively engaging with these technologies, participating in workshops and collaborative projects that push the boundaries of what's possible.
-      </p>
-      <p>
-        Looking ahead, we see several emerging trends that will shape the future of coding:
-      </p>
-      <ul style="margin-left: 2rem;">
-        <li>Increased focus on AI-assisted coding and development tools</li>
-        <li>Growth in quantum computing applications and algorithms</li>
-        <li>Enhanced emphasis on cybersecurity and privacy-preserving technologies</li>
-        <li>Greater integration of AR/VR in development workflows</li>
-      </ul>
-      <p>
-        At CCIT Society, we're committed to staying at the forefront of these developments. Through our mentorship programs, technical workshops, and community projects, we're building a foundation for the next generation of developers to thrive in this evolving landscape.
-      </p>
-    </div>
-  </div>
-
-  <script src="shared-navbar.js"></script>
-  <script>
-    function openModal() {
-      document.getElementById('blogModal').style.display = 'block';
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeModal() {
-      document.getElementById('blogModal').style.display = 'none';
-      document.body.style.overflow = 'auto';
-    }
-
-
-    window.onclick = function(event) {
-      const modal = document.getElementById('blogModal');
-      if (event.target === modal) {
-        closeModal();
-      }
-    }
-
-    // Close modal with Escape key
-    document.addEventListener('keydown', function(event) {
-      if (event.key === 'Escape') {
-        closeModal();
-      }
-    });
-  </script>
-  <!-- Bootstrap JavaScript dependencies -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="shared-navbar.js"></script>
+<script src="console.js"></script>
 </body>
 </html>
