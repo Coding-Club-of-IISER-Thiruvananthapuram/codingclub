@@ -140,18 +140,50 @@ img { max-width: 100%; display: block; }
 
 .rail__spacer { margin-left: auto; }
 
-/* credit rides in the housing, not in a footer band of its own, and is
-   centred on the rail rather than on whatever the side groups leave over */
+/* credit rides in the housing, not in a footer band of its own, and sits at
+   the far end of the rail where the status lamps used to be */
 .rail--bot { position: relative; }
 .rail__credit {
+  color: var(--ink-faint);
+  white-space: nowrap;
+}
+@media (max-width: 1000px) { .rail__credit { display: none; } }
+
+/* the middle of the rail: a row of square lamps, centred on the rail itself
+   rather than on whatever the two side groups leave over */
+.rail__dots {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  color: var(--ink-faint);
-  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.4375rem;
   pointer-events: none;
 }
-@media (max-width: 1000px) { .rail__credit { display: none; } }
+.rail__dots i {
+  width: 4px;
+  height: 4px;
+  background: var(--violet);
+  opacity: 0.22;
+  animation: dot-wave 1.9s var(--ease) infinite;
+}
+/* the pulse travels along the row: 0.11s between neighbours, so the crest
+   crosses all nine in about a second and the row rests before the next one */
+.rail__dots i:nth-child(1) { animation-delay: 0s; }
+.rail__dots i:nth-child(2) { animation-delay: 0.11s; }
+.rail__dots i:nth-child(3) { animation-delay: 0.22s; }
+.rail__dots i:nth-child(4) { animation-delay: 0.33s; }
+.rail__dots i:nth-child(5) { animation-delay: 0.44s; }
+.rail__dots i:nth-child(6) { animation-delay: 0.55s; }
+.rail__dots i:nth-child(7) { animation-delay: 0.66s; }
+.rail__dots i:nth-child(8) { animation-delay: 0.77s; }
+.rail__dots i:nth-child(9) { animation-delay: 0.88s; }
+
+@keyframes dot-wave {
+  0%, 55%, 100% { opacity: 0.22; transform: scale(1); }
+  18%           { opacity: 1;    transform: scale(1.5); }
+}
+@media (max-width: 700px) { .rail__dots { display: none; } }
 
 .lamp {
   display: inline-flex;
@@ -410,7 +442,9 @@ img { max-width: 100%; display: block; }
 .person {
   position: relative;
   display: block;
-  aspect-ratio: 1;              /* square tile, not a tall card */
+  /* 3:4, not square: portraits are shot tall, and a square crop was cutting
+     heads off at the top of the frame */
+  aspect-ratio: 3 / 4;
   overflow: hidden;
   background: var(--panel);
   outline: 1px solid var(--rule);
@@ -712,7 +746,7 @@ img { max-width: 100%; display: block; }
 @media (max-width: 620px) {
   :root { --inset: 0px; }
   .deck { border-width: 0; box-shadow: none; }
-  .rail__desig, .rail__rev, .rail__clock { display: none; }
+  .rail__desig, .rail__clock { display: none; }
   /* keeps the readout's aligned dot-leaders from wrapping mid-line */
   .term__body { font-size: 0.6875rem; padding: 1rem 0.875rem 1.25rem; }
 }
@@ -720,7 +754,16 @@ img { max-width: 100%; display: block; }
 @media (prefers-reduced-motion: reduce) {
   .screen { scroll-behavior: auto; }
   .lamp::before, .caret { animation: none; }
-  *, *::before, *::after { transition-duration: 0.01ms !important; }
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+  }
+  /* the reveal never runs here, so it must not start hidden either */
+  .reveal { opacity: 1; transform: none; }
+  /* and the rail's lamps must not be left sitting at the trough */
+  .rail__dots i { opacity: 0.6; }
 }
 
 
@@ -783,7 +826,7 @@ img { max-width: 100%; display: block; }
 .tree__item[aria-selected='true'] { background: var(--violet); color: #000; }
 .tree__item[aria-selected='true']::before { color: #000; }
 
-.prod { margin-top: auto; display: flex; flex-direction: column; gap: 1rem; }
+.prod { margin-top: auto; display: flex; flex-direction: column; gap: 1.375rem; }
 .prod__name {
   margin: 0;
   font-family: var(--font-ui);
@@ -823,7 +866,8 @@ img { max-width: 100%; display: block; }
 .buy {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  justify-content: center;
+  gap: 0.8125rem;
   width: 100%;
   padding: 0.9375rem 1.125rem;
   background: var(--violet-solid);
@@ -843,7 +887,9 @@ img { max-width: 100%; display: block; }
 
 /* ---- right: the viewfinder stage ---- */
 .shop__stage {
-  --vf: clamp(15rem, 40vh, 26rem);
+  /* the stage is the point of the page: give it the room. One length drives the
+     bracket box and the picture, so the two scale together. */
+  --vf: clamp(17rem, 54vh, 34rem);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -888,7 +934,9 @@ img { max-width: 100%; display: block; }
 .vf__rec { width: 7px; height: 7px; margin-right: 7px; background: var(--violet); animation: blink 1.6s steps(1,end) infinite; }
 
 .vf__view { position: absolute; inset: 12%; display: grid; place-items: center; }
-.vf__view img { max-width: 100%; max-height: 100%; object-fit: contain; }
+/* width/height 100%, not max-*: a mark smaller than the frame has to scale UP
+   to fill it, and max-width alone leaves it sitting at its natural size */
+.vf__view img { width: 100%; height: 100%; object-fit: contain; }
 
 .stage__label {
   font-family: var(--font-ui);
@@ -1758,3 +1806,427 @@ img { max-width: 100%; display: block; }
 .modal__note { padding: 2rem 0; color: var(--ink-faint); font-family: var(--font-data); font-size: 0.8125rem; }
 
 @media (max-width: 620px) { .modal { padding: 0; } .modal__panel { max-height: 100%; } }
+
+
+/* ============================================================
+   MOTION — the deck powering up, and the small stuff
+   Three rules everything here follows:
+   - Nothing may hide content. Entrance animations run `both` from a
+     visible end state, so a page whose animation never runs is simply
+     all there. The scroll reveal is added by script, never written into
+     the markup, for the same reason.
+   - Opacity and transform only. No layout property is animated, so
+     nothing reflows while the deck arrives.
+   - All of it is off under prefers-reduced-motion, at the end of the file.
+   ============================================================ */
+
+@keyframes rise    { from { opacity: 0; transform: translateY(12px); } }
+@keyframes drop    { from { opacity: 0; transform: translateY(-7px); } }
+@keyframes lift    { from { opacity: 0; transform: translateY(7px); } }
+@keyframes fade-in { from { opacity: 0; } }
+
+/* the housing arrives, then the screen it frames */
+.rail--top { animation: drop 380ms var(--ease) both 30ms; }
+.nav       { animation: drop 380ms var(--ease) both 80ms; }
+.rail--bot { animation: lift 380ms var(--ease) both 130ms; }
+.screen    { animation: rise 460ms var(--ease) both 60ms; }
+
+/* the switches light up left to right, the way a panel wakes */
+.nav__item { animation: fade-in 300ms linear both; }
+.nav__item:nth-child(1) { animation-delay: 150ms; }
+.nav__item:nth-child(2) { animation-delay: 195ms; }
+.nav__item:nth-child(3) { animation-delay: 240ms; }
+.nav__item:nth-child(4) { animation-delay: 285ms; }
+.nav__item:nth-child(5) { animation-delay: 330ms; }
+.nav__item:nth-child(6) { animation-delay: 375ms; }
+
+/* leaving: brief enough that it reads as continuity, not as a wait */
+body.is-leaving .deck { opacity: 0; transition: opacity 110ms linear; }
+
+/* sections come up as they reach the screen. The class is added by
+   console.js only to sections below the fold — what is already on screen
+   is never hidden, not even for a frame. */
+.reveal { opacity: 0; transform: translateY(16px); }
+.reveal--in {
+  opacity: 1;
+  transform: none;
+  transition: opacity 560ms var(--ease), transform 560ms var(--ease);
+}
+
+/* the reader opens rather than appears */
+.modal { animation: fade-in 180ms linear both; }
+.modal__panel { animation: modal-in 300ms var(--ease) both 40ms; }
+@keyframes modal-in { from { opacity: 0; transform: translateY(10px) scale(0.99); } }
+
+/* a control you press should move. One shared transition so every control
+   answers at the same speed; these replace the per-component ones above. */
+.btn, .nav__item, .tabs__btn, .size, .cbtn, .tree__item, .buy, .modal__close {
+  transition: background 140ms linear, color 140ms linear,
+              border-color 140ms linear, transform 110ms var(--ease);
+}
+.btn:active, .nav__item:active, .tabs__btn:active, .size:active,
+.cbtn:active, .tree__item:active, .buy:active, .modal__close:active {
+  transform: translateY(1px);
+}
+
+/* tiles lift out of the grid instead of only changing colour */
+.person { transition: transform 240ms var(--ease); }
+.person:hover { transform: translateY(-3px); }
+
+/* the gauge fills rather than steps */
+.gauge i { transition: background 180ms linear; }
+
+
+/* changing roster should read as a panel changing, not a jump cut */
+[role="tabpanel"]:not([hidden]) { animation: rise 320ms var(--ease) both; }
+
+/* selected text picks up the panel accent instead of the browser blue */
+::selection { background: var(--violet); color: #000; }
+
+/* the accordion answers the press too */
+.check__q { transition: background 140ms linear, color 140ms linear; }
+.check__q:active { transform: translateY(1px); }
+
+
+/* ============================================================
+   PERSONNEL POPUP AND CHANNELS
+   ============================================================ */
+
+/* a tile that has no profile page is a button, so it is focusable and
+   answers Enter and Space without any help from script */
+button.person {
+  width: 100%;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+/* contact links belong in the record, not on the tile: the grid reads as
+   portraits, and a link inside a card that is itself clickable is a trap */
+.roster .person__links { display: none; }
+
+/* the fetched profile, inside the popup */
+.modal__body .profile { margin: 0; }
+.modal__body .backlink,
+.modal__body .sec__head { display: none; }
+
+/* the popup is narrower than a page, so the record drops under the portrait
+   sooner than it does on the profile page itself */
+@media (max-width: 60rem) {
+  .modal__body .profile { grid-template-columns: 1fr; }
+}
+
+/* an alumnus has no page to fetch; the popup is built from the tile */
+.rec { display: grid; grid-template-columns: minmax(0, 14rem) minmax(0, 1fr); gap: 1px; }
+.rec__photo { position: relative; aspect-ratio: 1; background: var(--raised); outline: 1px solid var(--rule); }
+.rec__photo img { width: 100%; height: 100%; object-fit: cover; }
+.rec__photo img[src$=".svg"] { object-fit: contain; padding: 14%; }
+.rec__body { padding: 1.5rem 1.75rem; outline: 1px solid var(--rule); }
+.rec__name {
+  margin: 0.25rem 0 0;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: clamp(1.375rem, 3vw, 1.875rem);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.rec__role { margin: 0.5rem 0 1.25rem; color: var(--violet); font-family: var(--font-data); font-size: 0.8125rem; }
+.rec__none { color: var(--ink-faint); font-family: var(--font-data); font-size: 0.8125rem; }
+@media (max-width: 46rem) { .rec { grid-template-columns: 1fr; } }
+
+/* ---- channels: the only thing left in comms ---- */
+.channels {
+  display: grid;
+  /* 12.5rem lands all five across the wrap, so the row does not leave a
+     lone cell stranded on a second line */
+  grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr));
+  gap: 1px;
+}
+.channel {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2.25rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 1.5rem 1.25rem;
+  overflow: hidden;                 /* backstop: nothing leaves its cell */
+  outline: 1px solid var(--rule);   /* on the cells, never the container */
+  color: var(--ink);
+  transition: background 160ms linear, outline-color 160ms linear;
+}
+.channel:hover, .channel:focus-visible {
+  background: var(--raised);
+  outline: 1px solid var(--violet);
+}
+.channel__icon { font-size: 1.125rem; color: var(--ink-faint); transition: color 160ms linear; }
+.channel:hover .channel__icon, .channel:focus-visible .channel__icon { color: var(--violet); }
+.channel__name {
+  min-width: 0;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.channel__go {
+  grid-column: 3;
+  font-family: var(--font-data);
+  font-size: 0.875rem;
+  color: var(--ink-faint);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 180ms var(--ease), transform 180ms var(--ease), color 160ms linear;
+}
+.channel:hover .channel__go, .channel:focus-visible .channel__go {
+  opacity: 1;
+  transform: none;
+  color: var(--violet);
+}
+
+
+/* ============================================================
+   WORKS — active projects
+   Deliberately not a manifest: the schedule above is a list of rows on a
+   spine, so the projects are boxed cards in a grid. Two components that
+   look alike would read as one long list.
+   ============================================================ */
+.works {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+  gap: 1px;
+}
+.work {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  padding: 1.25rem 1.375rem 1.375rem;
+  outline: 1px solid var(--rule);   /* on the cells, never the container */
+  transition: background 160ms linear, outline-color 160ms linear;
+}
+.work:hover { background: var(--raised); }
+
+.work__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--rule);
+}
+.work__n {
+  font-family: var(--font-data);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  color: var(--violet);
+}
+.work__name {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 1.125rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.work__desc { margin: 0; color: var(--ink-dim); font-size: 0.9375rem; line-height: 1.6; }
+
+.work__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;                 /* feet line up across cards of any height */
+  padding-top: 0.875rem;
+  border-top: 1px solid var(--rule);
+}
+.work__by { font-family: var(--font-data); font-size: 0.75rem; color: var(--ink-faint); }
+.work__links { display: flex; gap: 0.875rem; }
+.work__links a { color: var(--ink-faint); transition: color 160ms linear, transform 160ms var(--ease); }
+.work__links a:hover, .work__links a:focus-visible { color: var(--violet); transform: translateY(-1px); outline: none; }
+
+
+/* ============================================================
+   CALLOUT — one wide box under a panel, for a standing invitation
+   ============================================================ */
+.callout {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  margin-top: 1px;                  /* sits flush against the grid above it */
+  padding: clamp(1.5rem, 4vw, 2.25rem);
+  /* the screen black, not --panel: at this size the panel tint reads as a grey
+     wash against the pure black around it */
+  background: var(--screen);
+  outline: 1px solid var(--rule-lit);
+}
+.callout__body { flex: 1 1 22rem; }
+.callout__title {
+  margin: 0.5rem 0 0.625rem;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: clamp(1.25rem, 2.4vw, 1.625rem);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.callout__desc { margin: 0; max-width: 46rem; color: var(--ink-dim); line-height: 1.65; }
+.callout__go { flex: none; }
+
+
+/* ============================================================
+   BAG AND RESERVATION — the parts of a shop the stage does not cover
+   ============================================================ */
+.bagbtn {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4375rem 0.75rem;
+  background: none;
+  border: 1px solid var(--rule-lit);
+  color: var(--ink-dim);
+  font-family: var(--font-data);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 140ms linear, color 140ms linear;
+}
+.bagbtn:hover, .bagbtn:focus-visible { border-color: var(--violet); color: var(--violet); outline: none; }
+.bagbtn b { color: var(--violet); }
+
+/* the size row sits on one line, label beside the chips. flex-start, not
+   centre: six chips wrap to two rows in a 22rem rail, and a centred label
+   then floats between them. */
+.opt { display: flex; align-items: flex-start; gap: 1.25rem; }
+.opt__label { flex: none; padding-top: 0.6875rem; }
+
+/* the hairline the catalogue ends on, so the product block below reads as its
+   own group rather than as more of the list */
+.tree__rule { display: block; height: 1px; background: var(--rule); }
+
+/* quantity is adjusted per line in the bag, never on the product panel:
+   the panel's job is to choose an item, the bag's is to count them */
+.stepper { display: inline-flex; align-items: center; gap: 0.5rem; }
+.stepper__btn {
+  width: 1.625rem;
+  height: 1.625rem;
+  background: none;
+  border: 1px solid var(--rule-lit);
+  color: var(--ink);
+  font-family: var(--font-data);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: border-color 140ms linear, color 140ms linear;
+}
+.stepper__btn:hover, .stepper__btn:focus-visible { border-color: var(--violet); color: var(--violet); outline: none; }
+.stepper__n { min-width: 2ch; font-family: var(--font-data); font-size: 0.875rem; text-align: center; color: var(--ink); }
+
+/* the drawer */
+.bag {
+  position: fixed;
+  z-index: 80;
+  top: calc(var(--inset) + var(--rail) + var(--nav));
+  right: var(--inset);
+  bottom: calc(var(--inset) + var(--rail));
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  width: min(24rem, calc(100vw - var(--inset) * 2));
+  background: var(--screen);
+  border-left: 1px solid var(--rule-lit);
+  box-shadow: -1px 0 0 #000, -24px 0 48px rgba(0, 0, 0, 0.6);
+  animation: bag-in 260ms var(--ease) both;
+}
+@keyframes bag-in { from { opacity: 0; transform: translateX(16px); } }
+
+.bag__bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.625rem 0.875rem;
+  background: var(--raised);
+  border-bottom: 1px solid var(--rule-lit);
+}
+.bag__id { font-family: var(--font-data); font-size: 0.6875rem; color: var(--ink-faint); }
+.bag__body { min-height: 0; overflow-y: auto; padding: 0.5rem 0.875rem; }
+.bag__empty {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 1rem;
+  padding: 2rem 1rem;
+  text-align: center;
+  color: var(--ink-faint);
+}
+.bag__empty i { font-size: 1.75rem; color: var(--rule-lit); }
+.bag__empty p { margin: 0; font-family: var(--font-data); font-size: 0.8125rem; line-height: 1.7; }
+
+.bagline {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 0.25rem;
+  border-bottom: 1px solid var(--rule);
+}
+.bagline__meta { display: grid; gap: 0.1875rem; }
+.bagline__name { font-family: var(--font-ui); font-weight: 600; font-size: 0.9375rem; letter-spacing: 0.02em; }
+.bagline__size { font-family: var(--font-data); font-size: 0.6875rem; color: var(--ink-faint); }
+.bagline__qty  { font-family: var(--font-data); font-size: 0.75rem; color: var(--ink-dim); }
+.bagline__sum  { font-family: var(--font-data); font-size: 0.8125rem; color: var(--ink); }
+.bagline__x {
+  background: none; border: 0; padding: 0 0.25rem;
+  color: var(--ink-faint); font-size: 1rem; line-height: 1; cursor: pointer;
+  transition: color 140ms linear;
+}
+.bagline__x:hover, .bagline__x:focus-visible { color: var(--violet); outline: none; }
+
+.bag__foot { padding: 1rem 0.875rem; border-top: 1px solid var(--rule-lit); }
+.bag__total { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 0.875rem; }
+.bag__total b { font-family: var(--font-data); font-size: 1.125rem; color: var(--ink); }
+.bag__go { width: 100%; justify-content: center; }
+
+/* the reservation form */
+.form { display: grid; gap: 1.125rem; max-width: 32rem; }
+.form__note { margin: 0; color: var(--ink-faint); font-size: 0.875rem; line-height: 1.6; }
+.field2 { display: grid; gap: 0.375rem; }
+.field2 input {
+  padding: 0.75rem 0.875rem;
+  background: var(--panel);
+  border: 1px solid var(--rule-lit);
+  color: var(--ink);
+  font-family: var(--font-data);
+  font-size: 0.875rem;
+  transition: border-color 140ms linear;
+}
+.field2 input:focus { border-color: var(--violet); outline: none; }
+.field2 input:not(:placeholder-shown):invalid { border-color: #ff5c7a; }
+.field2 small { font-family: var(--font-data); font-size: 0.6875rem; color: var(--ink-faint); }
+
+/* the slip */
+.slip__head { display: flex; align-items: baseline; justify-content: space-between; padding-bottom: 1rem; border-bottom: 1px solid var(--rule-lit); }
+.slip__ref { font-family: var(--font-data); font-size: 1.25rem; letter-spacing: 0.08em; color: var(--violet); }
+.slip .record { margin-top: 1.25rem; }
+.slip__total { display: flex; align-items: baseline; justify-content: space-between; margin: 1.25rem 0; padding-top: 1rem; border-top: 1px solid var(--rule-lit); }
+.slip__total b { font-family: var(--font-data); font-size: 1.125rem; }
+
+@media (max-width: 700px) {
+  .bag { top: calc(var(--inset) + var(--rail)); left: var(--inset); width: auto; }
+}
+
+.buy__arrow {
+  flex: none;
+  width: 1.125rem;
+  height: 1.125rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: square;
+  transition: transform 180ms var(--ease);
+}
+.buy:hover:not(:disabled) .buy__arrow { transform: translate(2px, -2px); }
+.buy__dot { flex: 1; height: 1px; background: currentColor; opacity: 0.35; }

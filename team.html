@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="background:#000">
 <head>
     <meta charset="UTF-8">
     <meta name="color-scheme" content="dark">
@@ -48,43 +48,96 @@
             <div class="wrap">
                 <div class="divider" style="margin-bottom:clamp(1.5rem,4vh,2.5rem)">
                     <span class="lbl">Panel A &middot; Crew</span>
-                    <span class="divider__meta">14 members &middot; 2 alumni</span>
+                    <span class="divider__meta">14 members &middot; 3 alumni</span>
                 </div>
 
                 <div class="tabs" role="tablist" aria-label="Roster">
                     <button class="tabs__btn" role="tab" id="t-station" data-panel="station" aria-controls="p-station" aria-selected="true">
-                        <span class="tabs__n">01</span>On station<span class="tabs__c">14</span>
+                        <span class="tabs__n">01</span>On station<span class="tabs__c">07</span>
                     </button>
-                    <button class="tabs__btn" role="tab" id="t-ground" data-panel="ground" aria-controls="p-ground" aria-selected="false" tabindex="-1">
-                        <span class="tabs__n">02</span>Ground control<span class="tabs__c">&mdash;</span>
+                    <button class="tabs__btn" role="tab" id="t-advisory" data-panel="advisory" aria-controls="p-advisory" aria-selected="false" tabindex="-1">
+                        <span class="tabs__n">02</span>Advisory<span class="tabs__c">07</span>
                     </button>
                     <button class="tabs__btn" role="tab" id="t-alumni" data-panel="alumni" aria-controls="p-alumni" aria-selected="false" tabindex="-1">
-                        <span class="tabs__n">03</span>Alumni<span class="tabs__c">02</span>
+                        <span class="tabs__n">03</span>Alumni<span class="tabs__c">03</span>
                     </button>
                 </div>
 
                 <div id="p-station" role="tabpanel" aria-labelledby="t-station">
                     <div class="roster">
+                        <a class="person" href="members/antrin.html">
+                            <span class="person__img"><img src="assets/img/people/Antrin.jpeg" alt="Antrin" loading="lazy"></span>
+                            <span class="person__body">
+                                <span class="person__desig">C&middot;01</span>
+                                <span class="person__name">Antrin</span>
+                                <span class="person__role">Club chair</span>
+                            </span>
+                        </a>
+                        <a class="person" href="members/monisha.html">
+                            <span class="person__img"><img src="assets/img/people/placeholder.svg" alt="Monisha" loading="lazy"></span>
+                            <span class="person__body">
+                                <span class="person__desig">C&middot;02</span>
+                                <span class="person__name">Monisha</span>
+                                <span class="person__role">Events head</span>
+                            </span>
+                        </a>
+                        <a class="person" href="members/ayush.html">
+                            <span class="person__img"><img src="assets/img/people/ayush.png" alt="Ayush" loading="lazy"></span>
+                            <span class="person__body">
+                                <span class="person__desig">C&middot;03</span>
+                                <span class="person__name">Ayush</span>
+                                <span class="person__role">Design head</span>
+                            </span>
+                        </a>
+                        <a class="person" href="members/satyam.html">
+                            <span class="person__img"><img src="assets/img/people/satyampfp.jpg" alt="Satyam" loading="lazy"></span>
+                            <span class="person__body">
+                                <span class="person__desig">C&middot;04</span>
+                                <span class="person__name">Satyam</span>
+                                <span class="person__role">Tech head</span>
+                            </span>
+                        </a>
+                        <a class="person" href="members/nandu.html">
+                            <span class="person__img"><img src="assets/img/people/placeholder.svg" alt="Nandu" loading="lazy"></span>
+                            <span class="person__body">
+                                <span class="person__desig">C&middot;05</span>
+                                <span class="person__name">Nandu</span>
+                                <span class="person__role">Content head</span>
+                            </span>
+                        </a>
+                        <button type="button" class="person">
+                            <span class="person__img"><img src="assets/img/people/placeholder.svg" alt="Riswan" loading="lazy"></span>
+                            <span class="person__body">
+                                <span class="person__desig">C&middot;06</span>
+                                <span class="person__name">Riswan</span>
+                                <span class="person__role">Operations head</span>
+                            </span>
+                        </button>
+                        <button type="button" class="person">
+                            <span class="person__img"><img src="assets/img/people/placeholder.svg" alt="Akshay" loading="lazy"></span>
+                            <span class="person__body">
+                                <span class="person__desig">C&middot;07</span>
+                                <span class="person__name">Akshay</span>
+                                <span class="person__role">Finance head</span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="p-advisory" role="tabpanel" aria-labelledby="t-advisory" hidden>
+                    <div class="roster">
                         <a class="person" href="members/saurab-mishra.html">
                             <span class="person__img"><img src="assets/img/people/saurabprofile.jpg" alt="Saurab Mishra" loading="lazy"></span>
                             <span class="person__body">
-                                <span class="person__desig">M&middot;01</span>
+                                <span class="person__desig">A&middot;01</span>
                                 <span class="person__name">Saurab Mishra</span>
-                                <span class="person__role">Member</span>
-                            </span>
-                        </a>
-                        <a class="person" href="members/aryan-bhatia.html">
-                            <span class="person__img"><img src="assets/img/people/Aryan.jpg" alt="Aryan Bhatia" loading="lazy"></span>
-                            <span class="person__body">
-                                <span class="person__desig">M&middot;02</span>
-                                <span class="person__name">Aryan Bhatia</span>
                                 <span class="person__role">Member</span>
                             </span>
                         </a>
                         <a class="person" href="members/abhinav-girish.html">
                             <span class="person__img"><img src="assets/img/people/abhinav.png" alt="Abhinav Girish" loading="lazy"></span>
                             <span class="person__body">
-                                <span class="person__desig">M&middot;03</span>
+                                <span class="person__desig">A&middot;02</span>
                                 <span class="person__name">Abhinav Girish</span>
                                 <span class="person__role">Member</span>
                             </span>
@@ -92,7 +145,7 @@
                         <a class="person" href="members/ronak.html">
                             <span class="person__img"><img src="assets/img/people/Ronakprofilepic.jpg" alt="Ronak" loading="lazy"></span>
                             <span class="person__body">
-                                <span class="person__desig">M&middot;04</span>
+                                <span class="person__desig">A&middot;03</span>
                                 <span class="person__name">Ronak</span>
                                 <span class="person__role">Member</span>
                             </span>
@@ -100,7 +153,7 @@
                         <a class="person" href="members/shreyansh.html">
                             <span class="person__img"><img src="assets/img/people/shrayansh.jpeg" alt="Shrayansh" loading="lazy"></span>
                             <span class="person__body">
-                                <span class="person__desig">M&middot;05</span>
+                                <span class="person__desig">A&middot;04</span>
                                 <span class="person__name">Shrayansh</span>
                                 <span class="person__role">Member</span>
                             </span>
@@ -108,7 +161,7 @@
                         <a class="person" href="members/vaibhava.html">
                             <span class="person__img"><img src="assets/img/people/kgccitprofile.jpg" alt="Vaibhava" loading="lazy"></span>
                             <span class="person__body">
-                                <span class="person__desig">M&middot;06</span>
+                                <span class="person__desig">A&middot;05</span>
                                 <span class="person__name">Vaibhava</span>
                                 <span class="person__role">Member</span>
                             </span>
@@ -116,7 +169,7 @@
                         <a class="person" href="members/abhinav-joshy.html">
                             <span class="person__img"><img src="assets/img/people/abhinav.png" alt="Abhinav Joshy" loading="lazy"></span>
                             <span class="person__body">
-                                <span class="person__desig">M&middot;07</span>
+                                <span class="person__desig">A&middot;06</span>
                                 <span class="person__name">Abhinav Joshy</span>
                                 <span class="person__role">Member</span>
                             </span>
@@ -124,75 +177,25 @@
                         <a class="person" href="members/aneeth.html">
                             <span class="person__img"><img src="assets/img/people/placeholder.svg" alt="Aneeth" loading="lazy"></span>
                             <span class="person__body">
-                                <span class="person__desig">M&middot;08</span>
+                                <span class="person__desig">A&middot;07</span>
                                 <span class="person__name">Aneeth</span>
                                 <span class="person__role">Member</span>
                             </span>
                         </a>
-                        <a class="person" href="members/satyam.html">
-                            <span class="person__img"><img src="assets/img/people/satyampfp.jpg" alt="Satyam" loading="lazy"></span>
-                            <span class="person__body">
-                                <span class="person__desig">M&middot;09</span>
-                                <span class="person__name">Satyam</span>
-                                <span class="person__role">Member</span>
-                            </span>
-                        </a>
-                        <a class="person" href="members/antrin.html">
-                            <span class="person__img"><img src="assets/img/people/placeholder.svg" alt="Antrin" loading="lazy"></span>
-                            <span class="person__body">
-                                <span class="person__desig">M&middot;10</span>
-                                <span class="person__name">Antrin</span>
-                                <span class="person__role">Member</span>
-                            </span>
-                        </a>
-                        <a class="person" href="members/monisha.html">
-                            <span class="person__img"><img src="assets/img/people/placeholder.svg" alt="Monisha" loading="lazy"></span>
-                            <span class="person__body">
-                                <span class="person__desig">M&middot;11</span>
-                                <span class="person__name">Monisha</span>
-                                <span class="person__role">Member</span>
-                            </span>
-                        </a>
-                        <a class="person" href="members/krish.html">
-                            <span class="person__img"><img src="assets/img/people/placeholder.svg" alt="Krish" loading="lazy"></span>
-                            <span class="person__body">
-                                <span class="person__desig">M&middot;12</span>
-                                <span class="person__name">Krish</span>
-                                <span class="person__role">Member</span>
-                            </span>
-                        </a>
-                        <a class="person" href="members/nandu.html">
-                            <span class="person__img"><img src="assets/img/people/placeholder.svg" alt="Nandu" loading="lazy"></span>
-                            <span class="person__body">
-                                <span class="person__desig">M&middot;13</span>
-                                <span class="person__name">Nandu</span>
-                                <span class="person__role">Member</span>
-                            </span>
-                        </a>
-                        <a class="person" href="members/ayush.html">
-                            <span class="person__img"><img src="assets/img/people/ayush.png" alt="Ayush" loading="lazy"></span>
-                            <span class="person__body">
-                                <span class="person__desig">M&middot;14</span>
-                                <span class="person__name">Ayush</span>
-                                <span class="person__role">Member</span>
-                            </span>
-                        </a>
-                    </div>
-                </div>
-
-                <div id="p-ground" role="tabpanel" aria-labelledby="t-ground" hidden>
-                    <div class="empty">
-                        <span class="empty__mark" aria-hidden="true"></span>
-                        <p>No advisory members are on record yet.</p>
-                        <p>Previous coordinators go here. Nothing in the repository
-                        distinguishes past coordinators from other members, so this
-                        panel stays empty until someone supplies the names.</p>
                     </div>
                 </div>
 
                 <div id="p-alumni" role="tabpanel" aria-labelledby="t-alumni" hidden>
                     <div class="roster">
-                        <div class="person">
+                        <a class="person" href="members/aryan-bhatia.html">
+                            <span class="person__img"><img src="assets/img/people/Aryan.jpg" alt="Aryan Bhatia" loading="lazy"></span>
+                            <span class="person__body">
+                                <span class="person__desig">&mdash;</span>
+                                <span class="person__name">Aryan Bhatia</span>
+                                <span class="person__role">Alumnus</span>
+                            </span>
+                        </a>
+                        <button type="button" class="person">
                             <span class="person__img"><img src="assets/img/people/alumni_ashutosh.jpg" alt="Ashutosh Kumar" loading="lazy"></span>
                             <span class="person__body">
                                 <span class="person__desig">2019</span>
@@ -200,8 +203,8 @@
                                 <span class="person__role">Ph.D. at University of Jyvaskala</span>
                                 <span class="person__links"><a href="https://www.linkedin.com/in/ashutosh-kumar-a7134b202/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a><a href="mailto:ashutoshkr19@iisertvm.ac.in" aria-label="Email"><i class="fas fa-envelope"></i></a></span>
                             </span>
-                        </div>
-                        <div class="person">
+                        </button>
+                        <button type="button" class="person">
                             <span class="person__img"><img src="assets/img/people/alumni_krishna.jpg" alt="Krishna Kumar Singh" loading="lazy"></span>
                             <span class="person__body">
                                 <span class="person__desig">2019</span>
@@ -209,13 +212,27 @@
                                 <span class="person__role">Ph.D. at University of Leeds</span>
                                 <span class="person__links"><a href="https://www.linkedin.com/in/kks0/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a><a href="mailto:Krishna19@alumni.iisertvm.ac.in" aria-label="Email"><i class="fas fa-envelope"></i></a></span>
                             </span>
-                        </div>
+                        </button>
                     </div>
                 </div>
             </div>
         </section>
 
 
+    </div>
+</div>
+
+<div class="modal" data-modal hidden>
+    <div class="modal__panel" role="dialog" aria-modal="true" aria-label="Personnel record">
+        <div class="modal__bar">
+            <span class="display__lamp" aria-hidden="true"></span>
+            <span class="lbl">Personnel</span>
+            <span class="modal__id" data-modal-id></span>
+            <button class="modal__close" data-modal-close>ESC &times;</button>
+        </div>
+        <div class="modal__body" data-modal-body>
+            <div data-modal-content></div>
+        </div>
     </div>
 </div>
 

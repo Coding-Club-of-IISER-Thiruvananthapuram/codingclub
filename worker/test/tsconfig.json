@@ -1,0 +1,10 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    // Both: node:test/node:assert for the tests, Workers types for the src files
+    // they import. ../tsconfig.json stays Workers-only and is the authoritative
+    // gate on worker source — `npm run typecheck` runs that one first.
+    "types": ["node", "@cloudflare/workers-types"]
+  },
+  "include": ["**/*.ts", "../src/**/*.ts"]
+}

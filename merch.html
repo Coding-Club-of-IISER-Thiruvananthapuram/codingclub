@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="background:#000">
 <head>
     <meta charset="UTF-8">
     <meta name="color-scheme" content="dark">
@@ -34,22 +34,31 @@
                     <span class="lbl">Catalogue</span>
                     <span class="crumb__rule" aria-hidden="true"></span>
                     <span class="crumb__count"><b data-count>0</b> items</span>
+                    <button class="bagbtn" data-bag-open aria-expanded="false">
+                        <i class="fas fa-basket-shopping" aria-hidden="true"></i>
+                        Bag <b data-bag-count>0</b>
+                    </button>
                 </div>
 
                 <div class="tree" data-tree role="tablist" aria-label="Merch catalogue"></div>
+                <span class="tree__rule" aria-hidden="true"></span>
 
                 <div class="prod">
                     <h1 class="prod__name" data-p-name>Select an item</h1>
                     <p class="prod__desc" data-p-desc>Pick something from the catalogue to see it on the stage.</p>
                     <p class="prod__by" data-p-by hidden></p>
 
-                    <div data-p-sizes hidden>
-                        <span class="lbl">Size</span>
-                        <div class="sizes" style="margin-top:0.5rem" data-sizes></div>
+                    <div class="opt" data-p-sizes hidden>
+                        <span class="lbl opt__label">Size</span>
+                        <div class="sizes" data-sizes></div>
                     </div>
 
                     <button class="buy" data-buy disabled>
+                        <svg class="buy__arrow" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M6 18 L18 6 M8.5 6 H18 V15.5" />
+                        </svg>
                         <span data-buy-label>Select an item</span>
+                        <span class="buy__dot" aria-hidden="true"></span>
                         <b class="buy__price" data-p-price>&mdash;</b>
                     </button>
                 </div>
@@ -91,6 +100,95 @@
     </div>
 </div>
 
+<!-- ============ bag ============ -->
+<aside class="bag" data-bag hidden aria-label="Your bag">
+    <div class="bag__bar">
+        <span class="display__lamp" aria-hidden="true"></span>
+        <span class="lbl">Bag</span>
+        <span class="bag__id"><b data-bag-count2>0</b> items</span>
+        <button class="modal__close" data-bag-close>ESC &times;</button>
+    </div>
+
+    <div class="bag__body" data-bag-body></div>
+
+    <div class="bag__empty" data-bag-empty>
+        <i class="fas fa-basket-shopping" aria-hidden="true"></i>
+        <p>Bag&rsquo;s empty.<br>Go pick something good.</p>
+    </div>
+
+    <div class="bag__foot">
+        <div class="bag__total">
+            <span class="lbl">Total</span>
+            <b data-bag-total>&#8377;0</b>
+        </div>
+        <button class="btn btn--go bag__go" data-bag-checkout disabled>
+            Reserve <i class="fas fa-arrow-right"></i>
+        </button>
+    </div>
+</aside>
+
+<!-- ============ checkout: details, then a reservation slip ============ -->
+<div class="modal" data-shop-modal hidden>
+    <div class="modal__panel" role="dialog" aria-modal="true" aria-label="Reserve your bag">
+        <div class="modal__bar">
+            <span class="display__lamp" aria-hidden="true"></span>
+            <span class="lbl">Reservation</span>
+            <span class="modal__id" data-co-step>Your details</span>
+            <button class="modal__close" data-co-close>ESC &times;</button>
+        </div>
+
+        <div class="modal__body">
+            <!-- face 1: who is reserving -->
+            <form class="form" data-co-form>
+                <p class="form__note">There is no payment on this page. Reserving records what
+                you want and sends it to the club; you pay at the counter when the run is printed.</p>
+
+                <label class="field2">
+                    <span class="lbl">Name</span>
+                    <input name="name" required minlength="2" maxlength="60" autocomplete="name" placeholder="Your full name">
+                </label>
+                <label class="field2">
+                    <span class="lbl">Roll number</span>
+                    <input name="roll" required pattern="[A-Za-z]{2,4}[0-9]{5}" maxlength="12" placeholder="IMS24038">
+                    <small>Letters then five digits, e.g. IMS24038.</small>
+                </label>
+                <label class="field2">
+                    <span class="lbl">College email</span>
+                    <input type="email" name="email" required pattern="[^@\s]+@iisertvm\.ac\.in" maxlength="80" placeholder="you@iisertvm.ac.in">
+                    <small>An @iisertvm.ac.in address.</small>
+                </label>
+                <label class="field2">
+                    <span class="lbl">Phone</span>
+                    <input type="tel" name="phone" required pattern="[0-9]{10}" maxlength="10" placeholder="10 digits">
+                </label>
+
+                <button class="btn btn--go" type="submit">Confirm reservation <i class="fas fa-arrow-right"></i></button>
+            </form>
+
+            <!-- face 2: the slip -->
+            <div class="slip" data-co-slip hidden>
+                <div class="slip__head">
+                    <span class="lbl">Reserved</span>
+                    <b class="slip__ref" data-co-ref>&mdash;</b>
+                </div>
+                <div class="record" data-co-who></div>
+                <div class="profile__band" style="margin-top:1.25rem"><span class="lbl">Items</span></div>
+                <div data-co-lines></div>
+                <div class="slip__total">
+                    <span class="lbl">Total</span>
+                    <b data-co-total>&#8377;0</b>
+                </div>
+                <p class="form__note">Nothing has been sent yet &mdash; this page has no
+                connection to the club's systems. Send the slip to book it.</p>
+                <div class="hero__actions">
+                    <a class="btn btn--go" data-co-send href="#">Send to the club <i class="fas fa-envelope"></i></a>
+                    <button class="btn" data-co-done>Done</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="assets/js/console.js"></script>
 <script>
 /* ============================================================
@@ -102,26 +200,31 @@
 (function () {
   'use strict';
 
-  var MARK = 'assets/img/brand/connection_network_infinity_partial_logo.png';
-  var ALT  = 'assets/img/brand/clublogocropped.png';
+  /* Placeholder views. 512px, not the 128px partial mark: the stage is now
+     ~500px across and a 128px source blown up to fill it is a blur. */
+  var MARK = 'assets/img/brand/android-chrome-512x512.png';
+  var ALT  = 'assets/img/brand/connection_network_infinity_full_logo.png';
 
+  /* Every item carries an id. A bag line stores only { id, size, qty } — no name
+     and no price — so the bag can never show a figure the catalogue no longer
+     offers, and an item withdrawn from sale simply drops out of the bag. */
   var CATALOGUE = [
     { cat: 'Apparel', items: [
-      { name: 'Club Tee',      price: '₹450', by: 'Coding Club',
+      { id: 'tee', name: 'Club Tee',      price: '₹450', by: 'Coding Club',
         desc: 'Heavy cotton tee with the club mark on the chest and the wordmark across the back.',
         sizes: ['XS','S','M','L','XL','XXL'],
         views: [['Front', MARK], ['Back', ALT]] },
-      { name: 'Hoodie',        price: '₹950', by: 'Coding Club',
+      { id: 'hoodie', name: 'Hoodie',        price: '₹950', by: 'Coding Club',
         desc: 'Fleece-lined pullover in black, with an embroidered mark on the left chest.',
         sizes: ['S','M','L','XL','XXL'],
         views: [['Front', MARK], ['Detail', ALT]] }
     ]},
     { cat: 'Accessories', items: [
-      { name: 'Sticker Pack',  price: '₹120', by: 'Coding Club',
+      { id: 'stickers', name: 'Sticker Pack',  price: '₹120', by: 'Coding Club',
         desc: 'Six die-cut vinyl stickers. Laptop-safe, weather-resistant, mildly addictive.',
         sizes: null,
         views: [['Sheet', MARK]] },
-      { name: 'Tote Bag',      price: '₹350', by: 'Coding Club',
+      { id: 'tote', name: 'Tote Bag',      price: '₹350', by: 'Coding Club',
         desc: 'Canvas tote sized for a laptop and a notebook, printed one colour on both faces.',
         sizes: null,
         views: [['Front', MARK], ['Back', ALT]] }
@@ -137,6 +240,9 @@
   var pg     = $('[data-pg]');
   var flat   = [];
   var item   = null, view = 0, size = null;
+  var bag    = {};                    /* key -> { id, size, qty } */
+  var MAX_QTY = 5, MAX_LINES = 10;    /* the same caps the worker enforces */
+  var STORE  = 'ccit-bag';
 
   /* ---------- catalogue rail ---------- */
   CATALOGUE.forEach(function (group) {
@@ -208,8 +314,176 @@
     var need = item && item.sizes && !size;
     buy.disabled = !item || need;
     $('[data-buy-label]').textContent =
-      !item ? 'Select an item' : (need ? 'Pick a size' : 'Reserve');
+      !item ? 'Select an item' : (need ? 'Pick a size' : 'Add to bag');
   }
+
+  /* ---------- the bag ----------
+     Prices are held in paise, never in rupees: adding 4.50 + 4.50 in floating
+     point is how a total ends up a paisa short of what the counter charges. */
+  function paise(price) { return Math.round(parseFloat(price.replace(/[^0-9.]/g, '')) * 100); }
+  function rupees(p) { return '\u20b9' + (p / 100).toFixed(2).replace(/\.00$/, ''); }
+  function byId(id) { return flat.filter(function (i) { return i.id === id; })[0]; }
+  function keyOf(id, sz) { return id + '::' + (sz || ''); }
+
+  function save() {
+    try { localStorage.setItem(STORE, JSON.stringify(bag)); } catch (e) { /* private mode */ }
+  }
+  function load() {
+    try {
+      var raw = JSON.parse(localStorage.getItem(STORE) || '{}');
+      Object.keys(raw).forEach(function (k) {
+        var l = raw[k];
+        /* anything not of the current shape, or pointing at an item that is no
+           longer in the catalogue, is dropped rather than drawn */
+        if (l && typeof l.id === 'string' && byId(l.id) &&
+            l.qty === parseInt(l.qty, 10) && l.qty > 0) {
+          bag[k] = { id: l.id, size: l.size || null, qty: Math.min(MAX_QTY, l.qty) };
+        }
+      });
+    } catch (e) { bag = {}; }
+  }
+
+  function addToBag() {
+    if (!item || (item.sizes && !size)) return;
+    var k = keyOf(item.id, size);
+    if (bag[k]) bag[k].qty = Math.min(MAX_QTY, bag[k].qty + 1);
+    else if (Object.keys(bag).length < MAX_LINES) bag[k] = { id: item.id, size: size, qty: 1 };
+    renderBag();
+    openBag(true);
+  }
+
+  function setQty(k, n) {
+    if (!bag[k]) return;
+    if (n < 1) delete bag[k];
+    else bag[k].qty = Math.min(MAX_QTY, n);
+    renderBag();
+  }
+
+  function bagTotal() {
+    return Object.keys(bag).reduce(function (t, k) {
+      var it = byId(bag[k].id);
+      return it ? t + paise(it.price) * bag[k].qty : t;
+    }, 0);
+  }
+
+  function renderBag() {
+    var body = $('[data-bag-body]');
+    body.innerHTML = '';
+    var count = 0;
+
+    Object.keys(bag).forEach(function (k) {
+      var l = bag[k], it = byId(l.id);
+      if (!it) { delete bag[k]; return; }        /* pulled from the catalogue */
+      count += l.qty;
+
+      var row = document.createElement('div');
+      row.className = 'bagline';
+      row.innerHTML =
+        '<span class="bagline__meta"><b class="bagline__name">' + it.name + '</b>' +
+          (l.size ? '<span class="bagline__size">' + l.size + '</span>' : '') + '</span>' +
+        '<span class="stepper">' +
+          '<button class="stepper__btn" data-less aria-label="One fewer ' + it.name + '">&minus;</button>' +
+          '<b class="stepper__n">' + l.qty + '</b>' +
+          '<button class="stepper__btn" data-more aria-label="One more ' + it.name + '">+</button>' +
+        '</span>' +
+        '<span class="bagline__sum">' + rupees(paise(it.price) * l.qty) + '</span>';
+      row.querySelector('[data-less]').onclick = function () { setQty(k, l.qty - 1); };
+      row.querySelector('[data-more]').onclick = function () { setQty(k, l.qty + 1); };
+      body.appendChild(row);
+    });
+
+    var any = Object.keys(bag).length > 0;
+    body.hidden = !any;
+    $('[data-bag-empty]').hidden = any;
+    $('[data-bag-count]').textContent = count;
+    $('[data-bag-count2]').textContent = count;
+    $('[data-bag-total]').textContent = rupees(bagTotal());
+    $('[data-bag-checkout]').disabled = !any;
+    save();
+  }
+
+  var drawer = $('[data-bag]');
+  function openBag(open) {
+    drawer.hidden = !open;
+    $('[data-bag-open]').setAttribute('aria-expanded', String(open));
+  }
+  $('[data-bag-open]').onclick  = function () { openBag(drawer.hidden); };
+  $('[data-bag-close]').onclick = function () { openBag(false); };
+
+  /* ---------- reservation ----------
+     No payment and no backend: the worker in /worker is not wired up. This
+     collects the details, shows a slip and hands it to the club by mail. */
+  var modal = $('[data-shop-modal]');
+  var form  = $('[data-co-form]');
+  var slip  = $('[data-co-slip]');
+
+  function openCheckout(open) {
+    modal.hidden = !open;
+    if (open) {
+      form.hidden = false; slip.hidden = true;
+      $('[data-co-step]').textContent = 'Your details';
+      form.querySelector('input').focus();
+    }
+  }
+  $('[data-bag-checkout]').onclick = function () { openBag(false); openCheckout(true); };
+  $('[data-co-close]').onclick = function () { openCheckout(false); };
+  $('[data-co-done]').onclick  = function () { openCheckout(false); };
+  modal.addEventListener('click', function (e) { if (e.target === modal) openCheckout(false); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    if (!modal.hidden) openCheckout(false);
+    else if (!drawer.hidden) openBag(false);
+  });
+
+  function reference() {
+    var s = 'CCM-';
+    for (var i = 0; i < 6; i++) s += '0123456789ABCDEFGHJKMNPQRSTVWXYZ'[Math.floor(Math.random() * 32)];
+    return s;
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();                       /* the pattern attributes above are the check */
+    var d = new FormData(form);
+    var ref = reference();
+
+    $('[data-co-step]').textContent = ref;
+    $('[data-co-ref]').textContent = ref;
+    $('[data-co-who]').innerHTML =
+      ['name', 'roll', 'phone', 'email'].map(function (k) {
+        /* the address gets its own row: it is one long token and a quarter of
+           the width breaks it mid-domain. Both class lists are written out in
+           full rather than concatenated: tools-check.py reads class attributes
+           literally, and a computed one reads as a pile of bogus classes. */
+        var cell = k === 'email'
+          ? '<div class="record__cell record__cell--wide" data-set>'
+          : '<div class="record__cell" data-set>';
+        return cell + '<span class="record__k">' +
+               (k === 'roll' ? 'Roll no.' : k.charAt(0).toUpperCase() + k.slice(1)) +
+               '</span><span class="record__v">' + String(d.get(k)) + '</span></div>';
+      }).join('');
+    $('[data-co-lines]').innerHTML = Object.keys(bag).map(function (k) {
+      var l = bag[k], it = byId(l.id);
+      return '<div class="bagline"><span class="bagline__meta"><b class="bagline__name">' + it.name + '</b>' +
+             (l.size ? '<span class="bagline__size">' + l.size + '</span>' : '') +
+             '</span><span class="bagline__qty">&times;' + l.qty + '</span>' +
+             '<span class="bagline__sum">' + rupees(paise(it.price) * l.qty) + '</span></div>';
+    }).join('');
+    $('[data-co-total]').textContent = rupees(bagTotal());
+
+    var body = 'Reservation ' + ref + '\n\n' +
+      'Name: ' + d.get('name') + '\nRoll no: ' + d.get('roll') +
+      '\nEmail: ' + d.get('email') + '\nPhone: ' + d.get('phone') + '\n\n' +
+      Object.keys(bag).map(function (k) {
+        var l = bag[k], it = byId(l.id);
+        return '- ' + it.name + (l.size ? ' (size ' + l.size + ')' : '') +
+               ' x' + l.qty + '  ' + rupees(paise(it.price) * l.qty);
+      }).join('\n') +
+      '\n\nTotal: ' + rupees(bagTotal());
+    $('[data-co-send]').href = 'mailto:codingclub@iisertvm.ac.in?subject=' +
+      encodeURIComponent('Merch reservation ' + ref) + '&body=' + encodeURIComponent(body);
+
+    form.hidden = true; slip.hidden = false;
+  });
 
   /* ---------- views ---------- */
   function buildViews() {
@@ -255,15 +529,11 @@
     if (e.key === 'ArrowRight') show(view + 1);
   });
 
-  /* Reserving is a conversation, not a checkout: there is no payment
-     backend here, so this hands off to the club's email. */
-  $('[data-buy]').onclick = function () {
-    if (!item) return;
-    var subject = 'Merch reservation: ' + item.name + (size ? ' (' + size + ')' : '');
-    location.href = 'mailto:codingclub@iisertvm.ac.in?subject=' + encodeURIComponent(subject);
-  };
+  $('[data-buy]').onclick = addToBag;
 
   select(flat[0], tree.querySelector('.tree__item'));
+  load();
+  renderBag();
 })();
 </script>
 </body>

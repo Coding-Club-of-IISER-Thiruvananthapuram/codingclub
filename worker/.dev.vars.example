@@ -1,0 +1,17 @@
+# Copy to .dev.vars for local dev. Never commit .dev.vars.
+RAZORPAY_KEY_ID=rzp_test_xxxxxxxxxxxx
+RAZORPAY_KEY_SECRET=xxxxxxxxxxxxxxxxxxxxxxxx
+RAZORPAY_WEBHOOK_SECRET=some-long-random-string
+
+# Confirmation email. Leave RESEND_API_KEY unset to skip sending entirely —
+# orders still complete, the send is just logged and skipped.
+RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxxxx
+# Until a domain is verified in Resend, sending falls back to onboarding@resend.dev,
+# which ONLY delivers to the address that owns the Resend account. Once a domain is
+# verified, set this and real student addresses start working.
+# MAIL_FROM=Anvesha '26 <orders@yourdomain>
+
+
+# Local dev only. Overrides the production list in wrangler.jsonc so `wrangler dev`
+# can serve the Astro dev server; never deployed, because this file is git-ignored.
+ALLOWED_ORIGINS=http://localhost:4321,http://127.0.0.1:4321,https://anvesha26.in

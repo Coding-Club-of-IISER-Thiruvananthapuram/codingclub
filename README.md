@@ -253,6 +253,31 @@ with a caret parked at the end. Three rules it follows, and any new use must too
 - **A `setTimeout` forces the final text** in case the timers stall in a background
   tab, the same guarantee the readout figures used to need.
 
+### Motion
+
+The deck powers up rather than appearing: the top rail drops in, the switches in the
+menu light up left to right, the screen rises behind them, and the bottom rail comes up
+last — about 500ms end to end. Clicking an internal link fades the deck out over 150ms
+first, so the next page's entrance continues the movement instead of cutting to it.
+Sections below the fold rise as they reach the screen.
+
+Three rules the `MOTION` block at the end of `console.css` follows, and any addition
+must too:
+
+- **Nothing may hide content.** Entrance animations run `both` from a *visible* end
+  state, so a page whose animation never runs is simply all there. The scroll reveal is
+  applied by `console.js`, never written into the markup, and only to sections that are
+  below the fold at load — what you are looking at is never hidden, not for a frame.
+  Measured after scrolling every page: 0 sections left invisible while in view.
+- **Opacity and transform only.** No layout property is animated. Measured cumulative
+  layout shift during load: 0.00003.
+- **`prefers-reduced-motion` turns all of it off**, including the reveal's starting
+  state — verified with the media feature emulated: nothing hidden, terminal written out
+  in full immediately.
+
+The scroll reveal rides the throttled `place()` handler the status rail already runs, so
+it costs no extra listener and no IntersectionObserver.
+
 ### The page must never flash white
 
 Every page declares `<meta name="color-scheme" content="dark">` **before** the
@@ -266,7 +291,17 @@ on the rails when clicking between pages — the dev server sends
 `Cache-Control: max-age=0`, so the browser revalidates `console.css` on every
 navigation, and any slow round-trip exposes the unstyled canvas.
 
-Keep the meta tag on any new page. It is the only thing that applies before CSS loads.
+Every page also carries `style="background:#000"` **on the `<html>` element itself**.
+The meta tag only tells the browser which default canvas to pick; it still picks one of
+*its* colours — Firefox `#1c1b22`, Chromium `#121212` — and paints it for the moments
+between documents, before `console.css` has been parsed. Against this site's pure black
+that reads as a grey flash on every navigation. An inline style attribute is the only
+declaration that applies from the first parsed byte.
+
+Verified with the stylesheet blocked and the browser's default canvas forced to white:
+`html` still computes to `rgb(0, 0, 0)` on every page.
+
+Keep both the meta tag and the inline background on any new page.
 
 ### Design tokens
 
@@ -280,6 +315,26 @@ colour on the container. A container background shows through any unfilled cell 
 the last row as a large pale block.
 
 ---
+
+## worker/ — the merch backend, dormant
+
+`worker/` is a verbatim copy of the Anvesha '26 merch API: a Cloudflare Worker with D1,
+R2, Razorpay settlement, a Resend confirmation mail and an in-worker QR generator, plus
+its schema, seeds, smoke script and tests. **Nothing on this site talks to it.** The
+merch page is entirely client-side; the copy is here so the shop can be wired up later
+without starting from scratch.
+
+Three things to know before anyone switches it on:
+
+- `wrangler.jsonc` still names Anvesha's D1 database id, R2 bucket and allowed origins.
+  Those are that festival's resources; the club needs its own.
+- `DIRECT_PAY: "1"` is set, which makes `POST /api/pay` mark any order paid with no
+  gateway involved. That is deliberate there and dangerous here — remove it before the
+  Worker is ever deployed on a domain that takes money.
+- Secrets are not in the repo. `.dev.vars.example` is a template; the real file is
+  git-ignored, and the local D1/R2 state and order backups that came with the copy were
+  deleted rather than committed — they held real names, emails and phone numbers.
+
 
 ## Known gaps
 

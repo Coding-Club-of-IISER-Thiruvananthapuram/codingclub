@@ -1,0 +1,69 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "anvesha-merch-api",
+	"main": "src/index.ts",
+	"compatibility_date": "2026-08-01",
+	"observability": {
+		"enabled": true
+	},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "anvesha",
+			"database_id": "55c2dd34-3151-4167-9799-2bf9b2c8d06b"
+		}
+	],
+	"r2_buckets": [
+		{
+			"binding": "MEDIA",
+			"bucket_name": "anvesha-merch"
+		}
+	],
+	// One binding, 30 req/60s per key. The Worker keys by `route:ip`, so checkout and
+	// pay get independent budgets per visitor rather than sharing one pool — a burst
+	// of legitimate checkouts must not lock a student out of paying. namespace_id is
+	// not a resource you create (unlike D1/R2); it's an arbitrary account-scoped id
+	// that keeps separate limiters apart. Bindings aren't inherited into named
+	// environments, so this is repeated in env.production below.
+	"ratelimits": [
+		{ "name": "MONEY_RL", "namespace_id": "1001", "simple": { "limit": 30, "period": 60 } }
+	],
+	// Fan-out point for live catalogue updates. Workers share no memory, so the list of
+	// connected browsers has to live somewhere single-instance.
+	"durable_objects": {
+		"bindings": [{ "name": "HUB", "class_name": "CatalogueHub" }]
+	},
+	// new_sqlite_classes, not new_classes: the SQLite backend is the one available on
+	// the Workers free plan.
+	"migrations": [{ "tag": "v1", "new_sqlite_classes": ["CatalogueHub"] }],
+	"vars": {
+		"ENVIRONMENT": "development",
+		// Comma-separated, and PRODUCTION-ONLY on purpose. `wrangler deploy` with no
+		// `--env` ships this block, not env.production below — so anything listed here is
+		// live. localhost belongs in .dev.vars, which overrides this under `wrangler dev`
+		// and is git-ignored, so a dev origin can never reach the deployed Worker.
+		"ALLOWED_ORIGINS": "https://anvesha26.in,https://www.anvesha26.in,https://anvesha-26.vercel.app",
+		// No payment gateway yet: checkout skips Razorpay and POST /api/pay settles the
+		// order at the counter. DELETE THIS the moment Razorpay goes live — leaving it on
+		// beside a real gateway would let anyone mark any order paid.
+		"DIRECT_PAY": "1"
+	},
+	// Secrets are NOT set here — `wrangler secret put <NAME>`:
+	//   RAZORPAY_KEY_ID, RAZORPAY_KEY_SECRET, RAZORPAY_WEBHOOK_SECRET
+	// For local dev put them in .dev.vars (git-ignored).
+	"env": {
+		"production": {
+			"vars": {
+				"ENVIRONMENT": "production",
+				"ALLOWED_ORIGINS": "https://anvesha26.in,https://www.anvesha26.in,https://anvesha-26.vercel.app"
+				// DIRECT_PAY and RAZORPAY_STUB deliberately absent.
+			},
+			"ratelimits": [
+				{ "name": "MONEY_RL", "namespace_id": "1001", "simple": { "limit": 30, "period": 60 } }
+			],
+			"durable_objects": {
+				"bindings": [{ "name": "HUB", "class_name": "CatalogueHub" }]
+			}
+		}
+	}
+}

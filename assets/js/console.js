@@ -57,10 +57,10 @@
       '<span class="mono" data-position>' + (deck.dataset.title || 'Top') + '</span>' +
       '<span class="gauge" data-gauge aria-hidden="true"></span>' +
       '<span class="rail__pct mono" data-pct>00%</span>' +
+      /* dots in the middle of the rail, credit at the far end */
+      '<span class="rail__dots" aria-hidden="true">' + new Array(10).join('<i></i>') + '</span>' +
       '<span class="rail__spacer"></span>' +
-      '<span class="lamp lamp--alt rail__rev">Applications open</span>' +
-      '<span class="lbl rail__credit">Rebuilt by Antrin Maji</span>' +
-      '<a class="lbl" href="' + up + 'index.html#comms">Contact &rarr;</a>';
+      '<span class="lbl rail__credit">Rebuilt by Antrin Maji</span>';
 
     deck.insertBefore(nav, deck.firstChild);
     deck.insertBefore(top, deck.firstChild);
@@ -95,11 +95,15 @@
       { t: '  talk series .......... Beyond Syntax, ongoing', c: 'out' },
       { t: '  next meeting ......... CDH2 meeting room, 20:30', c: 'out' },
       { t: '' },
-      { t: '  applications ......... OPEN', c: 'hi' },
+      { t: '  applications ......... CLOSED for now', c: 'out' },
+      { t: '  passion projects ..... OPEN', c: 'hi' },
       { t: '' },
       { t: 'codingclub@iisertvm:~$ whoami', c: 'cmd' },
       { t: '  a student club at IISER Thiruvananthapuram building', c: 'out' },
       { t: '  things in machine learning, AI and the web.', c: 'out' },
+      { t: '' },
+      { t: '  any student can propose a project or run an event', c: 'out' },
+      { t: '  under the club. passion projects are open to all.', c: 'out' },
       { t: '' },
       { t: 'codingclub@iisertvm:~$ ', c: 'cmd', caret: true }
     ];
@@ -238,6 +242,8 @@
     var mProse  = modal.querySelector('[data-modal-content]');
     var mScroll = modal.querySelector('[data-modal-body]');
     var mId     = modal.querySelector('[data-modal-id]');
+    /* the blogs shell carries an author block, the personnel shell does not:
+       every one of these is optional from here on */
     var mHead   = modal.querySelector('[data-modal-head]');
     var mFace   = modal.querySelector('[data-modal-face]');
     var mAuthor = modal.querySelector('[data-modal-author]');
@@ -248,8 +254,44 @@
     var closeModal = function () {
       modal.hidden = true;
       mProse.innerHTML = '';
-      mHead.hidden = true;
+      if (mHead) mHead.hidden = true;
+      /* focus returns to the tile or row that opened it, which is what keeps
+         the roster on the tab you were reading when the popup closes */
       if (lastFocus) { lastFocus.focus(); lastFocus = null; }
+    };
+
+    /* NOT `show`: the roster tabs above already own that name in this scope,
+       and a second `var show` here replaces theirs — clicking a tab then opens
+       the popup instead of switching panels. */
+    var openShell = function (label) {
+      lastFocus = document.activeElement;
+      mId.textContent = label;
+      if (mTitle) mTitle.textContent = label;
+      if (mHead) mHead.hidden = true;
+      modal.hidden = false;
+      mScroll.scrollTop = 0;
+      modal.querySelector('[data-modal-close]').focus();
+    };
+
+    /* a fetched page's relative URLs resolve against that page, not this one */
+    var rebase = function (art, url) {
+      var base = new URL(url, location.href);
+      art.querySelectorAll('img').forEach(function (n) {
+        var raw = n.getAttribute('src') || n.getAttribute('data-src');
+        if (!raw) { n.remove(); return; }
+        n.setAttribute('src', new URL(raw, base).href);
+        n.removeAttribute('data-src');
+        n.setAttribute('loading', 'lazy');
+      });
+      art.querySelectorAll('a[href]').forEach(function (n) {
+        var href = n.getAttribute('href');
+        if (/^(mailto:|tel:|#)/.test(href)) return;
+        n.setAttribute('href', new URL(href, base).href);
+        n.setAttribute('target', '_blank');
+        n.setAttribute('rel', 'noopener');
+      });
+      art.querySelectorAll('script, style, iframe').forEach(function (n) { n.remove(); });
+      return art;
     };
 
     var openModal = function (url, title, author, face, batch) {
@@ -281,26 +323,9 @@
         var art = doc.querySelector('.leftcolumn') || doc.querySelector('main') || doc.body;
 
         /* the post lives in Blogs/Posts/, so its relative images and links
-           have to be resolved against that file, not against this page */
-        var base = new URL(url, location.href);
-        /* Joshy's post lazy-loads with data-src and its own script, which we
-           strip; the rest use plain src. Handle both or that post shows
-           nothing but empty frames. */
-        art.querySelectorAll('img').forEach(function (n) {
-          var raw = n.getAttribute('src') || n.getAttribute('data-src');
-          if (!raw) { n.remove(); return; }
-          n.setAttribute('src', new URL(raw, base).href);
-          n.removeAttribute('data-src');
-          n.setAttribute('loading', 'lazy');
-        });
-        art.querySelectorAll('a[href]').forEach(function (n) {
-          n.setAttribute('href', new URL(n.getAttribute('href'), base).href);
-          n.setAttribute('target', '_blank');
-          n.setAttribute('rel', 'noopener');
-        });
-        art.querySelectorAll('script, style, iframe').forEach(function (n) { n.remove(); });
-
-        mProse.innerHTML = art.innerHTML;
+           resolve against that file, not against this page. rebase() also
+           handles Joshy's post, which lazy-loads through data-src. */
+        mProse.innerHTML = rebase(art, url).innerHTML;
         mScroll.scrollTop = 0;
       }).catch(function () {
         /* never strand the reader: hand them the real page */
@@ -324,6 +349,90 @@
       });
     });
 
+    /* ---------- personnel record ----------
+       A tile opens the record in place. Nothing navigates, so the roster is
+       still on whichever tab you opened it from when the popup closes.
+       Tiles that have a profile page keep a working href for a middle click,
+       a new tab, and no-JS; the placeholders and alumni have no page, so
+       their record is assembled from the tile itself. */
+    var fromTile = function (tile) {
+      var img  = tile.querySelector('.person__img img');
+      var name = tile.querySelector('.person__name');
+      var role = tile.querySelector('.person__role');
+      var links = tile.querySelector('.person__links');
+
+      openShell(name ? name.textContent.trim() : 'Record');
+      mProse.innerHTML =
+        '<div class="rec">' +
+          '<div class="rec__photo"><img src="' + (img ? img.getAttribute('src') : '') +
+            '" alt="' + (name ? name.textContent.trim() : '') + '"></div>' +
+          '<div class="rec__body">' +
+            '<span class="lbl">Record</span>' +
+            '<h2 class="rec__name">' + (name ? name.textContent.trim() : '') + '</h2>' +
+            '<p class="rec__role">' + (role ? role.textContent.trim() : '') + '</p>' +
+            '<div class="profile__band"><span class="lbl">Contact</span></div>' +
+            (links && links.children.length
+              ? '<div class="rec__links"></div>'
+              : '<p class="rec__none">No contact details on record.</p>') +
+          '</div>' +
+        '</div>';
+
+      /* the tile's own links are moved in as nodes, so their hrefs and icons
+         come across exactly as written rather than being rebuilt from strings */
+      var slot = mProse.querySelector('.rec__links');
+      if (slot && links) {
+        links.querySelectorAll('a').forEach(function (a) {
+          var row = document.createElement('a');
+          row.className = 'link-row';
+          row.href = a.getAttribute('href');
+          if (row.href.indexOf('mailto:') !== 0) { row.target = '_blank'; row.rel = 'noopener'; }
+          var label = a.getAttribute('aria-label') || 'Link';
+          var href  = a.getAttribute('href') || '';
+          /* the address itself for mail, the site for everything else — the
+             tile only carried an icon and a label */
+          var detail = href.indexOf('mailto:') === 0
+            ? href.slice(7)
+            : (href.split('/')[2] || '').replace(/^www\./, '');
+          row.innerHTML = (a.querySelector('i') ? a.querySelector('i').outerHTML : '') +
+                          '<span>' + label + '</span>' +
+                          (detail ? '<small>' + detail + '</small>' : '');
+          slot.appendChild(row);
+        });
+      }
+    };
+
+    var openPerson = function (url, name) {
+      openShell(name);
+      mProse.innerHTML = '<p class="modal__note">Loading\u2026</p>';
+      fetch(url).then(function (r) {
+        if (!r.ok) throw new Error(r.status);
+        return r.text();
+      }).then(function (html) {
+        var doc = new DOMParser().parseFromString(html, 'text/html');
+        var art = doc.querySelector('.profile');
+        if (!art) throw new Error('no profile');
+        var sub = doc.querySelector('.sec__sub');
+        mProse.innerHTML = (sub ? '<p class="rec__role">' + sub.textContent.trim() + '</p>' : '') +
+                           rebase(art, url).outerHTML;
+      }).catch(function () {
+        mProse.innerHTML = '<p class="modal__note">Could not load this record here. ' +
+          '<a href="' + url + '">Open the page</a>.</p>';
+      });
+    };
+
+    document.querySelectorAll('.person').forEach(function (tile) {
+      tile.addEventListener('click', function (e) {
+        var href = tile.getAttribute('href');
+        if (href) {
+          if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+          e.preventDefault();
+          openPerson(href, tile.querySelector('.person__name').textContent.trim());
+        } else {
+          fromTile(tile);
+        }
+      });
+    });
+
     modal.addEventListener('click', function (e) {
       if (e.target === modal || e.target.closest('[data-modal-close]')) closeModal();
     });
@@ -341,6 +450,35 @@
       if (open) panel.removeAttribute('data-open');
       else panel.setAttribute('data-open', '');
     });
+  });
+
+  /* ---------- leaving a page ----------
+     An internal link fades the deck before it navigates, so the next page's
+     entrance continues the movement instead of cutting to it. Anything that
+     is not a plain left click on a same-origin page link is left alone:
+     new tabs, downloads, in-page anchors and the post reader all still work
+     exactly as they did. */
+  document.addEventListener('click', function (e) {
+    if (e.defaultPrevented || e.button !== 0) return;
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+
+    var a = e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a || a.hasAttribute('download')) return;
+    if (a.target && a.target !== '_self') return;
+
+    var url = new URL(a.getAttribute('href'), location.href);
+    if (url.origin !== location.origin) return;
+    if (!/(\.html|\/)$/.test(url.pathname)) return;          /* PDFs, images */
+    if (url.pathname === location.pathname) return;            /* same page */
+
+    e.preventDefault();
+    document.body.classList.add('is-leaving');
+    setTimeout(function () { location.href = url.href; }, 110);
+  });
+
+  /* back/forward can restore this page from the cache mid-fade */
+  window.addEventListener('pageshow', function () {
+    document.body.classList.remove('is-leaving');
   });
 
   /* ---------- bottom rail tracks the section in view ----------
@@ -363,14 +501,32 @@
     var sections = Array.prototype.slice.call(document.querySelectorAll('[data-name]'));
     var segs = gauge ? gauge.querySelectorAll('i') : [];
 
+    /* Only what is below the fold is hidden to be revealed — anything
+       already on screen is left alone, so a failure here can never blank
+       the part of the page you are looking at. */
+    var pending = [];
+    if (!reduced) {
+      sections.forEach(function (s) {
+        if (s.getBoundingClientRect().top > window.innerHeight - 60) {
+          s.classList.add('reveal');
+          pending.push(s);
+        }
+      });
+    }
+
     var place = function () {
-      /* the two visualiser pages carry no [data-name] sections; they keep
-         the title the page declared instead of crashing on sections[0] */
-      if (sections.length) {
-        var mid = screenEl.scrollTop + screenEl.clientHeight / 2;
-        var name = sections[0].dataset.name;
-        sections.forEach(function (s) { if (s.offsetTop <= mid) name = s.dataset.name; });
-        if (readout.textContent !== name) readout.textContent = name;
+      /* The readout stays on the page's own title. It used to name the
+         section you were scrolling through, but every change to a word of a
+         different length shoved the gauge and the percentage sideways. */
+
+      /* sections that have come far enough up the screen are released.
+         Riding place() rather than an IntersectionObserver keeps this on
+         the one throttled handler the page already runs. */
+      for (var r = pending.length - 1; r >= 0; r--) {
+        if (pending[r].getBoundingClientRect().top < window.innerHeight - 60) {
+          pending[r].classList.add('reveal--in');
+          pending.splice(r, 1);
+        }
       }
 
       /* travel, not position: a page shorter than the screen is fully read */
