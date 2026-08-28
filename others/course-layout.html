@@ -2,25 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="color-scheme" content="dark">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Session outline for the Absolute Beginner's Web Development Course.">
     <meta name="theme-color" content="#000000">
     <meta name="author" content="Coding Club IISER Thiruvananthapuram">
     <title>Course Layout - Coding Club IISER Thiruvananthapuram</title>
 
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/brand/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/brand/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/brand/favicon-16x16.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="console.css" rel="stylesheet">
+    <link href="../assets/css/console.css" rel="stylesheet">
 </head>
 <body>
 
-<div class="deck" data-deck data-page="webdev-course.html" data-title="Slides">
+<div class="deck" data-deck data-up="../" data-page="webdev-course.html" data-title="Slides">
     <div class="screen" data-screen>
         <div class="glass" aria-hidden="true"></div>
 
@@ -42,7 +43,7 @@
                 </div>
                 <div class="viewer">
                     <div class="viewer__stage">
-                        <img id="slide" src="Absolute Beginner's Web Development Course/1.svg" alt="Course slide 1">
+                        <img id="slide" src="../assets/course/1.svg" alt="Course slide 1">
                     </div>
                     <div class="viewer__bar">
                         <button class="btn" id="prev"><i class="fas fa-arrow-left"></i> Prev</button>
@@ -71,23 +72,14 @@
             </div>
         </section>
 
-        <section class="sec" data-name="Comms">
-            <div class="wrap">
-                <div class="foot">
-                    <img src="connection_network_infinity_partial_logo.png" alt="">
-                    <span>Coding Club &middot; IISER Thiruvananthapuram</span>
-                    <span class="lbl">Built by members</span>
-                </div>
-            </div>
-        </section>
 
     </div>
 </div>
 
-<script src="console.js"></script>
+<script src="../assets/js/console.js"></script>
 <script>
 (function () {
-  var DIR = "Absolute Beginner's Web Development Course";
+  var DIR = "../assets/course";
   var n = 1, TOTAL = 16;
   var img = document.getElementById('slide');
   var counter = document.getElementById('counter');

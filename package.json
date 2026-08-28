@@ -1,11 +1,11 @@
 {
   "name": "codingclub-website",
   "version": "1.0.0",
-  "description": "Coding Club IISER TVM Website",
+  "description": "Coding Club IISER Thiruvananthapuram website. Static HTML/CSS/JS, no build step.",
   "main": "index.html",
   "scripts": {
-    "dev": "npx browser-sync start --server --files \"*.html, *.css, *.js, **/*.html, **/*.css, **/*.js\" --open",
-    "start": "npx http-server"
+    "dev": "npx browser-sync start --server --no-notify --files \"*.html, members/*.html, assets/css/*.css, assets/js/*.js\" --open",
+    "start": "npx http-server -c-1"
   },
   "keywords": [
     "coding",
@@ -15,9 +15,6 @@
   ],
   "author": "Coding Club IISER TVM",
   "license": "MIT",
-  "dependencies": {
-    "aos": "^2.3.4"
-  },
   "devDependencies": {
     "http-server": "^14.1.1",
     "browser-sync": "^2.29.3"

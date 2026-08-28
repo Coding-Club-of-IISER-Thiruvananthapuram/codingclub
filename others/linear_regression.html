@@ -2,19 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="color-scheme" content="dark">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Linear Regression — Gradient Descent | CCIT Club</title>
 
   <!-- libs -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  <link href="Blogs/prism.css" rel="stylesheet"/>
+  <link href="../Blogs/prism.css" rel="stylesheet"/>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link href="console.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="../assets/css/console.css" rel="stylesheet">
   <style>
     :root {
       --primary-gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #ec4899 100%);
@@ -796,7 +797,7 @@
 </head>
 <body>
 
-<div class="deck" data-deck data-page="dbscan.html" data-title="Regression">
+<div class="deck" data-deck data-up="../" data-page="dbscan.html" data-title="Regression">
   <div class="screen" data-screen>
     <div class="glass" aria-hidden="true"></div>
 <main class="main-content">
@@ -941,7 +942,7 @@ plt.show()
   </div>
 </div>
 
-<script src="Blogs/prism.js"></script>
+<script src="../Blogs/prism.js"></script>
 <script>
 
     let isPlaying = false;
@@ -1195,6 +1196,6 @@ document.getElementById('speedLabel').innerText = (1000 / 1000).toFixed(1) + "s/
   updateStats();
 })();
 </script>
-<script src="console.js"></script>
+<script src="../assets/js/console.js"></script>
 </body>
 </html>

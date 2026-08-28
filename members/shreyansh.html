@@ -2,55 +2,66 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="color-scheme" content="dark">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Shrayansh, member of the Coding Club at IISER Thiruvananthapuram.">
     <meta name="theme-color" content="#000000">
     <meta name="author" content="Coding Club IISER Thiruvananthapuram">
     <title>Shrayansh - Coding Club IISER Thiruvananthapuram</title>
 
-    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/brand/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/brand/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/brand/favicon-16x16.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="../console.css" rel="stylesheet">
+    <link href="../assets/css/console.css" rel="stylesheet">
 </head>
 <body>
 
-<div class="deck" data-deck data-page="team.html" data-title="Shrayansh">
+<div class="deck" data-deck data-up="../" data-page="team.html" data-title="Shrayansh">
     <div class="screen" data-screen>
         <div class="glass" aria-hidden="true"></div>
 
-        <section class="hero" data-name="Shrayansh">
-            <div class="wrap">
-                <p class="hero__desig">CCIT &middot; MEMBER</p>
-                <h1 class="hero__title">Shrayansh</h1>
-                <p class="hero__lede">Passionate about biology, technology and intersection.</p>
-                <div class="hero__actions"><a class="btn" href="../team.html"><i class="fas fa-arrow-left"></i> Back to team</a></div>
-            </div>
-        </section>
 
         <section class="sec" id="profile" data-name="Profile">
             <div class="wrap">
+                <a class="backlink" href="../team.html"><i class="fas fa-arrow-left"></i> Crew</a>
+
                 <div class="sec__head">
                     <div class="divider"><span class="lbl">Panel A &middot; Personnel</span></div>
-                    <h2 class="sec__title">Detail</h2>
-                    <p class="sec__sub">Member</p>
+                    <h1 class="sec__title">Shrayansh</h1>
+                    <p class="sec__sub">Member &middot; Coding Club, IISER Thiruvananthapuram</p>
                 </div>
-                <div class="chips"><span class="chip">Programming</span><span class="chip">Biology</span></div>
 
-            </div>
-        </section>
+                <div class="profile">
+                    <div class="profile__photo">
+                        <img src="../assets/img/people/shrayansh.jpeg" alt="Shrayansh">
+                        <span class="profile__desig">M&middot;05</span>
+                    </div>
 
-        <section class="sec" data-name="Comms">
-            <div class="wrap">
-                <div class="foot">
-                    <img src="../connection_network_infinity_partial_logo.png" alt="">
-                    <span>Coding Club &middot; IISER Thiruvananthapuram</span>
-                    <span class="lbl">Built by members</span>
+                    <div class="profile__detail">
+                        <div class="profile__band"><span class="lbl">Record</span></div>
+                        <div class="record">
+                            <div class="record__cell" data-set><span class="record__k">Role</span><span class="record__v">Member</span></div>
+                            <div class="record__cell"><span class="record__k">Batch</span><span class="record__v">&mdash;</span></div>
+                            <div class="record__cell"><span class="record__k">Roll no.</span><span class="record__v">&mdash;</span></div>
+                            <div class="record__cell"><span class="record__k">Phone</span><span class="record__v">&mdash;</span></div>
+                            <div class="record__cell record__cell--wide"><span class="record__k">Email</span><span class="record__v">&mdash;</span></div>
+                        </div>
+                        <p class="profile__bio">Passionate about biology, technology and intersection.</p>
+                        <div class="profile__band" style="margin-top:1.375rem"><span class="lbl">Skills</span></div>
+                        <div class="chips"><span class="chip">Programming</span><span class="chip">Biology</span></div>
+                    </div>
+
+                    <div class="profile__extra">
+                        <div class="profile__band"><span class="lbl">Extra info</span></div>
+                        <div>
+                            <p style="margin:0;color:var(--ink-faint);font-size:0.9375rem">No repository or website is on record yet.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -58,6 +69,6 @@
     </div>
 </div>
 
-<script src="../console.js"></script>
+<script src="../assets/js/console.js"></script>
 </body>
 </html>

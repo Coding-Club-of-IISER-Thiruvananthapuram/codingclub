@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="color-scheme" content="dark">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Coding Club IISER Thiruvananthapuram merchandise.">
+    <meta name="theme-color" content="#000000">
+    <meta name="author" content="Coding Club IISER Thiruvananthapuram">
+    <title>Merch - Coding Club IISER Thiruvananthapuram</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/brand/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/brand/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/brand/favicon-16x16.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="assets/css/console.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="deck" data-deck data-page="merch.html" data-title="Merch">
+    <div class="screen" data-screen>
+        <div class="glass" aria-hidden="true"></div>
+
+        <div class="shop" data-name="Merch">
+
+            <!-- ============ catalogue + product copy ============ -->
+            <section class="shop__cat">
+                <div class="crumb">
+                    <span class="crumb__tick" aria-hidden="true"></span>
+                    <span class="lbl">Catalogue</span>
+                    <span class="crumb__rule" aria-hidden="true"></span>
+                    <span class="crumb__count"><b data-count>0</b> items</span>
+                </div>
+
+                <div class="tree" data-tree role="tablist" aria-label="Merch catalogue"></div>
+
+                <div class="prod">
+                    <h1 class="prod__name" data-p-name>Select an item</h1>
+                    <p class="prod__desc" data-p-desc>Pick something from the catalogue to see it on the stage.</p>
+                    <p class="prod__by" data-p-by hidden></p>
+
+                    <div data-p-sizes hidden>
+                        <span class="lbl">Size</span>
+                        <div class="sizes" style="margin-top:0.5rem" data-sizes></div>
+                    </div>
+
+                    <button class="buy" data-buy disabled>
+                        <span data-buy-label>Select an item</span>
+                        <b class="buy__price" data-p-price>&mdash;</b>
+                    </button>
+                </div>
+            </section>
+
+            <!-- ============ viewfinder stage ============ -->
+            <section class="shop__stage">
+                <div class="vf">
+                    <span class="vf__c tl" aria-hidden="true"></span>
+                    <span class="vf__c tr" aria-hidden="true"></span>
+                    <span class="vf__c bl" aria-hidden="true"></span>
+                    <span class="vf__c br" aria-hidden="true"></span>
+                    <span class="vf__grid" aria-hidden="true"></span>
+
+                    <span class="vf__hud tl" aria-hidden="true"><i class="vf__rec"></i>REC</span>
+                    <span class="vf__hud tr" aria-hidden="true">CCIT&middot;26</span>
+                    <span class="vf__hud bl" aria-hidden="true">f/2.8 &middot; 1/125 &middot; ISO400</span>
+                    <span class="vf__hud br" aria-hidden="true" data-frame>FRM 00/00</span>
+
+                    <div class="vf__view" aria-live="polite" data-stage></div>
+                </div>
+
+                <span class="stage__label" data-stage-label>No item selected</span>
+
+                <div class="carousel">
+                    <button class="cbtn" data-prev aria-label="Previous view"><i class="fas fa-chevron-left"></i></button>
+                    <div class="ctrack" role="tablist" aria-label="Product views" data-views></div>
+                    <button class="cbtn" data-next aria-label="Next view"><i class="fas fa-chevron-right"></i></button>
+                </div>
+
+                <div class="pager">
+                    <span data-pg-cur>00</span>
+                    <input type="range" min="1" max="1" step="1" value="1" aria-label="Jump to view" data-pg>
+                    <span data-pg-tot>00</span>
+                </div>
+            </section>
+
+        </div>
+    </div>
+</div>
+
+<script src="assets/js/console.js"></script>
+<script>
+/* ============================================================
+   Merch catalogue.
+   PLACEHOLDER DATA — the club has no product photos in the repo
+   yet, so every view falls back to the club mark. Replace the
+   `img` paths and prices below and the page needs no other edit.
+   ============================================================ */
+(function () {
+  'use strict';
+
+  var MARK = 'assets/img/brand/connection_network_infinity_partial_logo.png';
+  var ALT  = 'assets/img/brand/clublogocropped.png';
+
+  var CATALOGUE = [
+    { cat: 'Apparel', items: [
+      { name: 'Club Tee',      price: '₹450', by: 'Coding Club',
+        desc: 'Heavy cotton tee with the club mark on the chest and the wordmark across the back.',
+        sizes: ['XS','S','M','L','XL','XXL'],
+        views: [['Front', MARK], ['Back', ALT]] },
+      { name: 'Hoodie',        price: '₹950', by: 'Coding Club',
+        desc: 'Fleece-lined pullover in black, with an embroidered mark on the left chest.',
+        sizes: ['S','M','L','XL','XXL'],
+        views: [['Front', MARK], ['Detail', ALT]] }
+    ]},
+    { cat: 'Accessories', items: [
+      { name: 'Sticker Pack',  price: '₹120', by: 'Coding Club',
+        desc: 'Six die-cut vinyl stickers. Laptop-safe, weather-resistant, mildly addictive.',
+        sizes: null,
+        views: [['Sheet', MARK]] },
+      { name: 'Tote Bag',      price: '₹350', by: 'Coding Club',
+        desc: 'Canvas tote sized for a laptop and a notebook, printed one colour on both faces.',
+        sizes: null,
+        views: [['Front', MARK], ['Back', ALT]] }
+    ]}
+  ];
+
+  var $  = function (s) { return document.querySelector(s); };
+  var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+
+  var tree   = $('[data-tree]');
+  var stage  = $('[data-stage]');
+  var views  = $('[data-views]');
+  var pg     = $('[data-pg]');
+  var flat   = [];
+  var item   = null, view = 0, size = null;
+
+  /* ---------- catalogue rail ---------- */
+  CATALOGUE.forEach(function (group) {
+    var h = document.createElement('div');
+    h.className = 'tree__cat';
+    h.textContent = group.cat;
+    tree.appendChild(h);
+
+    group.items.forEach(function (it) {
+      flat.push(it);
+      var b = document.createElement('button');
+      b.className = 'tree__item';
+      b.setAttribute('role', 'tab');
+      b.setAttribute('aria-selected', 'false');
+      b.textContent = it.name;
+      b.onclick = function () { select(it, b); };
+      tree.appendChild(b);
+    });
+  });
+  $('[data-count]').textContent = flat.length;
+
+  /* ---------- selection ---------- */
+  function select(it, btn) {
+    item = it; view = 0; size = null;
+
+    tree.querySelectorAll('.tree__item').forEach(function (b) {
+      b.setAttribute('aria-selected', String(b === btn));
+    });
+
+    $('[data-p-name]').textContent = it.name;
+    $('[data-p-desc]').textContent = it.desc;
+
+    var by = $('[data-p-by]');
+    by.textContent = 'Designed by ' + it.by;
+    by.hidden = false;
+
+    /* sizes */
+    var wrap = $('[data-p-sizes]');
+    var box = $('[data-sizes]');
+    box.innerHTML = '';
+    if (it.sizes) {
+      wrap.hidden = false;
+      it.sizes.forEach(function (s) {
+        var b = document.createElement('button');
+        b.className = 'size';
+        b.type = 'button';
+        b.textContent = s;
+        b.setAttribute('aria-pressed', 'false');
+        b.onclick = function () {
+          size = s;
+          box.querySelectorAll('.size').forEach(function (o) {
+            o.setAttribute('aria-pressed', String(o === b));
+          });
+          refreshBuy();
+        };
+        box.appendChild(b);
+      });
+    } else {
+      wrap.hidden = true;
+    }
+
+    $('[data-p-price]').textContent = it.price;
+    refreshBuy();
+    buildViews();
+  }
+
+  function refreshBuy() {
+    var buy = $('[data-buy]');
+    var need = item && item.sizes && !size;
+    buy.disabled = !item || need;
+    $('[data-buy-label]').textContent =
+      !item ? 'Select an item' : (need ? 'Pick a size' : 'Reserve');
+  }
+
+  /* ---------- views ---------- */
+  function buildViews() {
+    views.innerHTML = '';
+    item.views.forEach(function (v, i) {
+      var b = document.createElement('button');
+      b.className = 'cthumb';
+      b.setAttribute('role', 'tab');
+      b.setAttribute('aria-selected', String(i === 0));
+      b.setAttribute('aria-label', v[0]);
+      b.innerHTML = '<img src="' + v[1] + '" alt="">';
+      b.onclick = function () { show(i); };
+      views.appendChild(b);
+    });
+    pg.min = 1; pg.max = item.views.length; pg.value = 1;
+    $('[data-pg-tot]').textContent = pad(item.views.length);
+    show(0);
+  }
+
+  function show(i) {
+    var n = item.views.length;
+    view = ((i % n) + n) % n;
+    var v = item.views[view];
+
+    stage.innerHTML = '<img src="' + v[1] + '" alt="' + item.name + ', ' + v[0] + ' view">';
+    $('[data-stage-label]').textContent = item.name + ' — ' + v[0];
+    $('[data-frame]').textContent = 'FRM ' + pad(view + 1) + '/' + pad(n);
+    $('[data-pg-cur]').textContent = pad(view + 1);
+    pg.value = view + 1;
+
+    views.querySelectorAll('.cthumb').forEach(function (b, k) {
+      b.setAttribute('aria-selected', String(k === view));
+    });
+  }
+
+  $('[data-prev]').onclick = function () { if (item) show(view - 1); };
+  $('[data-next]').onclick = function () { if (item) show(view + 1); };
+  pg.oninput = function () { if (item) show(+pg.value - 1); };
+
+  document.addEventListener('keydown', function (e) {
+    if (!item) return;
+    if (e.key === 'ArrowLeft')  show(view - 1);
+    if (e.key === 'ArrowRight') show(view + 1);
+  });
+
+  /* Reserving is a conversation, not a checkout: there is no payment
+     backend here, so this hands off to the club's email. */
+  $('[data-buy]').onclick = function () {
+    if (!item) return;
+    var subject = 'Merch reservation: ' + item.name + (size ? ' (' + size + ')' : '');
+    location.href = 'mailto:codingclub@iisertvm.ac.in?subject=' + encodeURIComponent(subject);
+  };
+
+  select(flat[0], tree.querySelector('.tree__item'));
+})();
+</script>
+</body>
+</html>

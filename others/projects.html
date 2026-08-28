@@ -2,25 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="color-scheme" content="dark">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Projects and courses run by the Coding Club at IISER Thiruvananthapuram.">
     <meta name="theme-color" content="#000000">
     <meta name="author" content="Coding Club IISER Thiruvananthapuram">
     <title>Projects & Courses - Coding Club IISER Thiruvananthapuram</title>
 
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/brand/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/brand/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/brand/favicon-16x16.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="console.css" rel="stylesheet">
+    <link href="../assets/css/console.css" rel="stylesheet">
 </head>
 <body>
 
-<div class="deck" data-deck data-page="projects.html" data-title="Build">
+<div class="deck" data-deck data-up="../" data-page="projects.html" data-title="Build">
     <div class="screen" data-screen>
         <div class="glass" aria-hidden="true"></div>
 
@@ -29,7 +30,7 @@
                 <p class="hero__desig">CCIT &middot; BUILD</p>
                 <h1 class="hero__title">Projects</h1>
                 <p class="hero__lede">What the club is building, and the course tracks that grow out of it. Everything here is open to members at any level.</p>
-                <div class="hero__actions"><a class="btn btn--go" href="https://docs.google.com/forms/d/e/1FAIpQLSeJuIlW4REb117B8I4Kd_AkGgveW4ohVDxWk-Ux5w5dumAYFQ/viewform?usp=sharing" target="_blank" rel="noopener">Join a project <i class="fas fa-arrow-right"></i></a><a class="btn" href="team.html">Meet the team</a></div>
+                <div class="hero__actions"><a class="btn btn--go" href="https://docs.google.com/forms/d/e/1FAIpQLSeJuIlW4REb117B8I4Kd_AkGgveW4ohVDxWk-Ux5w5dumAYFQ/viewform?usp=sharing" target="_blank" rel="noopener">Join a project <i class="fas fa-arrow-right"></i></a><a class="btn" href="../team.html">Meet the team</a></div>
             </div>
         </section>
 
@@ -42,11 +43,13 @@
                 </div>
                 <div class="manifest">
                     <a class="manifest__row" href="webdev-course.html">
+                        <span class="manifest__n">01</span>
                         <span class="manifest__when">6 weeks &middot; 16 sessions</span>
                         <div><div class="manifest__name">Absolute Beginner's Web Development</div><p class="manifest__desc">HTML, CSS, JavaScript, Python and Django, from zero to a deployed application.</p></div>
                         <span class="state state--live">Running</span>
                     </a>
                     <a class="manifest__row" href="course-layout.html">
+                        <span class="manifest__n">02</span>
                         <span class="manifest__when">Reference</span>
                         <div><div class="manifest__name">Course layout &amp; materials</div><p class="manifest__desc">The full session-by-session outline and slides for the web development course.</p></div>
                         <span class="state">Published</span>
@@ -64,11 +67,13 @@
                 </div>
                 <div class="manifest">
                     <a class="manifest__row" href="dbscan.html">
+                        <span class="manifest__n">01</span>
                         <span class="manifest__when">Clustering</span>
                         <div><div class="manifest__name">DBSCAN</div><p class="manifest__desc">Density-based clustering, stepped point by point.</p></div>
                         <span class="state state--live">Live</span>
                     </a>
                     <a class="manifest__row" href="linear_regression.html">
+                        <span class="manifest__n">02</span>
                         <span class="manifest__when">Regression</span>
                         <div><div class="manifest__name">Linear regression</div><p class="manifest__desc">Gradient descent fitting a line, one iteration at a time.</p></div>
                         <span class="state state--live">Live</span>
@@ -88,19 +93,10 @@
             </div>
         </section>
 
-        <section class="sec" data-name="Comms">
-            <div class="wrap">
-                <div class="foot">
-                    <img src="connection_network_infinity_partial_logo.png" alt="">
-                    <span>Coding Club &middot; IISER Thiruvananthapuram</span>
-                    <span class="lbl">Built by members</span>
-                </div>
-            </div>
-        </section>
 
     </div>
 </div>
 
-<script src="console.js"></script>
+<script src="../assets/js/console.js"></script>
 </body>
 </html>

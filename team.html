@@ -2,21 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="color-scheme" content="dark">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="The team behind the Coding Club at IISER Thiruvananthapuram.">
     <meta name="theme-color" content="#000000">
     <meta name="author" content="Coding Club IISER Thiruvananthapuram">
     <title>Team - Coding Club IISER Thiruvananthapuram</title>
 
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/brand/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/brand/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/brand/favicon-16x16.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="console.css" rel="stylesheet">
+    <link href="assets/css/console.css" rel="stylesheet">
 </head>
 <body>
 
@@ -24,180 +25,200 @@
     <div class="screen" data-screen>
         <div class="glass" aria-hidden="true"></div>
 
-        <section class="hero" data-name="Team">
+        <section class="hero hero--head" data-name="Personnel">
             <div class="wrap">
                 <p class="hero__desig">CCIT &middot; ROSTER</p>
-                <h1 class="hero__title">Team</h1>
-                <p class="hero__lede">The people running the Coding Club this year. Every card opens a full profile with what they work on and how to reach them.</p>
-                <div class="hero__actions"><a class="btn btn--go" href="https://docs.google.com/forms/d/e/1FAIpQLSeJuIlW4REb117B8I4Kd_AkGgveW4ohVDxWk-Ux5w5dumAYFQ/viewform?usp=sharing" target="_blank" rel="noopener">Apply to join <i class="fas fa-arrow-right"></i></a><a class="btn" href="projects.html">See what we build</a></div>
+                <h1 class="hero__title">Personnel<span class="hero__mark" aria-hidden="true">//</span></h1>
+
+                <div class="display display--tuck">
+                    <div class="display__bar">
+                        <span class="display__lamp" aria-hidden="true"></span>
+                        <span class="lbl">Readout</span>
+                        <span class="display__id">CREW&middot;01</span>
+                    </div>
+                    <p class="display__text" data-type>
+                        Everyone who runs the club, everyone who ran it before,
+                        and everyone who has since moved on.
+                    </p>
+                </div>
             </div>
         </section>
 
         <section class="sec" id="roster" data-name="Roster">
             <div class="wrap">
-                <div class="sec__head">
-                    <div class="divider"><span class="lbl">Panel A &middot; Personnel</span></div>
-                    <h2 class="sec__title">Members</h2>
-                    <p class="sec__sub">14 members with published profiles. Photos desaturate until you hover.</p>
+                <div class="divider" style="margin-bottom:clamp(1.5rem,4vh,2.5rem)">
+                    <span class="lbl">Panel A &middot; Crew</span>
+                    <span class="divider__meta">14 members &middot; 2 alumni</span>
                 </div>
-                <div class="roster">
-                    <a class="person" href="members/saurab-mishra.html">
-                        <span class="person__img"><img src="saurabprofile.jpg" alt="Saurab Mishra" loading="lazy"></span>
-                        <span class="person__body">
-                            <span class="person__desig">M&middot;01</span>
-                            <span class="person__name">Saurab Mishra</span>
-                            <span class="person__role">Member</span>
-                            <span class="person__bio">Data Science and AI enthusiast with expertise in LLMs, AI, and MAS.</span>
-                            <span class="person__tags"><span class="tag">LLMs</span><span class="tag">AI Research</span><span class="tag">Data Science</span></span>
-                        </span>
-                    </a>
-                    <a class="person" href="members/aryan-bhatia.html">
-                        <span class="person__img"><img src="Aryan.jpg" alt="Aryan Bhatia" loading="lazy"></span>
-                        <span class="person__body">
-                            <span class="person__desig">M&middot;02</span>
-                            <span class="person__name">Aryan Bhatia</span>
-                            <span class="person__role">Member</span>
-                            <span class="person__bio">&quot;Just imagine the total number of atoms in the universe are smaller than what lies between 0 and 1. I am here to look for what&#x27;s beyond.&quot;</span>
-                            <span class="person__tags"><span class="tag">Physics</span><span class="tag">Mathematics</span><span class="tag">Coding</span></span>
-                        </span>
-                    </a>
-                    <a class="person" href="members/abhinav-girish.html">
-                        <span class="person__img"><img src="abhinav.png" alt="Abhinav Girish" loading="lazy"></span>
-                        <span class="person__body">
-                            <span class="person__desig">M&middot;03</span>
-                            <span class="person__name">Abhinav Girish</span>
-                            <span class="person__role">Member</span>
-                            <span class="person__bio">&quot;Just a guy who likes computers&quot;</span>
-                            <span class="person__tags"><span class="tag">Applied Mathematics</span><span class="tag">Simulations</span><span class="tag">LLMs</span></span>
-                        </span>
-                    </a>
-                    <a class="person" href="members/ronak.html">
-                        <span class="person__img"><img src="Ronakprofilepic.jpg" alt="Ronak" loading="lazy"></span>
-                        <span class="person__body">
-                            <span class="person__desig">M&middot;04</span>
-                            <span class="person__name">Ronak</span>
-                            <span class="person__role">Member</span>
-                            <span class="person__bio">&quot;I&#x27;m excited to learn, create, and grow in the world of coding. I love solving problems and turning ideas into reality. Let&#x27;s build something amazing together!&quot;</span>
-                            <span class="person__tags"><span class="tag">Physics</span><span class="tag">Coding</span><span class="tag">Design</span></span>
-                        </span>
-                    </a>
-                    <a class="person" href="members/shreyansh.html">
-                        <span class="person__img"><img src="https://raw.githubusercontent.com/Coding-Club-of-IISER-Thiruvananthapuram/codingclub/refs/heads/main/Blogs/Media-shr-blog/profile.jpeg" alt="Shrayansh" loading="lazy"></span>
-                        <span class="person__body">
-                            <span class="person__desig">M&middot;05</span>
-                            <span class="person__name">Shrayansh</span>
-                            <span class="person__role">Member</span>
-                            <span class="person__bio">Passionate about biology, technology and intersection.</span>
-                            <span class="person__tags"><span class="tag">Programming</span><span class="tag">Biology</span></span>
-                        </span>
-                    </a>
-                    <a class="person" href="members/vaibhava.html">
-                        <span class="person__img"><img src="https://raw.githubusercontent.com/Coding-Club-of-IISER-Thiruvananthapuram/codingclub/refs/heads/main/kgccitprofile.jpg" alt="Vaibhava" loading="lazy"></span>
-                        <span class="person__body">
-                            <span class="person__desig">M&middot;06</span>
-                            <span class="person__name">Vaibhava</span>
-                            <span class="person__role">Member</span>
-                            <span class="person__bio">Dedicated team member contributing to innovative projects and coding excellence.</span>
-                            <span class="person__tags"><span class="tag">Development</span><span class="tag">Innovation</span></span>
-                        </span>
-                    </a>
-                    <a class="person" href="members/abhinav-joshy.html">
-                        <span class="person__img"><img src="abhinav.png" alt="Abhinav Joshy" loading="lazy"></span>
-                        <span class="person__body">
-                            <span class="person__desig">M&middot;07</span>
-                            <span class="person__name">Abhinav Joshy</span>
-                            <span class="person__role">Member</span>
-                            <span class="person__bio">Passionate developer with expertise in multiple programming languages and innovative problem-solving skills.</span>
-                            <span class="person__tags"><span class="tag">Python</span><span class="tag">Web Development</span></span>
-                        </span>
-                    </a>
-                    <a class="person" href="members/aneeth.html">
-                        <span class="person__img"><img src="user.jpg" alt="Aneeth" loading="lazy"></span>
-                        <span class="person__body">
-                            <span class="person__desig">M&middot;08</span>
-                            <span class="person__name">Aneeth</span>
-                            <span class="person__role">Member</span>
-                            <span class="person__bio">Dedicated coding enthusiast with strong algorithmic thinking and software development skills.</span>
-                            <span class="person__tags"><span class="tag">Programming</span><span class="tag">Algorithms</span></span>
-                        </span>
-                    </a>
-                    <a class="person" href="members/satyam.html">
-                        <span class="person__img"><img src="satyampfp.jpg" alt="Satyam" loading="lazy"></span>
-                        <span class="person__body">
-                            <span class="person__desig">M&middot;09</span>
-                            <span class="person__name">Satyam</span>
-                            <span class="person__role">Member</span>
-                            <span class="person__bio">Enthusiastic developer focused on building innovative solutions and learning new technologies.</span>
-                            <span class="person__tags"><span class="tag">Development</span><span class="tag">Innovation</span></span>
-                        </span>
-                    </a>
-                    <a class="person" href="members/antrin.html">
-                        <span class="person__img"><img src="" alt="Antrin" loading="lazy"></span>
-                        <span class="person__body">
-                            <span class="person__desig">M&middot;10</span>
-                            <span class="person__name">Antrin</span>
-                            <span class="person__role">Member</span>
-                            <span class="person__bio">Talented programmer bringing creativity and technical skills to every project.</span>
-                            <span class="person__tags"><span class="tag">Programming</span><span class="tag">Creativity</span></span>
-                        </span>
-                    </a>
-                    <a class="person" href="members/monisha.html">
-                        <span class="person__img"><img src="" alt="Monisha" loading="lazy"></span>
-                        <span class="person__body">
-                            <span class="person__desig">M&middot;11</span>
-                            <span class="person__name">Monisha</span>
-                            <span class="person__role">Member</span>
-                            <span class="person__bio">Dedicated team member with a strong foundation in technology and collaborative development.</span>
-                            <span class="person__tags"><span class="tag">Technology</span><span class="tag">Collaboration</span></span>
-                        </span>
-                    </a>
-                    <a class="person" href="members/krish.html">
-                        <span class="person__img"><img src="" alt="Krish" loading="lazy"></span>
-                        <span class="person__body">
-                            <span class="person__desig">M&middot;12</span>
-                            <span class="person__name">Krish</span>
-                            <span class="person__role">Member</span>
-                            <span class="person__bio">Innovative thinker contributing to cutting-edge projects and technological advancement.</span>
-                            <span class="person__tags"><span class="tag">Innovation</span><span class="tag">Technology</span></span>
-                        </span>
-                    </a>
-                    <a class="person" href="members/nandu.html">
-                        <span class="person__img"><img src="" alt="Nandu" loading="lazy"></span>
-                        <span class="person__body">
-                            <span class="person__desig">M&middot;13</span>
-                            <span class="person__name">Nandu</span>
-                            <span class="person__role">Member</span>
-                            <span class="person__bio">Passionate coder with a drive for excellence and continuous learning in technology.</span>
-                            <span class="person__tags"><span class="tag">Coding</span><span class="tag">Learning</span></span>
-                        </span>
-                    </a>
-                    <a class="person" href="members/ayush.html">
-                        <span class="person__img"><img src="iisertvm_logoWhite.png" alt="Ayush" loading="lazy"></span>
-                        <span class="person__body">
-                            <span class="person__desig">M&middot;14</span>
-                            <span class="person__name">Ayush</span>
-                            <span class="person__role">Member</span>
-                            <span class="person__bio">Creative technologist focused on building impactful solutions and fostering innovation.</span>
-                            <span class="person__tags"><span class="tag">Technology</span><span class="tag">Innovation</span><span class="tag">Solutions</span></span>
-                        </span>
-                    </a>
+
+                <div class="tabs" role="tablist" aria-label="Roster">
+                    <button class="tabs__btn" role="tab" id="t-station" data-panel="station" aria-controls="p-station" aria-selected="true">
+                        <span class="tabs__n">01</span>On station<span class="tabs__c">14</span>
+                    </button>
+                    <button class="tabs__btn" role="tab" id="t-ground" data-panel="ground" aria-controls="p-ground" aria-selected="false" tabindex="-1">
+                        <span class="tabs__n">02</span>Ground control<span class="tabs__c">&mdash;</span>
+                    </button>
+                    <button class="tabs__btn" role="tab" id="t-alumni" data-panel="alumni" aria-controls="p-alumni" aria-selected="false" tabindex="-1">
+                        <span class="tabs__n">03</span>Alumni<span class="tabs__c">02</span>
+                    </button>
+                </div>
+
+                <div id="p-station" role="tabpanel" aria-labelledby="t-station">
+                    <div class="roster">
+                        <a class="person" href="members/saurab-mishra.html">
+                            <span class="person__img"><img src="assets/img/people/saurabprofile.jpg" alt="Saurab Mishra" loading="lazy"></span>
+                            <span class="person__body">
+                                <span class="person__desig">M&middot;01</span>
+                                <span class="person__name">Saurab Mishra</span>
+                                <span class="person__role">Member</span>
+                            </span>
+                        </a>
+                        <a class="person" href="members/aryan-bhatia.html">
+                            <span class="person__img"><img src="assets/img/people/Aryan.jpg" alt="Aryan Bhatia" loading="lazy"></span>
+                            <span class="person__body">
+                                <span class="person__desig">M&middot;02</span>
+                                <span class="person__name">Aryan Bhatia</span>
+                                <span class="person__role">Member</span>
+                            </span>
+                        </a>
+                        <a class="person" href="members/abhinav-girish.html">
+                            <span class="person__img"><img src="assets/img/people/abhinav.png" alt="Abhinav Girish" loading="lazy"></span>
+                            <span class="person__body">
+                                <span class="person__desig">M&middot;03</span>
+                                <span class="person__name">Abhinav Girish</span>
+                                <span class="person__role">Member</span>
+                            </span>
+                        </a>
+                        <a class="person" href="members/ronak.html">
+                            <span class="person__img"><img src="assets/img/people/Ronakprofilepic.jpg" alt="Ronak" loading="lazy"></span>
+                            <span class="person__body">
+                                <span class="person__desig">M&middot;04</span>
+                                <span class="person__name">Ronak</span>
+                                <span class="person__role">Member</span>
+                            </span>
+                        </a>
+                        <a class="person" href="members/shreyansh.html">
+                            <span class="person__img"><img src="assets/img/people/shrayansh.jpeg" alt="Shrayansh" loading="lazy"></span>
+                            <span class="person__body">
+                                <span class="person__desig">M&middot;05</span>
+                                <span class="person__name">Shrayansh</span>
+                                <span class="person__role">Member</span>
+                            </span>
+                        </a>
+                        <a class="person" href="members/vaibhava.html">
+                            <span class="person__img"><img src="assets/img/people/kgccitprofile.jpg" alt="Vaibhava" loading="lazy"></span>
+                            <span class="person__body">
+                                <span class="person__desig">M&middot;06</span>
+                                <span class="person__name">Vaibhava</span>
+                                <span class="person__role">Member</span>
+                            </span>
+                        </a>
+                        <a class="person" href="members/abhinav-joshy.html">
+                            <span class="person__img"><img src="assets/img/people/abhinav.png" alt="Abhinav Joshy" loading="lazy"></span>
+                            <span class="person__body">
+                                <span class="person__desig">M&middot;07</span>
+                                <span class="person__name">Abhinav Joshy</span>
+                                <span class="person__role">Member</span>
+                            </span>
+                        </a>
+                        <a class="person" href="members/aneeth.html">
+                            <span class="person__img"><img src="assets/img/people/placeholder.svg" alt="Aneeth" loading="lazy"></span>
+                            <span class="person__body">
+                                <span class="person__desig">M&middot;08</span>
+                                <span class="person__name">Aneeth</span>
+                                <span class="person__role">Member</span>
+                            </span>
+                        </a>
+                        <a class="person" href="members/satyam.html">
+                            <span class="person__img"><img src="assets/img/people/satyampfp.jpg" alt="Satyam" loading="lazy"></span>
+                            <span class="person__body">
+                                <span class="person__desig">M&middot;09</span>
+                                <span class="person__name">Satyam</span>
+                                <span class="person__role">Member</span>
+                            </span>
+                        </a>
+                        <a class="person" href="members/antrin.html">
+                            <span class="person__img"><img src="assets/img/people/placeholder.svg" alt="Antrin" loading="lazy"></span>
+                            <span class="person__body">
+                                <span class="person__desig">M&middot;10</span>
+                                <span class="person__name">Antrin</span>
+                                <span class="person__role">Member</span>
+                            </span>
+                        </a>
+                        <a class="person" href="members/monisha.html">
+                            <span class="person__img"><img src="assets/img/people/placeholder.svg" alt="Monisha" loading="lazy"></span>
+                            <span class="person__body">
+                                <span class="person__desig">M&middot;11</span>
+                                <span class="person__name">Monisha</span>
+                                <span class="person__role">Member</span>
+                            </span>
+                        </a>
+                        <a class="person" href="members/krish.html">
+                            <span class="person__img"><img src="assets/img/people/placeholder.svg" alt="Krish" loading="lazy"></span>
+                            <span class="person__body">
+                                <span class="person__desig">M&middot;12</span>
+                                <span class="person__name">Krish</span>
+                                <span class="person__role">Member</span>
+                            </span>
+                        </a>
+                        <a class="person" href="members/nandu.html">
+                            <span class="person__img"><img src="assets/img/people/placeholder.svg" alt="Nandu" loading="lazy"></span>
+                            <span class="person__body">
+                                <span class="person__desig">M&middot;13</span>
+                                <span class="person__name">Nandu</span>
+                                <span class="person__role">Member</span>
+                            </span>
+                        </a>
+                        <a class="person" href="members/ayush.html">
+                            <span class="person__img"><img src="assets/img/people/ayush.png" alt="Ayush" loading="lazy"></span>
+                            <span class="person__body">
+                                <span class="person__desig">M&middot;14</span>
+                                <span class="person__name">Ayush</span>
+                                <span class="person__role">Member</span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="p-ground" role="tabpanel" aria-labelledby="t-ground" hidden>
+                    <div class="empty">
+                        <span class="empty__mark" aria-hidden="true"></span>
+                        <p>No advisory members are on record yet.</p>
+                        <p>Previous coordinators go here. Nothing in the repository
+                        distinguishes past coordinators from other members, so this
+                        panel stays empty until someone supplies the names.</p>
+                    </div>
+                </div>
+
+                <div id="p-alumni" role="tabpanel" aria-labelledby="t-alumni" hidden>
+                    <div class="roster">
+                        <div class="person">
+                            <span class="person__img"><img src="assets/img/people/alumni_ashutosh.jpg" alt="Ashutosh Kumar" loading="lazy"></span>
+                            <span class="person__body">
+                                <span class="person__desig">2019</span>
+                                <span class="person__name">Ashutosh Kumar</span>
+                                <span class="person__role">Ph.D. at University of Jyvaskala</span>
+                                <span class="person__links"><a href="https://www.linkedin.com/in/ashutosh-kumar-a7134b202/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a><a href="mailto:ashutoshkr19@iisertvm.ac.in" aria-label="Email"><i class="fas fa-envelope"></i></a></span>
+                            </span>
+                        </div>
+                        <div class="person">
+                            <span class="person__img"><img src="assets/img/people/alumni_krishna.jpg" alt="Krishna Kumar Singh" loading="lazy"></span>
+                            <span class="person__body">
+                                <span class="person__desig">2019</span>
+                                <span class="person__name">Krishna Kumar Singh</span>
+                                <span class="person__role">Ph.D. at University of Leeds</span>
+                                <span class="person__links"><a href="https://www.linkedin.com/in/kks0/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a><a href="mailto:Krishna19@alumni.iisertvm.ac.in" aria-label="Email"><i class="fas fa-envelope"></i></a></span>
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="sec" data-name="Comms">
-            <div class="wrap">
-                <div class="foot">
-                    <img src="connection_network_infinity_partial_logo.png" alt="">
-                    <span>Coding Club &middot; IISER Thiruvananthapuram</span>
-                    <span class="lbl">Built by members</span>
-                </div>
-            </div>
-        </section>
 
     </div>
 </div>
 
-<script src="console.js"></script>
+<script src="assets/js/console.js"></script>
 </body>
 </html>
