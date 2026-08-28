@@ -64,7 +64,14 @@
         var want = (location.search.match(/[?&]p=([^&]*)/) || [])[1] || '';
         want = decodeURIComponent(want);
         if (!/^[\w.\-/%]+$/.test(want) || want.indexOf('..') > -1 || want.charAt(0) === '/') want = '';
-        f.src = GH + want + location.hash;
+        /* Apache rewrites any source-attribute assignment it finds in the
+           response — inline script included, not just markup — into an
+           absolute URL. The first version of this block wrote the assignment
+           plainly and came back with the base URL spliced into the middle of
+           the expression: a SyntaxError that killed the whole script, which
+           is why the page once went out unstyled. Build the attribute name
+           from pieces so the pattern never appears in the file. */
+        f.setAttribute('s' + 'rc', GH + want + location.hash);
         document.body.appendChild(f);
 
         /* if the frame never paints, do not leave a black screen */
