@@ -364,10 +364,14 @@
     var segs = gauge ? gauge.querySelectorAll('i') : [];
 
     var place = function () {
-      var mid = screenEl.scrollTop + screenEl.clientHeight / 2;
-      var name = sections[0].dataset.name;
-      sections.forEach(function (s) { if (s.offsetTop <= mid) name = s.dataset.name; });
-      if (readout.textContent !== name) readout.textContent = name;
+      /* the two visualiser pages carry no [data-name] sections; they keep
+         the title the page declared instead of crashing on sections[0] */
+      if (sections.length) {
+        var mid = screenEl.scrollTop + screenEl.clientHeight / 2;
+        var name = sections[0].dataset.name;
+        sections.forEach(function (s) { if (s.offsetTop <= mid) name = s.dataset.name; });
+        if (readout.textContent !== name) readout.textContent = name;
+      }
 
       /* travel, not position: a page shorter than the screen is fully read */
       var span = screenEl.scrollHeight - screenEl.clientHeight;
@@ -380,8 +384,16 @@
       if (pct) pct.textContent = (p * 100 < 10 ? '0' : '') + Math.round(p * 100) + '%';
     };
 
-    screenEl.addEventListener('scroll', place, { passive: true });
-    window.addEventListener('resize', place);
+    /* one measurement per frame; scroll fires far more often than that */
+    var queued = false;
+    var onScroll = function () {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(function () { queued = false; place(); });
+    };
+
+    screenEl.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
     place();
   }
 

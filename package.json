@@ -4,7 +4,7 @@
   "description": "Coding Club IISER Thiruvananthapuram website. Static HTML/CSS/JS, no build step.",
   "main": "index.html",
   "scripts": {
-    "dev": "npx browser-sync start --server --no-notify --files \"*.html, members/*.html, assets/css/*.css, assets/js/*.js\" --open",
+    "dev": "npx browser-sync start --server --no-notify --files \"*.html, members/*.html, others/*.html, Blogs/**/*.html, assets/css/*.css, assets/js/*.js\" --open",
     "start": "npx http-server -c-1"
   },
   "keywords": [

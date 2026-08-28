@@ -1,27 +1,28 @@
 # others/
 
-Pages and files that are **not part of the five-page site**. Nothing here appears in
-the menu bar (`/home /team /events /merch /library`).
+Pages that are **not part of the six-page site**. Nothing here appears in the menu bar
+(`/home /team /events /blogs /merch /archive`).
 
-These pages still work, still carry the site chrome, and most are still linked from
-`library.html` or `events.html` — they just aren't primary navigation. Moving one back
-to the root means moving the file and deleting its `data-up="../"` attribute.
+These pages still work and still carry the site chrome; most are linked from
+`archive.html` or `events.html`. Moving one back to the root means moving the file and
+deleting its `data-up="../"` attribute.
 
 ## Pages
 
-| File | Still linked from | Notes |
+| File | Linked from | Notes |
 |---|---|---|
-| `projects.html` | `library.html` | Courses and the interactive demos |
-| `alumni.html` | `library.html` | Past members |
-| `hackathon.html` | `events.html`, `library.html` | Codyssey detail page |
+| `projects.html` | `archive.html` | Courses and the interactive demos |
+| `hackathon.html` | `events.html`, `archive.html` | Codyssey detail page |
 | `webdev-course.html` | `events.html` | Course overview |
-| `course-layout.html` | `library.html`, `webdev-course.html` | 16-slide viewer, reads `../assets/course/` |
-| `dbscan.html` | `library.html`, `projects.html` | Plotly visualiser |
-| `linear_regression.html` | `library.html`, `projects.html` | Plotly + Chart.js visualiser |
-| `blogs.html` | **nothing** | Orphaned — `library.html` links the posts directly instead |
+| `course-layout.html` | `archive.html`, `webdev-course.html` | 16-slide viewer, reads `../assets/course/` |
+| `dbscan.html` | `archive.html`, `projects.html` | Plotly visualiser (basic bundle) |
+| `linear_regression.html` | `archive.html`, `projects.html` | Plotly gl3d + Chart.js visualiser |
 
-`blogs.html` duplicates the writing panel in `library.html`. Delete it or link it;
-right now it is unreachable.
+Neither visualiser page has `[data-name]` sections, so the bottom rail keeps the title
+the page declares instead of tracking scroll position. `console.js` allows for that.
+
+`alumni.html` used to live here; `team.html#alumni` holds the same two profiles, so it
+was deleted. `git log` has it if anyone wants it back.
 
 ## unused-assets/
 
@@ -40,9 +41,6 @@ ayush.png
 
 `ayush.png` is a real portrait that went unused because `team.html` points that card at
 the institute logo instead — worth fixing in `team.html` rather than leaving here.
-
-`step_mentor.png` (592 KB) and `step_mentor_transparent_enhanced.png` (370 KB) are the
-two largest files in the repo.
 
 ## What is NOT unused
 

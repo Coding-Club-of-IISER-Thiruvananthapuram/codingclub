@@ -3,7 +3,9 @@
 The club website. Plain HTML, CSS and JavaScript with **no build step** — what is in
 the repo is what gets served. Open `index.html` in a browser and it works.
 
-Live at <https://codingclub.iisertvm.ac.in>.
+Live at <https://sites.iisertvm.ac.in/codingclub/> — the institute reverse-proxies
+that path to GitHub Pages. `codingclub.iisertvm.ac.in` has no DNS record; it is not
+a working address. See "How it is served" below.
 
 ---
 
@@ -24,6 +26,84 @@ the site — any static file server, or opening the HTML directly, will do.
 
 ---
 
+## How it is served
+
+The site is **not** hosted on the institute's server. It is on GitHub Pages, and
+Apache on `sites.iisertvm.ac.in` reverse-proxies one path to it:
+
+```
+https://sites.iisertvm.ac.in/codingclub/
+        └─ Apache 2.4.52 (Ubuntu) ──► https://coding-club-of-iiser-thiruvananthapuram.github.io/codingclub/
+```
+
+Measured with curl and a headless browser, that proxy does three things to the
+response, and each one costs us something:
+
+1. **Only the index is mapped.** `/codingclub/` returns the page; `/codingclub/team.html`,
+   `/codingclub/index.html`, every stylesheet, script and image returns GitHub's 404
+   page. The live site today loads its HTML and *nothing else* — no CSS, no navbar
+   script, broken logos, and every link in the menu dead. The mapping behaves like a
+   single-URL `ProxyPass` to `…/codingclub/index.html` rather than a subtree mount.
+2. **It injects `<base href="https://sites.iisertvm.ac.in/codingclub/">`** as the first
+   thing inside `<head>`, on every response including 404s. The URL is constant, so it
+   is *wrong for any page not at the site root*: on `members/foo.html`, `../assets/css/console.css`
+   resolves to `/assets/css/console.css` — above the site — and 404s. A `<base>` of our
+   own cannot fix this: the first `<base>` in the document wins and theirs is inserted
+   ahead of ours.
+3. **It rewrites every `src="…"`** to an absolute URL under `/codingclub/`, including
+   inside inline `<script>` strings. `href` is left alone. For a root page this is a
+   no-op; for a subdirectory page it turns `../assets/x.png` into `/assets/x.png`.
+
+Verified against a local simulation of all three rules: **root pages come through
+perfectly (0 failed requests); `members/*` and `others/*` lose their stylesheet, their
+script and their images.**
+
+Two smaller things: `https://sites.iisertvm.ac.in/codingclub` without the trailing
+slash 301-redirects to **`http://`**, dropping TLS, and `codingclub.iisertvm.ac.in`
+(which this README used to advertise) has no DNS record at all.
+
+### What to ask IT for
+
+```apache
+SSLProxyEngine on
+ProxyPass        /codingclub/ https://coding-club-of-iiser-thiruvananthapuram.github.io/codingclub/
+ProxyPassReverse /codingclub/ https://coding-club-of-iiser-thiruvananthapuram.github.io/codingclub/
+# and turn OFF the HTML rewriting for this path:
+ProxyHTMLEnable  Off        # or remove the mod_substitute rule injecting <base>
+```
+
+Once the proxied path and the upstream path match one-for-one, no rewriting is needed —
+every link in this repo is relative and works under any prefix. The cleanest fix is to
+skip the proxy: point a `CNAME` for `codingclub.iisertvm.ac.in` at the GitHub Pages host
+and set it as the custom domain.
+
+### What we do instead (no server change needed)
+
+The proxy blocks paths *under* `/codingclub/`. It does not stop the browser from talking
+to GitHub Pages directly, and GitHub Pages sends neither `X-Frame-Options` nor a CSP
+`frame-ancestors`. So `index.html` — the one document the proxy does serve — hides itself
+and hands the whole viewport to the real site in a full-bleed iframe, but *only* when
+`location.hostname` is exactly `sites.iisertvm.ac.in`. It names the one host that needs
+this rather than listing the hosts that do not: the dev server is reached by LAN IP from
+a phone as often as by `localhost`, and an allow-list got that wrong — the phone framed
+the deployed site instead of the local one.
+
+The result: `sites.iisertvm.ac.in/codingclub/` stays the address in the bar, and every
+page, stylesheet, script and image inside it is fetched from GitHub Pages, where the
+relative paths this repo is built on work normally. Subdirectory pages are fine again —
+they are never requested through the proxy.
+
+`?p=` deep-links into it: `…/codingclub/?p=team.html`, `…/codingclub/?p=members/aneeth.html`.
+The value is validated as a relative path — an absolute URL, a `javascript:` URL or any
+`..` falls back to the home page, so the parameter cannot be used to frame another site.
+
+The block is the commented `<script>` in the `<head>` of `index.html`, about fifteen
+lines. It does nothing on GitHub Pages or on the dev server. Delete it the day the
+proxy config is fixed.
+
+**This only works once the site is actually deployed.** GitHub Pages is currently serving
+the version from 5 October 2025; the redesign is unpushed local work.
+
 ## File structure
 
 ```
@@ -39,7 +119,7 @@ the site — any static file server, or opening the HTML directly, will do.
 ├── members/                One profile page per member
 │
 ├── others/                 Everything not in the menu bar — see others/README.md
-│   ├── projects.html  alumni.html  hackathon.html  webdev-course.html
+│   ├── projects.html  hackathon.html  webdev-course.html
 │   ├── course-layout.html  dbscan.html  linear_regression.html
 │   └── unused-assets/      13 images no page references
 │
@@ -207,8 +287,6 @@ the last row as a large pale block.
   Ground control, Alumni — but nothing in the repo says who the coordinators are or
   who came before them; every member is recorded with the role "Member". Populate it
   by adding `.person` cards to `#p-ground` in `team.html`.
-- **`others/alumni.html` is now a duplicate.** `team.html#alumni` holds the same two
-  profiles and `archive.html` points there. Delete the old page or leave it.
 - **`Blogs/` has not been converted** to the current design. It still uses its own
   `blogstyle.css` and Prism syntax highlighting, and pulls two files from
   `Blogs/legacy/`. The nine posts work and are linked from `archive.html`.
@@ -219,13 +297,31 @@ the last row as a large pale block.
   payment backend.
 - **Library dates are missing.** History rows are labelled by kind ("Talk series",
   "Workshop") because the repo has no reliable dates for past sessions.
-- **`node_modules/` is committed to git.** It is now in `.gitignore`, but the tracked
-  copy has to be removed separately:
-  `git rm -r --cached node_modules`
-- **Some source images are wrong.** `team.html` points Ayush's card at the institute
+- **One source image is still wrong.** `team.html` points Ayush's card at the institute
   logo, which left his real portrait unused (now in `others/unused-assets/ayush.png`).
-  `assets/img/people/user.jpg` is an 8000×8000 placeholder at 1.4 MB. Both are worth
-  fixing at the source.
+  Worth fixing in `team.html` rather than leaving it there.
+
+## Weight
+
+Nothing here is minified and nothing needs to be, but four things were large enough to
+matter and were dealt with directly:
+
+- **Course slides: 44 MB → 10 MB.** Each `assets/course/*.svg` is vector art wrapped
+  around a handful of base64 rasters, and the same 1.2 MB background JPEG was embedded
+  in all sixteen. The rasters are now capped at 1400px and re-encoded — JPEG where
+  there is no alpha channel, PNG where there is, so the slides that use a grayscale
+  mask still composite correctly. The vector text is untouched and still sharp.
+- **Portraits: 4.3 MB → 568 KB.** Four photographs were 2400–3100px on the long edge
+  and were being drawn into 220px tiles.
+- **Plotly: 3.4 MB → 1.0/1.6 MB.** `plotly-latest.min.js` is a frozen 1.58.5 alias.
+  `dbscan.html` draws scatter only, so it loads the *basic* bundle;
+  `linear_regression.html` needs `surface` and `scatter3d`, so it loads *gl3d*. Both
+  pinned to 3.0.1.
+- **`node_modules/` is no longer tracked** (`git rm -r --cached`); `.gitignore` covers
+  it. The files stay on disk for the dev server.
+
+If you replace a photograph, check its pixel size before committing it. Nothing in the
+site displays an image wider than about 800px.
 
 ---
 

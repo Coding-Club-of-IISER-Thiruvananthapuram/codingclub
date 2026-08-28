@@ -14,7 +14,7 @@
     <meta property="og:title" content="Coding Club IISER Thiruvananthapuram - Innovate with Code">
     <meta property="og:description" content="Join IISER Thiruvananthapuram's Coding Club to explore cutting-edge technologies and build innovative solutions in AI, ML, and web development.">
     <meta property="og:image" content="assets/img/brand/connection_network_infinity_partial_logo.png">
-    <meta property="og:url" content="https://codingclub.iisertvm.ac.in">
+    <meta property="og:url" content="https://sites.iisertvm.ac.in/codingclub/">
     <meta property="og:type" content="website">
 
     <meta name="twitter:card" content="summary_large_image">
@@ -23,6 +23,59 @@
     <meta name="twitter:image" content="assets/img/brand/connection_network_infinity_partial_logo.png">
 
     <title>Coding Club IISER Thiruvananthapuram - Innovate with Code</title>
+
+    <!-- ============================================================
+         Served through the institute proxy?
+         sites.iisertvm.ac.in/codingclub/ maps ONLY this one URL to
+         GitHub Pages. Every other path under it — team.html, the
+         stylesheet, the script, every image — returns a 404, and
+         Apache injects <base href=".../codingclub/"> on top, so
+         relative links cannot be made to work from our side.
+         What the browser CAN still reach is GitHub Pages itself, and
+         it sets neither X-Frame-Options nor CSP frame-ancestors.
+         So on that host we hand the viewport to the real site and
+         the address bar keeps reading /codingclub/.
+         On GitHub Pages and on localhost this does nothing.
+         ============================================================ -->
+    <script>
+    (function () {
+      var GH = 'https://coding-club-of-iiser-thiruvananthapuram.github.io/codingclub/';
+      /* Name the one host that needs this rather than trying to list every
+         host that does not: the dev server is reached by LAN IP from a phone
+         as often as by localhost, and an allow-list gets that wrong. */
+      if (location.hostname !== 'sites.iisertvm.ac.in' || window.top !== window.self) return;
+
+      /* hide the page we are about to replace rather than let it flash
+         unstyled — its own stylesheet is one of the things that 404s */
+      document.write('<style>html,body{margin:0;height:100%;background:#000}' +
+                     'body>*{display:none}' +
+                     '#site{display:block;position:fixed;inset:0;width:100%;height:100%;border:0}' +
+                     '#site-fallback{display:block;position:fixed;left:50%;bottom:1rem;transform:translateX(-50%);' +
+                     'font:400 13px/1 monospace;color:#7286b0}' +
+                     '#site-fallback a{color:#a855ff}</style>');
+
+      document.addEventListener('DOMContentLoaded', function () {
+        var f = document.createElement('iframe');
+        f.id = 'site';
+        f.title = 'Coding Club IISER Thiruvananthapuram';
+        /* ?p=team.html lets a link on the institute domain point at any page
+           of the site. Strictly a relative path — never a URL, or this turns
+           into an open redirect that frames someone else's site. */
+        var want = (location.search.match(/[?&]p=([^&]*)/) || [])[1] || '';
+        want = decodeURIComponent(want);
+        if (!/^[\w.\-/%]+$/.test(want) || want.indexOf('..') > -1 || want.charAt(0) === '/') want = '';
+        f.src = GH + want + location.hash;
+        document.body.appendChild(f);
+
+        /* if the frame never paints, do not leave a black screen */
+        var p = document.createElement('p');
+        p.id = 'site-fallback';
+        p.innerHTML = 'Loading\u2026 <a href="' + GH + '">open the site directly</a>';
+        document.body.appendChild(p);
+        f.addEventListener('load', function () { p.remove(); });
+      });
+    })();
+    </script>
 
     <link rel="apple-touch-icon" sizes="180x180" href="assets/img/brand/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/img/brand/favicon-32x32.png">
