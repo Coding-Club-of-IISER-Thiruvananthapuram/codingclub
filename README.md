@@ -62,22 +62,8 @@ Two smaller things: `https://sites.iisertvm.ac.in/codingclub` without the traili
 slash 301-redirects to **`http://`**, dropping TLS, and `codingclub.iisertvm.ac.in`
 (which this README used to advertise) has no DNS record at all.
 
-### What to ask IT for
 
-```apache
-SSLProxyEngine on
-ProxyPass        /codingclub/ https://coding-club-of-iiser-thiruvananthapuram.github.io/codingclub/
-ProxyPassReverse /codingclub/ https://coding-club-of-iiser-thiruvananthapuram.github.io/codingclub/
-# and turn OFF the HTML rewriting for this path:
-ProxyHTMLEnable  Off        # or remove the mod_substitute rule injecting <base>
-```
-
-Once the proxied path and the upstream path match one-for-one, no rewriting is needed —
-every link in this repo is relative and works under any prefix. The cleanest fix is to
-skip the proxy: point a `CNAME` for `codingclub.iisertvm.ac.in` at the GitHub Pages host
-and set it as the custom domain.
-
-### What we do instead (no server change needed)
+### How dead calls to server is fixed
 
 The proxy blocks paths *under* `/codingclub/`. It does not stop the browser from talking
 to GitHub Pages directly, and GitHub Pages sends neither `X-Frame-Options` nor a CSP
@@ -278,59 +264,6 @@ must too:
 The scroll reveal rides the throttled `place()` handler the status rail already runs, so
 it costs no extra listener and no IntersectionObserver.
 
-### The phone layout
-
-Everything below 46rem lives in one `PHONE` block at the end of `console.css`, not in a
-media query per component — there were eleven of those and they disagreed with each
-other. Four decisions in it are worth keeping:
-
-- **The menu becomes six equal switches with the glyph over the label.** Six items with
-  the label *beside* the glyph cannot fit 390px: `/merch` and `/archive` were simply off
-  the screen. Below 22rem the labels go and the glyphs stay, so every destination keeps a
-  tap target.
-- **`--inset` drops to 0 and the rails shrink** (`--rail: 40px`, `--nav: 52px`). The
-  bezel is a desktop conceit; on a phone it costs 36px of width for nothing. Below
-  20.5rem the status rail drops the gauge and the percentage rather than pushing them
-  off the edge.
-- **Every multi-column grid collapses to `minmax(0, 1fr)`, not `1fr`.** An `fr` track's
-  automatic minimum is min-content, so a portrait pushed the profile column wider than
-  a 320px screen even at one column.
-- **Portraits stay two-up.** One per row turns a fourteen-person roster into a scroll.
-
-The shop reorders on a phone: `order: -1` puts the stage first, so the thing you are
-looking at leads and the catalogue follows, and the bag covers the screen instead of
-sliding a panel over half of it.
-
-Checked with a script that walks every element on all 26 pages at 390, 360 and 320px and
-reports anything whose right edge passes the viewport, ignoring content inside a box
-that scrolls on its own (a code sample in a `pre` is contained, not overflowing).
-All three widths: clean.
-
-### The page must never flash white
-
-Every page declares `<meta name="color-scheme" content="dark">` **before** the
-stylesheet link, and `console.css` sets `color-scheme: dark` plus a literal
-`background: #000` on `html, body` — literal, not `var(--hull)`, because during any
-moment the stylesheet has not applied there are no custom properties to resolve.
-
-Without these the browser paints its default canvas, which is pure white. Measured
-with the stylesheet absent: `#ffffff` before, `#121212` after. That was the white flash
-on the rails when clicking between pages — the dev server sends
-`Cache-Control: max-age=0`, so the browser revalidates `console.css` on every
-navigation, and any slow round-trip exposes the unstyled canvas.
-
-Every page also carries `style="background:#000"` **on the `<html>` element itself**.
-The meta tag only tells the browser which default canvas to pick; it still picks one of
-*its* colours — Firefox `#1c1b22`, Chromium `#121212` — and paints it for the moments
-between documents, before `console.css` has been parsed. Against this site's pure black
-that reads as a grey flash on every navigation. An inline style attribute is the only
-declaration that applies from the first parsed byte.
-
-Verified with the stylesheet blocked and the browser's default canvas forced to white:
-`html` still computes to `rgb(0, 0, 0)` on every page.
-
-Keep both the meta tag and the inline background on any new page.
-
 ### Design tokens
 
 All colour and type lives in `:root` at the top of `console.css`. The palette is
@@ -346,7 +279,7 @@ the last row as a large pale block.
 
 ## worker/ — the merch backend, dormant
 
-`worker/` is a verbatim copy of the Anvesha '26 merch API: a Cloudflare Worker with D1,
+`worker/` is a dormant backend layer for the merch: it has a Cloudflare Worker with D1,
 R2, Razorpay settlement, a Resend confirmation mail and an in-worker QR generator, plus
 its schema, seeds, smoke script and tests. **Nothing on this site talks to it.** The
 merch page is entirely client-side; the copy is here so the shop can be wired up later
@@ -354,8 +287,8 @@ without starting from scratch.
 
 Three things to know before anyone switches it on:
 
-- `wrangler.jsonc` still names Anvesha's D1 database id, R2 bucket and allowed origins.
-  Those are that festival's resources; the club needs its own.
+- `wrangler.jsonc` names D1 database id, R2 bucket and allowed origins.
+  Those are that account's resources;
 - `DIRECT_PAY: "1"` is set, which makes `POST /api/pay` mark any order paid with no
   gateway involved. That is deliberate there and dangerous here — remove it before the
   Worker is ever deployed on a domain that takes money.
@@ -363,26 +296,6 @@ Three things to know before anyone switches it on:
   git-ignored, and the local D1/R2 state and order backups that came with the copy were
   deleted rather than committed — they held real names, emails and phone numbers.
 
-
-## Known gaps
-
-- **Ground control is empty.** `team.html` has three roster panels — On station,
-  Ground control, Alumni — but nothing in the repo says who the coordinators are or
-  who came before them; every member is recorded with the role "Member". Populate it
-  by adding `.person` cards to `#p-ground` in `team.html`.
-- **`Blogs/` has not been converted** to the current design. It still uses its own
-  `blogstyle.css` and Prism syntax highlighting, and pulls two files from
-  `Blogs/legacy/`. The nine posts work and are linked from `archive.html`.
-- **Merch products are placeholders.** There are no product photos in the repo, so
-  every view falls back to the club mark. The catalogue is a single `CATALOGUE`
-  array at the top of the script in `merch.html`; replace the image paths and prices
-  and nothing else needs editing. The Reserve button opens a mail draft — there is no
-  payment backend.
-- **Library dates are missing.** History rows are labelled by kind ("Talk series",
-  "Workshop") because the repo has no reliable dates for past sessions.
-- **One source image is still wrong.** `team.html` points Ayush's card at the institute
-  logo, which left his real portrait unused (now in `others/unused-assets/ayush.png`).
-  Worth fixing in `team.html` rather than leaving it there.
 
 ## Weight
 
@@ -441,3 +354,4 @@ Two gotchas it exists because of:
 - Asset paths are written relative to the page. Pages in `members/` and `others/`
   prefix `../` and declare `data-up="../"`.
 - Content is edited directly in the HTML. There is no CMS and no templating.
+
