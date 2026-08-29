@@ -36,7 +36,9 @@
         '<img src="' + up + 'assets/img/brand/connection_network_infinity_partial_logo.png" alt="">Coding Club</a>' +
       '<span class="lbl rail__desig">IISER Thiruvananthapuram</span>' +
       '<span class="rail__spacer"></span>' +
-      '<span class="lamp">Systems nominal</span>' +
+      /* the lamp is the pulse itself; the words were saying nothing the colour
+         did not already say */
+      '<span class="lamp lamp--bare" role="status" aria-label="Systems nominal"></span>' +
       '<span class="mono rail__clock" data-clock>--:--</span>';
 
     var nav = document.createElement('nav');
@@ -58,8 +60,8 @@
       '<span class="gauge" data-gauge aria-hidden="true"></span>' +
       '<span class="rail__pct mono" data-pct>00%</span>' +
       /* dots in the middle of the rail, credit at the far end */
-      '<span class="rail__dots" aria-hidden="true">' + new Array(10).join('<i></i>') + '</span>' +
       '<span class="rail__spacer"></span>' +
+      '<span class="rail__dots" aria-hidden="true">' + new Array(9).join('<i></i>') + '</span>' +
       '<span class="lbl rail__credit">Rebuilt by Antrin Maji</span>';
 
     deck.insertBefore(nav, deck.firstChild);

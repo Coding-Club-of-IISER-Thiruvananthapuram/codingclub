@@ -149,15 +149,12 @@ img { max-width: 100%; display: block; }
 }
 @media (max-width: 1000px) { .rail__credit { display: none; } }
 
-/* the middle of the rail: a row of square lamps, centred on the rail itself
-   rather than on whatever the two side groups leave over */
+/* five square lamps at the right-hand end of the rail, ahead of the credit */
 .rail__dots {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
   align-items: center;
   gap: 0.4375rem;
+  margin-right: 0.375rem;
   pointer-events: none;
 }
 .rail__dots i {
@@ -167,23 +164,24 @@ img { max-width: 100%; display: block; }
   opacity: 0.22;
   animation: dot-wave 1.9s var(--ease) infinite;
 }
-/* the pulse travels along the row: 0.11s between neighbours, so the crest
-   crosses all nine in about a second and the row rests before the next one */
+/* the pulse travels along the row: 0.115s between neighbours, so the crest
+   crosses all eight and the row rests before the next pass */
 .rail__dots i:nth-child(1) { animation-delay: 0s; }
-.rail__dots i:nth-child(2) { animation-delay: 0.11s; }
-.rail__dots i:nth-child(3) { animation-delay: 0.22s; }
-.rail__dots i:nth-child(4) { animation-delay: 0.33s; }
-.rail__dots i:nth-child(5) { animation-delay: 0.44s; }
-.rail__dots i:nth-child(6) { animation-delay: 0.55s; }
-.rail__dots i:nth-child(7) { animation-delay: 0.66s; }
-.rail__dots i:nth-child(8) { animation-delay: 0.77s; }
-.rail__dots i:nth-child(9) { animation-delay: 0.88s; }
+.rail__dots i:nth-child(2) { animation-delay: 0.115s; }
+.rail__dots i:nth-child(3) { animation-delay: 0.23s; }
+.rail__dots i:nth-child(4) { animation-delay: 0.345s; }
+.rail__dots i:nth-child(5) { animation-delay: 0.46s; }
+.rail__dots i:nth-child(6) { animation-delay: 0.575s; }
+.rail__dots i:nth-child(7) { animation-delay: 0.69s; }
+.rail__dots i:nth-child(8) { animation-delay: 0.805s; }
 
 @keyframes dot-wave {
   0%, 55%, 100% { opacity: 0.22; transform: scale(1); }
   18%           { opacity: 1;    transform: scale(1.5); }
 }
-@media (max-width: 700px) { .rail__dots { display: none; } }
+
+/* the top rail's lamp carries no label: it is the dot and nothing else */
+.lamp--bare { gap: 0; }
 
 .lamp {
   display: inline-flex;
@@ -327,6 +325,10 @@ img { max-width: 100%; display: block; }
   gap: clamp(2rem, 5vw, 4rem);
   align-items: center;
 }
+
+/* "the" belongs to the phone masthead only: there the heading is centred
+   and breaks after it; on a desktop the shorter line reads better */
+.hero__the { display: none; }
 
 .hero__desig {
   font-family: var(--font-data);
@@ -743,13 +745,6 @@ img { max-width: 100%; display: block; }
   .state { justify-self: start; }
 }
 
-@media (max-width: 620px) {
-  :root { --inset: 0px; }
-  .deck { border-width: 0; box-shadow: none; }
-  .rail__desig, .rail__clock { display: none; }
-  /* keeps the readout's aligned dot-leaders from wrapping mid-line */
-  .term__body { font-size: 0.6875rem; padding: 1rem 0.875rem 1.25rem; }
-}
 
 @media (prefers-reduced-motion: reduce) {
   .screen { scroll-behavior: auto; }
@@ -1092,20 +1087,6 @@ img { max-width: 100%; display: block; }
 }
 .manifest__row:hover .manifest__n { color: var(--violet); }
 
-/* the masthead's second line, always solid */
-.hero__title em { display: block; font-style: normal; color: var(--violet); }
-
-/* the marker that closes a heading, and the prompt that opens its readout */
-/* static marker closing the heading; echoes the path form the menu uses */
-.hero__mark {
-  margin-left: 0.26em;
-  font-family: var(--font-data);
-  font-size: 0.5em;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  vertical-align: 0.12em;
-  color: var(--violet);
-}
 
 /* ---- technical grid: major and minor rules, like drafting film ---- */
 .glass {
@@ -1220,10 +1201,6 @@ img { max-width: 100%; display: block; }
 /* the marks sit quieter than the words they enclose */
 .creed__mark { color: var(--ink-faint); }
 
-@media (max-width: 720px) {
-  .creed { flex-direction: column; gap: 1rem; }
-  .creed__rule { width: 100%; flex: none; }
-}
 
 /* ============================================================
    FOCUS AREAS — an icon panel rather than a list
@@ -1419,10 +1396,6 @@ img { max-width: 100%; display: block; }
 
 .profile__extra .link-row:first-of-type { padding-top: 0; }
 
-@media (max-width: 760px) {
-  .profile { grid-template-columns: 1fr; }
-  .profile__photo { min-height: 0; aspect-ratio: 4 / 3; }
-}
 
 
 /* tucked under the title and stepped in, so the readout hangs off the
@@ -1453,11 +1426,6 @@ img { max-width: 100%; display: block; }
   color: var(--violet);
 }
 
-@media (max-width: 700px) {
-  .display--tuck { margin-left: 0; }
-  /* nothing to the left to hang it on once the indent collapses */
-  .display--tuck::before { display: none; }
-}
 
 /* ---- display: the heading's readout, housed rather than floating ---- */
 .display {
@@ -1574,10 +1542,6 @@ img { max-width: 100%; display: block; }
   color: var(--violet);
 }
 
-@media (max-width: 700px) {
-  .post { grid-template-columns: 2.5rem minmax(0, 1fr); }
-  .post__go { display: none; }
-}
 
 
 /* ============================================================
@@ -1792,20 +1756,15 @@ img { max-width: 100%; display: block; }
   text-transform: uppercase;
   color: var(--ink);
 }
-@media (max-width: 620px) {
-  .reader__title { flex-basis: 100%; padding-left: 0; border-left: 0; }
-}
 
 .modal__body .prose {
   margin-left: clamp(0rem, 4vw, 3rem);
   padding-top: 1.25rem;
   border-top: 1px solid var(--rule);
 }
-@media (max-width: 620px) { .modal__body .prose { margin-left: 0; } }
 
 .modal__note { padding: 2rem 0; color: var(--ink-faint); font-family: var(--font-data); font-size: 0.8125rem; }
 
-@media (max-width: 620px) { .modal { padding: 0; } .modal__panel { max-height: 100%; } }
 
 
 /* ============================================================
@@ -1936,7 +1895,6 @@ button.person {
 }
 .rec__role { margin: 0.5rem 0 1.25rem; color: var(--violet); font-family: var(--font-data); font-size: 0.8125rem; }
 .rec__none { color: var(--ink-faint); font-family: var(--font-data); font-size: 0.8125rem; }
-@media (max-width: 46rem) { .rec { grid-template-columns: 1fr; } }
 
 /* ---- channels: the only thing left in comms ---- */
 .channels {
@@ -2055,7 +2013,7 @@ button.person {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: clamp(1.25rem, 3vw, 2.5rem);
+  gap: 1.25rem clamp(1.25rem, 3vw, 2.5rem);   /* row gap stays tight when it stacks */
   margin-top: 1px;                  /* sits flush against the grid above it */
   padding: clamp(1.5rem, 4vw, 2.25rem);
   /* the screen black, not --panel: at this size the panel tint reads as a grey
@@ -2214,9 +2172,6 @@ button.person {
 .slip__total { display: flex; align-items: baseline; justify-content: space-between; margin: 1.25rem 0; padding-top: 1rem; border-top: 1px solid var(--rule-lit); }
 .slip__total b { font-family: var(--font-data); font-size: 1.125rem; }
 
-@media (max-width: 700px) {
-  .bag { top: calc(var(--inset) + var(--rail)); left: var(--inset); width: auto; }
-}
 
 .buy__arrow {
   flex: none;
@@ -2230,3 +2185,182 @@ button.person {
 }
 .buy:hover:not(:disabled) .buy__arrow { transform: translate(2px, -2px); }
 .buy__dot { flex: 1; height: 1px; background: currentColor; opacity: 0.35; }
+
+
+/* ============================================================
+   PHONE — one place, not a fragment per component
+   Everything below 46rem. The deck loses its bezel and the rails get
+   shorter, the menu becomes six equal switches with the label under the
+   glyph (six items with the label beside it cannot fit 390px — /merch and
+   /archive were simply off-screen), and every multi-column grid on the site
+   collapses in one place instead of eleven scattered media queries.
+   ============================================================ */
+@media (max-width: 46rem) {
+
+  /* ---- housing ---- */
+  :root { --inset: 0px; --rail: 40px; --nav: 52px; }
+  .deck { border-width: 0; box-shadow: none; }
+
+  .rail { gap: 0.625rem; padding: 0 0.75rem; font-size: 0.6875rem; }
+  .rail__desig, .rail__credit { display: none; }
+  /* the status rail leads with the page name: the word POSITION was a third of
+     the row explaining what the next word obviously is */
+  .rail--bot > .lbl:first-child { display: none; }
+  .rail__brand img { width: 1.25rem; height: 1.25rem; }
+  .lamp { font-size: 0.625rem; }
+
+  /* the menu: glyph over label, six equal columns, no horizontal scroll */
+  .nav { display: grid; grid-template-columns: repeat(6, 1fr); }
+  .nav__item {
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.1875rem;
+    padding: 0 0.125rem;
+    font-size: 0.5625rem;
+    letter-spacing: 0.02em;
+  }
+  .nav__item span { overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+  .nav__icon { font-size: 0.9375rem; }
+
+  /* ---- rhythm ---- */
+  .wrap { padding-left: 1.125rem; padding-right: 1.125rem; }
+  .sec { padding: clamp(2rem, 7vh, 3rem) 0; }
+  .sec__title { font-size: clamp(1.5rem, 8vw, 2rem); }
+  .sec__sub { font-size: 0.9375rem; }
+  /* 10.5vw, not 12: "Transmissions//" is one unbreakable token — the mark is
+     glued to the word with no space — so the heading has to fit at one go */
+  .hero__title { font-size: clamp(1.875rem, 10.5vw, 3rem); }
+  /* the masthead centres and breaks in two: "Welcome to the" over
+     "Coding Club", with the eyebrow and the paragraph centred under it */
+  .hero__desig { text-align: center; }
+  .hero__title { text-align: center; }
+  .hero__title em { display: block; }
+  .hero__the { display: inline; }
+  .hero__lede { text-align: center; }
+  .hero__lede { font-size: 0.9375rem; }
+  .hero__actions { display: grid; gap: 0.625rem; }
+  .hero__actions .btn { justify-content: center; }
+
+  /* the readout's dot leaders must not wrap: 52 characters at this size is
+     the longest line, and it has to fit the screen at one go */
+  .term__body { font-size: 0.625rem; padding: 0.875rem 0.75rem 1rem; }
+
+  .creed { flex-direction: column; gap: 1rem; }
+  .creed__rule { width: 100%; flex: none; }
+
+  /* ---- headings with a typed readout ---- */
+  .display--tuck { margin-left: 0; }
+  .display--tuck::before { display: none; }   /* nothing left to hang it on */
+
+  /* ---- grids: everything to one column, except tiles which take two ---- */
+  .areas,
+  .works,
+  .channels,
+  .comms,
+  .duo,
+  .record { grid-template-columns: minmax(0, 1fr); }
+  .record__cell--wide { grid-column: auto; }
+
+  /* the focus cells lose the divider row: eight full-height cards one per row
+     is four screens of scrolling for what is a list of subjects */
+  .area { flex-direction: row; align-items: baseline; flex-wrap: wrap;
+          gap: 0.5rem 0.875rem; padding: 1rem 1.125rem; }
+  .area__top { order: -1; flex: none; padding: 0; margin: 0; border-bottom: 0; gap: 0.75rem; }
+  .area__icon { font-size: 1.125rem; }
+  .area__tag { font-size: 0.5625rem; }
+  .area__name { font-size: 0.9375rem; }
+  .area__desc { flex-basis: 100%; font-size: 0.8125rem; }
+
+  /* portraits stay two-up: one per row makes a 14-person roster a scroll */
+  .roster { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .person__body { padding: 0.625rem 0.6875rem 0.75rem; }
+  .person__name { font-size: 0.8125rem; }
+  .person__desig, .person__role { font-size: 0.5625rem; }
+
+  .tabs { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .tabs__btn { padding: 0.75rem 0.5rem; font-size: 0.625rem; }
+  .tabs__n { display: none; }
+
+  /* minmax(0, 1fr), not 1fr: an fr track's automatic minimum is min-content,
+     so a photo could still push the column wider than the screen */
+  .profile { grid-template-columns: minmax(0, 1fr); }
+  .profile__photo { min-height: 0; aspect-ratio: 4 / 3; }
+
+  /* keep the index in its own gutter so the log still reads as a plotted list;
+     one column put the number on a line of its own, floating above the date */
+  .manifest__row { grid-template-columns: 2.5rem minmax(0, 1fr); gap: 0.375rem 0.875rem; padding: 1.125rem 0 1.125rem 0.75rem; }
+  .manifest__row > :not(.manifest__n) { grid-column: 2; }
+  .manifest__row .state { justify-self: start; margin-top: 0.25rem; }
+  .manifest__name { font-size: 1rem; }
+
+  .post { grid-template-columns: 2.25rem minmax(0, 1fr); }
+  .post__go { display: none; }
+  .post__title { font-size: 1.0625rem; }
+
+  .callout { flex-direction: column; align-items: stretch; gap: 1.25rem; }
+  /* flex-basis is read down the main axis: 22rem became a 352px TALL text block
+     with the button stranded under it */
+  .callout__body { flex: 0 0 auto; }
+  .callout__go { justify-content: center; }
+
+  /* ---- popups take the whole screen ---- */
+  .modal { padding: 0; }
+  .modal__panel { max-height: 100%; height: 100%; width: 100%; }
+  .modal__body .prose { margin-left: 0; }
+  .reader__face { width: 4.5rem; height: 4.5rem; }
+  .reader__title { flex-basis: 100%; padding-left: 0; border-left: 0; font-size: 1.25rem; }
+  .rec { grid-template-columns: 1fr; }
+  .rec__photo { aspect-ratio: 4 / 3; }
+
+  /* ---- shop: the picture first, then what it is, then the rest ---- */
+  .shop { grid-template-columns: 1fr; }
+  .shop__cat { border-right: 0; padding: 1.125rem; }
+  .shop__stage {
+    order: -1;                      /* the item you are looking at leads */
+    --vf: min(78vw, 20rem);
+    gap: 1rem;
+    padding: 1.25rem 1.125rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .prod { margin-top: 1.5rem; }
+  .prod__name { font-size: clamp(1.5rem, 8vw, 2rem); }
+  .tree__item { padding: 0.75rem 0.5rem; }
+  .opt { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+  .opt__label { padding-top: 0; }
+
+  /* the bag covers the screen rather than sliding a panel over half of it */
+  .bag {
+    top: calc(var(--rail) + var(--nav));
+    right: 0; bottom: var(--rail); left: 0;
+    width: auto;
+    border-left: 0;
+    border-top: 1px solid var(--rule-lit);
+  }
+  @keyframes bag-in { from { opacity: 0; transform: translateY(12px); } }
+
+  .form { max-width: none; }
+
+  /* a post's code samples wrap instead of scrolling sideways: a scroll bar
+     inside a modal on a touch screen hides half of every line */
+  .prose pre { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 0.6875rem; padding: 0.875rem; }
+  .prose a { overflow-wrap: anywhere; }
+  .prose table { display: block; overflow-x: auto; }
+
+  /* the two legacy visualiser pages bring their own code samples and canvases,
+     neither of which knows about this layout */
+  pre { overflow-x: auto; }
+  pre, code, canvas, table { max-width: 100%; }
+}
+
+/* 20rem and under: the status rail keeps the page name and drops the
+   instrumentation, rather than pushing the percentage off the edge */
+@media (max-width: 20.5rem) {
+  .gauge, .rail__pct { display: none; }
+  .rail--bot .lbl:first-child { display: none; }
+}
+
+/* very narrow: the six switches lose their labels rather than their targets */
+@media (max-width: 22rem) {
+  .nav__item span { display: none; }
+  .nav__icon { font-size: 1.0625rem; }
+}
