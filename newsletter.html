@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en" style="background:#000">
+<head>
+    <meta charset="UTF-8">
+    <meta name="color-scheme" content="dark">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The MANIAC - the newsletter of the Coding Club at IISER Thiruvananthapuram. Edition I, Ada Lovelace: AI, malware and innovation.">
+    <meta name="theme-color" content="#000000">
+
+    <title>Newsletter - Coding Club IISER Thiruvananthapuram</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/brand/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/brand/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/brand/favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="assets/css/console.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="deck" data-deck data-page="newsletter.html" data-title="Newsletter">
+
+    <div class="screen" data-screen>
+        <div class="glass" aria-hidden="true"></div>
+
+        <!-- ---- masthead ---- -->
+        <section class="hero hero--head" data-name="Newsletter">
+            <div class="wrap">
+                <p class="hero__desig">CCIT &middot; PERIODICAL</p>
+                <h1 class="hero__title">Newsletter<span class="hero__mark" aria-hidden="true">//</span></h1>
+                <p class="hero__lede">
+                    <em>The MANIAC</em> is the club's periodical: what we have been reading,
+                    arguing about and building, set in print by the content team. Read it
+                    here page by page, or take the PDF with you.
+                </p>
+            </div>
+        </section>
+
+        <!-- ---- the current issue ---- -->
+        <section class="sec" id="issue" data-name="Issue">
+            <div class="wrap">
+                <div class="sec__head">
+                    <div class="divider"><span class="lbl">Panel A &middot; Current issue</span></div>
+                    <h2 class="sec__title">Edition I &mdash; Ada Lovelace</h2>
+                    <p class="sec__sub" data-type>
+                        Named for the world's first computer programmer. This edition runs on
+                        AI, malware and innovation.
+                    </p>
+                </div>
+
+                <div class="issue">
+                    <button type="button" class="issue__cover" data-open-page="1">
+                        <img src="assets/img/newsletter/thumb/p01.webp"
+                             alt="Cover of Edition I, the MANIAC" width="560" height="792">
+                        <span class="issue__open"><i class="fas fa-book-open" aria-hidden="true"></i> Read</span>
+                    </button>
+
+                    <div class="issue__body">
+                        <div class="spec">
+                            <div class="spec__row" data-core><span class="spec__tag">ED</span><span class="spec__key">Edition</span><span class="spec__val">I &mdash; Ada Lovelace</span></div>
+                            <div class="spec__row"><span class="spec__tag">DATE</span><span class="spec__key">Dated</span><span class="spec__val">15 July 2026</span></div>
+                            <div class="spec__row"><span class="spec__tag">EXT</span><span class="spec__key">Extent</span><span class="spec__val">30 pages &middot; 15 articles</span></div>
+                            <div class="spec__row"><span class="spec__tag">FMT</span><span class="spec__key">Format</span><span class="spec__val">A4 cover and back, A3 spreads cut at the fold</span></div>
+                            <div class="spec__row"><span class="spec__tag">BY</span><span class="spec__key">Contributors</span><span class="spec__val">Rajeshwari Mohapatra, Amarnath K, Nandu, Anushka Chakraborty, Antrin Maji, Priyam Badal</span></div>
+                        </div>
+
+                        <div class="issue__actions">
+                            <button type="button" class="btn btn--go" data-open-page="1">
+                                Read the issue <i class="fas fa-arrow-right"></i>
+                            </button>
+                            <a class="btn" href="assets/docs/ccit-newsletter-01-ada-lovelace.pdf" download>
+                                <i class="fas fa-download"></i> PDF &middot; 26 MB
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ---- contents ----
+             Each row jumps the reader to the page the article opens on. -->
+        <section class="sec" id="contents" data-name="Contents">
+            <div class="wrap">
+                <div class="sec__head">
+                    <div class="divider"><span class="lbl">Panel B &middot; Contents</span></div>
+                    <h2 class="sec__title">In this issue</h2>
+                    <p class="sec__sub">Fifteen pieces. Pick one and the reader opens on its first page.</p>
+                </div>
+
+                <div class="manifest">
+                    <button type="button" class="manifest__row" data-open-page="2-3">
+                        <span class="manifest__n">00</span>
+                        <span class="manifest__when">Pages 2&ndash;3</span>
+                        <div><div class="manifest__name">Editors' note</div>
+                        <p class="manifest__desc">Why the first edition carries Lovelace's name, and what comes next.</p></div>
+                        <span class="state">Front</span>
+                    </button>
+                    <button type="button" class="manifest__row" data-open-page="8-9">
+                        <span class="manifest__n">01</span>
+                        <span class="manifest__when">Pages 8&ndash;9</span>
+                        <div><div class="manifest__name">GlassWorm malware</div>
+                        <p class="manifest__desc">A growing threat in the open-source ecosystem, hiding its command channel on Solana.</p></div>
+                        <span class="state">Security</span>
+                    </button>
+                    <button type="button" class="manifest__row" data-open-page="10-11">
+                        <span class="manifest__n">02</span>
+                        <span class="manifest__when">Pages 10&ndash;11</span>
+                        <div><div class="manifest__name">Nvidia bets big on AI agents</div>
+                        <p class="manifest__desc">&ldquo;This is the new computer now&rdquo; &mdash; OpenClaw, NemoClaw and the agentic pitch.</p></div>
+                        <span class="state">Industry</span>
+                    </button>
+                    <button type="button" class="manifest__row" data-open-page="12-13">
+                        <span class="manifest__n">03</span>
+                        <span class="manifest__when">Pages 12&ndash;13</span>
+                        <div><div class="manifest__name">Age verification laws</div>
+                        <p class="manifest__desc">And why they keep failing, from AB 1043 to the distros that refuse to comply.</p></div>
+                        <span class="state">Policy</span>
+                    </button>
+                    <button type="button" class="manifest__row" data-open-page="14-14">
+                        <span class="manifest__n">04</span>
+                        <span class="manifest__when">Page 14</span>
+                        <div><div class="manifest__name">MIT's &ldquo;Fractal&rdquo; kernel</div>
+                        <p class="manifest__desc">A bare-metal OS that exposes hidden Apple M1 branch-predictor behaviour.</p></div>
+                        <span class="state">Research</span>
+                    </button>
+                    <button type="button" class="manifest__row" data-open-page="15-15">
+                        <span class="manifest__n">05</span>
+                        <span class="manifest__when">Page 15</span>
+                        <div><div class="manifest__name">Legible, modular software</div>
+                        <p class="manifest__desc">Concepts and synchronisations: MIT's structural answer to feature fragmentation.</p></div>
+                        <span class="state">Research</span>
+                    </button>
+                    <button type="button" class="manifest__row" data-open-page="16-16">
+                        <span class="manifest__n">06</span>
+                        <span class="manifest__when">Page 16</span>
+                        <div><div class="manifest__name">SpaceX buys Cursor for $60B</div>
+                        <p class="manifest__desc">The largest VC-backed startup acquisition ever, and what it does to xAI.</p></div>
+                        <span class="state">Industry</span>
+                    </button>
+                    <button type="button" class="manifest__row" data-open-page="16-16">
+                        <span class="manifest__n">07</span>
+                        <span class="manifest__when">Page 16</span>
+                        <div><div class="manifest__name">Light-powered computing</div>
+                        <p class="manifest__desc">A Monash chip that generates, steers and reads information carried by light.</p></div>
+                        <span class="state">Research</span>
+                    </button>
+                    <button type="button" class="manifest__row" data-open-page="17-17">
+                        <span class="manifest__n">08</span>
+                        <span class="manifest__when">Page 17</span>
+                        <div><div class="manifest__name">Brain-inspired chip at 10 mK</div>
+                        <p class="manifest__desc">A neuromorphic transistor that survives beside the qubits it would serve.</p></div>
+                        <span class="state">Research</span>
+                    </button>
+                    <button type="button" class="manifest__row" data-open-page="17-17">
+                        <span class="manifest__n">09</span>
+                        <span class="manifest__when">Page 17</span>
+                        <div><div class="manifest__name">DeepSeek raises $7.4B</div>
+                        <p class="manifest__desc">China's most valuable AI startup, and what the raise signals for India.</p></div>
+                        <span class="state">Industry</span>
+                    </button>
+                    <button type="button" class="manifest__row" data-open-page="18-19">
+                        <span class="manifest__n">10</span>
+                        <span class="manifest__when">Pages 18&ndash;19</span>
+                        <div><div class="manifest__name">Distributed training on Apple silicon</div>
+                        <p class="manifest__desc">Featured blog by NV Eshaan: two Mac Minis, one Thunderbolt cable, DDP via MCCL.</p></div>
+                        <span class="state">Featured</span>
+                    </button>
+                    <button type="button" class="manifest__row" data-open-page="20-21">
+                        <span class="manifest__n">11</span>
+                        <span class="manifest__when">Pages 20&ndash;21</span>
+                        <div><div class="manifest__name">Do huge databases even matter?</div>
+                        <p class="manifest__desc">Grigori Evreinov on parrots, pattern matching and the cost of scale.</p></div>
+                        <span class="state">Debate</span>
+                    </button>
+                    <button type="button" class="manifest__row" data-open-page="22-22">
+                        <span class="manifest__n">12</span>
+                        <span class="manifest__when">Page 22</span>
+                        <div><div class="manifest__name">The &ldquo;caveman mode&rdquo; trick</div>
+                        <p class="manifest__desc">Cutting an AI token bill by talking prehistoric &mdash; and why 75% is really 25%.</p></div>
+                        <span class="state">Practice</span>
+                    </button>
+                    <button type="button" class="manifest__row" data-open-page="23-23">
+                        <span class="manifest__n">13</span>
+                        <span class="manifest__when">Page 23</span>
+                        <div><div class="manifest__name">The 49-day Mac bug</div>
+                        <p class="manifest__desc">Networking stops after 49 days, 17 hours, 2 minutes and 47 seconds. Reboot.</p></div>
+                        <span class="state">Bug</span>
+                    </button>
+                    <button type="button" class="manifest__row" data-open-page="24-28">
+                        <span class="manifest__n">14</span>
+                        <span class="manifest__when">Pages 24&ndash;28</span>
+                        <div><div class="manifest__name">From words to worlds</div>
+                        <p class="manifest__desc">Fei-Fei Li, Yann LeCun and the case that AI needs spatial intelligence.</p></div>
+                        <span class="state">Essay</span>
+                    </button>
+                    <button type="button" class="manifest__row" data-open-page="28-29">
+                        <span class="manifest__n">15</span>
+                        <span class="manifest__when">Pages 28&ndash;29</span>
+                        <div><div class="manifest__name">Google's Veo 3.1 Lite</div>
+                        <p class="manifest__desc">Betting on volume over polish at five cents a second.</p></div>
+                        <span class="state">Tools</span>
+                    </button>
+                    <button type="button" class="manifest__row" data-open-page="30-30">
+                        <span class="manifest__n">16</span>
+                        <span class="manifest__when">Page 30</span>
+                        <div><div class="manifest__name">Touch grass</div>
+                        <p class="manifest__desc">Places worth leaving the screen for, and the 1956 MANIAC chess game.</p></div>
+                        <span class="state">Back</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ---- contact sheet ----
+             Thirty thumbnails, every one a way into the reader. The tiles are
+             written out rather than generated so the page is complete with the
+             script off; console.js only attaches the reader to them. -->
+        <section class="sec" id="pages" data-name="Pages">
+            <div class="wrap">
+                <div class="sec__head">
+                    <div class="divider"><span class="lbl">Panel C &middot; Contact sheet</span></div>
+                    <h2 class="sec__title">Every page</h2>
+                    <p class="sec__sub">
+                        The A3 spreads are cut down the fold into the pages the printer
+                        numbered, so a phone shows one at a time. Tap any of them to read.
+                    </p>
+                </div>
+
+                <div class="sheet" data-sheet>
+                    <!-- filled from SHEET below; the noscript list is the fallback -->
+                </div>
+
+                <noscript>
+                    <p class="empty">
+                        The reader needs JavaScript.
+                        <a href="assets/docs/ccit-newsletter-01-ada-lovelace.pdf">Download the PDF instead</a>.
+                    </p>
+                </noscript>
+            </div>
+        </section>
+    </div>
+</div>
+
+<!-- ---- the reader ---- -->
+<div class="modal" data-modal hidden>
+    <div class="modal__panel modal__panel--page">
+        <div class="modal__bar modal__bar--page">
+            <span class="lbl">Page</span>
+            <span class="modal__id" data-modal-id></span>
+            <span class="pgnav">
+                <button class="cbtn" type="button" data-page-prev aria-label="Previous page"><i class="fas fa-chevron-left"></i></button>
+                <button class="cbtn" type="button" data-page-next aria-label="Next page"><i class="fas fa-chevron-right"></i></button>
+                <button class="cbtn cbtn--wide" type="button" data-page-zoom aria-pressed="false">
+                    <i class="fas fa-magnifying-glass-plus"></i><span data-page-zoom-label>Zoom</span>
+                </button>
+            </span>
+            <button class="modal__close" data-modal-close>ESC &times;</button>
+        </div>
+        <div class="modal__body modal__body--page" data-modal-body>
+            <div class="pageview" data-modal-content></div>
+        </div>
+    </div>
+</div>
+
+<script>
+/* The issue's page list. Kept here rather than in console.js: it is content,
+   it changes once an edition, and no other page has any use for it. */
+window.NEWSLETTER = {
+  pdf: 'assets/docs/ccit-newsletter-01-ada-lovelace.pdf',
+  dir: 'assets/img/newsletter/',
+  count: 30,
+  /* page number -> what is on it, for the reader's caption and the alt text */
+  names: {
+    1: 'Cover', 2: 'Ada Lovelace', 3: "Editors' note", 4: 'Contents', 5: 'Contents 01–07',
+    6: 'Contents 08–11', 7: 'Contents 12–15', 8: 'GlassWorm malware', 9: 'GlassWorm malware',
+    10: 'Nvidia bets big on AI agents', 11: 'Nvidia bets big on AI agents',
+    12: 'Age verification laws', 13: 'Age verification laws',
+    14: "MIT's Fractal kernel", 15: 'Legible, modular software',
+    16: 'SpaceX buys Cursor', 17: 'Brain-inspired chip', 18: 'Distributed training on Apple silicon',
+    19: 'Distributed training on Apple silicon', 20: 'Do huge databases even matter?',
+    21: 'Do huge databases even matter?', 22: 'The caveman mode trick', 23: 'The 49-day Mac bug',
+    24: 'From words to worlds', 25: 'From words to worlds', 26: 'From words to worlds',
+    27: 'From words to worlds', 28: "Google's Veo 3.1 Lite", 29: "Google's Veo 3.1 Lite",
+    30: 'Touch grass'
+  }
+};
+</script>
+<script src="assets/js/console.js"></script>
+</body>
+</html>

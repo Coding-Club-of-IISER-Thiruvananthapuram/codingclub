@@ -79,7 +79,7 @@ page, stylesheet, script and image inside it is fetched from GitHub Pages, where
 relative paths this repo is built on work normally. Subdirectory pages are fine again —
 they are never requested through the proxy.
 
-`?p=` deep-links into it: `…/codingclub/?p=team.html`, `…/codingclub/?p=members/aneeth.html`.
+`?p=` deep-links into it: `…/codingclub/?p=team.html`, `…/codingclub/?p=members/antrin.html`.
 The value is validated as a relative path — an absolute URL, a `javascript:` URL or any
 `..` falls back to the home page, so the parameter cannot be used to frame another site.
 
@@ -94,12 +94,13 @@ the version from 5 October 2025; the redesign is unpushed local work.
 
 ```
 .
-│   The five pages in the menu bar:
+│   The seven pages in the menu bar:
 ├── index.html              Home: masthead, live terminal readout, focus areas, FAQ, contact
 ├── team.html               On station / ground control / alumni, links to each profile
 ├── events.html             Scheduled talks, workshops, seminars, the hackathon
 ├── blogs.html              Index of member-written posts
 ├── merch.html              Merch catalogue (placeholder products — see below)
+├── newsletter.html         The issue: contents, contact sheet, and the page reader
 ├── archive.html            The record: what the club has run, plus material to download
 │
 ├── members/                One profile page per member
@@ -116,7 +117,8 @@ the version from 5 October 2025; the redesign is unpushed local work.
 │   │   ├── brand/          Logos and favicons
 │   │   ├── people/         Member and alumni photographs
 │   │   └── misc/           Everything else
-│   ├── docs/               PDFs offered from archive.html
+│   │   └── newsletter/     The issue rendered page by page: full/ and thumb/
+│   ├── docs/               PDFs offered from archive.html and newsletter.html
 │   └── course/             The 16 course slides as SVG
 │
 ├── Blogs/                  Legacy blog area — see "Known gaps"
@@ -165,7 +167,13 @@ has `[data-deck]`, so the chrome lives in one place. The grid rows are pinned in
 
 **To add or rename a nav item, edit the `NAV` array at the top of
 `assets/js/console.js`.** Each entry is `[label, file, icon]`; the icon is a Font
-Awesome name. Nothing else needs touching — `data-up` handles subdirectory paths.
+Awesome name. `data-up` handles subdirectory paths.
+
+One thing *does* need touching: the phone menu is a fixed column count in the
+PHONE block of `console.css` (`repeat(7, 1fr)` today). Add an eighth entry without
+changing it and one switch wraps onto a second row. The label length matters at
+that size too — `/newsletter` ellipsised at seven columns; `/journal` is the same
+eight characters as `/archive` and fits.
 
 ### Components in `console.css`
 
@@ -277,6 +285,68 @@ the last row as a large pale block.
 
 ---
 
+## newsletter.html — how the issue is served
+
+The newsletter is a 26 MB A3/A4 print PDF. It is not the viewer, and it cannot be:
+an `<embed>` of a PDF renders blank inside an iframe on iOS, which is exactly the
+situation this site is in when it is reached through the institute proxy.
+
+So the issue is **pre-rendered once, offline**, and the site serves images:
+
+```bash
+pdftoppm -r 150 -png ccit_newsletter1.pdf sheet          # 16 sheets
+magick sheet-NN.png -crop 50%x100% +repage half-NN-%d.png # the A3 ones
+magick <page> -resize 1240x -quality 80 full/pNN.webp
+magick <page> -resize 560x  -quality 72 thumb/pNN.webp
+```
+
+Sheet 1 and sheet 16 are A4 portrait; sheets 2–15 are **A3 landscape spreads that
+each carry two numbered pages**. Cutting them at the fold is not a compromise — it
+is the pagination the designer already used, and the footers confirm it. The result
+is thirty portrait pages, one printed page each, so a phone never has to show two
+side by side and the desktop and the phone load the same files.
+
+Three things the reader has to keep doing:
+
+- **Zoom is a toggle, not a nicety.** A dense A3 half fitted to a 390px screen is a
+  picture of an article, not a readable one. Fit sizes against the viewport; zoom
+  pins the image to its rendered 1240px and lets the body scroll in both axes. The
+  phone opens zoomed, the desktop opens fitted.
+- **The contact sheet is built by the script, not written out.** Without JS the
+  tiles would be thirty buttons that cannot open anything, so the markup offers the
+  PDF in a `<noscript>` instead.
+- **A piece opened from the contents list stays inside that piece.** The reader
+  always works within a range. From the cover or the contact sheet that range is
+  the whole issue; from a contents row it is only that piece's pages, so the
+  arrows, the keyboard and a swipe all stop at its last page instead of carrying
+  you into the next article. Scoped, the caption leads with the piece and counts
+  within it (`GlassWorm malware · 01 / 02`) — `08 / 30` there would name a page
+  the arrows cannot reach.
+- **The span lives in the markup, as `data-open-page`.** `"8"` means the whole
+  issue opened at page 8; `"8-9"` means those two pages and nothing else. A
+  one-page piece is written `"14-14"`, not `"14"` — without the dash it would open
+  the whole issue. Two pieces can share a sheet (pages 16 and 17 each carry two),
+  so the scoped title is taken from the row's own `.manifest__name` rather than
+  from the per-page `names` map, which only knows what is printed on the page.
+- **`#p8` opens the reader on page 8, `#p8-9` opens that piece.** Unscoped, the
+  hash follows the page you turn to through `replaceState` — the same idiom the
+  roster tabs use, so the back button still points at wherever you came from
+  rather than at every page turn. Scoped, it names the range and stays put: the
+  piece, not the page, is the thing worth linking to.
+
+The page list and the per-page captions live in `window.NEWSLETTER` at the foot of
+`newsletter.html`, not in `console.js`: it is content, it changes once an edition,
+and no other page has any use for it. `console.js` skips the whole reader block on
+every other page with one property lookup.
+
+**To publish the next edition:** render it the same way into
+`assets/img/newsletter/`, put the PDF in `assets/docs/`, and update `window.NEWSLETTER`
+and the contents rows — each row's `data-open-page` span and its `Pages n–m` label
+have to agree, and nothing checks that for you. Nothing in the stylesheet or the
+shared script needs to change.
+
+---
+
 ## worker/ — the merch backend, dormant
 
 `worker/` is a dormant backend layer for the merch: it has a Cloudflare Worker with D1,
@@ -316,8 +386,13 @@ matter and were dealt with directly:
 - **`node_modules/` is no longer tracked** (`git rm -r --cached`); `.gitignore` covers
   it. The files stay on disk for the dev server.
 
+- **Newsletter: 26 MB of PDF → 8.4 MB of pages.** The issue is rendered once to WebP
+  at 150 DPI, in two sizes: 1240px for the reader and 560px for the contact sheet.
+  The PDF stays in `assets/docs/` as the download.
+
 If you replace a photograph, check its pixel size before committing it. Nothing in the
-site displays an image wider than about 800px.
+site displays an image wider than about 800px — the newsletter pages are the exception,
+and deliberately so: they are a document, and zooming into one is the point.
 
 ---
 

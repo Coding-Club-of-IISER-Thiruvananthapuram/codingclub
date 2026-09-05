@@ -17,8 +17,13 @@
     ['/events',  'events.html',  'fa-calendar-days'],
     ['/blogs',   'blogs.html',   'fa-feather'],
     ['/merch',   'merch.html',   'fa-tag'],
+    ['/journal', 'newsletter.html', 'fa-newspaper'],
     ['/archive', 'archive.html', 'fa-box-archive']
   ];
+  /* Adding an entry here? The phone menu is a fixed column count in the PHONE
+     block of console.css — seven switches, seven columns. It also sets the
+     label width: '/newsletter' ellipsised at seven columns; '/journal' is the
+     same eight characters as '/archive' and fits. */
 
   var deck = document.querySelector('[data-deck]');
 
@@ -434,6 +439,154 @@
         }
       });
     });
+
+    /* ---------- newsletter reader ----------
+       The issue is a set of pre-rendered page images, one printed page each:
+       the A3 spreads are already cut at the fold, so nothing here has to show
+       two pages side by side and the phone gets the same tiles the desktop
+       does. window.NEWSLETTER is declared by newsletter.html and by nothing
+       else, so this block costs every other page one property lookup. */
+    var NL = window.NEWSLETTER;
+    var sheet = document.querySelector('[data-sheet]');
+
+    if (NL) {
+      var pad2 = function (n) { return (n < 10 ? '0' : '') + n; };
+      var pageSrc = function (n, size) { return NL.dir + size + '/p' + pad2(n) + '.webp'; };
+      var pageName = function (n) { return NL.names[n] || 'Page ' + n; };
+
+      var at = 1;
+      /* The reader always works inside a range. Opened from the cover or the
+         contact sheet that range is the whole issue; opened from a contents
+         row it is just that piece, so paging cannot wander into the next
+         article. `title` is null for the whole issue and the piece's own name
+         when it is scoped — taken from the row rather than the per-page names,
+         because two pieces can share a page and only the row knows which one
+         you picked. */
+      var lo = 1, hi = NL.count, title = null;
+      var zoomed = !window.matchMedia('(min-width: 46rem)').matches;
+      var zBtn = document.querySelector('[data-page-zoom]');
+      var zLabel = document.querySelector('[data-page-zoom-label]');
+      var prevBtn = document.querySelector('[data-page-prev]');
+      var nextBtn = document.querySelector('[data-page-next]');
+
+      /* The tiles are built rather than written out. Without JS they would be
+         dead buttons, so the markup offers the PDF in a <noscript> instead of
+         thirty controls that cannot open anything. */
+      if (sheet) {
+        var html = '';
+        for (var n = 1; n <= NL.count; n++) {
+          html += '<button type="button" class="page" data-open-page="' + n + '">' +
+                    '<img src="' + pageSrc(n, 'thumb') + '" alt="Page ' + n + ': ' +
+                      pageName(n).replace(/"/g, '&quot;') + '" loading="lazy" ' +
+                      'width="560" height="792">' +
+                    '<span class="page__n">' + pad2(n) + '</span>' +
+                  '</button>';
+        }
+        sheet.innerHTML = html;
+      }
+
+      var draw = function () {
+        /* Scoped, the piece is the thing being read: it leads, and the counter
+           is a position inside it. '08 / 30' there would name a page the arrows
+           cannot reach. */
+        mId.textContent = title
+          ? title + '  \u00b7  ' + pad2(at - lo + 1) + ' / ' + pad2(hi - lo + 1)
+          : pad2(at) + ' / ' + NL.count + '  \u00b7  ' + pageName(at);
+        mProse.className = 'pageview ' + (zoomed ? 'pageview--zoom' : 'pageview--fit');
+        mProse.innerHTML = '<img src="' + pageSrc(at, 'full') + '" alt="Page ' + at +
+                           ' of the newsletter">';
+        /* a failed page must not leave an empty panel: hand over the PDF */
+        mProse.firstChild.onerror = function () {
+          mProse.innerHTML = '<p class="pageview__note">Could not load page ' + at +
+            '. <a href="' + NL.pdf + '">Open the PDF</a>.</p>';
+        };
+        mScroll.scrollTop = 0;
+        mScroll.scrollLeft = 0;
+        prevBtn.disabled = at <= lo;
+        nextBtn.disabled = at >= hi;
+        /* the next page is usually the next thing wanted; 230 KB fetched now
+           is a page turn that does not blink */
+        if (at < hi) new Image().src = pageSrc(at + 1, 'full');
+      };
+
+      var setZoom = function (on) {
+        zoomed = on;
+        zBtn.setAttribute('aria-pressed', String(on));
+        zLabel.textContent = on ? 'Fit' : 'Zoom';
+        zBtn.querySelector('i').className =
+          'fas fa-magnifying-glass-' + (on ? 'minus' : 'plus');
+        mProse.className = 'pageview ' + (on ? 'pageview--zoom' : 'pageview--fit');
+      };
+
+      var turnTo = function (n) {
+        at = Math.min(hi, Math.max(lo, n));
+        draw();
+        /* whole issue: the page is what you would link to. one piece: the piece
+           is, so the hash names the range and stays put as you read it. */
+        history.replaceState(null, '', title ? '#p' + lo + '-' + hi : '#p' + at);
+      };
+
+      /* `spec` is either '8' (the whole issue, opened at page 8) or '8-9' (only
+         those pages). Anything unparseable falls back to the whole issue rather
+         than to an empty reader. */
+      var openPage = function (spec, name) {
+        var m = /^(\d+)(?:-(\d+))?$/.exec(String(spec));
+        var a = m ? +m[1] : 1;
+        var b = m && m[2] ? +m[2] : 0;
+
+        if (b) {
+          lo = Math.max(1, Math.min(a, b));
+          hi = Math.min(NL.count, Math.max(a, b));
+          title = name || pageName(lo);
+        } else {
+          lo = 1; hi = NL.count; title = null;
+        }
+        openShell(title || 'Newsletter');
+        setZoom(zoomed);
+        turnTo(b ? lo : a);
+      };
+
+      /* newsletter.html#p8 opens the reader on that page, so a contents row can
+         be linked to directly. Same idiom as the roster tabs above: the hash
+         follows the page you are on, and replaceState keeps the back button
+         pointing at wherever you came from rather than at every page turn. */
+      var fromHash = /^#p(\d+(?:-\d+)?)$/.exec(location.hash);
+      if (fromHash) openPage(fromHash[1]);
+
+      /* delegated: the contact sheet was built a moment ago, and the cover and
+         the contents rows carry the same attribute */
+      document.addEventListener('click', function (e) {
+        var b = e.target.closest ? e.target.closest('[data-open-page]') : null;
+        if (!b) return;
+        var name = b.querySelector('.manifest__name');
+        openPage(b.getAttribute('data-open-page'), name && name.textContent.trim());
+      });
+
+      prevBtn.addEventListener('click', function () { turnTo(at - 1); });
+      nextBtn.addEventListener('click', function () { turnTo(at + 1); });
+      zBtn.addEventListener('click', function () { setZoom(!zoomed); });
+
+      document.addEventListener('keydown', function (e) {
+        if (modal.hidden) return;
+        if (e.key === 'ArrowLeft')  { e.preventDefault(); turnTo(at - 1); }
+        if (e.key === 'ArrowRight') { e.preventDefault(); turnTo(at + 1); }
+      });
+
+      /* swipe, the way a phone expects to turn a page. Only a mostly-sideways
+         drag counts, or scrolling down a zoomed page turns it by accident. */
+      var x0 = null, y0 = null;
+      mScroll.addEventListener('touchstart', function (e) {
+        x0 = e.changedTouches[0].clientX;
+        y0 = e.changedTouches[0].clientY;
+      }, { passive: true });
+      mScroll.addEventListener('touchend', function (e) {
+        if (x0 === null) return;
+        var dx = e.changedTouches[0].clientX - x0;
+        var dy = e.changedTouches[0].clientY - y0;
+        x0 = null;
+        if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) turnTo(at + (dx < 0 ? 1 : -1));
+      }, { passive: true });
+    }
 
     modal.addEventListener('click', function (e) {
       if (e.target === modal || e.target.closest('[data-modal-close]')) closeModal();
