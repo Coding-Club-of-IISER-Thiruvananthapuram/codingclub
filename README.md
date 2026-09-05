@@ -310,8 +310,12 @@ Three things the reader has to keep doing:
 
 - **Zoom is a toggle, not a nicety.** A dense A3 half fitted to a 390px screen is a
   picture of an article, not a readable one. Fit sizes against the viewport; zoom
-  pins the image to its rendered 1240px and lets the body scroll in both axes. The
-  phone opens zoomed, the desktop opens fitted.
+  pins the image to its rendered 1240px and lets the body scroll in both axes.
+
+  **Both open fitted, phone included.** Opening the phone zoomed was tried and is
+  wrong: 1240px on a 412px screen is 3x, so the reader lands on the top-left corner
+  and every page looks broken because you never see a whole one. Show the page,
+  then let zoom be the deliberate step.
 - **The contact sheet is built by the script, not written out.** Without JS the
   tiles would be thirty buttons that cannot open anything, so the markup offers the
   PDF in a `<noscript>` instead.

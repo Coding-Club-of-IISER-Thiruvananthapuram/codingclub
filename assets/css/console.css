@@ -2492,8 +2492,6 @@ button.manifest__row:focus-visible { outline: 1px solid var(--violet); outline-o
      gap on a 390px screen */
   .sheet { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
-  /* the reader opens zoomed, because a printed A3 half fitted to 390px is a
-     picture of an article rather than a readable one */
   .modal__panel--page { border: 0; }
   .cbtn--wide span { display: none; }
   .cbtn--wide { width: 2rem; padding: 0; }

@@ -463,7 +463,12 @@
          because two pieces can share a page and only the row knows which one
          you picked. */
       var lo = 1, hi = NL.count, title = null;
-      var zoomed = !window.matchMedia('(min-width: 46rem)').matches;
+      /* Always open fitted, phone included. Opening zoomed was a mistake: the
+         image is pinned to its rendered 1240px, which on a 412px phone is 3x
+         and drops you on the top-left corner of the page — every page looks
+         broken because you never see one. Show the whole page, then let Zoom
+         be the deliberate step, the way any reader on a phone works. */
+      var zoomed = false;
       var zBtn = document.querySelector('[data-page-zoom]');
       var zLabel = document.querySelector('[data-page-zoom-label]');
       var prevBtn = document.querySelector('[data-page-prev]');
