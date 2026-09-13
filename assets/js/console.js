@@ -106,7 +106,7 @@
       { t: '                         1 hackathon, 1 games night', c: 'out' },
       { t: '  writing .............. 9 posts, 6 authors', c: 'out' },
       { t: '  newsletter ........... the MANIAC, edition I out', c: 'out' },
-      { t: '  next event ........... fresher\'s orientation 17:00', c: 'hi' },
+      { t: '  next event ........... shastrarth round 2, 28 sep', c: 'hi' },
       { t: '' },
       { t: '  applications ......... CLOSED for now', c: 'out' },
       { t: '  crew recruitment ..... OPEN', c: 'hi' },
