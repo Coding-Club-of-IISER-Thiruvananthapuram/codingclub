@@ -114,10 +114,11 @@ the version from 5 October 2025; the redesign is unpushed local work.
 ├── assets/
 │   ├── css/console.css     The entire design system. One file, no preprocessor.
 │   ├── js/console.js       Shared page behaviour (see below)
+│   ├── data/events.json    Snapshot of the events sheet — the fallback (see "Events")
 │   ├── img/
 │   │   ├── brand/          Logos and favicons
 │   │   ├── people/         Member and alumni photographs
-│   │   └── misc/           Everything else
+│   │   ├── misc/           Everything else
 │   │   └── newsletter/     The issue rendered page by page: full/ and thumb/
 │   ├── docs/               PDFs offered from archive.html and newsletter.html
 │   └── course/             The 16 course slides as SVG
@@ -195,7 +196,8 @@ open a third row inside the same height — raise `--nav` with it.
 | `.tabs` / `.tabs__btn` | Roster selector on team.html |
 | `.empty` | Panel with no data wired to it yet |
 | `.check` / `.check__q` | Accordion (FAQ) |
-| `.comms` / `.card` / `.field` | Contact and detail panels |
+| `.comms` / `.card` | Contact and detail panels |
+| `.manifest__venue` | Pinned venue line under an upcoming event |
 | `.term` | Terminal readout |
 | `.shop` / `.vf` | Merch catalogue and viewfinder stage |
 | `.btn`, `.chip`, `.tag`, `.state` | Buttons and small labels |
@@ -290,47 +292,93 @@ the last row as a large pale block.
 
 ---
 
-## Events — one list, dated
+## Events — how the schedule and the archive update themselves
 
-Every event the club has run or will run is **one row in one list**. Nothing is
-ever moved between "upcoming" and "archive": each page compares every row's date
-with today's when it loads, and draws the future ones into the schedule and the
-past ones into the record. The day after an event, the same row simply compares
-differently. There is no job, no cron, no server doing this — it is a comparison
-of two dates, done in the visitor's browser.
+There is no backend. Every event the club has run or will run is **one row in one
+list**, and each page decides at load time which side of today each row falls on.
+Nothing is ever moved between "upcoming" and "archive"; the day after an event, the
+same row simply compares differently. That is the whole mechanism: a date
+comparison, done in the visitor's browser, every time a page opens.
 
-The list lives in two places:
+### Where the list lives
 
-- **A Google Sheet, published to the web as TSV.** This is the one people edit. Its
-  URL is the `SHEET` constant near the top of the events block in `console.js`.
-  Google re-exports a published sheet roughly every five minutes, which is the only
-  delay in the system.
-- **`assets/data/events.json`**, a snapshot committed to the repo. It is what
-  renders if the sheet cannot be fetched, or while `SHEET` is empty. Refresh it now
-  and then by pasting the sheet back in (`~/Desktop/events-seed.tsv` shows the shape).
+1. **A Google Sheet, published to the web as TSV.** This is the one people edit. Its
+   published URL is the `SHEET` constant at the top of the events block in
+   `console.js`. Google re-exports a published sheet about five minutes after an
+   edit; that is the only delay in the system.
+2. **`assets/data/events.json`**, a snapshot in the repo. It renders if the sheet
+   cannot be fetched (Google down, or the URL revoked). Refresh it now and then by
+   re-exporting the sheet — `~/Desktop/events-seed.tsv` shows the shape — so the
+   fallback does not drift too far.
 
-Nine columns, in this order: `title kind date time venue description series link label`.
+The page tries the sheet first, then the snapshot, then gives up quietly (the
+`<noscript>` text stays). The sheet is fetched with `cache: 'no-store'`: Google
+serves the file with `max-age=300`, and without that a reload inside five minutes
+re-read the browser's own copy and an edit looked like it had done nothing.
 
-- `date` **must** be `YYYY-MM-DD` — it is compared as text. A row with no date is
-  treated as already happened (the old sessions nobody has a date for).
-- `kind` decides the archive tab. Known kinds: Workshop, Course, Talk, Talk series,
-  Meet, Peer discussion, Orientation, Joint session, Hackathon, Games night, Social.
-  Anything else lands in an "Other" tab, which is how a typo shows itself.
+### The columns
+
+Nine, in this order: `title kind date time venue description series link label`.
+
+- `date` **must** be `YYYY-MM-DD` — it is compared as text, so any other form sorts
+  wrong silently. Set the column to *Plain text* and validate it with
+  `=REGEXMATCH(TO_TEXT(C2), "^\d{4}-\d{2}-\d{2}$")`. A row with **no date** is
+  treated as already happened: that is how the old, undated sessions are kept.
+- `kind` decides the archive tab, matched exactly. Known kinds: Workshop, Course,
+  Talk, Talk series, Meet, Peer discussion, Orientation, Joint session, Hackathon,
+  Games night, Social. Anything else lands in an "Other" tab — which is how a typo
+  shows itself. A dropdown validation on the column prevents that.
+- `time` and `venue` are free text, shown as given. The venue gets its own pinned
+  line under the description while the event is upcoming; in the archive it is
+  dropped and the kind takes that column.
 - `series` groups rows into a named panel — `data-events="series:Codyssey"` on the
   events page — and prefixes the title in the schedule.
-- `link` makes an archive row clickable: a Drive URL gets a *Drive* badge, a site
+- `link` makes an *archive* row clickable: a Drive URL gets a *Drive* badge, a site
   path (`others/hackathon.html`) an *Open* badge. Ignored while the event is upcoming.
 - `label` overrides the formatted date, for spans like `4–5 Sep`.
 
-Where it renders: `[data-events="upcoming"]` on the home page and the events page,
-`[data-events="series:…"]` for a series panel, `[data-events="past"]` on the
-archive, which builds the whole tab strip and its panels. The terminal's
-`next event` line is the first upcoming row. The archive rebuilds its tabs after
-the fetch, which is why the roster-tab code is a function (`wireTabs`) rather than
-a block that runs once.
+### Upcoming or past?
 
-One rule this breaks, knowingly: with JavaScript off these three lists are empty
-(a `<noscript>` says so). The site already needs JS for the reader and the tabs.
+`date >= today` is upcoming; anything else is past. Two things this means:
+
+- **The rule is by date, not time.** An event stays on the schedule for its whole
+  day and moves at midnight — at 8pm the site still lists a 5pm event as today's.
+  Deliberate: it keeps the rule a single comparison. If the club would rather it
+  flipped once the start time passes, parse `time` in `isPast()`; it is ten lines.
+- **Today is the visitor's local date**, not UTC. `toISOString()` would have flipped
+  events at 05:30 IST.
+
+### Where it renders
+
+- `[data-events="upcoming"]` — home page Flight plan and the events page Scheduled
+  list, sorted by date, series-prefixed.
+- `[data-events="series:…"]` — a series panel, every row in that series.
+- `[data-events="past"]` — the archive, which builds its whole tab strip and panels
+  from the past rows, grouped by kind, dated ones most recent first.
+- The terminal's `next event` line is the first upcoming row, title on one line and
+  date and time beneath it; the readout waits up to 700ms for the fetch, then starts
+  with `see /events` if nothing came.
+
+The archive rebuilds its tabs after the fetch, which is why the roster-tab code is a
+function, `wireTabs()`, rather than a block that runs once at load.
+
+### Checking that an edit landed
+
+Three caches sit between the sheet and a visitor, and they clear at different rates:
+Google's republish (about five minutes), the browser's copy of the TSV (now
+bypassed), and GitHub Pages' ten-minute cache of `console.js` (only matters right
+after a push of new site code). If an edit seems missing, fetch the published TSV
+directly — it is the raw source with no browser in the way:
+
+```bash
+curl -sL '<the SHEET url>' | cut -f1-3
+```
+
+If the row is there, the site will show it on the next load. If it is not, Google
+has not republished yet.
+
+One rule this knowingly breaks: with JavaScript off, the three lists are empty (a
+`<noscript>` says so). The site already needs JS for the reader and the tabs.
 
 ---
 

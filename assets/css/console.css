@@ -203,7 +203,6 @@ img { max-width: 100%; display: block; }
   outline: 1px solid var(--rule-lit);   /* seated in the panel, not floating */
   animation: blink 3.2s ease-in-out infinite;
 }
-.lamp--alt::before { background: var(--violet); }
 @keyframes blink { 50% { opacity: 0.32; } }
 
 .rail .mono { color: var(--ink); letter-spacing: 0.04em; white-space: nowrap; }
@@ -720,16 +719,6 @@ img { max-width: 100%; display: block; }
   padding: clamp(1.375rem, 3vw, 1.875rem);
 }
 
-.field {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 0.6875rem 0;
-  border-bottom: 1px solid var(--rule);
-}
-.field:last-child { border-bottom: 0; }
-.field__v { font-family: var(--font-data); font-size: 0.8125rem; text-align: right; }
-
 .link-row {
   display: flex;
   align-items: center;
@@ -1169,12 +1158,6 @@ img { max-width: 100%; display: block; }
   border: 1px solid var(--rule);
   background: var(--panel);
   text-align: center;
-}
-.empty__mark {
-  display: inline-block;
-  width: 22px; height: 22px;
-  border: 1px solid var(--rule-lit);
-  margin-bottom: 1rem;
 }
 .empty p { margin: 0 auto; max-width: 34rem; color: var(--ink-dim); }
 .empty p + p { margin-top: 0.75rem; }
@@ -2149,12 +2132,6 @@ button.person {
 .bagline__size { font-family: var(--font-data); font-size: 0.6875rem; color: var(--ink-faint); }
 .bagline__qty  { font-family: var(--font-data); font-size: 0.75rem; color: var(--ink-dim); }
 .bagline__sum  { font-family: var(--font-data); font-size: 0.8125rem; color: var(--ink); }
-.bagline__x {
-  background: none; border: 0; padding: 0 0.25rem;
-  color: var(--ink-faint); font-size: 1rem; line-height: 1; cursor: pointer;
-  transition: color 140ms linear;
-}
-.bagline__x:hover, .bagline__x:focus-visible { color: var(--violet); outline: none; }
 
 .bag__foot { padding: 1rem 0.875rem; border-top: 1px solid var(--rule-lit); }
 .bag__total { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 0.875rem; }
@@ -2449,7 +2426,6 @@ button.manifest__row:focus-visible { outline: 1px solid var(--violet); outline-o
   .works,
   .channels,
   .comms,
-  .duo,
   .record { grid-template-columns: minmax(0, 1fr); }
   .record__cell--wide { grid-column: auto; }
 

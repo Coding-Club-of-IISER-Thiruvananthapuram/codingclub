@@ -139,8 +139,12 @@
   };
 
   /* prefer the sheet; fall back to the snapshot; give up quietly */
+  /* no-store: Google serves the published file with max-age=300, so without
+     this a reload inside five minutes re-reads the browser's copy and an edit
+     to the sheet looks like it did nothing. Google's own republish delay (up
+     to about five minutes) still applies; that one cannot be skipped. */
   var eventsReady = (SHEET
-      ? fetch(SHEET).then(function (r) { if (!r.ok) throw 0; return r.text(); }).then(parseTSV)
+      ? fetch(SHEET, { cache: 'no-store' }).then(function (r) { if (!r.ok) throw 0; return r.text(); }).then(parseTSV)
       : Promise.reject(0))
     .catch(function () {
       return fetch(evUp + 'assets/data/events.json').then(function (r) { return r.json(); });
@@ -628,10 +632,9 @@
        does. window.NEWSLETTER is declared by newsletter.html and by nothing
        else, so this block costs every other page one property lookup. */
     var NL = window.NEWSLETTER;
-    var sheet = document.querySelector('[data-sheet]');
+    var contact = document.querySelector('[data-sheet]');
 
     if (NL) {
-      var pad2 = function (n) { return (n < 10 ? '0' : '') + n; };
       var pageSrc = function (n, size) { return NL.dir + size + '/p' + pad2(n) + '.webp'; };
       var pageName = function (n) { return NL.names[n] || 'Page ' + n; };
 
@@ -658,7 +661,7 @@
       /* The tiles are built rather than written out. Without JS they would be
          dead buttons, so the markup offers the PDF in a <noscript> instead of
          thirty controls that cannot open anything. */
-      if (sheet) {
+      if (contact) {
         var html = '';
         for (var n = 1; n <= NL.count; n++) {
           html += '<button type="button" class="page" data-open-page="' + n + '">' +
@@ -668,7 +671,7 @@
                     '<span class="page__n">' + pad2(n) + '</span>' +
                   '</button>';
         }
-        sheet.innerHTML = html;
+        contact.innerHTML = html;
       }
 
       var draw = function () {
