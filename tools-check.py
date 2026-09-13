@@ -35,7 +35,8 @@ if missing:
 
 # 2. every interactive hook in the markup is referenced by the script
 HOOKS = ['tabs__btn', 'check__q', 'data-term', 'data-clock', 'data-gauge',
-         'data-position', 'data-screen', 'data-deck', 'data-name', 'data-type', 'data-modal', 'data-modal-content']
+         'data-position', 'data-screen', 'data-deck', 'data-name', 'data-type', 'data-modal', 'data-modal-content',
+         'data-events']
 for h in HOOKS:
     if h in MARKUP and h not in JS:
         fail.append('markup uses %s but console.js never references it' % h)

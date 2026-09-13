@@ -1,0 +1,211 @@
+[
+ {
+  "title": "Shastrarth round 2",
+  "kind": "Peer discussion",
+  "date": "2026-09-28",
+  "time": "21:30 onwards",
+  "venue": "Venue to be announced",
+  "description": "A mock thesis defence: one presenter, a panel for, a panel against, and a judging panel.",
+  "series": "",
+  "link": "",
+  "label": ""
+ },
+ {
+  "title": "Talk 1 — Node representation learning",
+  "kind": "Talk",
+  "date": "2026-10-05",
+  "time": "18:00–19:30",
+  "venue": "",
+  "description": "“Who you know shapes who you are.” With Prof. Saptarshi Bej.",
+  "series": "Codyssey",
+  "link": "",
+  "label": ""
+ },
+ {
+  "title": "Hackathon",
+  "kind": "Hackathon",
+  "date": "2026-10-06",
+  "time": "21:30–00:30",
+  "venue": "",
+  "description": "Three hours, in person, running past midnight.",
+  "series": "Codyssey",
+  "link": "",
+  "label": ""
+ },
+ {
+  "title": "Talk 2 — Fractal geometry and its applications in computer graphics",
+  "kind": "Talk",
+  "date": "2026-10-13",
+  "time": "17:30–19:30",
+  "venue": "",
+  "description": "With Prof. Prasuna Bandi.",
+  "series": "Codyssey",
+  "link": "",
+  "label": ""
+ },
+ {
+  "title": "Talk 3 — Prof. Deepak Mishra",
+  "kind": "Talk",
+  "date": "2026-10-27",
+  "time": "Time to be announced",
+  "venue": "",
+  "description": "Topic to be announced.",
+  "series": "Codyssey",
+  "link": "",
+  "label": ""
+ },
+ {
+  "title": "Fresher's orientation",
+  "kind": "Orientation",
+  "date": "2026-09-13",
+  "time": "17:00",
+  "venue": "A and B common area",
+  "description": "What the club does and how to join.",
+  "series": "",
+  "link": "https://drive.google.com/drive/folders/1khLXt2kUlSldwm4QjH5hgf1xAXDxYA8B",
+  "label": ""
+ },
+ {
+  "title": "Parsec × CCIT — Stellar structure and modelling",
+  "kind": "Joint session",
+  "date": "2026-09-04",
+  "time": "",
+  "venue": "",
+  "description": "Two evenings with the astronomy club.",
+  "series": "",
+  "link": "https://drive.google.com/drive/folders/1_b5xvC4iCwjmH8-74tEj3YSntbS3AIPV",
+  "label": "4–5 Sep"
+ },
+ {
+  "title": "CCIT × CMIT — The maths of origami",
+  "kind": "Joint session",
+  "date": "2026-08-29",
+  "time": "",
+  "venue": "",
+  "description": "A session with the Maths Club.",
+  "series": "",
+  "link": "https://drive.google.com/drive/folders/12yc7Ah4YXoYa-J4TFQa75pcjLNSqWRGg",
+  "label": ""
+ },
+ {
+  "title": "Absolute Beginner's Web Development Course",
+  "kind": "Course",
+  "date": "",
+  "time": "",
+  "venue": "",
+  "description": "The club’s first full course: 16 sessions over six weeks. HTML, CSS, JavaScript, Python and Django, taught from zero.",
+  "series": "",
+  "link": "others/course-layout.html",
+  "label": ""
+ },
+ {
+  "title": "Python Basics Workshop",
+  "kind": "Workshop",
+  "date": "",
+  "time": "",
+  "venue": "",
+  "description": "Python from zero, for people who had never written a line.",
+  "series": "",
+  "link": "https://drive.google.com/drive/folders/1l6uc4Qvg_oJSNMZliGBsW1JPZOhNVQZ5",
+  "label": ""
+ },
+ {
+  "title": "Introduction to OpenCV",
+  "kind": "Workshop",
+  "date": "",
+  "time": "",
+  "venue": "",
+  "description": "Computer vision, hands on: reading, transforming and analysing images.",
+  "series": "",
+  "link": "https://drive.google.com/drive/folders/1qi56k1SaJ7VA0jtfkxO1zMvgxBiGiQUE",
+  "label": ""
+ },
+ {
+  "title": "Local AI Agent Workshop",
+  "kind": "Workshop",
+  "date": "",
+  "time": "",
+  "venue": "",
+  "description": "Setting up and running an AI agent on your own machine.",
+  "series": "",
+  "link": "https://drive.google.com/drive/folders/1hP4XHfN2lV2YtYKjQDGk-WD3RODAT75b",
+  "label": ""
+ },
+ {
+  "title": "Code Meets Chord",
+  "kind": "Workshop",
+  "date": "",
+  "time": "",
+  "venue": "",
+  "description": "Music Club × CCIT. Analysing the spectrogram of a music recording with OpenCV.",
+  "series": "",
+  "link": "https://drive.google.com/drive/folders/1GKxT5lgNq3UahtQ2VIsMDyq1irzdEt1U",
+  "label": ""
+ },
+ {
+  "title": "Beyond Syntax",
+  "kind": "Talk series",
+  "date": "",
+  "time": "",
+  "venue": "",
+  "description": "A talk series on what comes after the basics: advanced practice, software design, and the reasoning behind both.",
+  "series": "",
+  "link": "",
+  "label": ""
+ },
+ {
+  "title": "Coding Club talk",
+  "kind": "Talk",
+  "date": "",
+  "time": "",
+  "venue": "",
+  "description": "An introduction to the club, what it works on, and how to get involved.",
+  "series": "",
+  "link": "assets/docs/Coding_Club_Talk.pdf",
+  "label": ""
+ },
+ {
+  "title": "Alumni meet and interaction",
+  "kind": "Meet",
+  "date": "",
+  "time": "",
+  "venue": "",
+  "description": "Past members back on campus talking about where they went and how they got there.",
+  "series": "",
+  "link": "assets/docs/Alumni_Meet_Presentation.pdf",
+  "label": ""
+ },
+ {
+  "title": "Shastrarth round 1",
+  "kind": "Peer discussion",
+  "date": "",
+  "time": "",
+  "venue": "",
+  "description": "A mock thesis defence: one presenter, a panel for, a panel against, and a judging panel.",
+  "series": "",
+  "link": "https://drive.google.com/drive/folders/1B5aTrQugPlkPqIr3kCEsZVGkzuA3StEJ",
+  "label": ""
+ },
+ {
+  "title": "Codyssey",
+  "kind": "Hackathon",
+  "date": "",
+  "time": "",
+  "venue": "",
+  "description": "The club hackathon, run as part of the science fest Anvesha and hosted on Devpost.",
+  "series": "",
+  "link": "others/hackathon.html",
+  "label": ""
+ },
+ {
+  "title": "League of Lag",
+  "kind": "Games night",
+  "date": "",
+  "time": "",
+  "venue": "",
+  "description": "The club’s first games night.",
+  "series": "",
+  "link": "https://drive.google.com/drive/folders/1DQ3hNH3_sW46p5LgtRD2QJ6Hq_S7MtUY",
+  "label": ""
+ }
+]

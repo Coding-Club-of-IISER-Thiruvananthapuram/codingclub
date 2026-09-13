@@ -634,6 +634,18 @@ img { max-width: 100%; display: block; }
   letter-spacing: 0.03em;
 }
 .manifest__desc { margin: 0.375rem 0 0; color: var(--ink-dim); font-size: 0.9375rem; }
+/* where it happens: a pinned line under the description, set like the date so
+   the two read as the row's facts and the description as its prose */
+.manifest__venue {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.625rem;
+  font-family: var(--font-data);
+  font-size: 0.8125rem;
+  color: var(--ink);
+}
+.manifest__venue i { color: var(--violet); font-size: 0.75rem; }
 
 .state {
   font-family: var(--font-ui);

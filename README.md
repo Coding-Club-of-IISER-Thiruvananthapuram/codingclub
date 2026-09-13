@@ -290,6 +290,50 @@ the last row as a large pale block.
 
 ---
 
+## Events — one list, dated
+
+Every event the club has run or will run is **one row in one list**. Nothing is
+ever moved between "upcoming" and "archive": each page compares every row's date
+with today's when it loads, and draws the future ones into the schedule and the
+past ones into the record. The day after an event, the same row simply compares
+differently. There is no job, no cron, no server doing this — it is a comparison
+of two dates, done in the visitor's browser.
+
+The list lives in two places:
+
+- **A Google Sheet, published to the web as TSV.** This is the one people edit. Its
+  URL is the `SHEET` constant near the top of the events block in `console.js`.
+  Google re-exports a published sheet roughly every five minutes, which is the only
+  delay in the system.
+- **`assets/data/events.json`**, a snapshot committed to the repo. It is what
+  renders if the sheet cannot be fetched, or while `SHEET` is empty. Refresh it now
+  and then by pasting the sheet back in (`~/Desktop/events-seed.tsv` shows the shape).
+
+Nine columns, in this order: `title kind date time venue description series link label`.
+
+- `date` **must** be `YYYY-MM-DD` — it is compared as text. A row with no date is
+  treated as already happened (the old sessions nobody has a date for).
+- `kind` decides the archive tab. Known kinds: Workshop, Course, Talk, Talk series,
+  Meet, Peer discussion, Orientation, Joint session, Hackathon, Games night, Social.
+  Anything else lands in an "Other" tab, which is how a typo shows itself.
+- `series` groups rows into a named panel — `data-events="series:Codyssey"` on the
+  events page — and prefixes the title in the schedule.
+- `link` makes an archive row clickable: a Drive URL gets a *Drive* badge, a site
+  path (`others/hackathon.html`) an *Open* badge. Ignored while the event is upcoming.
+- `label` overrides the formatted date, for spans like `4–5 Sep`.
+
+Where it renders: `[data-events="upcoming"]` on the home page and the events page,
+`[data-events="series:…"]` for a series panel, `[data-events="past"]` on the
+archive, which builds the whole tab strip and its panels. The terminal's
+`next event` line is the first upcoming row. The archive rebuilds its tabs after
+the fetch, which is why the roster-tab code is a function (`wireTabs`) rather than
+a block that runs once.
+
+One rule this breaks, knowingly: with JavaScript off these three lists are empty
+(a `<noscript>` says so). The site already needs JS for the reader and the tabs.
+
+---
+
 ## hangar.html — passion projects
 
 The intake form is a Tally form (`https://tally.so/r/jajx1R`), owned by the club

@@ -90,6 +90,160 @@
     setInterval(tick, 10000);
   }
 
+  /* ---------- events: one list, dated ----------
+     Every event the club has run or will run is one row: in a Google Sheet
+     published to the web as TSV, with assets/data/events.json as the
+     snapshot used when the sheet cannot be reached (or is not set yet).
+     Nothing here is ever "moved": each page compares every row's date with
+     today's and draws the upcoming ones into the schedule and the past ones
+     into the archive. Tomorrow the same row simply compares differently.
+     A row with no date is treated as past — the old, undated sessions. */
+  /* the club's events sheet, published to the web as TSV. '' = snapshot only */
+  var SHEET = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSl5WzyCiBcFaQjaNhGaHX6OKAODZqUYJU_So33QmZVXKtX-MRWTNlZX44hjrS9DmPTN1eLnREO9F84/pub?gid=1005185385&single=true&output=tsv';
+  var evUp = deck ? (deck.dataset.up || '') : '';
+  var evHosts = document.querySelectorAll('[data-events]');
+
+  var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var pad2 = function (n) { return (n < 10 ? '0' : '') + n; };
+  var esc = function (t) {
+    return String(t == null ? '' : t).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  };
+  /* local date, not toISOString(): that is UTC, and would flip an event into
+     the archive at 05:30 IST instead of at midnight */
+  var now = new Date();
+  var TODAY = now.getFullYear() + '-' + pad2(now.getMonth() + 1) + '-' + pad2(now.getDate());
+
+  var parseTSV = function (text) {
+    var lines = text.replace(/\r/g, '').split('\n').filter(function (l) { return l.trim(); });
+    var head = lines.shift().split('\t').map(function (h) { return h.trim().toLowerCase(); });
+    return lines.map(function (l) {
+      var cells = l.split('\t'), o = {};
+      head.forEach(function (h, i) { o[h] = (cells[i] || '').trim(); });
+      return o;
+    });
+  };
+  var dayLabel = function (iso) {           /* '2026-09-28' -> '28 Sep' */
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || '');
+    return m ? (+m[3]) + ' ' + MONTHS[+m[2] - 1] : '';
+  };
+  var normalise = function (rows) {
+    return rows.map(function (r) {
+      return {
+        title: r.title || '', kind: r.kind || '', date: r.date || '', time: r.time || '',
+        venue: r.venue || '', desc: r.description || r.desc || '', series: r.series || '',
+        link: r.link || '', label: r.label || ''
+      };
+    }).filter(function (e) { return e.title; });
+  };
+
+  /* prefer the sheet; fall back to the snapshot; give up quietly */
+  var eventsReady = (SHEET
+      ? fetch(SHEET).then(function (r) { if (!r.ok) throw 0; return r.text(); }).then(parseTSV)
+      : Promise.reject(0))
+    .catch(function () {
+      return fetch(evUp + 'assets/data/events.json').then(function (r) { return r.json(); });
+    })
+    .then(normalise)
+    .catch(function () { return null; });
+
+  var isPast = function (e) { return !e.date || e.date < TODAY; };
+  var byDate = function (a, b) { return (a.date || '9').localeCompare(b.date || '9'); };
+
+  var whenOf = function (e) {
+    var d = e.label || dayLabel(e.date);
+    return d + (e.time ? ' · ' + e.time : '');
+  };
+  var stateOf = function (e) {
+    if (!isPast(e)) return 'Scheduled';
+    if (/drive\.google\.com/.test(e.link)) return 'Drive';
+    return e.link ? 'Open' : 'Held';
+  };
+  var hrefOf = function (e) { return /^https?:/.test(e.link) ? e.link : evUp + e.link; };
+
+  /* one manifest row. `when` is the left column: the date for a schedule,
+     the kind for the archive. A row with a link is an <a>; without, a <div>. */
+  var rowHTML = function (e, n, when, title, desc, venue) {
+    var link = e.link && isPast(e);
+    var open = link ? '<a class="manifest__row" href="' + esc(hrefOf(e)) + '"' +
+                      (/^https?:/.test(e.link) ? ' target="_blank" rel="noopener"' : '') + '>'
+                    : '<div class="manifest__row">';
+    return open +
+      '<span class="manifest__n">' + pad2(n) + '</span>' +
+      '<span class="manifest__when">' + esc(when) + '</span>' +
+      '<div><div class="manifest__name">' + esc(title) + '</div>' +
+      '<p class="manifest__desc">' + esc(desc) + '</p>' +
+      /* the venue is a fact, not prose: its own line, pinned, in the data font */
+      (venue ? '<span class="manifest__venue"><i class="fas fa-location-dot" aria-hidden="true"></i>' + esc(venue) + '</span>' : '') +
+      '</div>' +
+      '<span class="state">' + stateOf(e) + '</span>' +
+      (link ? '</a>' : '</div>');
+  };
+  var scheduleRows = function (list, prefixSeries) {
+    if (!list.length) return '<p class="empty">Nothing on the calendar yet. Check back soon.</p>';
+    return list.map(function (e, i) {
+      var title = (prefixSeries && e.series ? e.series + ' · ' : '') + e.title;
+      return rowHTML(e, i + 1, whenOf(e), title, e.desc, e.venue);
+    }).join('');
+  };
+
+  /* the archive: the past, grouped into tabs by kind */
+  var GROUPS = [
+    ['Workshops and courses', ['Workshop', 'Course']],
+    ['Talks and series',      ['Talk', 'Talk series', 'Meet']],
+    ['Sessions',              ['Peer discussion', 'Orientation', 'Joint session']],
+    ['Hackathons and socials',['Hackathon', 'Games night', 'Social']]
+  ];
+  var archiveHTML = function (past) {
+    var groups = GROUPS.map(function (g) {
+      return { name: g[0], key: g[0].toLowerCase().replace(/[^a-z]+/g, '-'),
+               rows: past.filter(function (e) { return g[1].indexOf(e.kind) > -1; }) };
+    });
+    var known = [].concat.apply([], GROUPS.map(function (g) { return g[1]; }));
+    var other = past.filter(function (e) { return known.indexOf(e.kind) < 0; });
+    if (other.length) groups.push({ name: 'Other', key: 'other', rows: other });
+    groups = groups.filter(function (g) { return g.rows.length; });
+
+    var tabs = '<div class="tabs tabs--four" role="tablist" aria-label="Record">' +
+      groups.map(function (g, i) {
+        return '<button class="tabs__btn" role="tab" id="t-' + g.key + '" data-panel="' + g.key +
+               '" aria-controls="p-' + g.key + '" aria-selected="' + (i === 0) + '"' +
+               (i ? ' tabindex="-1"' : '') + '>' +
+               '<span class="tabs__n">' + pad2(i + 1) + '</span>' + esc(g.name) +
+               '<span class="tabs__c">' + pad2(g.rows.length) + '</span></button>';
+      }).join('') + '</div>';
+    var panels = groups.map(function (g, i) {
+      return '<div id="p-' + g.key + '" role="tabpanel" aria-labelledby="t-' + g.key + '"' + (i ? ' hidden' : '') + '>' +
+             '<div class="manifest">' +
+             g.rows.map(function (e, k) { return rowHTML(e, k + 1, e.kind, e.title, e.desc); }).join('') +
+             '</div></div>';
+    }).join('');
+    return tabs + panels;
+  };
+
+  if (evHosts.length) {
+    eventsReady.then(function (events) {
+      if (!events) return;                      /* the markup's fallback text stays */
+      var upcoming = events.filter(function (e) { return !isPast(e); }).sort(byDate);
+      /* dated most recent first, then the undated ones in sheet order */
+      var past = events.filter(isPast).sort(function (a, b) {
+        if (!a.date && !b.date) return 0;
+        if (!a.date) return 1; if (!b.date) return -1;
+        return b.date.localeCompare(a.date);
+      });
+      evHosts.forEach(function (host) {
+        var what = host.getAttribute('data-events');
+        if (what === 'upcoming') host.innerHTML = scheduleRows(upcoming, true);
+        else if (what === 'past') { host.innerHTML = archiveHTML(past); wireTabs(host); }
+        else if (what.indexOf('series:') === 0) {
+          var name = what.slice(7);
+          host.innerHTML = scheduleRows(events.filter(function (e) { return e.series === name; }).sort(byDate), false);
+        }
+      });
+    });
+  }
+
   /* ---------- terminal readout ----------
      Lines are typed as plain text into per-line spans, so the markup
      is never half-written the way typing raw HTML would leave it. */
@@ -106,7 +260,7 @@
       { t: '                         1 hackathon, 1 games night', c: 'out' },
       { t: '  writing .............. 9 posts, 6 authors', c: 'out' },
       { t: '  newsletter ........... the MANIAC, edition I out', c: 'out' },
-      { t: '  next event ........... shastrarth round 2, 28 sep', c: 'hi' },
+      { t: '  next event ........... ', c: 'hi', next: true },   /* filled from the events list */
       { t: '' },
       { t: '  applications ......... CLOSED for now', c: 'out' },
       { t: '  crew recruitment ..... OPEN', c: 'hi' },
@@ -160,8 +314,23 @@
       setTimeout(type, 120);
     }
 
-    if (reduced) writeAll();
-    else {
+    /* the next-event line is filled from the events list. Wait for it, but
+       not long: 700ms and the readout starts regardless, with a fallback. */
+    var fillNext = function (events) {
+      var slot = LINES.filter(function (l) { return l.next; })[0];
+      if (!slot) return;
+      var up = (events || []).filter(function (e) { return !isPast(e); }).sort(byDate)[0];
+      var room = 52 - slot.t.length;                        /* the phone's line limit */
+      var fit = function (t) { return t.length > room ? t.slice(0, room - 1) + '…' : t; };
+      if (!up) { slot.t += 'see /events'; return; }
+      /* the title on the label's line, the date and time on one beneath it,
+         aligned to the same column — the way the events breakdown reads */
+      slot.t += fit(up.title.toLowerCase());
+      LINES.splice(LINES.indexOf(slot) + 1, 0,
+        { t: '                         ' + fit(whenOf(up).toLowerCase()), c: 'hi' });
+    };
+    var start = function () {
+      if (reduced) { writeAll(); return; }
       /* let someone skip straight to the finished readout */
       var skip = function () {
         li = LINES.length;
@@ -169,8 +338,10 @@
         term.removeEventListener('click', skip);
       };
       term.addEventListener('click', skip);
-      setTimeout(type, 500);
-    }
+      setTimeout(type, 200);
+    };
+    Promise.race([eventsReady, new Promise(function (ok) { setTimeout(ok, 700, null); })])
+      .then(fillNext).then(start);
   }
 
   /* ---------- typed readouts ----------
@@ -214,7 +385,8 @@
   /* ---------- roster tabs ----------
      Real buttons in a tablist, so Enter/Space and screen readers work
      without help; this only moves selection and syncs the hash. */
-  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tabs__btn'));
+  function wireTabs(root) {
+  var tabs = Array.prototype.slice.call((root || document).querySelectorAll('.tabs__btn'));
 
   if (tabs.length) {
     var show = function (key, focus) {
@@ -243,6 +415,8 @@
     var start = location.hash.slice(1);
     if (tabs.some(function (t) { return t.dataset.panel === start; })) show(start);
   }
+  }
+  wireTabs();
 
   /* ---------- post reader ----------
      Posts open in place instead of navigating to the legacy pages, which
